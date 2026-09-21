@@ -3,6 +3,7 @@ import { Star, Film, Save, Award, Clapperboard, Search, Loader2, Globe, User, Lo
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore, collection, doc, setDoc, getDoc, onSnapshot, runTransaction, query, orderBy } from 'firebase/firestore';
+import { Analytics } from '@vercel/analytics/react';
 
 // --------------------------------------------------------
 // 1. FIREBASE VE API AYARLARI (BEYAZ EKRAN KESİN ÇÖZÜMÜ)
@@ -1137,6 +1138,7 @@ function CineScoreMain() {
            <button onClick={() => { if(!user){setShowLoginModal(true); return;} setActiveTab('profile'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'profile' ? 'bg-amber-500 text-[#04060C] shadow-inner' : 'text-slate-500 hover:text-white'}`}><User size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.navProfile || 'PROFİL'}</span></button>
         </div>
       </main>
+      <Analytics />
     </div>
   );
 }
