@@ -54,7 +54,8 @@ const TRANSLATIONS = {
     loginOr: 'VEYA', registerBtn: 'Kayıt Ol', namePlaceholder: 'İsim', emailPlaceholder: 'E-posta', passPlaceholder: 'Şifre',
     navShowcase: 'VİTRİN', navList: 'LİSTE', navProfile: 'PROFİL', noData: 'Veri yok.',
     watchlist: 'İzleme Listem', addToWatchlist: 'Listeye Ekle', removeFromWatchlist: 'Listeden Çıkar', profileGeneral: 'Genel Bakış', 
-    myRatedMovies: 'Oyladığım Filmler', sortBy: 'Sırala:', sortDate: 'En Yeni', sortMyScore: 'Puanım (Yüksek)', sortGlobalScore: 'Dünya Geneli', emptyWatchlist: 'İzleme listesi henüz boş.',
+    myRatedMovies: 'Oyladığım Filmler', sortBy: 'Sırala:', sortDate: 'En Yeni', sortMyScore: 'Puanım (Yüksek)', sortGlobalScore: 'Dünya Geneli Puan', emptyWatchlist: 'İzleme listesi henüz boş.',
+    footerDesc: 'Dünya geneli sinema arşivi ve topluluk tabanlı derecelendirme platformu.', contactLabel: 'İletişim & Reklam İşbirlikleri:', rights: 'CineScore. Tüm hakları saklıdır.',
     cinematicDNA: 'Kritik Odak Analizi', dnaDesc: 'Puanlama anomalilerine göre sinemada asla affetmediğin ve en çok aradığın detaylar.',
     customLists: 'Özel Listeler', createNewList: 'Yeni Liste Oluştur', listNamePlaceholder: 'Örn: Başyapıtlarım...', add: 'Ekle', share: 'Paylaş', copied: 'Bağlantı Kopyalandı!', selectList: 'Listeye Ekle', addedToList: 'Listeye eklendi!',
     addCustomListHover: 'Özel Listeye Ekle', addWatchlistHover: 'İzleme Listesine Ekle', removeWatchlistHover: 'İzleme Listesinden Çıkar',
@@ -66,7 +67,8 @@ const TRANSLATIONS = {
     zC1Desc: 'Senaryo açıklarına tahammülün yok. Hikaye zayıfsa, film biter.', zC2Desc: 'Oyunculuklardaki yapmacıklığı affetmiyorsun.', zC3Desc: 'Kötü çekilmiş, ışıksız bir filme katlanamazsın.', zC4Desc: 'Atmosferi ve müzikleri iliklerine kadar hissetmelisin.', zC5Desc: 'Sahneler arası geçişler ve kurgu hileleri senin için en kritik detay.',
     top3Title: 'Kutsal Üçlü', top3Desc: 'Hayatına dokunan ve başyapıt olarak görülen en iyi 3 film.', selectTop3Search: 'Vitrinin İçin Film Ara...',
     verifyEmailSent: 'Kayıt başarılı! Lütfen e-posta adresinize gönderilen doğrulama linkine tıklayın.', emailNotVerifiedError: 'E-posta adresiniz henüz doğrulanmamış. Lütfen gelen kutunuzu kontrol edin.',
-    followers: 'Takipçi', following: 'Takip Edilen', follow: 'Takip Et', unfollow: 'Takipten Çık', shareProfile: 'Profili Paylaş', userCodeCopied: 'Kullanıcı kodu kopyalandı!'
+    followers: 'Takipçi', following: 'Takip Edilen', follow: 'Takip Et', unfollow: 'Takipten Çık', shareProfile: 'Profili Paylaş', userCodeCopied: 'Kullanıcı kodu kopyalandı!',
+    communityPrivacyTitle: 'Gizli Topluluk', communityPrivacyDesc: 'Gizlilik gereği kullanıcılar açıkça listelenmez. Arkadaşınızı bulmak için @kodunu veya tam adını yazın.'
   },
   en: {
     home: 'Home', ranking: 'Ranking', community: 'Community', login: 'Login', logout: 'Log Out',
@@ -98,11 +100,21 @@ const TRANSLATIONS = {
     zC1Desc: 'No tolerance for plot holes.', zC2Desc: 'Fake acting is never forgiven.', zC3Desc: 'Eyes work like a cameraman.', zC4Desc: 'Atmosphere and music are everything.', zC5Desc: 'Pacing and editing are critical.',
     top3Title: 'Holy Trinity', top3Desc: 'The best 3 movies that touched your life.', selectTop3Search: 'Search movie for showcase...',
     verifyEmailSent: 'Registration successful! Please check your email to verify your account.', emailNotVerifiedError: 'Your email address is not verified yet. Please check your inbox.',
-    followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Unfollow', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!'
+    followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Unfollow', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!',
+    communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter an @code or exact name to find your friend.'
   },
-  de: { home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Benutzer oder @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!' },
-  it: { home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca nome o @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!' },
-  fr: { home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher nom ou @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!' }
+  de: { 
+    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Benutzer oder @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!',
+    communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie einen @Code oder genauen Namen ein, um Ihren Freund zu finden.'
+  },
+  it: { 
+    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca nome o @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!',
+    communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Per motivi di privacy, gli utenti non sono elencati pubblicamente. Inserisci un @codice o un nome esatto per trovare il tuo amico.'
+  },
+  fr: { 
+    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher nom ou @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!',
+    communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Pour des raisons de confidentialité, les utilisateurs ne sont pas listés publiquement. Entrez un @code ou un nom exact pour trouver votre ami.'
+  }
 };
 
 const AVATAR_PRESETS = [
@@ -423,11 +435,38 @@ function CineScoreMain() {
     let customListsUnsub = null;
 
     const authUnsub = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
+      // YENİ GÜVENLİK DUVARI: E-POSTA DOĞRULAMASI
+      if (currentUser && currentUser.emailVerified) {
         try {
-          const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
-          if (userDoc.exists()) setUserProfile(userDoc.data());
+          const userRef = doc(db, 'users', currentUser.uid);
+          const userDoc = await getDoc(userRef);
+          
+          if (userDoc.exists()) {
+            // ESKİ KULLANICI GÖÇ SİSTEMİ (Kod atama)
+            const data = userDoc.data();
+            if (!data.userCode) {
+               data.userCode = currentUser.uid.substring(0, 6).toUpperCase();
+               await setDoc(userRef, { userCode: data.userCode }, { merge: true });
+            }
+            setUserProfile(data);
+          } else {
+             // İLK KAYIT VE DOĞRULAMA SONRASI PROFİL OLUŞTURMA
+             const newProfile = {
+               uid: currentUser.uid,
+               userCode: currentUser.uid.substring(0, 6).toUpperCase(),
+               displayName: currentUser.displayName || 'Sinefil',
+               email: currentUser.email,
+               avatar: currentUser.photoURL || AVATAR_DEFAULT,
+               autoRemoveWatchlist: false,
+               bio: '',
+               banner: BANNER_PRESETS[0],
+               top3: [null, null, null],
+               followers: [],
+               following: []
+             };
+             await setDoc(userRef, newProfile);
+             setUserProfile(newProfile);
+          }
           
           if (ratingsUnsub) ratingsUnsub();
           ratingsUnsub = onSnapshot(collection(db, 'users', currentUser.uid, 'ratings'), (snap) => {
@@ -583,6 +622,21 @@ function CineScoreMain() {
     return () => clearTimeout(delayFn);
   }, [top3SearchTerm, tmdbLang]);
 
+  // YENİ: Topluluk Araması Gizlilik Sistemi
+  useEffect(() => {
+    if (communitySearch.length >= 3) {
+       const fetchUsers = async () => {
+          try {
+            const snap = await getDocs(query(collection(db, 'users'), limit(100)));
+            setAllUsersList(snap.docs.map(d => d.data()).filter(u => u.uid));
+          } catch(e) {}
+       };
+       fetchUsers();
+    } else {
+       setAllUsersList([]);
+    }
+  }, [communitySearch]);
+
   useEffect(() => {
     const handleClickOutside = (e) => { 
       if (searchDropdownRef.current && !searchDropdownRef.current.contains(e.target)) setSearchResults([]); 
@@ -641,7 +695,7 @@ function CineScoreMain() {
       if (authMode === 'register') {
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCred.user, { displayName });
-        await saveUserProfileData(userCred.user, { name: displayName });
+        // FIRESTORE'A YAZMIYORUZ, DOĞRULAMA BEKLİYORUZ
         await sendEmailVerification(userCred.user);
         await signOut(auth);
         setAuthError(t.verifyEmailSent);
@@ -654,17 +708,17 @@ function CineScoreMain() {
            setShowLoginModal(false);
         }
       }
-    } catch (err) { setAuthError("İşlem başarısız. Bilgileri kontrol edin."); } 
+    } catch (err) { setAuthError("İşlem başarısız. Lütfen bilgileri kontrol edin."); } 
     finally { setIsAuthLoading(false); }
   };
 
   const handleGoogleAuth = async () => {
     try {
+      setAuthError('');
       const result = await signInWithPopup(auth, googleProvider);
-      const userDoc = await getDoc(doc(db, 'users', result.user.uid));
-      if (!userDoc.exists()) await saveUserProfileData(result.user, { name: result.user.displayName });
+      // Google doğrulanmış olduğu için Firestore'a eklenecek (onAuthStateChanged halleder)
       setShowLoginModal(false);
-    } catch (err) {}
+    } catch (err) { setAuthError("Giriş iptal edildi veya başarısız oldu."); }
   };
 
   const handleUpdateProfile = async (e) => {
@@ -728,15 +782,9 @@ function CineScoreMain() {
     }
   };
 
-  const fetchCommunityUsers = async () => {
-     try {
-       const snap = await getDocs(query(collection(db, 'users'), limit(50)));
-       setAllUsersList(snap.docs.map(d => d.data()).filter(u => u.uid));
-     } catch(e) {}
-  };
-
   const handleOpenCommunity = () => {
-     fetchCommunityUsers();
+     setCommunitySearch('');
+     setAllUsersList([]);
      setActiveTab('community');
      setDynamicBg('');
      setSelectedMovie(null);
@@ -1045,7 +1093,7 @@ function CineScoreMain() {
             <form onSubmit={handleUpdateProfile} className="space-y-6">
                <div>
                   <label className="text-xs text-slate-400 font-black uppercase mb-2 block tracking-wider">{t.username}</label>
-                  <input type="text" value={editName} onChange={e=>setEditName(e.target.value)} className="w-full bg-[#04060C] border border-slate-800 p-4 rounded-xl text-white outline-none focus:border-[#39ff14] shadow-inner font-bold transition-colors"/>
+                  <input type="text" value={editName} onChange={e=>setEditName(e.target.value)} autoComplete="name" className="w-full bg-[#04060C] border border-slate-800 p-4 rounded-xl text-white outline-none focus:border-[#39ff14] shadow-inner font-bold transition-colors"/>
                </div>
                <div>
                   <label className="text-xs text-slate-400 font-black uppercase mb-2 block tracking-wider">{t.bioLabel}</label>
@@ -1171,9 +1219,9 @@ function CineScoreMain() {
               <button onClick={() => setAuthMode('register')} className={`flex-1 py-3 text-sm font-black rounded-lg transition-all ${authMode === 'register' ? 'bg-slate-800 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}>{t.registerBtn}</button>
             </div>
             <form onSubmit={handleAuth} className="space-y-4">
-              {authMode === 'register' && <input type="text" onChange={e=>setDisplayName(e.target.value)} placeholder={t.namePlaceholder} required className="w-full p-4 bg-[#04060C] border border-slate-800 rounded-xl text-white shadow-inner outline-none focus:border-[#39ff14] font-medium transition-colors"/>}
-              <input type="email" onChange={e=>setEmail(e.target.value)} placeholder={t.emailPlaceholder} required className="w-full p-4 bg-[#04060C] border border-slate-800 rounded-xl text-white shadow-inner outline-none focus:border-[#39ff14] font-medium transition-colors"/>
-              <input type="password" onChange={e=>setPassword(e.target.value)} placeholder={t.passPlaceholder} required minLength={6} className="w-full p-4 bg-[#04060C] border border-slate-800 rounded-xl text-white shadow-inner outline-none focus:border-[#39ff14] font-medium transition-colors"/>
+              {authMode === 'register' && <input type="text" onChange={e=>setDisplayName(e.target.value)} autoComplete="name" placeholder={t.namePlaceholder} required className="w-full p-4 bg-[#04060C] border border-slate-800 rounded-xl text-white shadow-inner outline-none focus:border-[#39ff14] font-medium transition-colors"/>}
+              <input type="email" onChange={e=>setEmail(e.target.value)} autoComplete="username" placeholder={t.emailPlaceholder} required className="w-full p-4 bg-[#04060C] border border-slate-800 rounded-xl text-white shadow-inner outline-none focus:border-[#39ff14] font-medium transition-colors"/>
+              <input type="password" onChange={e=>setPassword(e.target.value)} autoComplete={authMode === 'login' ? 'current-password' : 'new-password'} placeholder={t.passPlaceholder} required minLength={6} className="w-full p-4 bg-[#04060C] border border-slate-800 rounded-xl text-white shadow-inner outline-none focus:border-[#39ff14] font-medium transition-colors"/>
               {authError && <p className={`text-xs text-center font-bold p-3 rounded-xl ${authError.includes('başarılı') || authError.includes('successful') ? 'text-green-400 bg-green-950/50' : 'text-red-400 bg-red-950/50'}`}>{authError}</p>}
               <button className="w-full p-4 bg-[#39ff14] hover:bg-green-400 text-slate-950 font-black rounded-xl transition-all shadow-[0_0_15px_rgba(57,255,20,0.3)] hover:scale-[1.02] active:scale-[0.98]">{isAuthLoading ? <Loader2 className="animate-spin mx-auto" /> : (authMode === 'login' ? t.login : t.registerBtn)}</button>
             </form>
@@ -1240,7 +1288,7 @@ function CineScoreMain() {
             <nav className="hidden md:flex bg-slate-900/50 p-1.5 rounded-full border border-slate-800 shadow-inner gap-2">
                <button onClick={handleCloseMovie} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'home' ? 'bg-[#39ff14] text-[#04060C] shadow-[0_0_15px_rgba(57,255,20,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.home}</button>
                <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'global' ? 'bg-[#39ff14] text-[#04060C] shadow-[0_0_15px_rgba(57,255,20,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.ranking}</button>
-               <button onClick={handleOpenCommunity} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-blue-500 text-[#04060C] shadow-[0_0_15px_rgba(59,130,246,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
+               <button onClick={handleOpenCommunity} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-[#39ff14] text-[#04060C] shadow-[0_0_15px_rgba(57,255,20,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
             </nav>
 
             {userProfile ? (
@@ -1282,12 +1330,12 @@ function CineScoreMain() {
 
       <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-32 sm:pb-16">
         
-        {/* YENİ: TOPLULUK ARAMA EKRANI */}
+        {/* YENİ: TOPLULUK ARAMA EKRANI (GİZLİLİK ODAKLI) */}
         {activeTab === 'community' && (
           <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
              <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 sm:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-                <h2 className="text-3xl sm:text-4xl font-black text-white flex items-center gap-3 drop-shadow-md mb-6 relative z-10"><Users className="text-blue-500" size={36}/> {t.community}</h2>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#39ff14]/10 blur-[100px] rounded-full pointer-events-none"></div>
+                <h2 className="text-3xl sm:text-4xl font-black text-white flex items-center gap-3 drop-shadow-md mb-6 relative z-10"><Users className="text-[#39ff14]" size={36}/> {t.community}</h2>
                 <div className="relative flex items-center z-10">
                   <Search className="absolute left-6 text-slate-400" size={20}/>
                   <input 
@@ -1298,17 +1346,24 @@ function CineScoreMain() {
              </div>
 
              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {filteredCommunityUsers.map(u => (
-                  <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-[#39ff14]/50 hover:-translate-y-1 transition-all group">
-                     <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-[#39ff14] transition-colors object-cover" alt=""/>
-                     <div>
-                       <h4 className="text-lg font-black text-white group-hover:text-[#39ff14] transition-colors line-clamp-1">{u.displayName} <span className="text-slate-500 text-sm font-bold ml-1">@{u.userCode || u.uid.substring(0,6).toUpperCase()}</span></h4>
-                       <p className="text-xs font-bold text-slate-500 mt-1">{u.followers?.length || 0} {t.followers}</p>
-                     </div>
+                {communitySearch.length < 3 ? (
+                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">
+                     <Lock size={48} className="mx-auto mb-4 opacity-50 text-[#39ff14]"/>
+                     <p className="text-lg text-slate-300 mb-2">{t.communityPrivacyTitle}</p>
+                     <p className="text-sm max-w-sm mx-auto">{t.communityPrivacyDesc}</p>
                   </div>
-                ))}
-                {filteredCommunityUsers.length === 0 && (
-                  <div className="col-span-full text-center py-20 text-slate-500 font-bold">{t.noData}</div>
+                ) : filteredCommunityUsers.length > 0 ? (
+                  filteredCommunityUsers.map(u => (
+                    <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-[#39ff14]/50 hover:-translate-y-1 transition-all group">
+                       <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-[#39ff14] transition-colors object-cover" alt=""/>
+                       <div>
+                         <h4 className="text-lg font-black text-white group-hover:text-[#39ff14] transition-colors line-clamp-1">{u.displayName} <span className="text-slate-500 text-sm font-bold ml-1">@{u.userCode || u.uid.substring(0,6).toUpperCase()}</span></h4>
+                         <p className="text-xs font-bold text-slate-500 mt-1">{u.followers?.length || 0} {t.followers}</p>
+                       </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
                 )}
              </div>
           </div>
@@ -1491,10 +1546,12 @@ function CineScoreMain() {
         {activeTab === 'rate' && selectedMovie && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-in zoom-in-95 duration-300 max-w-7xl mx-auto">
             
+            {/* SOL PANEL */}
             <div className="lg:col-span-4 space-y-6">
               <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-2xl relative text-center">
                 <button onClick={handleCloseMovie} className="absolute top-4 left-4 p-2 bg-[#04060C] rounded-xl text-slate-400 hover:text-white transition-colors z-10 shadow-md border border-slate-800 hover:scale-110"><X size={18}/></button>
                 
+                {/* İZLEME LİSTESİ VE ÖZEL LİSTE BUTONLARI */}
                 <div className="absolute top-4 right-4 flex gap-3 z-30">
                    <div className="relative group">
                      <button onClick={() => setShowAddToListModal(true)} className="p-3 sm:p-4 rounded-2xl transition-all shadow-xl border border-slate-700 hover:border-[#39ff14] bg-[#04060C]/80 backdrop-blur text-slate-300 hover:text-[#39ff14] hover:scale-110">
@@ -1586,6 +1643,7 @@ function CineScoreMain() {
               </div>
             </div>
 
+            {/* SAĞ PANEL: KRİTERLER VE KAYDET BUTONU */}
             <div className="lg:col-span-8 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 border border-slate-800 shadow-2xl flex flex-col justify-between">
               <div>
                  <h3 className="text-3xl font-black text-white mb-12 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={32}/> {t.criteria}</h3>
