@@ -39,7 +39,7 @@ const TRANSLATIONS = {
   tr: {
     home: 'Ana Sayfa', ranking: 'Sıralama', community: 'Topluluk', login: 'Giriş Yap', logout: 'Çıkış Yap',
     trending: 'Şu An Popüler', topRated: 'Kült Başyapıtlar', featured: 'Haftanın Öne Çıkanları',
-    searchPlaceholder: 'Film ara...', searchUsers: '@kod ile ara...', director: 'Yönetmen', cast: 'Oyuncular', summary: 'Özet', watchTrailer: 'Fragmanı İzle',
+    searchPlaceholder: 'Film ara...', searchUsers: 'Sadece @kod ile arayın...', director: 'Yönetmen', cast: 'Oyuncular', summary: 'Özet', watchTrailer: 'Fragmanı İzle',
     saveRating: 'Puanı Kaydet', updateRating: 'Puanımı Güncelle', criteria: 'İnceleme Kriterleri', yourScore: 'Puanın', globalRanking: 'Dünya Geneli Sıralama', 
     noRating: 'Henüz film puanlanmadı.', ratedFilmsLabel: 'Oylanan Film', yourAvg: 'Ortalama', nextLevel: 'Sonraki Seviye',
     globalScoreLabel: 'Genel', yourScoreLabel: 'Senin Oyun', myRatings: 'Verdiğim Puanlar', editProfile: 'Profili Düzenle', rateNow: 'Puanla',
@@ -68,13 +68,14 @@ const TRANSLATIONS = {
     top3Title: 'Kutsal Üçlü', top3Desc: 'Hayatına dokunan ve başyapıt olarak görülen en iyi 3 film.', selectTop3Search: 'Vitrinin İçin Film Ara...',
     verifyEmailSent: 'Kayıt başarılı! Lütfen e-posta adresinize gönderilen doğrulama linkine tıklayın.', emailNotVerifiedError: 'E-posta adresiniz henüz doğrulanmamış. Lütfen gelen kutunuzu kontrol edin.',
     followers: 'Takipçi', following: 'Takip Edilen', follow: 'Takip Et', unfollow: 'Takipten Çık', shareProfile: 'Profili Paylaş', userCodeCopied: 'Kullanıcı kodu kopyalandı!',
-    communityPrivacyTitle: 'Gizli Topluluk', communityPrivacyDesc: 'Gizlilik gereği kullanıcılar açıkça listelenmez. Arkadaşınızı bulmak için sadece @kodunu yazın.',
-    mostVoted: 'En Çok Oylananlar'
+    communityPrivacyTitle: 'Gizli Topluluk', communityPrivacyDesc: 'Gizlilik gereği kullanıcılar açıkça listelenmez. Arkadaşınızı bulmak için 6 haneli @kodunu tam olarak yazın.',
+    mostVoted: 'En Çok Oylananlar', exactCodeRequired: 'Tam @kodunu yazarak arayın...', followingTab: 'Takip Ettiklerim', theirScore: 'Onun Oyu', theirRatedMovies: 'Oyladığı Filmler',
+    tasteMatch: 'Film Zevki Uyumu', matchCalculating: 'Hesaplanıyor...', dnaLockedTitle: 'DNA Analizi Kilitli', dnaLockedDesc: 'film daha oylaman gerekiyor. 20 filme ulaştığında zıt orantı analizin açılacak.', dnaLockedDescPublic: 'Bu kullanıcının analiz için yeterli oyu yok.'
   },
   en: {
     home: 'Home', ranking: 'Ranking', community: 'Community', login: 'Login', logout: 'Log Out',
     trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Featured This Week',
-    searchPlaceholder: 'Search movies...', searchUsers: 'Search by @code...', director: 'Director', cast: 'Cast', summary: 'Plot', watchTrailer: 'Watch Trailer',
+    searchPlaceholder: 'Search movies...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot', watchTrailer: 'Watch Trailer',
     saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', 
     noRating: 'No movies rated yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Average', nextLevel: 'Next Level',
     globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'Ratings', editProfile: 'Edit Profile', rateNow: 'Rate',
@@ -106,17 +107,18 @@ const TRANSLATIONS = {
     top3Title: 'Holy Trinity', top3Desc: 'The best 3 movies that touched your life.', selectTop3Search: 'Search movie for showcase...',
     verifyEmailSent: 'Registration successful! Please check your email to verify your account.', emailNotVerifiedError: 'Your email address is not verified yet. Please check your inbox.',
     followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Unfollow', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!',
-    communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter an @code to find your friend.',
-    mostVoted: 'Most Voted'
+    communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter the exact 6-char @code to find your friend.',
+    mostVoted: 'Most Voted', exactCodeRequired: 'Enter exact @code to search...', followingTab: 'Following', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies',
+    tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed. Rate 20 movies to unlock your critical DNA analysis.', dnaLockedDescPublic: 'Not enough data to analyze this user.'
   },
   de: { 
-    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie einen @Code ein, um Ihren Freund zu finden.', mostVoted: 'Meistbewertet'
+    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.'
   },
   it: { 
-    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Per motivi di privacy, gli utenti non sono elencati pubblicamente. Inserisci un @codice per trovare il tuo amico.', mostVoted: 'Più Votati'
+    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Per motivi di privacy, gli utenti non sono elencati. Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti per un\'analisi.'
   },
   fr: { 
-    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Pour des raisons de confidentialité, les utilisateurs ne sont pas listés publiquement. Entrez un @code pour trouver votre ami.', mostVoted: 'Les Plus Votés' }
+    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Chercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données pour l\'analyse.' }
 };
 
 const AVATAR_PRESETS = [
@@ -372,6 +374,9 @@ function CineScoreMain() {
   const [viewingUserRatings, setViewingUserRatings] = useState([]);
   const [viewingUserWatchlist, setViewingUserWatchlist] = useState([]);
   const [viewingUserLists, setViewingUserLists] = useState([]);
+
+  // YENİ: Takip Ettiklerim (Following) Listesi
+  const [followingUsersList, setFollowingUsersList] = useState([]);
   
   const [toast, setToast] = useState({ show: false, message: '' });
   const showToast = (msg) => {
@@ -438,13 +443,16 @@ function CineScoreMain() {
     let customListsUnsub = null;
 
     const authUnsub = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser && currentUser.emailVerified) {
+      // SADECE MAİLİ ONAYLANANLAR VEYA GOOGLE İLE GİRENLER ALINIR
+      if (currentUser && (currentUser.emailVerified || currentUser.providerData.some(p => p.providerId === 'google.com'))) {
+        setUser(currentUser);
         try {
           const userRef = doc(db, 'users', currentUser.uid);
           const userDoc = await getDoc(userRef);
           
           if (userDoc.exists()) {
             const data = userDoc.data();
+            // ESKİ KULLANICI GÖÇÜ (Kod Atama)
             if (!data.userCode) {
                data.userCode = currentUser.uid.substring(0, 6).toUpperCase();
                await setDoc(userRef, { userCode: data.userCode }, { merge: true });
@@ -485,6 +493,7 @@ function CineScoreMain() {
 
         } catch(e) {}
       } else {
+        setUser(null);
         setUserProfile(null);
         setMyRatings([]);
         setMyWatchlist([]);
@@ -622,12 +631,14 @@ function CineScoreMain() {
     return () => clearTimeout(delayFn);
   }, [top3SearchTerm, tmdbLang]);
 
+  // YENİ GÜVENLİ ARAMA MOTORU (Sadece 6 haneli TAM @KOD ile eşleşir)
   useEffect(() => {
-    if (communitySearch.length >= 3) {
+    const code = communitySearch.replace('@', '').toUpperCase();
+    if (code.length === 6) {
        const fetchUsers = async () => {
           try {
-            const snap = await getDocs(query(collection(db, 'users'), limit(100)));
-            setAllUsersList(snap.docs.map(d => d.data()).filter(u => u.uid));
+            const snap = await getDocs(query(collection(db, 'users'), limit(500)));
+            setAllUsersList(snap.docs.map(d => d.data()).filter(u => u.uid && (u.userCode === code || u.uid.substring(0,6).toUpperCase() === code)));
           } catch(e) {}
        };
        fetchUsers();
@@ -694,6 +705,7 @@ function CineScoreMain() {
       if (authMode === 'register') {
         const userCred = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCred.user, { displayName });
+        // FIRESTORE'A YAZMIYORUZ, DOĞRULAMA BEKLİYORUZ
         await sendEmailVerification(userCred.user);
         await signOut(auth);
         setAuthError(t.verifyEmailSent);
@@ -714,16 +726,6 @@ function CineScoreMain() {
     try {
       setAuthError('');
       const result = await signInWithPopup(auth, googleProvider);
-      const userRef = doc(db, 'users', result.user.uid);
-      const userDoc = await getDoc(userRef);
-      if (!userDoc.exists()) {
-        await saveUserProfileData(result.user, { name: result.user.displayName });
-      } else {
-        const d = userDoc.data();
-        if (!d.userCode) {
-          await setDoc(userRef, { userCode: result.user.uid.substring(0,6).toUpperCase() }, { merge: true });
-        }
-      }
       setShowLoginModal(false);
     } catch (err) { setAuthError("Google ile giriş iptal edildi veya başarısız oldu."); }
   };
@@ -828,6 +830,16 @@ function CineScoreMain() {
        setUserProfile(prev => ({...prev, following: newMyFollowing}));
        setViewingUser(prev => ({...prev, followers: newTargetFollowers}));
      } catch(e) { showToast(t.errorOccurred); }
+  };
+
+  const loadFollowingUsers = async () => {
+     if (!userProfile?.following || userProfile.following.length === 0) {
+         setFollowingUsersList([]); return;
+     }
+     try {
+         const snaps = await Promise.all(userProfile.following.map(uid => getDoc(doc(db, 'users', uid))));
+         setFollowingUsersList(snaps.filter(s => s.exists()).map(s => s.data()));
+     } catch(e) { }
   };
 
   const copyProfileLink = (uid) => {
@@ -994,6 +1006,7 @@ function CineScoreMain() {
 
   const sortedWatchlist = [...(Array.isArray(myWatchlist) ? myWatchlist : [])].sort((a,b) => (Number(b.dateAdded) || 0) - (Number(a.dateAdded) || 0));
 
+  // YENİ: ZIT ORANTILI SİNEMATİK DNA
   const calculateDNA = (ratingsList) => {
       const dna = { c1:0, c2:0, c3:0, c4:0, c5:0 };
       if(ratingsList.length > 0) {
@@ -1005,10 +1018,14 @@ function CineScoreMain() {
             criteriaData.forEach(c => { 
                const catScore = r.scores?.[c.id] || 5;
                let weight = 0;
+               // Acımasızlık
                if (movieScore >= 7 && catScore <= 5) weight += 30;
                else if (movieScore >= 7 && catScore < movieScore) weight += (movieScore - catScore) * 5;
+               // Bağımsızlık
                if (globalAvg >= 7.5 && catScore <= 5) weight += 25;
+               // Ödüllendirme
                if (movieScore <= 5 && catScore >= 7) weight += 20;
+               // Seçicilik
                weight += Math.abs(movieScore - catScore) * 3;
                dna[c.id] += weight;
             });
@@ -1041,6 +1058,25 @@ function CineScoreMain() {
   const userDNA = calculateDNA(sortedMyRatings);
   const { title: zodiacTitle, desc: zodiacDesc } = getZodiac(userDNA, sortedMyRatings.length);
 
+  // YENİ: ZEVK UYUMU (TASTE MATCH) HESAPLAMA
+  const getTasteMatch = () => {
+    if (!myRatings.length || !viewingUserRatings.length) return null;
+    let commonCount = 0;
+    let totalMatch = 0;
+    myRatings.forEach(myR => {
+       const theirR = viewingUserRatings.find(tr => tr.id === myR.id);
+       if (theirR) {
+          commonCount++;
+          const diff = Math.abs((myR.finalScore || 0) - (theirR.finalScore || 0));
+          const matchPercent = 100 - ((diff / 9) * 100);
+          totalMatch += matchPercent;
+        }
+    });
+    if (commonCount === 0) return null;
+    return Math.round(totalMatch / commonCount);
+  };
+  const tasteMatchScore = viewingUser ? getTasteMatch() : null;
+
   const getTopGenres = (ratingsList) => {
       const counts = {};
       ratingsList.forEach(m => {
@@ -1049,6 +1085,7 @@ function CineScoreMain() {
       return Object.entries(counts).sort((a,b) => b[1] - a[1]).slice(0, 3);
   };
   const topGenres = getTopGenres(sortedMyRatings);
+  const topGenresViewing = getTopGenres(sortedViewingUserRatings);
 
   const featuredMovies = trendingData.slice(0, 5);
   const currentFeatured = featuredMovies[heroIndex] || null;
@@ -1061,7 +1098,7 @@ function CineScoreMain() {
 
   const filteredCommunityUsers = allUsersList.filter(u => {
      const searchStr = communitySearch.toLowerCase().replace('@', '');
-     return u.userCode?.toLowerCase().includes(searchStr);
+     return (u.userCode || (u.uid ? u.uid.substring(0, 6).toUpperCase() : '')).toLowerCase() === searchStr;
   });
 
   return (
@@ -1293,7 +1330,7 @@ function CineScoreMain() {
             <nav className="hidden md:flex bg-slate-900/50 p-1.5 rounded-full border border-slate-800 shadow-inner gap-2">
                <button onClick={handleCloseMovie} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'home' ? 'bg-[#39ff14] text-[#04060C] shadow-[0_0_15px_rgba(57,255,20,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.home}</button>
                <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'global' ? 'bg-[#39ff14] text-[#04060C] shadow-[0_0_15px_rgba(57,255,20,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.ranking}</button>
-               <button onClick={handleOpenCommunity} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-[#39ff14] text-[#04060C] shadow-[0_0_15px_rgba(57,255,20,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
+               <button onClick={handleOpenCommunity} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-blue-500 text-[#04060C] shadow-[0_0_15px_rgba(59,130,246,0.4)]' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
             </nav>
 
             {userProfile ? (
@@ -1315,6 +1352,7 @@ function CineScoreMain() {
                     </div>
                     <div className="py-2">
                       <button onClick={() => { setActiveTab('profile_general'); setDynamicBg(''); setSelectedMovie(null); setIsProfileMenuOpen(false); }} className={`w-full text-left px-5 py-3 text-sm font-bold flex items-center gap-3 transition-colors ${activeTab === 'profile_general' ? 'text-[#39ff14] bg-slate-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}><User size={18}/> {t.profileGeneral}</button>
+                      <button onClick={() => { loadFollowingUsers(); setActiveTab('profile_following'); setDynamicBg(''); setSelectedMovie(null); setIsProfileMenuOpen(false); }} className={`w-full text-left px-5 py-3 text-sm font-bold flex items-center gap-3 transition-colors ${activeTab === 'profile_following' ? 'text-[#39ff14] bg-slate-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}><Users size={18}/> {t.followingTab}</button>
                       <button onClick={() => { setActiveTab('profile_ratings'); setDynamicBg(''); setSelectedMovie(null); setIsProfileMenuOpen(false); }} className={`w-full text-left px-5 py-3 text-sm font-bold flex items-center gap-3 transition-colors ${activeTab === 'profile_ratings' ? 'text-[#39ff14] bg-slate-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}><Film size={18}/> {t.myRatedMovies}</button>
                       <button onClick={() => { setActiveTab('profile_watchlist'); setDynamicBg(''); setSelectedMovie(null); setIsProfileMenuOpen(false); }} className={`w-full text-left px-5 py-3 text-sm font-bold flex items-center gap-3 transition-colors ${activeTab === 'profile_watchlist' ? 'text-[#39ff14] bg-slate-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}><Bookmark size={18}/> {t.customLists}</button>
                     </div>
@@ -1344,30 +1382,53 @@ function CineScoreMain() {
                 <div className="relative flex items-center z-10">
                   <Search className="absolute left-6 text-slate-400" size={20}/>
                   <input 
-                    type="text" value={communitySearch} onChange={(e) => setCommunitySearch(e.target.value)} placeholder={t.searchUsers} 
-                    className="w-full bg-[#04060C] border border-slate-800 rounded-2xl pl-14 pr-6 py-5 text-white outline-none focus:border-[#39ff14] transition-colors shadow-inner font-bold text-lg"
+                    type="text" value={communitySearch} onChange={(e) => setCommunitySearch(e.target.value)} placeholder={t.searchUsers} maxLength={7}
+                    className="w-full bg-[#04060C] border border-slate-800 rounded-2xl pl-14 pr-6 py-5 text-white outline-none focus:border-[#39ff14] transition-colors shadow-inner font-bold text-lg uppercase"
                   />
                 </div>
              </div>
 
              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {communitySearch.length < 3 ? (
+                {communitySearch.replace('@', '').length !== 6 ? (
                   <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">
                      <Lock size={48} className="mx-auto mb-4 opacity-50 text-[#39ff14]"/>
                      <p className="text-lg text-slate-300 mb-2">{t.communityPrivacyTitle}</p>
-                     <p className="text-sm max-w-sm mx-auto">{t.communityPrivacyDesc}</p>
+                     <p className="text-sm max-w-sm mx-auto">{t.exactCodeRequired}</p>
                   </div>
                 ) : filteredCommunityUsers.length > 0 ? (
                   filteredCommunityUsers.map(u => (
                     <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-[#39ff14]/50 hover:-translate-y-1 transition-all group">
                        <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-[#39ff14] transition-colors object-cover" alt=""/>
                        <div>
-                         <h4 className="text-lg font-black text-white group-hover:text-[#39ff14] transition-colors line-clamp-1">{u.displayName} <span className="text-slate-500 text-sm font-bold ml-1">@{u.userCode || u.uid.substring(0,6).toUpperCase()}</span></h4>
+                         <h4 className="text-lg font-black text-white group-hover:text-[#39ff14] transition-colors line-clamp-1">{u.displayName} <span className="text-slate-500 text-sm font-bold ml-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</span></h4>
                          <p className="text-xs font-bold text-slate-500 mt-1">{u.followers?.length || 0} {t.followers}</p>
                        </div>
                     </div>
                   ))
                 ) : (
+                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
+                )}
+             </div>
+          </div>
+        )}
+
+        {/* YENİ: TAKİP ETTİKLERİM EKRANI */}
+        {activeTab === 'profile_following' && (
+          <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
+             <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-[#39ff14]"/> {t.followingTab}</h2>
+             </div>
+             
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {followingUsersList.length > 0 ? followingUsersList.map(u => (
+                  <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-[#39ff14]/50 hover:-translate-y-1 transition-all group">
+                     <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-[#39ff14] transition-colors object-cover" alt=""/>
+                     <div>
+                       <h4 className="text-lg font-black text-white group-hover:text-[#39ff14] transition-colors line-clamp-1">{u.displayName}</h4>
+                       <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
+                     </div>
+                  </div>
+                )) : (
                   <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
                 )}
              </div>
@@ -1407,7 +1468,7 @@ function CineScoreMain() {
                  <div className="text-center sm:text-left flex-1 mb-2">
                     <div className="flex flex-col sm:flex-row sm:items-end gap-2 sm:gap-4 mb-1">
                       <h2 className="text-4xl sm:text-5xl font-black text-white drop-shadow-md tracking-tight">{viewingUser.displayName}</h2>
-                      <span className="text-[#39ff14] font-black text-lg bg-[#39ff14]/10 px-3 py-1 rounded-xl border border-[#39ff14]/30">@{viewingUser.userCode || viewingUser.uid.substring(0,6).toUpperCase()}</span>
+                      <span className="text-[#39ff14] font-black text-lg bg-[#39ff14]/10 px-3 py-1 rounded-xl border border-[#39ff14]/30">@{viewingUser.userCode || (viewingUser.uid ? viewingUser.uid.substring(0,6).toUpperCase() : '')}</span>
                     </div>
                     <div className="flex items-center justify-center sm:justify-start gap-4 mb-3 mt-2">
                        <span className="text-slate-400 font-bold text-sm"><strong className="text-white">{viewingUser.followers?.length || 0}</strong> {t.followers}</span>
@@ -1422,6 +1483,16 @@ function CineScoreMain() {
                  </div>
               </div>
             </div>
+            
+            {/* ZEVK UYUMU KARTI */}
+            {tasteMatchScore !== null && (
+              <div className="flex justify-center -mt-4 mb-4">
+                 <div className="flex items-center gap-3 bg-gradient-to-r from-orange-500/10 to-rose-500/10 border border-orange-500/30 px-6 py-3 rounded-2xl shadow-[0_0_20px_rgba(249,115,22,0.15)]">
+                    <Flame size={24} className="text-orange-500 animate-pulse" />
+                    <span className="text-sm font-bold text-slate-300">{t.tasteMatch}: <strong className="text-orange-400 text-lg ml-1">% {tasteMatchScore}</strong></span>
+                 </div>
+              </div>
+            )}
 
             <div className="bg-gradient-to-br from-amber-900/40 via-slate-900/90 to-amber-900/20 backdrop-blur-xl rounded-[2.5rem] p-8 sm:p-12 border border-amber-500/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] relative overflow-hidden">
                <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 blur-[100px] rounded-full pointer-events-none"></div>
@@ -1458,7 +1529,7 @@ function CineScoreMain() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col">
                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-black text-white flex items-center gap-3 drop-shadow-md"><Film className="text-[#39ff14]" size={24}/> {t.myRatedMovies} ({sortedViewingUserRatings.length})</h3>
+                    <h3 className="text-xl font-black text-white flex items-center gap-3 drop-shadow-md"><Film className="text-[#39ff14]" size={24}/> {t.theirRatedMovies} ({sortedViewingUserRatings.length})</h3>
                  </div>
                  {sortedViewingUserRatings.length === 0 ? (
                     <div className="flex-1 flex items-center justify-center"><p className="text-slate-500 text-sm font-bold text-center py-8">{t.noRating}</p></div>
@@ -1468,6 +1539,7 @@ function CineScoreMain() {
                          <div key={item.id} onClick={() => selectMovieToRate(item.id, item.title)} className="relative group cursor-pointer w-24 shrink-0">
                            <img src={item.poster || 'https://via.placeholder.com/200x300?text=Poster'} className="w-full aspect-[2/3] object-cover rounded-xl border border-slate-700 shadow-md group-hover:border-[#39ff14] hover:scale-105 transition-all" alt=""/>
                            <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-transparent to-transparent rounded-xl opacity-90 group-hover:opacity-100 flex flex-col justify-end p-2 transition-opacity">
+                              <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest">{t.theirScore}</span>
                               <span className="text-xl font-black text-white drop-shadow-md">{Number(item.finalScore).toFixed(1)}</span>
                            </div>
                          </div>
@@ -1477,27 +1549,63 @@ function CineScoreMain() {
                </div>
 
                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col">
-                 <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-black text-white flex items-center gap-3 drop-shadow-md"><ListPlus className="text-fuchsia-500" size={24}/> {t.customLists} ({viewingUserLists.length})</h3>
-                 </div>
-                 {viewingUserLists.length === 0 ? (
-                    <div className="flex-1 flex items-center justify-center"><p className="text-slate-500 text-sm font-bold text-center py-8">{t.noData}</p></div>
+                 <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><PieChart className="text-amber-500" size={24}/> {t.topGenres}</h3>
+                 {topGenresViewing.length === 0 ? (
+                    <p className="text-slate-500 text-sm font-bold text-center py-8">{t.noRating}</p>
                  ) : (
-                    <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
-                       {viewingUserLists.map(list => (
-                         <div key={list.id} onClick={(e) => handleShareList(e, list.id, viewingUser.uid)} className="min-w-[150px] bg-[#04060C] border border-slate-800 rounded-2xl p-4 cursor-pointer hover:border-[#39ff14] transition-colors">
-                           <h4 className="font-black text-white text-sm mb-2 truncate">{list.name}</h4>
-                           <div className="flex -space-x-2">
-                             {(list.movies || []).slice(0,3).map(m => (
-                               <img key={m.id} src={m.poster} className="w-8 h-12 rounded bg-slate-800 border border-slate-700 object-cover" alt=""/>
-                             ))}
+                    <div className="space-y-4">
+                      {topGenresViewing.map(([genre, count]) => {
+                         const percentage = (count / sortedViewingUserRatings.length) * 100;
+                         return (
+                           <div key={genre}>
+                             <div className="flex justify-between items-end mb-1">
+                               <span className="font-bold text-slate-300 text-sm">{genre}</span>
+                               <span className="font-black text-sm text-slate-500">{count} {t.voteCount}</span>
+                             </div>
+                             <div className="h-2 bg-[#04060C] rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                               <div className="h-full bg-gradient-to-r from-amber-600 to-amber-400 rounded-full transition-all duration-1000" style={{width: `${percentage}%`}}></div>
+                             </div>
                            </div>
-                         </div>
-                       ))}
+                         )
+                      })}
                     </div>
                  )}
                </div>
             </div>
+
+            {/* Ziyaret Edilen Kullanıcı DNA (20 Film Sınırı) */}
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl">
+                <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-3 drop-shadow-md"><Sparkles className="text-[#39ff14]" size={28}/> {t.cinematicDNA}</h3>
+                {sortedViewingUserRatings.length >= 20 ? (
+                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                       {criteriaData.map((c) => {
+                          const dnaObj = calculateDNA(sortedViewingUserRatings);
+                          const score = dnaObj[c.id];
+                          const color = getScoreColorHex(score);
+                          return (
+                            <div key={c.id}>
+                               <div className="flex justify-between items-end mb-2">
+                                 <span className="font-bold text-slate-300 text-sm tracking-wide">{c.name}</span>
+                                 <span className="font-black text-lg" style={{color: color, textShadow: `0 0 10px ${color}80`}}>{score}</span>
+                               </div>
+                               <div className="h-2 bg-[#04060C] rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                 <div className="h-full rounded-full transition-all duration-1000 relative" style={{width: `${score * 10}%`, backgroundColor: color, boxShadow: `0 0 10px ${color}80`}}>
+                                    <div className="absolute inset-0 bg-white/20 w-full h-full animate-[pulse_2s_infinite]"></div>
+                                 </div>
+                               </div>
+                            </div>
+                          )
+                       })}
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center py-10 text-center">
+                       <Lock size={48} className="text-slate-600 mb-4"/>
+                       <h4 className="text-xl font-black text-white">{t.dnaLockedTitle}</h4>
+                       <p className="text-sm text-slate-400 font-bold mt-2 max-w-sm">{t.dnaLockedDescPublic}</p>
+                    </div>
+                )}
+            </div>
+            
           </div>
         )}
 
@@ -1646,6 +1754,7 @@ function CineScoreMain() {
               </div>
             </div>
 
+            {/* SAĞ PANEL: KRİTERLER VE KAYDET BUTONU */}
             <div className="lg:col-span-8 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 border border-slate-800 shadow-2xl flex flex-col justify-between">
               <div>
                  <h3 className="text-3xl font-black text-white mb-12 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={32}/> {t.criteria}</h3>
@@ -1848,26 +1957,37 @@ function CineScoreMain() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                    <div className="lg:col-span-2 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col justify-center">
                       <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-3 drop-shadow-md"><Sparkles className="text-[#39ff14]" size={28}/> {t.cinematicDNA}</h3>
-                      <p className="text-slate-400 font-bold mb-8 text-sm">{t.dnaDesc}</p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
-                         {criteriaData.map((c) => {
-                            const score = userDNA[c.id];
-                            const color = getScoreColorHex(score);
-                            return (
-                              <div key={c.id}>
-                                 <div className="flex justify-between items-end mb-2">
-                                   <span className="font-bold text-slate-300 text-sm tracking-wide">{c.name}</span>
-                                   <span className="font-black text-lg" style={{color: color, textShadow: `0 0 10px ${color}80`}}>{score}</span>
-                                 </div>
-                                 <div className="h-2 bg-[#04060C] rounded-full overflow-hidden border border-slate-800 shadow-inner">
-                                   <div className="h-full rounded-full transition-all duration-1000 relative" style={{width: `${score * 10}%`, backgroundColor: color, boxShadow: `0 0 10px ${color}80`}}>
-                                      <div className="absolute inset-0 bg-white/20 w-full h-full animate-[pulse_2s_infinite]"></div>
-                                   </div>
-                                 </div>
-                              </div>
-                            )
-                         })}
-                      </div>
+                      
+                      {sortedMyRatings.length >= 20 ? (
+                        <>
+                          <p className="text-slate-400 font-bold mb-8 text-sm">{t.dnaDesc}</p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                             {criteriaData.map((c) => {
+                                const score = userDNA[c.id];
+                                const color = getScoreColorHex(score);
+                                return (
+                                  <div key={c.id}>
+                                     <div className="flex justify-between items-end mb-2">
+                                       <span className="font-bold text-slate-300 text-sm tracking-wide">{c.name}</span>
+                                       <span className="font-black text-lg" style={{color: color, textShadow: `0 0 10px ${color}80`}}>{score}</span>
+                                     </div>
+                                     <div className="h-2 bg-[#04060C] rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                       <div className="h-full rounded-full transition-all duration-1000 relative" style={{width: `${score * 10}%`, backgroundColor: color, boxShadow: `0 0 10px ${color}80`}}>
+                                          <div className="absolute inset-0 bg-white/20 w-full h-full animate-[pulse_2s_infinite]"></div>
+                                       </div>
+                                     </div>
+                                  </div>
+                                )
+                             })}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center py-6 text-center">
+                           <Lock size={36} className="text-slate-600 mb-3"/>
+                           <h4 className="text-lg font-black text-white">{t.dnaLockedTitle}</h4>
+                           <p className="text-sm text-slate-400 font-bold mt-1 max-w-sm"><strong className="text-[#39ff14]">{20 - sortedMyRatings.length}</strong> {t.dnaLockedDesc}</p>
+                        </div>
+                      )}
                    </div>
 
                    <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col items-center justify-center text-center">
@@ -1875,8 +1995,14 @@ function CineScoreMain() {
                          <Smile className="text-fuchsia-500" size={36}/>
                       </div>
                       <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">{t.cineZodiac}</h4>
-                      <h2 className="text-2xl font-black text-white drop-shadow-md mb-2">{zodiacTitle}</h2>
-                      <p className="text-xs font-bold text-slate-500">{zodiacDesc}</p>
+                      {sortedMyRatings.length >= 20 ? (
+                        <>
+                          <h2 className="text-2xl font-black text-white drop-shadow-md mb-2">{zodiacTitle}</h2>
+                          <p className="text-xs font-bold text-slate-500">{zodiacDesc}</p>
+                        </>
+                      ) : (
+                        <h2 className="text-xl font-black text-slate-500 drop-shadow-md mb-2">{t.zodiacDefault}</h2>
+                      )}
                    </div>
                 </div>
 
