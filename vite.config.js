@@ -10,8 +10,27 @@ export default defineConfig({
       manifest: {
         name: 'CineScore',
         short_name: 'CineScore',
-        theme_color: '#0B0C15',
-        display: 'standalone'
+        theme_color: '#04060C',
+        background_color: '#04060C',
+        display: 'standalone',
+        icons: [
+          {
+            src: '/cinescore-logo.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/cinescore-logo.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
+          {
+            src: '/cinescore-logo.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
       }
     })
   ]
