@@ -972,14 +972,14 @@ function CineScoreMain() {
   };
 
   const copyProfileLink = (uid) => {
-    const url = `${window.location.origin}?user=${uid}`;
+    const url = `${window.location.origin}/user/${uid}`;
     navigator.clipboard.writeText(url).then(() => showToast(t.copied));
   };
 
   const handleShareList = (e, listId, uidOverride = null) => {
     e.stopPropagation();
     const targetUid = uidOverride || user.uid;
-    const url = `${window.location.origin}?list=${targetUid}_${listId}`;
+    const url = `${window.location.origin}/user/${targetUid}?list=${listId}`;
     navigator.clipboard.writeText(url).then(() => showToast(t.copied));
   };
 
@@ -1027,11 +1027,15 @@ function CineScoreMain() {
            if (trailer) trailerKey = trailer.key;
         }
         
+        const releaseTime = data.release_date ? new Date(data.release_date).getTime() : 0;
+        const isReleased = releaseTime === 0 || Date.now() > (releaseTime + 86400000); // 1 Gün Sonrası (86400000ms)
+        
         setSelectedMovie({ 
           id: data.id.toString(), title: data.title, poster, 
           year: data.release_date ? data.release_date.split('-')[0] : '', 
           genre: data.genres?.map(g=>g.name).join(', ') || '', director, cast,
-          overview: data.overview || t.noData, trailerKey
+          overview: data.overview || t.noData, trailerKey,
+          isReleased, releaseDateStr: data.release_date
         });
         
         setDynamicBg(backdrop); 
@@ -1247,6 +1251,72 @@ function CineScoreMain() {
 
   const globalScoreToDisplay = dbSelectedMovieData && dbSelectedMovieData.avgScore ? Number(dbSelectedMovieData.avgScore).toFixed(1) : '?';
   const globalColorToDisplay = dbSelectedMovieData && dbSelectedMovieData.avgScore ? getScoreColorHex(dbSelectedMovieData.avgScore) : '#475569';
+
+  const similarRef = useRef(null);
+
+  useEffect(() => {
+    if (activeTab === 'profile_following') loadFollowingUsers();
+    if (activeTab === 'profile_followers') loadFollowersUsers();
+  }, [activeTab, userProfile]);
+
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const path = window.location.pathname;
+      const params = new URLSearchParams(window.location.search);
+      
+      if (path.startsWith('/movie/')) {
+         const id = path.split('/')[2]?.split('-')[0];
+         if (id && (!selectedMovie || selectedMovie.id !== id)) selectMovieToRate(id, '', false);
+      } else if (path.startsWith('/user/')) {
+         const uid = path.split('/')[2];
+         if (uid && (!viewingUser || viewingUser.uid !== uid)) loadPublicProfile(uid);
+      } else if (path === '/ranking') {
+         setActiveTab('global');
+      } else if (path === '/community') {
+         setActiveTab('community');
+      } else if (path.startsWith('/profile')) {
+         const tab = params.get('tab') || 'profile_general';
+         setActiveTab(tab);
+      } else {
+         setActiveTab('home');
+      }
+    };
+    
+    window.addEventListener('popstate', handleUrlChange);
+    if (window.location.pathname !== '/' || window.location.search !== '') {
+       setTimeout(handleUrlChange, 100); 
+    }
+    return () => window.removeEventListener('popstate', handleUrlChange);
+  }, [tmdbLang]);
+
+  useEffect(() => {
+     let newPath = '/';
+     let newSearch = '';
+     if (activeTab === 'rate' && selectedMovie) {
+        const slug = selectedMovie.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        newPath = `/movie/${selectedMovie.id}-${slug}`;
+     } else if (activeTab === 'global') {
+        newPath = '/ranking';
+     } else if (activeTab === 'community') {
+        newPath = '/community';
+     } else if (activeTab.startsWith('profile_') && !activeTab.startsWith('public_') && activeTab !== 'profile_followers' && activeTab !== 'profile_following') {
+        newPath = '/profile';
+        newSearch = `?tab=${activeTab}`;
+     } else if (activeTab === 'profile_followers' || activeTab === 'profile_following') {
+        newPath = `/profile/${activeTab.split('_')[1]}`;
+     } else if (activeTab === 'public_profile' && viewingUser) {
+        newPath = `/user/${viewingUser.uid}`;
+     } else if (activeTab === 'public_profile_ratings' && viewingUser) {
+        newPath = `/user/${viewingUser.uid}`;
+        newSearch = '?tab=ratings';
+     }
+     
+     const currentFull = window.location.pathname + window.location.search;
+     const newFull = newPath + newSearch;
+     if (currentFull !== newFull && currentFull !== '/' && newFull !== '/') {
+        window.history.pushState({}, '', newFull);
+     }
+  }, [activeTab, selectedMovie, viewingUser]);
 
   return (
     <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#04060C] text-slate-200 font-sans relative overflow-x-hidden selection:bg-theme selection:text-[#04060C]">
@@ -2002,11 +2072,22 @@ function CineScoreMain() {
             </div>
 
             <div className="lg:col-span-8 flex flex-col gap-8">
-              {!isRatingMode ? (
+              {!selectedMovie?.isReleased ? (
+                 <div className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl flex flex-col items-center justify-center text-center">
+                    <div className="w-32 h-32 rounded-full flex items-center justify-center mb-8 border-[4px] border-slate-700 bg-slate-800 shadow-inner">
+                       <Lock size={48} className="text-slate-500"/>
+                    </div>
+                    <h3 className="text-3xl font-black text-white mb-4 drop-shadow-md">Henüz Vizyona Girmedi</h3>
+                    <p className="text-slate-400 font-bold text-lg mb-2">Puanlama kilitli. Film vizyona girdikten bir gün sonra puanlanabilir.</p>
+                    <p className="text-theme font-black text-xl bg-theme-transparent px-6 py-3 rounded-2xl border border-theme/30 mt-4">
+                       Vizyon Tarihi: {selectedMovie?.releaseDateStr?.split('-').reverse().join('.') || '?'}
+                    </p>
+                 </div>
+              ) : !isRatingMode ? (
                  <div className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl flex flex-col items-center justify-center text-center">
                     {user && sortedMyRatings.find(r=>r.id===selectedMovie?.id) ? (
                       <>
-                         <h3 className="text-3xl font-black text-white mb-6 drop-shadow-md">{t.yourScore}</h3>
+                         <span className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">{t.yourScore}</span>
                          <div className="relative w-48 h-48 mx-auto rounded-full border-[8px] flex items-center justify-center bg-[#04060C] mb-8"
                               style={{ borderColor: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore), boxShadow: `0 0 50px ${getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}80` }}>
                             <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore}</span>
@@ -2078,11 +2159,17 @@ function CineScoreMain() {
                 </div>
               )}
               
-              {/* YENİ: BENZER FİLMLER */}
+              {/* YENİ: BENZER FİLMLER VE OKLAR */}
               {similarMovies.length > 0 && (
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-2xl mt-4">
-                  <h3 className="text-xl font-black text-white mb-6 flex items-center gap-2"><Film className="text-theme"/> Benzer Filmler</h3>
-                  <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4">
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-2xl mt-4 relative">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-black text-white flex items-center gap-2"><Film className="text-theme"/> Benzer Filmler</h3>
+                    <div className="flex items-center gap-2">
+                       <button onClick={() => { if(similarRef.current) similarRef.current.scrollBy({ left: -300, behavior: 'smooth' }) }} className="p-2 bg-slate-800 hover:bg-slate-700 rounded-full transition-colors"><ChevronLeft size={20}/></button>
+                       <button onClick={() => { if(similarRef.current) similarRef.current.scrollBy({ left: 300, behavior: 'smooth' }) }} className="p-2 bg-slate-800 hover:bg-slate-700 rounded-full transition-colors"><ChevronRight size={20}/></button>
+                    </div>
+                  </div>
+                  <div ref={similarRef} className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 smooth-scroll">
                     {similarMovies.map(sim => (
                        <div key={sim.id} onClick={() => selectMovieToRate(sim.id, sim.title)} className="w-28 sm:w-32 shrink-0 cursor-pointer group">
                           <img src={sim.poster} className="w-full aspect-[2/3] object-cover rounded-2xl border border-slate-700 group-hover:border-theme transition-colors shadow-lg" alt=""/>
@@ -2515,48 +2602,6 @@ function CineScoreMain() {
               </div>
             )}
 
-            {activeTab === 'profile_following' && (
-              <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-8">
-                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followingTab}</h2>
-                 </div>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {followingUsersList.length > 0 ? followingUsersList.map(u => (
-                      <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
-                         <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
-                         <div>
-                           <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
-                           <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
-                         </div>
-                      </div>
-                    )) : (
-                      <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
-                    )}
-                 </div>
-              </div>
-            )}
-
-            {activeTab === 'profile_followers' && (
-              <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-8">
-                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followersTab}</h2>
-                 </div>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {followersUsersList.length > 0 ? followersUsersList.map(u => (
-                      <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
-                         <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
-                         <div>
-                           <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
-                           <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
-                         </div>
-                      </div>
-                    )) : (
-                      <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
-                    )}
-                 </div>
-              </div>
-            )}
-
             {activeTab === 'profile_list_detail' && activeCustomList && (
               <div className="animate-in slide-in-from-right-8 duration-500">
                 <button onClick={() => setActiveTab('profile_watchlist')} className="px-5 py-3 mb-6 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors">
@@ -2602,6 +2647,56 @@ function CineScoreMain() {
             
           </div>
         )}
+
+        {/* YENİ: BAĞIMSIZ TAKİP ETTİKLERİM EKRANI */}
+        {activeTab === 'profile_following' && (
+          <div className="animate-in fade-in duration-500 space-y-6 max-w-5xl mx-auto pt-4">
+             <button onClick={() => setActiveTab('profile_general')} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors w-max mb-6">
+                <ChevronLeft size={18}/> Geri Dön
+             </button>
+             <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followingTab}</h2>
+             </div>
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {followingUsersList.length > 0 ? followingUsersList.map(u => (
+                  <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
+                     <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
+                     <div>
+                       <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
+                       <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
+                     </div>
+                  </div>
+                )) : (
+                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
+                )}
+             </div>
+          </div>
+        )}
+
+        {/* YENİ: BAĞIMSIZ TAKİPÇİLERİM EKRANI */}
+        {activeTab === 'profile_followers' && (
+          <div className="animate-in fade-in duration-500 space-y-6 max-w-5xl mx-auto pt-4">
+             <button onClick={() => setActiveTab('profile_general')} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors w-max mb-6">
+                <ChevronLeft size={18}/> Geri Dön
+             </button>
+             <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followersTab}</h2>
+             </div>
+             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {followersUsersList.length > 0 ? followersUsersList.map(u => (
+                  <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
+                     <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
+                     <div>
+                       <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
+                       <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
+                     </div>
+                  </div>
+                )) : (
+                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
+                )}
+             </div>
+          </div>
+        )}
         
       </main>
 
@@ -2624,7 +2719,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold">© 2026 {t.rights}</p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v2.3</span></p>
         </div>
       </footer>
 
