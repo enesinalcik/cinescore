@@ -380,10 +380,25 @@ function CineScoreMain() {
   const t = { ...TRANSLATIONS['en'], ...(TRANSLATIONS[lang] || {}) };
   const tmdbLang = LANGUAGES.find(l => l.code === lang)?.tmdbCode || 'tr-TR';
 
+  const getInitialTab = () => {
+    if (typeof window === 'undefined') return 'home';
+    const path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+    if (path.startsWith('/movie/')) return 'rate';
+    if (path.startsWith('/user/')) return 'public_profile';
+    if (path === '/ranking') return 'global';
+    if (path === '/community') return 'community';
+    if (path === '/profile/followers') return 'profile_followers';
+    if (path === '/profile/following') return 'profile_following';
+    if (path.startsWith('/profile')) return params.get('tab') || 'profile_general';
+    return 'home';
+  };
+
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
+  const [isAuthChecking, setIsAuthChecking] = useState(true);
   
-  const [activeTab, setActiveTab] = useState('home'); 
+  const [activeTab, setActiveTab] = useState(getInitialTab); 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
@@ -558,6 +573,7 @@ function CineScoreMain() {
         if (watchlistUnsub) { watchlistUnsub(); watchlistUnsub = null; }
         if (customListsUnsub) { customListsUnsub(); customListsUnsub = null; }
       }
+      setIsAuthChecking(false);
     });
 
     const q = query(collection(db, 'movies'), orderBy('lastUpdated', 'desc'));
@@ -1558,7 +1574,9 @@ function CineScoreMain() {
                <button onClick={handleOpenCommunity} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
             </nav>
 
-            {userProfile ? (
+            {isAuthChecking ? (
+              <div className="w-24 h-10 rounded-full bg-slate-800/60 animate-pulse border border-slate-700/50"></div>
+            ) : userProfile ? (
               <div className="flex items-center gap-2">
                 <div className="relative flex items-center justify-center mr-1 sm:mr-3" ref={notifMenuRef}>
                    <button onClick={() => { setIsNotifMenuOpen(!isNotifMenuOpen); markNotificationsAsRead(); }} className="relative p-2.5 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner group">
@@ -2496,9 +2514,9 @@ function CineScoreMain() {
                            <img src={safePoster} className="w-full aspect-[2/3] object-cover rounded-3xl bg-slate-900 border border-slate-800 group-hover:border-theme transition-colors shadow-2xl" alt=""/>
                            
                            {globalScore > 0 && (
-                             <div className={`absolute top-2 right-2 px-2 py-1 rounded-lg backdrop-blur shadow-xl z-10 pointer-events-none flex flex-col items-center justify-center ${isNeon ? 'bg-[#04060C] border shadow-theme animate-pulse' : 'bg-[#04060C]/90 border border-slate-700'}`} style={isNeon ? {borderColor: themeColor} : {}}>
+                             <div className={`absolute top-2 right-2 px-2 py-1 rounded-lg backdrop-blur shadow-xl z-10 pointer-events-none flex flex-col items-center justify-center ${isNeon ? 'bg-[#04060C] border animate-pulse' : 'bg-[#04060C]/90 border border-slate-700'}`} style={isNeon ? {borderColor: '#39ff14', boxShadow: '0 0 15px rgba(57, 255, 20, 0.5)'} : {}}>
                                <span className="text-[8px] sm:text-[10px] text-slate-400 font-black mb-0.5 uppercase tracking-widest leading-none">{t.globalScoreLabel}</span>
-                               <span className="text-sm font-black leading-none" style={{color: isNeon ? themeColor : getScoreColorHex(globalScore), textShadow: isNeon ? `0 0 10px ${themeColor}` : 'none'}}>{globalScore.toFixed(1)}</span>
+                               <span className="text-sm font-black leading-none" style={{color: isNeon ? '#39ff14' : getScoreColorHex(globalScore), textShadow: isNeon ? '0 0 10px #39ff14' : 'none'}}>{globalScore.toFixed(1)}</span>
                              </div>
                            )}
 
