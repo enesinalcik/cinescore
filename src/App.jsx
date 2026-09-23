@@ -384,13 +384,13 @@ function CineScoreMain() {
     if (typeof window === 'undefined') return 'home';
     const path = window.location.pathname;
     const params = new URLSearchParams(window.location.search);
-    if (path.startsWith('/movie/')) return 'rate';
+    if (path.startsWith('/film/')) return 'rate';
     if (path.startsWith('/user/')) return 'public_profile';
-    if (path === '/ranking') return 'global';
-    if (path === '/community') return 'community';
-    if (path === '/profile/followers') return 'profile_followers';
-    if (path === '/profile/following') return 'profile_following';
-    if (path.startsWith('/profile')) return params.get('tab') || 'profile_general';
+    if (path === '/siralama') return 'global';
+    if (path === '/topluluk') return 'community';
+    if (path === '/profil/takipciler') return 'profile_followers';
+    if (path === '/profil/takip') return 'profile_following';
+    if (path.startsWith('/profil')) return params.get('sekme') || 'profile_general';
     return 'home';
   };
 
@@ -1280,19 +1280,20 @@ function CineScoreMain() {
       const path = window.location.pathname;
       const params = new URLSearchParams(window.location.search);
       
-      if (path.startsWith('/movie/')) {
+      if (path.startsWith('/film/')) {
          const id = path.split('/')[2]?.split('-')[0];
          if (id && (!selectedMovie || selectedMovie.id !== id)) selectMovieToRate(id, '', false);
       } else if (path.startsWith('/user/')) {
          const uid = path.split('/')[2];
          if (uid && (!viewingUser || viewingUser.uid !== uid)) loadPublicProfile(uid);
-      } else if (path === '/ranking') {
+      } else if (path === '/siralama') {
          setActiveTab('global');
-      } else if (path === '/community') {
+      } else if (path === '/topluluk') {
          setActiveTab('community');
-      } else if (path.startsWith('/profile')) {
-         const tab = params.get('tab') || 'profile_general';
-         setActiveTab(tab);
+      } else if (path.startsWith('/profil')) {
+         if (path === '/profil/takipciler') setActiveTab('profile_followers');
+         else if (path === '/profil/takip') setActiveTab('profile_following');
+         else setActiveTab(params.get('sekme') || 'profile_general');
       } else {
          setActiveTab('home');
       }
@@ -1309,28 +1310,30 @@ function CineScoreMain() {
      let newPath = '/';
      let newSearch = '';
      if (activeTab === 'rate' && selectedMovie) {
-        const slug = selectedMovie.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-        newPath = `/movie/${selectedMovie.id}-${slug}`;
+        const slug = selectedMovie.title.toLowerCase().replace(/[^a-z0-9\u011F\u011E\u0131\u0130\u00F6\u00D6\u00FC\u00DC\u015F\u015E\u00E7\u00C7]+/g, '-').replace(/(^-|-$)+/g, '');
+        newPath = `/film/${selectedMovie.id}-${slug}`;
      } else if (activeTab === 'global') {
-        newPath = '/ranking';
+        newPath = '/siralama';
      } else if (activeTab === 'community') {
-        newPath = '/community';
-     } else if (activeTab.startsWith('profile_') && !activeTab.startsWith('public_') && activeTab !== 'profile_followers' && activeTab !== 'profile_following') {
-        newPath = '/profile';
-        newSearch = `?tab=${activeTab}`;
-     } else if (activeTab === 'profile_followers' || activeTab === 'profile_following') {
-        newPath = `/profile/${activeTab.split('_')[1]}`;
+        newPath = '/topluluk';
+     } else if (activeTab === 'profile_followers') {
+        newPath = '/profil/takipciler';
+     } else if (activeTab === 'profile_following') {
+        newPath = '/profil/takip';
+     } else if (activeTab.startsWith('profile_') && !activeTab.startsWith('public_')) {
+        newPath = '/profil';
+        newSearch = `?sekme=${activeTab}`;
      } else if (activeTab === 'public_profile' && viewingUser) {
         newPath = `/user/${viewingUser.uid}`;
      } else if (activeTab === 'public_profile_ratings' && viewingUser) {
         newPath = `/user/${viewingUser.uid}`;
-        newSearch = '?tab=ratings';
+        newSearch = '?sekme=ratings';
      }
      
      const currentFull = window.location.pathname + window.location.search;
      const newFull = newPath + newSearch;
-     if (currentFull !== newFull && currentFull !== '/' && newFull !== '/') {
-        window.history.pushState({}, '', newFull);
+     if (currentFull !== newFull) {
+        window.history.pushState({ path: newFull }, '', newFull);
      }
   }, [activeTab, selectedMovie, viewingUser]);
 
@@ -1575,7 +1578,9 @@ function CineScoreMain() {
             </nav>
 
             {isAuthChecking ? (
-              <div className="w-24 h-10 rounded-full bg-slate-800/60 animate-pulse border border-slate-700/50"></div>
+              <div className="flex items-center justify-center px-6 py-3">
+                 <Loader2 className="animate-spin text-theme w-6 h-6" />
+              </div>
             ) : userProfile ? (
               <div className="flex items-center gap-2">
                 <div className="relative flex items-center justify-center mr-1 sm:mr-3" ref={notifMenuRef}>
