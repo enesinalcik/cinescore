@@ -72,7 +72,7 @@ const TRANSLATIONS = {
     mostVoted: 'En Çok Oylananlar', exactCodeRequired: 'Tam @kodunu yazarak arayın...', followingTab: 'Takip Ettiklerim', followersTab: 'Takipçilerim', theirScore: 'Onun Oyu', theirRatedMovies: 'Oyladığı Filmler',
     tasteMatch: 'Film Zevki Uyumu', matchCalculating: 'Hesaplanıyor...', dnaLockedTitle: 'DNA Analizi Kilitli', dnaLockedDesc: 'film daha oylaman gerekiyor. 20 filme ulaştığında zıt orantı analizin açılacak.', dnaLockedDescPublic: 'Bu kullanıcının analiz için yeterli oyu yok.',
     notifications: 'Bildirimler', noNotifications: 'Henüz bildirim yok.', startedFollowing: 'seni takip etmeye başladı.',
-    auraColor: 'Aura Rengi (Tema)', friendsWatched: 'Arkadaşlarından İzleyenler', back: 'Geri', similarMovies: 'Benzer Filmler', rateThisMovie: 'Bu Filme Puan Ver', updateYourRating: 'Puanını Güncelle'
+    auraColor: 'Aura Rengi (Tema)', friendsWatched: 'Arkadaşlarından İzleyenler'
   },
   en: {
     home: 'Home', ranking: 'Ranking', community: 'Community', login: 'Login', logout: 'Log Out',
@@ -113,16 +113,16 @@ const TRANSLATIONS = {
     mostVoted: 'Most Voted', exactCodeRequired: 'Enter exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies',
     tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed. Rate 20 movies to unlock your critical DNA analysis.', dnaLockedDescPublic: 'Not enough data to analyze this user.',
     notifications: 'Notifications', noNotifications: 'No notifications.', startedFollowing: 'started following you.',
-    auraColor: 'Aura Color (Theme)', friendsWatched: 'Friends Who Watched', back: 'Back', similarMovies: 'Similar Movies', rateThisMovie: 'Rate This Movie', updateYourRating: 'Update Your Rating'
+    auraColor: 'Aura Color (Theme)', friendsWatched: 'Friends Who Watched'
   },
   de: { 
-    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben', back: 'Zurück', similarMovies: 'Ähnliche Filme', rateThisMovie: 'Diesen Film bewerten', updateYourRating: 'Bewertung aktualisieren'
+    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben'
   },
   it: { 
-    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Per motivi di privacy, gli utenti non sono elencati pubblicamente. Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti per un\'analisi.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato', back: 'Indietro', similarMovies: 'Film Simili', rateThisMovie: 'Valuta questo film', updateYourRating: 'Aggiorna la tua valutazione'
+    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Per motivi di privacy, gli utenti non sono elencati pubblicamente. Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti per un\'analisi.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato'
   },
   fr: { 
-    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données pour l\'analyse.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé', back: 'Retour', similarMovies: 'Films Similaires', rateThisMovie: 'Évaluer ce film', updateYourRating: 'Mettre à jour l\'évaluation' }
+    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données pour l\'analyse.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé' }
 };
 
 const AURA_COLORS = ["#39ff14", "#0ea5e9", "#f43f5e", "#eab308", "#a855f7", "#ec4899", "#14b8a6", "#f97316"];
@@ -144,10 +144,9 @@ const CustomAnimations = () => (
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .smooth-scroll { scroll-behavior: smooth; }
 
-    /* AURA TEMA MOTORU */
+    /* YENİ: AURA TEMA MOTORU */
     .text-theme { color: var(--theme-color); }
     .bg-theme { background-color: var(--theme-color); color: #04060C !important; }
-    .bg-theme-transparent { background-color: var(--theme-color-20); color: var(--theme-color); }
     .border-theme { border-color: var(--theme-color); }
     .shadow-theme { box-shadow: 0 0 20px var(--theme-color-50); }
     .hover\\:bg-theme:hover { background-color: var(--theme-color) !important; color: #04060C !important; }
@@ -155,15 +154,6 @@ const CustomAnimations = () => (
     .hover\\:border-theme:hover { border-color: var(--theme-color) !important; }
     .group:hover .group-hover\\:text-theme { color: var(--theme-color) !important; }
     .group:hover .group-hover\\:border-theme { border-color: var(--theme-color) !important; }
-
-    @keyframes color-morph {
-      0%   { color: #a855f7; filter: drop-shadow(0 0 10px rgba(168,85,247,0.6)); }
-      25%  { color: #3b82f6; filter: drop-shadow(0 0 10px rgba(59,130,246,0.6)); }
-      50%  { color: #ef4444; filter: drop-shadow(0 0 15px rgba(239,68,68,0.8)); }
-      75%  { color: #facc15; filter: drop-shadow(0 0 15px rgba(250,204,21,0.8)); }
-      100% { color: #39ff14; filter: drop-shadow(0 0 25px rgba(57,255,20,1)); }
-    }
-    .logo-morph-text { animation: color-morph 30s alternate infinite; }
 
     .fly-wrapper { position: absolute; inset: -40px; pointer-events: none; z-index: 50; }
     .fly { position: absolute; font-size: 20px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9)); }
@@ -204,6 +194,28 @@ const CustomAnimations = () => (
 
     @keyframes hero-bar { 0% { width: 0%; } 100% { width: 100%; } }
     .animate-hero-bar { animation: hero-bar 6s linear forwards; }
+
+    @keyframes morph-bg { 
+      0% { background-position: 0% 50%; } 
+      50% { background-position: 100% 50%; } 
+      100% { background-position: 0% 50%; } 
+    }
+    .logo-morph-text {
+      background: linear-gradient(270deg, #39ff14, #0ea5e9, #a855f7, #f43f5e, #39ff14);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: morph-bg 30s ease infinite;
+    }
+    .logo-morph-bg {
+      background: linear-gradient(270deg, #39ff14, #0ea5e9, #a855f7, #f43f5e, #39ff14);
+      background-size: 400% 400%;
+      animation: morph-bg 30s ease infinite;
+      border-color: transparent !important;
+    }
+    .logo-morph-bg svg {
+      color: #04060C;
+    }
   `}}/>
 );
 
@@ -434,10 +446,11 @@ function CineScoreMain() {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
-
-  const [friendsRatings, setFriendsRatings] = useState([]);
-  const [showRatingSliders, setShowRatingSliders] = useState(false);
+  const [isRatingMode, setIsRatingMode] = useState(false);
   const [similarMovies, setSimilarMovies] = useState([]);
+
+  // YENİ: Arkadaşların oyları (Who watched this?)
+  const [friendsRatings, setFriendsRatings] = useState([]);
 
   const searchDropdownRef = useRef(null);
   const langMenuRef = useRef(null);
@@ -454,6 +467,7 @@ function CineScoreMain() {
   const criteriaData = getCriteriaData();
   const [scores, setScores] = useState(criteriaData.reduce((acc, c) => ({ ...acc, [c.id]: 5 }), {}));
 
+  // GLOBAL AURA TEMA RENGİ HESAPLAMA
   const themeColor = (activeTab.startsWith('public_profile') && viewingUser) ? (viewingUser.auraColor || '#39ff14') : (userProfile?.auraColor || '#39ff14');
 
   useEffect(() => {
@@ -543,6 +557,7 @@ function CineScoreMain() {
     return () => { authUnsub(); moviesUnsub(); if(ratingsUnsub) ratingsUnsub(); if(watchlistUnsub) watchlistUnsub(); if(customListsUnsub) customListsUnsub(); };
   }, []);
 
+  // YENİ: Arkadaşlarından İzleyenler'i Getir
   useEffect(() => {
     if (activeTab === 'rate' && selectedMovie && userProfile?.following?.length > 0) {
       const fetchFriendsRatings = async () => {
@@ -644,6 +659,10 @@ function CineScoreMain() {
     }, 6000);
     return () => clearInterval(timer);
   }, [trendingData, activeTab]);
+
+  useEffect(() => {
+    if (selectedMovie && selectedMovie.id) selectMovieToRate(selectedMovie.id, selectedMovie.title, false); 
+  }, [tmdbLang]);
 
   useEffect(() => {
     if (searchTerm.length < 3) { setSearchResults([]); return; }
@@ -963,10 +982,29 @@ function CineScoreMain() {
         else return;
       }
 
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${tmdbID}?api_key=${TMDB_API_KEY}&append_to_response=credits,videos,recommendations&language=${tmdbLang}`);
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${tmdbID}?api_key=${TMDB_API_KEY}&append_to_response=credits,videos,similar&language=${tmdbLang}`);
       const data = await res.json();
       
       if (data.id) {
+        let relatedMovies = [];
+        if (data.belongs_to_collection) {
+           try {
+             const colRes = await fetch(`https://api.themoviedb.org/3/collection/${data.belongs_to_collection.id}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`);
+             const colData = await colRes.json();
+             relatedMovies = colData.parts?.filter(p => p.id !== data.id && p.poster_path) || [];
+           } catch(e) {}
+        }
+        if (relatedMovies.length < 10 && data.similar?.results) {
+           const sim = data.similar.results.filter(p => p.poster_path && !relatedMovies.find(r => r.id === p.id));
+           relatedMovies = [...relatedMovies, ...sim].slice(0, 10);
+        } else {
+           relatedMovies = relatedMovies.slice(0, 10);
+        }
+        setSimilarMovies(relatedMovies.map(m => ({
+           id: String(m.id),
+           title: m.title,
+           poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
+        })));
         const poster = data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : 'https://via.placeholder.com/300x450?text=Poster';
         const backdrop = data.backdrop_path ? `https://image.tmdb.org/t/p/w1280${data.backdrop_path}` : '';
         const director = data.credits?.crew?.find(c => c.job === 'Director')?.name || 'Bilinmiyor';
@@ -977,13 +1015,6 @@ function CineScoreMain() {
            const trailer = data.videos.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
            if (trailer) trailerKey = trailer.key;
         }
-
-        const recs = data.recommendations?.results?.filter(m => m.poster_path).slice(0, 6).map(m => ({
-           title: m.title,
-           poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`,
-           tmdbId: String(m.id)
-        })) || [];
-        setSimilarMovies(recs);
         
         setSelectedMovie({ 
           id: data.id.toString(), title: data.title, poster, 
@@ -995,7 +1026,7 @@ function CineScoreMain() {
         setDynamicBg(backdrop); 
         setSearchTerm(''); setSearchResults([]);
         setShowCategoryAverages(false); 
-        setShowRatingSliders(false);
+        setIsRatingMode(false);
         setActiveTab('rate');
         
         if (shouldResetScores) {
@@ -1085,6 +1116,7 @@ function CineScoreMain() {
       }
 
       showToast(t.saveRating);
+      setIsRatingMode(false);
     } catch (e) { showToast(t.errorOccurred); } finally { setIsSaving(false); }
   };
 
@@ -1352,11 +1384,11 @@ function CineScoreMain() {
             <button onClick={() => setShowLoginModal(false)} className="absolute top-6 right-6 text-slate-500 hover:text-white"><X/></button>
             <div className="text-center mb-8 relative">
               <div className="absolute inset-0 bg-theme opacity-10 blur-[50px] rounded-full pointer-events-none"></div>
-              <div className="w-20 h-20 rounded-[1.25rem] mx-auto flex items-center justify-center mb-4 border-[3px] border-white relative z-10 bg-transparent logo-morph-text">
-                 <Clapperboard size={40} className="fill-current" />
+              <div className="w-20 h-20 rounded-[1.25rem] mx-auto flex items-center justify-center mb-4 border-[3px] border-transparent relative z-10 logo-morph-bg">
+                 <Clapperboard size={40} />
               </div>
-              <h2 className="text-4xl font-black tracking-tighter drop-shadow-md relative z-10 logo-morph-text" style={{fontFamily: "'Montserrat', sans-serif"}}>
-                CINESCORE
+              <h2 className="text-4xl font-black tracking-tighter drop-shadow-md relative z-10" style={{fontFamily: "'Montserrat', sans-serif"}}>
+                <span className="text-white">CINE</span><span className="logo-morph-text drop-shadow-none">SCORE</span>
               </h2>
             </div>
             
@@ -1385,11 +1417,11 @@ function CineScoreMain() {
         <div className="max-w-[90rem] mx-auto px-4 h-20 flex items-center justify-between gap-4">
           
           <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0" onClick={handleCloseMovie}>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center border-[2px] border-white transition-transform duration-500 group-hover:scale-105 shadow-[0_0_15px_rgba(255,255,255,0.1)] logo-morph-text">
-              <Clapperboard size={24} className="fill-current" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center border-[2px] border-transparent transition-transform duration-500 group-hover:scale-105 shadow-[0_0_15px_rgba(255,255,255,0.1)] logo-morph-bg">
+              <Clapperboard size={24} />
             </div>
-            <h1 className="text-xl sm:text-3xl font-black tracking-tighter flex items-center transition-transform duration-500 group-hover:scale-105 logo-morph-text drop-shadow-md" style={{fontFamily: "'Montserrat', sans-serif"}}>
-               CINESCORE
+            <h1 className="text-xl sm:text-3xl font-black tracking-tighter flex items-center transition-transform duration-500 group-hover:scale-105" style={{fontFamily: "'Montserrat', sans-serif"}}>
+               <span className="text-white">CINE</span><span className="logo-morph-text drop-shadow-md">SCORE</span>
             </h1>
           </div>
 
@@ -1470,7 +1502,7 @@ function CineScoreMain() {
                 <div className="relative md:pl-4 md:border-l border-slate-800" ref={profileMenuRef}>
                   <div className="flex items-center gap-3 group cursor-pointer" onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}>
                     <div className="relative">
-                      <img src={userProfile?.avatar || AVATAR_DEFAULT} className={`w-11 h-11 rounded-full border-[3px] transition-all duration-300 object-cover shadow-lg ${activeTab.startsWith('profile') && !['profile_following', 'profile_followers'].includes(activeTab) ? 'border-theme shadow-theme' : 'border-slate-700 bg-slate-900 group-hover:border-theme'}`} alt="Avatar"/>
+                      <img src={userProfile?.avatar || AVATAR_DEFAULT} className={`w-11 h-11 rounded-full border-[3px] transition-all duration-300 object-cover shadow-lg ${activeTab.startsWith('profile') ? 'border-theme shadow-theme' : 'border-slate-700 bg-slate-900 group-hover:border-theme'}`} alt="Avatar"/>
                       <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 rounded-full border-2 border-[#04060C] flex items-center justify-center shadow-lg">
                          <span className="text-[10px] font-black text-white">{sortedMyRatings.length}</span>
                       </div>
@@ -1506,7 +1538,7 @@ function CineScoreMain() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-32 sm:pb-16">
+      <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16">
         
         {/* YENİ: TOPLULUK ARAMA EKRANI (GİZLİLİK ODAKLI) */}
         {activeTab === 'community' && (
@@ -1550,9 +1582,6 @@ function CineScoreMain() {
         {/* YENİ: TAKİP ETTİKLERİM EKRANI */}
         {activeTab === 'profile_following' && (
           <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
-             <button onClick={() => setActiveTab('profile_general')} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors w-max">
-               <ChevronLeft size={18}/> {t.back}
-             </button>
              <div className="flex items-center justify-between mb-6">
                 <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followingTab}</h2>
              </div>
@@ -1575,9 +1604,6 @@ function CineScoreMain() {
         {/* YENİ: TAKİPÇİLERİM EKRANI */}
         {activeTab === 'profile_followers' && (
           <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
-             <button onClick={() => setActiveTab('profile_general')} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors w-max">
-               <ChevronLeft size={18}/> {t.back}
-             </button>
              <div className="flex items-center justify-between mb-6">
                 <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followersTab}</h2>
              </div>
@@ -1600,8 +1626,8 @@ function CineScoreMain() {
         {/* YENİ: PUBLIC PROFILE EKRANI */}
         {activeTab === 'public_profile' && viewingUser && (
           <div className="animate-in slide-in-from-right-8 duration-500 max-w-5xl mx-auto space-y-8">
-            <button onClick={() => {setActiveTab('community'); setViewingUser(null);}} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors w-max">
-               <ChevronLeft size={18}/> {t.back}
+            <button onClick={() => {setActiveTab('community'); setViewingUser(null);}} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors">
+               <ChevronLeft size={18}/> Geri
             </button>
             
             <div className="relative rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl group bg-slate-900/50">
@@ -1776,7 +1802,7 @@ function CineScoreMain() {
         {activeTab === 'public_profile_ratings' && viewingUser && (
           <div className="animate-in slide-in-from-right-8 duration-500 max-w-7xl mx-auto space-y-8">
             <button onClick={() => setActiveTab('public_profile')} className="px-5 py-3 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors w-max">
-               <ChevronLeft size={18}/> {t.back}
+               <ChevronLeft size={18}/> Geri
             </button>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
               <h3 className="text-2xl font-black text-white flex items-center gap-3 drop-shadow-md"><Film className="text-theme" size={28}/> {viewingUser.displayName} - {t.theirRatedMovies}</h3>
@@ -1885,7 +1911,7 @@ function CineScoreMain() {
           </div>
         )}
 
-        {/* TAB 2: PUANLAMA EKRANI (UX Güncellemesi: Çift Aşamalı) */}
+        {/* TAB 2: PUANLAMA EKRANI */}
         {activeTab === 'rate' && selectedMovie && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-in zoom-in-95 duration-300 max-w-7xl mx-auto">
             
@@ -1918,6 +1944,14 @@ function CineScoreMain() {
                 <div className="flex justify-center flex-wrap gap-2 mb-8">
                   <span className="px-3 py-1.5 bg-[#04060C] rounded-xl text-xs font-black text-slate-300 shadow-inner border border-slate-800">{selectedMovie?.year}</span>
                   <span className="px-3 py-1.5 bg-[#04060C] rounded-xl text-xs font-black text-slate-300 shadow-inner border border-slate-800">{selectedMovie?.genre}</span>
+                </div>
+                
+                <div className="relative w-40 h-40 mx-auto rounded-full border-[6px] flex items-center justify-center bg-[#04060C] mb-8"
+                     style={{ borderColor: finalDynColor, transition: 'border-color 0.5s ease-out, box-shadow 0.5s ease-out', boxShadow: `0 0 40px ${finalDynColor}80, inset 0 0 20px ${finalDynColor}50` }}>
+                   <MegaScoreVFX score={finalScoreVal} themeColor={themeColor}/>
+                   <div className="text-center relative z-10">
+                     <span className="text-6xl font-black block text-white drop-shadow-xl transition-colors duration-500 ease-out" style={{color: finalDynColor, textShadow: `0 0 20px ${finalDynColor}90`}}>{finalScoreVal}</span>
+                   </div>
                 </div>
 
                 <div className="bg-[#04060C] rounded-3xl p-6 text-left border border-slate-800 shadow-inner space-y-5">
@@ -1967,7 +2001,7 @@ function CineScoreMain() {
                      </div>
                    )}
 
-                   {/* ARKADAŞLARINDAN İZLEYENLER (Sosyal Bağ) */}
+                   {/* YENİ: ARKADAŞLARINDAN İZLEYENLER (Sosyal Bağ) */}
                    {friendsRatings.length > 0 && (
                      <div className="mt-6 pt-6 border-t border-slate-800/50">
                         <h4 className="text-[10px] sm:text-xs text-slate-500 font-black uppercase mb-3 tracking-widest flex items-center gap-2"><Users size={14}/> {t.friendsWatched}</h4>
@@ -1994,87 +2028,92 @@ function CineScoreMain() {
               </div>
             </div>
 
-            <div className="lg:col-span-8 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 border border-slate-800 shadow-2xl flex flex-col justify-between">
-              
-              {/* YENİ: KADEMELİ PUANLAMA EKRANI */}
-              {!showRatingSliders ? (
-                 <div className="flex-1 flex flex-col items-center justify-center text-center py-10 animate-in fade-in zoom-in-95 duration-500">
+            <div className="lg:col-span-8 flex flex-col gap-8">
+              {!isRatingMode ? (
+                 <div className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl flex flex-col items-center justify-center text-center">
                     {user && sortedMyRatings.find(r=>r.id===selectedMovie?.id) ? (
-                       <>
-                          <h3 className="text-2xl font-black text-slate-400 mb-6 uppercase tracking-widest">{t.yourScoreLabel}</h3>
-                          <div className="relative w-48 h-48 mx-auto rounded-full border-[8px] flex items-center justify-center bg-[#04060C] mb-8"
-                               style={{ borderColor: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore), boxShadow: `0 0 50px ${getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}80` }}>
-                             <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore.toFixed(1)}</span>
-                          </div>
-                          <button onClick={() => setShowRatingSliders(true)} className="px-8 py-4 rounded-2xl bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center justify-center gap-3 hover:scale-[1.05] active:scale-[0.95]">
-                             <Edit3 size={24}/> {t.updateYourRating}
-                          </button>
-                       </>
+                      <>
+                         <h3 className="text-3xl font-black text-white mb-6 drop-shadow-md">{t.yourScore}</h3>
+                         <div className="relative w-48 h-48 mx-auto rounded-full border-[8px] flex items-center justify-center bg-[#04060C] mb-8"
+                              style={{ borderColor: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore), boxShadow: `0 0 50px ${getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}80` }}>
+                            <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore}</span>
+                         </div>
+                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all shadow-xl flex items-center gap-3 hover:scale-105 active:scale-95 border border-slate-700">
+                           <Edit3 size={24}/> {t.updateRating}
+                         </button>
+                      </>
                     ) : (
-                       <>
-                          <div className="w-32 h-32 bg-slate-800/50 rounded-full flex items-center justify-center mb-8 border-4 border-slate-700 shadow-inner">
-                             <Star size={64} className="text-slate-500 opacity-50" />
-                          </div>
-                          <button onClick={() => setShowRatingSliders(true)} className="px-8 py-5 rounded-2xl bg-theme hover:bg-theme text-[#04060C] font-black text-2xl transition-all shadow-theme flex items-center justify-center gap-3 hover:scale-[1.05] active:scale-[0.95] w-full max-w-sm">
-                             <Star size={28} className="fill-[#04060C]"/> {t.rateThisMovie}
-                          </button>
-                       </>
+                      <>
+                         <div className="w-32 h-32 rounded-full flex items-center justify-center mb-8 border-[4px] shadow-theme animate-pulse" style={{borderColor: themeColor, backgroundColor: themeColor + '20'}}>
+                            <Star size={48} style={{color: themeColor}}/>
+                         </div>
+                         <h3 className="text-3xl font-black text-white mb-8 drop-shadow-md">{t.noRating}</h3>
+                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center gap-3 hover:scale-105 active:scale-95">
+                           <Star size={24} className="fill-current"/> {t.rateNow}
+                         </button>
+                      </>
                     )}
                  </div>
               ) : (
-                 <div className="animate-in fade-in slide-in-from-right-8 duration-500 h-full flex flex-col justify-between">
-                    <div>
-                       <h3 className="text-3xl font-black text-white mb-12 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={32}/> {t.criteria}</h3>
-                       <div className="space-y-12">
-                         {criteriaData.map((c) => {
-                           const currentValue = scores[c.id] ?? 5; 
-                           const sliderColor = getScoreColorHex(currentValue);
-                           return (
-                           <div key={c.id}>
-                             <div className="flex justify-between items-end mb-5">
-                                <div className="flex items-center gap-3 relative group">
-                                   <span className="font-black text-white text-xl sm:text-2xl drop-shadow">{c.name}</span>
-                                   <HelpCircle size={20} className="text-slate-500 cursor-help hover:text-theme transition-colors" />
-                                   <div className="absolute bottom-full left-0 mb-4 w-72 bg-slate-800 text-slate-200 text-sm p-5 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border border-slate-700">
-                                     {c.desc}<div className="absolute top-full left-5 w-3 h-3 bg-slate-800 rotate-45 -mt-1.5 border-r border-b border-slate-700"></div>
-                                   </div>
-                                </div>
-                                <div className="text-6xl font-black w-24 text-right drop-shadow-md transition-colors duration-500 ease-out" style={{color: sliderColor, textShadow: `0 0 20px ${sliderColor}90`}}>
-                                  {currentValue}
-                                </div>
+                <div className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 border border-slate-800 shadow-2xl flex flex-col justify-between animate-in zoom-in-95 duration-300">
+                  <div>
+                     <h3 className="text-3xl font-black text-white mb-12 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={32}/> {t.criteria}</h3>
+                     <div className="space-y-12">
+                       {criteriaData.map((c) => {
+                     const currentValue = scores[c.id] ?? 5; 
+                     const sliderColor = getScoreColorHex(currentValue);
+                     return (
+                     <div key={c.id}>
+                       <div className="flex justify-between items-end mb-5">
+                          <div className="flex items-center gap-3 relative group">
+                             <span className="font-black text-white text-xl sm:text-2xl drop-shadow">{c.name}</span>
+                             <HelpCircle size={20} className="text-slate-500 cursor-help hover:text-theme transition-colors" />
+                             <div className="absolute bottom-full left-0 mb-4 w-72 bg-slate-800 text-slate-200 text-sm p-5 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border border-slate-700">
+                               {c.desc}<div className="absolute top-full left-5 w-3 h-3 bg-slate-800 rotate-45 -mt-1.5 border-r border-b border-slate-700"></div>
                              </div>
-                             
-                             <div className="relative h-6 flex items-center rounded-full bg-[#04060C] border border-slate-800 shadow-inner">
-                               <div className="absolute h-full rounded-full overflow-hidden transition-all duration-500 ease-out" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor, boxShadow: `0 0 15px ${sliderColor}80`}}></div>
-                               <input type="range" min="0" max="10" step="0.5" value={currentValue} onChange={(e) => setScores({...scores, [c.id]: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-10"/>
-                               <div className="absolute h-10 w-10 bg-[#04060C] rounded-full flex items-center justify-center pointer-events-none transition-all duration-500 ease-out" style={{left: `calc(${currentValue * 10}% - 20px)`, border: `5px solid ${sliderColor}`, boxShadow: `0 0 15px ${sliderColor}80`}}>
-                                  <div className="w-3 h-3 rounded-full transition-colors duration-500 ease-out" style={{backgroundColor: sliderColor}}></div>
-                               </div>
-                             </div>
-                           </div>
-                         )})}
+                          </div>
+                          <div className="text-6xl font-black w-24 text-right drop-shadow-md transition-colors duration-500 ease-out" style={{color: sliderColor, textShadow: `0 0 20px ${sliderColor}90`}}>
+                            {currentValue}
+                          </div>
                        </div>
-                    </div>
-                    
-                    <div className="mt-12 pt-8 border-t border-slate-800/50 flex gap-4">
-                       <button onClick={() => setShowRatingSliders(false)} className="px-6 py-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-black text-lg transition-all border border-slate-700"><ChevronLeft size={24}/></button>
-                       <button onClick={saveRating} disabled={isSaving} className="flex-1 py-5 rounded-2xl bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
-                         {isSaving ? <Loader2 className="animate-spin text-black"/> : <Save size={24}/>} 
-                         {user && sortedMyRatings.find(r=>r.id===selectedMovie?.id) ? t.updateRating : t.saveRating}
-                       </button>
-                    </div>
+                       
+                       <div className="relative h-6 flex items-center rounded-full bg-[#04060C] border border-slate-800 shadow-inner">
+                         <div className="absolute h-full rounded-full overflow-hidden transition-all duration-500 ease-out" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor, boxShadow: `0 0 15px ${sliderColor}80`}}></div>
+                         <input type="range" min="0" max="10" step="0.5" value={currentValue} onChange={(e) => setScores({...scores, [c.id]: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-10"/>
+                         <div className="absolute h-10 w-10 bg-[#04060C] rounded-full flex items-center justify-center pointer-events-none transition-all duration-500 ease-out" style={{left: `calc(${currentValue * 10}% - 20px)`, border: `5px solid ${sliderColor}`, boxShadow: `0 0 15px ${sliderColor}80`}}>
+                            <div className="w-3 h-3 rounded-full transition-colors duration-500 ease-out" style={{backgroundColor: sliderColor}}></div>
+                         </div>
+                       </div>
+                     </div>
+                   )})}
                  </div>
-              )}
-
-            </div>
-            
-            {/* BENZER FİLMLER ÖNERİSİ */}
-            {similarMovies.length > 0 && (
-              <div className="lg:col-span-12 mt-4 animate-in slide-in-from-bottom-8 duration-700">
-                <MovieRow title={t.similarMovies} movies={similarMovies} icon={<Film className="text-theme" size={28}/>} t={t} selectMovieToRate={selectMovieToRate} globalMoviesList={safeGlobalMovies} localizedData={localizedData} themeColor={themeColor}/>
               </div>
-            )}
-
+              
+              <div className="mt-12 pt-8 border-t border-slate-800/50 flex gap-4">
+                     <button onClick={() => setIsRatingMode(false)} className="px-6 py-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all border border-slate-700"><X size={24}/></button>
+                     <button onClick={saveRating} disabled={isSaving} className="flex-1 py-5 rounded-2xl bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
+                       {isSaving ? <Loader2 className="animate-spin text-black"/> : <Save size={24}/>} 
+                       {user && sortedMyRatings.find(r=>r.id===selectedMovie?.id) ? t.updateRating : t.saveRating}
+                     </button>
+                  </div>
+                </div>
+              )}
+              
+              {/* YENİ: BENZER FİLMLER */}
+              {similarMovies.length > 0 && (
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-2xl mt-4">
+                  <h3 className="text-xl font-black text-white mb-6 flex items-center gap-2"><Film className="text-theme"/> Benzer Filmler</h3>
+                  <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4">
+                    {similarMovies.map(sim => (
+                       <div key={sim.id} onClick={() => selectMovieToRate(sim.id, sim.title)} className="w-28 sm:w-32 shrink-0 cursor-pointer group">
+                          <img src={sim.poster} className="w-full aspect-[2/3] object-cover rounded-2xl border border-slate-700 group-hover:border-theme transition-colors shadow-lg" alt=""/>
+                          <h4 className="text-xs font-bold text-slate-300 mt-2 line-clamp-2 group-hover:text-theme">{sim.title}</h4>
+                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
@@ -2143,9 +2182,451 @@ function CineScoreMain() {
           </div>
         )}
 
+        {/* TAB 4: PROFİL (Çok Sayfalı Yapı & Elite Tasarım) */}
+        {activeTab.startsWith('profile') && !activeTab.startsWith('public') && (
+          <div className="animate-in fade-in duration-500 max-w-5xl mx-auto space-y-8">
+            
+            <div className="relative rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl mb-8 group bg-slate-900/50">
+              <div className="h-48 sm:h-64 w-full relative">
+                 <img src={userProfile?.banner || BANNER_PRESETS[0]} className="w-full h-full object-cover opacity-80" alt="Banner" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/60 to-transparent"></div>
+                 <button onClick={openProfileEdit} className="absolute top-6 right-6 px-4 py-2 bg-[#04060C]/50 hover:bg-theme-transparent text-slate-300 hover:text-theme border border-slate-700 hover:border-theme rounded-xl backdrop-blur font-bold flex items-center gap-2 transition-all shadow-lg z-20">
+                    <Edit3 size={16}/> <span className="hidden sm:inline">{t.editProfile}</span>
+                 </button>
+              </div>
+              <div className="px-8 pb-8 sm:px-12 relative -mt-20 sm:-mt-24 flex flex-col sm:flex-row items-center sm:items-end gap-6 sm:gap-8">
+                 <div className="relative">
+                   <img src={userProfile?.avatar || AVATAR_DEFAULT} className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-[#04060C] bg-[#04060C] object-cover shadow-[0_0_30px_rgba(0,0,0,0.5)] z-10 relative" style={{boxShadow: `0 0 30px ${themeColor}4d`}} alt="Avatar"/>
+                   <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-theme rounded-full border-[3px] border-[#04060C] flex items-center justify-center shadow-lg transform rotate-12 z-20">
+                     <span className="text-xs font-black text-[#04060C]">{sortedMyRatings.length}</span>
+                   </div>
+                 </div>
+                 <div className="text-center sm:text-left flex-1 mb-2">
+                    <div className="flex flex-col sm:flex-row sm:items-end gap-2 sm:gap-4 mb-1">
+                      <h2 className="text-4xl sm:text-5xl font-black text-white drop-shadow-md tracking-tight">{String(userProfile?.displayName || 'Sinefil')}</h2>
+                      <span onClick={() => { navigator.clipboard.writeText(userProfile?.userCode || user?.uid?.substring(0,6).toUpperCase()); showToast(t.userCodeCopied); }} className="text-theme font-black text-lg bg-theme-transparent px-3 py-1 rounded-xl cursor-pointer hover:bg-theme transition-colors border w-max mx-auto sm:mx-0">@{userProfile?.userCode || user?.uid?.substring(0,6).toUpperCase()}</span>
+                    </div>
+                    <div className="flex items-center justify-center sm:justify-start gap-4 mb-3 mt-2">
+                       <span onClick={() => { loadFollowersUsers(); setActiveTab('profile_followers'); }} className="text-slate-400 font-bold text-sm cursor-pointer hover:text-white transition-colors"><strong className="text-white">{userProfile?.followers?.length || 0}</strong> {t.followers}</span>
+                       <span onClick={() => { loadFollowingUsers(); setActiveTab('profile_following'); }} className="text-slate-400 font-bold text-sm cursor-pointer hover:text-white transition-colors"><strong className="text-white">{userProfile?.following?.length || 0}</strong> {t.following}</span>
+                    </div>
+                    {userProfile?.bio && (
+                      <div className="flex items-start justify-center sm:justify-start gap-2 text-theme">
+                        <Quote size={14} className="mt-1 opacity-50 shrink-0"/>
+                        <p className="font-medium italic text-sm sm:text-base drop-shadow-sm max-w-lg">{userProfile.bio}</p>
+                      </div>
+                    )}
+                 </div>
+              </div>
+            </div>
+
+            {/* ALT SEKMELER: GENEL BAKIŞ */}
+            {activeTab === 'profile_general' && (
+              <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-10">
+                
+                {/* KUTSAL ÜÇLÜ (TOP 3) VİTRİNİ */}
+                <div className="bg-gradient-to-br from-slate-800/40 via-slate-900/90 to-slate-800/20 backdrop-blur-xl rounded-[2.5rem] p-8 sm:p-12 border border-slate-700/30 shadow-[0_0_50px_rgba(0,0,0,0.3)] relative overflow-hidden" style={{boxShadow: `0 0 50px ${themeColor}1a`, borderColor: themeColor+'33'}}>
+                   <div className="absolute top-0 right-0 w-64 h-64 blur-[100px] rounded-full pointer-events-none" style={{backgroundColor: themeColor+'1a'}}></div>
+                   
+                   <div className="text-center mb-8 relative z-10">
+                     <h3 className="text-3xl sm:text-4xl font-black text-white flex items-center justify-center gap-3 drop-shadow-md mb-2"><Trophy className="text-theme" size={36}/> {t.top3Title}</h3>
+                     <p className="text-slate-400 font-bold">{t.top3Desc}</p>
+                   </div>
+                   
+                   <div className="flex justify-center items-center gap-2 sm:gap-6 mt-10 relative z-10">
+                      {[0, 1, 2].map(slot => {
+                        const movie = userProfile?.top3?.[slot];
+                        const isCenter = slot === 1;
+                        return (
+                          <div key={slot} 
+                               className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl ${isCenter ? 'w-40 sm:w-56 z-20 scale-110' : 'w-32 sm:w-44 border-slate-700 bg-[#04060C] hover:border-theme z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
+                            {movie ? (
+                              <>
+                                <img src={movie.poster} className="w-full h-full object-cover cursor-pointer" onClick={() => selectMovieToRate(movie.id, movie.title)} alt=""/>
+                                
+                                {!isCenter && (
+                                  <button onClick={(e) => { e.stopPropagation(); setCrown(slot); }} className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur border border-slate-600 flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-theme hover:bg-theme-transparent transition-all z-30">
+                                     <Crown size={16} className="text-slate-400 hover:text-theme"/>
+                                  </button>
+                                )}
+                                {isCenter && (
+                                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-10 h-10 flex items-center justify-center z-30 pointer-events-none" style={{filter: `drop-shadow(0 0 15px ${themeColor})`}}>
+                                     <Crown size={28} className="animate-pulse" style={{color: themeColor, fill: themeColor}}/>
+                                  </div>
+                                )}
+
+                                <button onClick={(e) => { e.stopPropagation(); setTop3SlotIndex(slot); setShowTop3Modal(true); setTop3SearchTerm(''); setTop3Results([]); }} className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-black/60 backdrop-blur border border-slate-600 flex items-center justify-center opacity-0 group-hover:opacity-100 hover:border-white hover:bg-white/20 transition-all z-30 shadow-md">
+                                   <Edit3 size={14} className="text-white"/>
+                                </button>
+                              </>
+                            ) : (
+                              <div className="w-full h-full cursor-pointer flex items-center justify-center group-hover:bg-slate-800/50 transition-colors" onClick={() => { setTop3SlotIndex(slot); setShowTop3Modal(true); setTop3SearchTerm(''); setTop3Results([]); }}>
+                                <Plus size={36} className="text-slate-600 group-hover:text-theme transition-colors"/>
+                              </div>
+                            )}
+                          </div>
+                        )
+                      })}
+                   </div>
+                </div>
+
+                {/* SİNEMATİK DNA VE BURÇ */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                   <div className="lg:col-span-2 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col justify-center">
+                      <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-3 drop-shadow-md"><Sparkles className="text-theme" size={28}/> {t.cinematicDNA}</h3>
+                      
+                      {sortedMyRatings.length >= 20 ? (
+                        <>
+                          <p className="text-slate-400 font-bold mb-8 text-sm">{t.dnaDesc}</p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                             {criteriaData.map((c) => {
+                                const score = userDNA[c.id];
+                                const color = getScoreColorHex(score);
+                                return (
+                                  <div key={c.id}>
+                                     <div className="flex justify-between items-end mb-2">
+                                       <span className="font-bold text-slate-300 text-sm tracking-wide">{c.name}</span>
+                                       <span className="font-black text-lg" style={{color: color, textShadow: `0 0 10px ${color}80`}}>{score}</span>
+                                     </div>
+                                     <div className="h-2 bg-[#04060C] rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                       <div className="h-full rounded-full transition-all duration-1000 relative" style={{width: `${score * 10}%`, backgroundColor: color, boxShadow: `0 0 10px ${color}80`}}>
+                                          <div className="absolute inset-0 bg-white/20 w-full h-full animate-[pulse_2s_infinite]"></div>
+                                       </div>
+                                     </div>
+                                  </div>
+                                )
+                             })}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="flex flex-col items-center justify-center py-6 text-center">
+                           <Lock size={36} className="text-slate-600 mb-3"/>
+                           <h4 className="text-lg font-black text-white">{t.dnaLockedTitle}</h4>
+                           <p className="text-sm text-slate-400 font-bold mt-1 max-w-sm"><strong className="text-theme">{20 - sortedMyRatings.length}</strong> {t.dnaLockedDesc}</p>
+                        </div>
+                      )}
+                   </div>
+
+                   <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col items-center justify-center text-center">
+                      <div className="w-20 h-20 bg-[#04060C] rounded-full border border-slate-700 shadow-inner flex items-center justify-center mb-4">
+                         <Smile className="text-fuchsia-500" size={36}/>
+                      </div>
+                      <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">{t.cineZodiac}</h4>
+                      {sortedMyRatings.length >= 20 ? (
+                        <>
+                          <h2 className="text-2xl font-black text-white drop-shadow-md mb-2">{zodiacTitle}</h2>
+                          <p className="text-xs font-bold text-slate-500">{zodiacDesc}</p>
+                        </>
+                      ) : (
+                        <h2 className="text-xl font-black text-slate-500 drop-shadow-md mb-2">{t.zodiacDefault}</h2>
+                      )}
+                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                   <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col group cursor-pointer" onClick={() => setActiveTab('profile_ratings')}>
+                     <div className="flex items-center justify-between mb-6">
+                        <h3 className="text-xl font-black text-white flex items-center gap-3 drop-shadow-md group-hover:text-theme transition-colors"><PieChart className="text-theme" size={24}/> {t.topGenres}</h3>
+                     </div>
+                     {topGenres.length === 0 ? (
+                        <p className="text-slate-500 text-sm font-bold text-center py-8">{t.noRating}</p>
+                     ) : (
+                        <div className="space-y-5">
+                          {topGenres.map(([genre, count], idx) => {
+                             const percentage = (count / sortedMyRatings.length) * 100;
+                             return (
+                               <div key={genre}>
+                                 <div className="flex justify-between items-end mb-2">
+                                   <span className="font-bold text-slate-300 text-sm">{genre}</span>
+                                   <span className="font-black text-sm text-slate-500">{count} {t.voteCount}</span>
+                                 </div>
+                                 <div className="h-2 bg-[#04060C] rounded-full overflow-hidden border border-slate-800 shadow-inner">
+                                   <div className="h-full rounded-full transition-all duration-1000" style={{width: `${percentage}%`, backgroundColor: themeColor}}></div>
+                                 </div>
+                               </div>
+                             )
+                          })}
+                        </div>
+                     )}
+                   </div>
+
+                   <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col group cursor-pointer" onClick={() => setActiveTab('profile_watchlist')}>
+                     <div className="flex items-center justify-between mb-6">
+                        <h3 className="text-xl font-black text-white flex items-center gap-3 drop-shadow-md group-hover:text-theme transition-colors"><Bookmark className="text-theme" size={24}/> {t.watchlist}</h3>
+                        <button className="text-xs font-black text-theme group-hover:text-white transition-colors">{t.viewAll} &rarr;</button>
+                     </div>
+                     {sortedWatchlist.length === 0 ? (
+                        <div className="flex-1 flex items-center justify-center"><p className="text-slate-500 text-sm font-bold text-center py-8">{t.emptyWatchlist}</p></div>
+                     ) : (
+                        <div className="flex gap-3 overflow-x-hidden hide-scrollbar">
+                           {sortedWatchlist.slice(0, 4).map(item => (
+                             <img key={item.id} src={item.poster || 'https://via.placeholder.com/200x300?text=Poster'} className="w-20 sm:w-24 aspect-[2/3] object-cover rounded-xl border border-slate-700 shadow-md group-hover:border-theme transition-all" alt=""/>
+                           ))}
+                           {sortedWatchlist.length > 4 && (
+                             <div className="w-20 sm:w-24 aspect-[2/3] rounded-xl bg-[#04060C] border border-slate-800 flex items-center justify-center group-hover:border-theme transition-colors">
+                               <span className="font-black text-slate-500 group-hover:text-theme text-xl">+{sortedWatchlist.length - 4}</span>
+                             </div>
+                           )}
+                        </div>
+                     )}
+                   </div>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Medal className="text-blue-500" size={28}/> {t.badges}</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                     {getAllBadges(sortedMyRatings.length, t).map(badge => (
+                       <div key={badge.id} className={`flex flex-col items-center justify-center p-5 rounded-3xl border-2 text-center transition-all group relative ${badge.earned ? `${badge.color} hover:scale-105 shadow-xl bg-slate-900/50 backdrop-blur` : 'border-slate-800 bg-[#04060C] text-slate-700 opacity-60 grayscale'}`}>
+                         <div className={`mb-4 p-4 rounded-2xl shadow-inner ${badge.earned ? 'bg-[#04060C]/50' : 'bg-slate-900'}`}>{badge.icon}</div>
+                         <h4 className="font-black text-sm mb-1">{badge.name}</h4>
+                         {!badge.earned && <div className="absolute top-3 right-3 text-slate-600"><Lock size={14}/></div>}
+                         <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-max max-w-[200px] bg-slate-800 text-white text-xs font-bold p-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-2xl border border-slate-600">
+                            {badge.desc}
+                            <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-800 rotate-45 -mt-1.5 border-r border-b border-slate-600"></div>
+                         </div>
+                       </div>
+                     ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'profile_ratings' && (
+              <div className="animate-in slide-in-from-bottom-4 duration-500">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                  <h3 className="text-2xl font-black text-white flex items-center gap-3 drop-shadow-md"><Film className="text-theme" size={28}/> {t.myRatedMovies}</h3>
+                  <div className="flex items-center gap-3 bg-[#04060C] p-2 rounded-2xl border border-slate-800 shadow-inner">
+                     <ListFilter size={18} className="text-slate-400 ml-2" />
+                     <select 
+                       value={ratingSortType} 
+                       onChange={(e) => setRatingSortType(e.target.value)}
+                       className="bg-transparent text-sm font-bold text-white outline-none cursor-pointer pr-2"
+                     >
+                        <option value="date_desc" className="bg-slate-900">{t.sortDate}</option>
+                        <option value="my_score_desc" className="bg-slate-900">{t.sortMyScore}</option>
+                        <option value="global_score_desc" className="bg-slate-900">{t.sortGlobalScore}</option>
+                     </select>
+                  </div>
+                </div>
+
+                {sortedMyRatings.length === 0 ? (
+                   <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800 border-dashed">
+                     <p className="text-slate-400 font-bold">{t.noRating}</p>
+                   </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+                    {sortedMyRatings.map((rating, index) => {
+                      const safeId = rating.id ? String(rating.id) : `temp-${index}`;
+                      const displayTitle = localizedData?.[safeId]?.title || rating.title;
+                      const safeScore = Number(rating.finalScore) || 0;
+                      const safePoster = typeof rating.poster === 'string' && rating.poster.startsWith('http') ? rating.poster : 'https://via.placeholder.com/200x300?text=Poster';
+
+                      const globalData = safeGlobalMovies.find(g => String(g.id) === safeId);
+                      const globalScore = globalData ? Number(globalData.avgScore) : 0;
+                      const isNeon = globalScore >= 9.0;
+
+                      return (
+                        <div key={safeId} className="relative group cursor-pointer" onClick={() => selectMovieToRate(safeId, rating.title)}>
+                           <img src={safePoster} className="w-full aspect-[2/3] object-cover rounded-3xl bg-slate-900 border border-slate-800 group-hover:border-theme transition-colors shadow-2xl" alt=""/>
+                           
+                           {globalScore > 0 && (
+                             <div className={`absolute top-2 right-2 px-2 py-1 rounded-lg backdrop-blur shadow-xl z-10 pointer-events-none flex flex-col items-center justify-center ${isNeon ? 'bg-[#04060C] border shadow-theme animate-pulse' : 'bg-[#04060C]/90 border border-slate-700'}`} style={isNeon ? {borderColor: themeColor} : {}}>
+                               <span className="text-[8px] sm:text-[10px] text-slate-400 font-black mb-0.5 uppercase tracking-widest leading-none">{t.globalScoreLabel}</span>
+                               <span className="text-sm font-black leading-none" style={{color: isNeon ? themeColor : getScoreColorHex(globalScore), textShadow: isNeon ? `0 0 10px ${themeColor}` : 'none'}}>{globalScore.toFixed(1)}</span>
+                             </div>
+                           )}
+
+                           <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/40 to-transparent rounded-3xl opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
+                              <div>
+                                <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest block mb-1 drop-shadow-md">{t.yourScoreLabel}</span>
+                                <div className="relative w-max">
+                                  <MiniVFX score={safeScore} />
+                                  <div className="relative z-10 text-4xl font-black leading-none mb-1 drop-shadow-lg transition-colors" style={{color: getScoreColorHex(safeScore), textShadow: `0 0 10px ${getScoreColorHex(safeScore)}80`}}>{safeScore.toFixed(1)}</div>
+                                </div>
+                              </div>
+                              <h4 className="font-bold text-white text-sm leading-tight line-clamp-2 drop-shadow-md mt-1">{displayTitle}</h4>
+                           </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeTab === 'profile_watchlist' && (
+              <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-12">
+                
+                <div>
+                   <div className="flex items-center justify-between mb-6">
+                     <h3 className="text-2xl font-black text-white flex items-center gap-3 drop-shadow-md"><ListPlus className="text-fuchsia-500" size={28}/> {t.customLists}</h3>
+                     <button onClick={() => setShowNewListModal(true)} className="px-4 py-2 bg-theme-transparent hover:bg-theme text-theme border border-theme rounded-xl font-bold flex items-center gap-2 transition-colors"><Plus size={18}/> <span className="hidden sm:inline">{t.createNewList}</span></button>
+                   </div>
+                   
+                   {customLists.length === 0 ? (
+                     <div className="text-center py-10 bg-slate-900/50 rounded-3xl border border-slate-800 border-dashed">
+                       <p className="text-slate-400 font-bold mb-4">{t.emptyWatchlist}</p>
+                       <button onClick={() => setShowNewListModal(true)} className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-colors">{t.createNewList}</button>
+                     </div>
+                   ) : (
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {customLists.map(list => (
+                          <div key={list.id} onClick={() => { setActiveCustomList(list); setActiveTab('profile_list_detail'); }} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl hover:border-theme cursor-pointer transition-colors group">
+                             <div className="flex items-center justify-between mb-4">
+                                <h4 className="text-xl font-black text-white group-hover:text-theme transition-colors">{list.name}</h4>
+                                <button onClick={(e) => handleShareList(e, list.id)} className="p-2 bg-[#04060C] hover:bg-slate-800 rounded-xl border border-slate-700 text-slate-400 hover:text-theme transition-colors"><Share2 size={18}/></button>
+                             </div>
+                             
+                             {list.movies && list.movies.length > 0 ? (
+                               <div className="flex gap-3 overflow-x-hidden pb-2">
+                                  {list.movies.slice(0, 5).map(m => (
+                                    <img key={m.id} src={m.poster} className="w-16 h-24 rounded-lg object-cover shadow-md border border-slate-800" alt=""/>
+                                  ))}
+                                  {list.movies.length > 5 && (
+                                    <div className="w-16 h-24 rounded-lg bg-[#04060C] border border-slate-800 flex items-center justify-center font-black text-slate-500 shadow-md">
+                                      +{list.movies.length - 5}
+                                    </div>
+                                  )}
+                               </div>
+                             ) : (
+                               <p className="text-xs text-slate-500 font-bold">{t.emptyWatchlist}</p>
+                             )}
+                          </div>
+                        ))}
+                     </div>
+                   )}
+                </div>
+
+                <div className="pt-6 border-t border-slate-800/50">
+                  <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Bookmark className="text-theme" size={28}/> {t.watchlist}</h3>
+                  {sortedWatchlist.length === 0 ? (
+                     <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800 border-dashed">
+                       <p className="text-slate-400 font-bold">{t.emptyWatchlist}</p>
+                     </div>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+                      {sortedWatchlist.map((item, index) => {
+                        const safeId = item.id ? String(item.id) : `temp-${index}`;
+                        const displayTitle = localizedData?.[safeId]?.title || item.title;
+                        const safePoster = typeof item.poster === 'string' && item.poster.startsWith('http') ? item.poster : 'https://via.placeholder.com/200x300?text=Poster';
+                        const globalData = safeGlobalMovies.find(g => String(g.id) === safeId);
+                        const isNeon = globalData && globalData.avgScore >= 9.0;
+
+                        return (
+                          <div key={safeId} className="relative group cursor-pointer" onClick={() => selectMovieToRate(safeId, item.title)}>
+                             <img src={safePoster} className="w-full aspect-[2/3] object-cover rounded-3xl bg-slate-900 border border-slate-800 group-hover:border-theme transition-colors shadow-2xl" alt=""/>
+                             <div className="absolute top-2 right-2 w-8 h-8 rounded-xl bg-[#04060C]/80 backdrop-blur border-theme flex items-center justify-center shadow-lg border">
+                                <BookmarkCheck size={16} className="text-theme"/>
+                             </div>
+                             <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/20 to-transparent rounded-3xl opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
+                                {globalData && globalData.avgScore > 0 && (
+                                  <div className="mb-1">
+                                    <span className={`text-xs font-black px-2 py-1 rounded-lg ${isNeon ? 'bg-[#04060C] border shadow-theme' : 'bg-[#04060C]/80 border border-slate-700'}`} style={isNeon ? {borderColor: themeColor, color: themeColor} : {color: getScoreColorHex(globalData.avgScore)}}>{Number(globalData.avgScore).toFixed(1)}</span>
+                                  </div>
+                                )}
+                                <h4 className="font-bold text-white text-sm leading-tight line-clamp-2 drop-shadow-md">{displayTitle}</h4>
+                             </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            )}
+
+            {activeTab === 'profile_following' && (
+              <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-8">
+                 <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followingTab}</h2>
+                 </div>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    {followingUsersList.length > 0 ? followingUsersList.map(u => (
+                      <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
+                         <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
+                         <div>
+                           <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
+                           <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
+                         </div>
+                      </div>
+                    )) : (
+                      <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
+                    )}
+                 </div>
+              </div>
+            )}
+
+            {activeTab === 'profile_followers' && (
+              <div className="animate-in slide-in-from-bottom-4 duration-500 space-y-8">
+                 <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followersTab}</h2>
+                 </div>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    {followersUsersList.length > 0 ? followersUsersList.map(u => (
+                      <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
+                         <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
+                         <div>
+                           <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
+                           <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
+                         </div>
+                      </div>
+                    )) : (
+                      <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
+                    )}
+                 </div>
+              </div>
+            )}
+
+            {activeTab === 'profile_list_detail' && activeCustomList && (
+              <div className="animate-in slide-in-from-right-8 duration-500">
+                <button onClick={() => setActiveTab('profile_watchlist')} className="px-5 py-3 mb-6 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 text-white font-bold flex items-center gap-2 transition-colors">
+                   <ChevronLeft size={18}/> Geri
+                </button>
+                
+                <div className="flex items-center justify-between mb-8">
+                   <h2 className="text-3xl sm:text-4xl font-black text-white drop-shadow-md flex items-center gap-3"><ListPlus className="text-theme"/> {activeCustomList.name}</h2>
+                   <button onClick={(e) => handleShareList(e, activeCustomList.id)} className="px-4 py-2 bg-theme-transparent hover:bg-theme text-theme border border-theme rounded-xl font-bold flex items-center gap-2 transition-colors"><Share2 size={18}/> <span className="hidden sm:inline">{t.share}</span></button>
+                </div>
+
+                {!activeCustomList.movies || activeCustomList.movies.length === 0 ? (
+                   <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800 border-dashed">
+                     <p className="text-slate-400 font-bold">{t.emptyWatchlist}</p>
+                   </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+                    {activeCustomList.movies.map((item, index) => {
+                      const safeId = item.id ? String(item.id) : `temp-${index}`;
+                      const displayTitle = localizedData?.[safeId]?.title || item.title;
+                      const safePoster = typeof item.poster === 'string' && item.poster.startsWith('http') ? item.poster : 'https://via.placeholder.com/200x300?text=Poster';
+                      const globalData = safeGlobalMovies.find(g => String(g.id) === safeId);
+                      const isNeon = globalData && globalData.avgScore >= 9.0;
+
+                      return (
+                        <div key={safeId} className="relative group cursor-pointer" onClick={() => selectMovieToRate(safeId, item.title)}>
+                           <img src={safePoster} className="w-full aspect-[2/3] object-cover rounded-3xl bg-slate-900 border border-slate-800 group-hover:border-theme transition-colors shadow-2xl" alt=""/>
+                           <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/20 to-transparent rounded-3xl opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
+                              {globalData && globalData.avgScore > 0 && (
+                                <div className="mb-1">
+                                  <span className={`text-xs font-black px-2 py-1 rounded-lg ${isNeon ? 'bg-[#04060C] border shadow-theme' : 'bg-[#04060C]/80 border border-slate-700'}`} style={isNeon ? {borderColor: themeColor, color: themeColor} : {color: getScoreColorHex(globalData.avgScore)}}>{Number(globalData.avgScore).toFixed(1)}</span>
+                                </div>
+                              )}
+                              <h4 className="font-bold text-white text-sm leading-tight line-clamp-2 drop-shadow-md">{displayTitle}</h4>
+                           </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+            
+          </div>
+        )}
+        
       </main>
 
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#04060C]/95 backdrop-blur-2xl border-t border-slate-800 p-3 pb-[calc(12px+env(safe-area-inset-bottom))] flex justify-center gap-3 z-[100] shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#04060C]/95 backdrop-blur-2xl border-t border-slate-800 p-2 pb-[calc(8px+env(safe-area-inset-bottom))] flex justify-around items-center z-[100] shadow-[0_-10px_40px_rgba(0,0,0,0.9)]">
          <button onClick={() => {setActiveTab('home'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'home' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Clapperboard size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.navShowcase}</span></button>
          <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'global' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Globe size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.navList}</span></button>
          <button onClick={handleOpenCommunity} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'community' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Users size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.community}</span></button>
@@ -2154,8 +2635,8 @@ function CineScoreMain() {
 
       <footer className="relative z-10 border-t border-slate-800/80 bg-[#04060C] py-10 mt-8 text-center pb-28 md:pb-10">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-2xl font-black mb-2 tracking-tighter logo-morph-text" style={{fontFamily: "'Montserrat', sans-serif"}}>
-             CINESCORE
+          <h2 className="text-2xl font-black mb-2 tracking-tighter" style={{fontFamily: "'Montserrat', sans-serif"}}>
+             <span className="text-white">CINE</span><span className="logo-morph-text">SCORE</span>
           </h2>
           <p className="text-slate-400 text-sm font-bold mb-6">{t.footerDesc}</p>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=m.enesinalcik@gmail.com" target="_blank" rel="noreferrer" className="inline-flex flex-col sm:flex-row items-center gap-4 px-8 py-5 bg-slate-900/50 border border-slate-800 hover:border-theme rounded-2xl shadow-inner transition-all group cursor-pointer">
