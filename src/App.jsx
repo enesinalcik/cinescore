@@ -40,9 +40,9 @@ const TRANSLATIONS = {
     home: 'Ana Sayfa', ranking: 'Sıralama', community: 'Topluluk', login: 'Giriş Yap', logout: 'Çıkış Yap',
     trending: 'Şu An Popüler', topRated: 'Kült Başyapıtlar', featured: 'Haftanın Öne Çıkanları',
     searchPlaceholder: 'Film ara...', searchUsers: 'Sadece @kod ile arayın...', director: 'Yönetmen', cast: 'Oyuncular', summary: 'Özet', watchTrailer: 'Fragmanı İzle',
-    saveRating: 'Puanı Kaydet', updateRating: 'Puanımı Güncelle', criteria: 'İnceleme Kriterleri', yourScore: 'Puanın', globalRanking: 'Dünya Geneli Sıralama', 
+    saveRating: 'Puanı Kaydet', updateRating: 'Puanımı Güncelle', criteria: 'İnceleme Kriterleri', yourScore: 'Verdiğiniz Puan:', globalRanking: 'Dünya Geneli Sıralama', 
     noRating: 'Henüz film puanlanmadı.', ratedFilmsLabel: 'Oylanan Film', yourAvg: 'Ortalama', nextLevel: 'Sonraki Seviye',
-    globalScoreLabel: 'Genel', yourScoreLabel: 'Senin Oyun', myRatings: 'Verdiğim Puanlar', editProfile: 'Profili Düzenle', rateNow: 'Puanla',
+    globalScoreLabel: 'Genel Puan', yourScoreLabel: 'Senin Oyun', myRatings: 'Verdiğim Puanlar', editProfile: 'Profili Düzenle', rateNow: 'Puanla',
     voteCount: 'Oy', average: 'Ort.', badges: 'Kazanılan Rozetler', communityAvg: 'Topluluk Ortalaması',
     actionPacked: 'Aksiyon Dolu', emotionalDramas: 'Duygusal Dramalar', turkishCinema: 'Yerli Başyapıtlar', sciFi: 'Bilim Kurgu & Fantastik', comedy: 'Komedi',
     c1: 'Senaryo', c1Desc: 'Olay örgüsü, diyaloglar ve hikayenin özgünlüğü.', c2: 'Oyunculuk', c2Desc: 'Aktörlerin karakterleri inandırıcı oynaması.',
@@ -300,19 +300,30 @@ const MovieRow = ({ title, movies, icon, t, selectMovieToRate, globalMoviesList,
         {movies.map((m) => {
           const globalData = globalMoviesList?.find(g => String(g.id) === String(m.tmdbId));
           const isNeon = globalData && globalData.avgScore >= 9.0;
+          const isPurpleNeon = globalData && globalData.avgScore > 0 && globalData.avgScore <= 2.5;
           const displayTitle = localizedData?.[m.tmdbId]?.title || m.title;
           
+          let glowStyle = {};
+          let borderClass = 'border-slate-800 group-hover:border-slate-500 opacity-90 group-hover:opacity-100';
+          if (isNeon) {
+             glowStyle = { borderColor: '#39ff14', boxShadow: `0 0 15px rgba(57, 255, 20, 0.4)` };
+             borderClass = 'border-[#39ff14]';
+          } else if (isPurpleNeon) {
+             glowStyle = { borderColor: '#a855f7', boxShadow: `0 0 15px rgba(168, 85, 247, 0.4)` };
+             borderClass = 'border-[#a855f7]';
+          }
+
           return (
           <div key={m.tmdbId} className="group cursor-pointer shrink-0 w-32 sm:w-44" onClick={() => selectMovieToRate(m.tmdbId, m.title)}>
-            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-800 mb-3 aspect-[2/3] bg-slate-900 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-theme shadow-theme">
+            <div className={`relative rounded-2xl overflow-hidden shadow-lg border mb-3 aspect-[2/3] bg-slate-900 transition-all duration-300 group-hover:-translate-y-2 ${borderClass}`} style={glowStyle}>
               <img src={m.poster} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt=""/>
               <div className="absolute inset-0 bg-[#04060C]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
                  <span className="bg-theme text-[#04060C] text-xs sm:text-sm font-black px-4 py-2 rounded-xl flex items-center gap-1 shadow-lg"><Star size={16} className="fill-current"/> {t.rateNow}</span>
               </div>
               {globalData && globalData.avgScore > 0 && (
-                <div className={`absolute top-2 right-2 px-2.5 py-1 rounded-lg backdrop-blur shadow-xl z-10 pointer-events-none flex flex-col items-center ${isNeon ? 'bg-[#04060C] border animate-pulse' : 'bg-[#04060C]/90 border border-slate-700'}`} style={isNeon ? {borderColor: themeColor, boxShadow: `0 0 15px ${themeColor}80`} : {}}>
+                <div className={`absolute top-2 right-2 px-2.5 py-1 rounded-lg backdrop-blur shadow-xl z-10 pointer-events-none flex flex-col items-center ${isNeon ? 'bg-[#04060C] border animate-pulse' : isPurpleNeon ? 'bg-[#04060C] border animate-pulse' : 'bg-[#04060C]/90 border border-slate-700'}`} style={isNeon ? {borderColor: '#39ff14', boxShadow: `0 0 15px rgba(57, 255, 20, 0.5)`} : isPurpleNeon ? {borderColor: '#a855f7', boxShadow: `0 0 15px rgba(168, 85, 247, 0.5)`} : {}}>
                   <span className="text-[8px] text-slate-400 font-black mb-0.5 uppercase tracking-widest leading-none">{t.globalScoreLabel}</span>
-                  <span className="text-xs font-black leading-none" style={{color: isNeon ? themeColor : getScoreColorHex(globalData.avgScore), textShadow: isNeon ? `0 0 10px ${themeColor}` : 'none'}}>{Number(globalData.avgScore).toFixed(1)}</span>
+                  <span className="text-xs font-black leading-none" style={{color: isNeon ? '#39ff14' : isPurpleNeon ? '#a855f7' : getScoreColorHex(globalData.avgScore), textShadow: isNeon ? `0 0 10px #39ff14` : isPurpleNeon ? `0 0 10px #a855f7` : 'none'}}>{Number(globalData.avgScore).toFixed(1)}</span>
                 </div>
               )}
             </div>
@@ -1234,6 +1245,9 @@ function CineScoreMain() {
      return (u.userCode || (u.uid ? u.uid.substring(0, 6).toUpperCase() : '')).toLowerCase() === searchStr;
   });
 
+  const globalScoreToDisplay = dbSelectedMovieData && dbSelectedMovieData.avgScore ? Number(dbSelectedMovieData.avgScore).toFixed(1) : '?';
+  const globalColorToDisplay = dbSelectedMovieData && dbSelectedMovieData.avgScore ? getScoreColorHex(dbSelectedMovieData.avgScore) : '#475569';
+
   return (
     <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#04060C] text-slate-200 font-sans relative overflow-x-hidden selection:bg-theme selection:text-[#04060C]">
       
@@ -1579,50 +1593,6 @@ function CineScoreMain() {
           </div>
         )}
 
-        {/* YENİ: TAKİP ETTİKLERİM EKRANI */}
-        {activeTab === 'profile_following' && (
-          <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
-             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followingTab}</h2>
-             </div>
-             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {followingUsersList.length > 0 ? followingUsersList.map(u => (
-                  <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
-                     <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
-                     <div>
-                       <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
-                       <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
-                     </div>
-                  </div>
-                )) : (
-                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
-                )}
-             </div>
-          </div>
-        )}
-
-        {/* YENİ: TAKİPÇİLERİM EKRANI */}
-        {activeTab === 'profile_followers' && (
-          <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
-             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-3xl font-black text-white flex items-center gap-3 drop-shadow-md"><Users className="text-theme"/> {t.followersTab}</h2>
-             </div>
-             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {followersUsersList.length > 0 ? followersUsersList.map(u => (
-                  <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
-                     <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
-                     <div>
-                       <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName}</h4>
-                       <p className="text-xs font-bold text-slate-500 mt-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</p>
-                     </div>
-                  </div>
-                )) : (
-                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
-                )}
-             </div>
-          </div>
-        )}
-
         {/* YENİ: PUBLIC PROFILE EKRANI */}
         {activeTab === 'public_profile' && viewingUser && (
           <div className="animate-in slide-in-from-right-8 duration-500 max-w-5xl mx-auto space-y-8">
@@ -1939,18 +1909,21 @@ function CineScoreMain() {
                    </div>
                 </div>
 
-                <img src={selectedMovie?.poster} className="w-48 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.6)] mx-auto mb-6 border-2 border-slate-800 object-cover mt-8 sm:mt-12" alt="Poster"/>
+                <img src={selectedMovie?.poster} className="w-48 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.6)] mx-auto mb-6 border-2 border-slate-800 object-cover mt-2" alt="Poster"/>
                 <h2 className="text-3xl font-black text-white leading-tight mb-3 drop-shadow-lg">{selectedMovie?.title}</h2>
                 <div className="flex justify-center flex-wrap gap-2 mb-8">
                   <span className="px-3 py-1.5 bg-[#04060C] rounded-xl text-xs font-black text-slate-300 shadow-inner border border-slate-800">{selectedMovie?.year}</span>
                   <span className="px-3 py-1.5 bg-[#04060C] rounded-xl text-xs font-black text-slate-300 shadow-inner border border-slate-800">{selectedMovie?.genre}</span>
                 </div>
                 
+                <div className="text-center mb-2 mt-8 sm:mt-12">
+                   <span className="text-xs font-black text-slate-500 uppercase tracking-widest">{t.globalScoreLabel || "Genel Ortalama"}</span>
+                </div>
                 <div className="relative w-40 h-40 mx-auto rounded-full border-[6px] flex items-center justify-center bg-[#04060C] mb-8"
-                     style={{ borderColor: finalDynColor, transition: 'border-color 0.5s ease-out, box-shadow 0.5s ease-out', boxShadow: `0 0 40px ${finalDynColor}80, inset 0 0 20px ${finalDynColor}50` }}>
-                   <MegaScoreVFX score={finalScoreVal} themeColor={themeColor}/>
+                     style={{ borderColor: globalColorToDisplay, transition: 'border-color 0.5s ease-out, box-shadow 0.5s ease-out', boxShadow: `0 0 40px ${globalColorToDisplay}80, inset 0 0 20px ${globalColorToDisplay}50` }}>
+                   {dbSelectedMovieData && dbSelectedMovieData.avgScore > 0 && <MegaScoreVFX score={dbSelectedMovieData.avgScore} themeColor={globalColorToDisplay}/>}
                    <div className="text-center relative z-10">
-                     <span className="text-6xl font-black block text-white drop-shadow-xl transition-colors duration-500 ease-out" style={{color: finalDynColor, textShadow: `0 0 20px ${finalDynColor}90`}}>{finalScoreVal}</span>
+                     <span className="text-6xl font-black block text-white drop-shadow-xl transition-colors duration-500 ease-out" style={{color: globalColorToDisplay, textShadow: `0 0 20px ${globalColorToDisplay}90`}}>{globalScoreToDisplay}</span>
                    </div>
                 </div>
 
@@ -2057,7 +2030,13 @@ function CineScoreMain() {
               ) : (
                 <div className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 border border-slate-800 shadow-2xl flex flex-col justify-between animate-in zoom-in-95 duration-300">
                   <div>
-                     <h3 className="text-3xl font-black text-white mb-12 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={32}/> {t.criteria}</h3>
+                     <div className="flex flex-col items-center justify-center mb-10 bg-slate-900 border border-slate-700 p-6 rounded-3xl shadow-inner">
+                        <span className="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">{t.yourScoreLabel || "O anki Puanın"}</span>
+                        <div className="text-6xl font-black transition-colors duration-300" style={{color: finalDynColor, textShadow: `0 0 20px ${finalDynColor}80`}}>
+                          {finalScoreVal}
+                        </div>
+                     </div>
+                     <h3 className="text-2xl font-black text-white mb-8 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={28}/> {t.criteria}</h3>
                      <div className="space-y-12">
                        {criteriaData.map((c) => {
                      const currentValue = scores[c.id] ?? 5; 
@@ -2155,11 +2134,11 @@ function CineScoreMain() {
                    const isNeon = movie.avgScore >= 9.0;
                    const displayTitle = localizedData?.[movie.id]?.title || movie.title;
                    return (
-                   <div key={movie.id} onClick={() => selectMovieToRate(movie.id, movie.title)} className={`bg-slate-900/80 backdrop-blur rounded-3xl overflow-hidden border flex flex-row group cursor-pointer transition-all shadow-xl hover:-translate-y-1 ${isNeon ? 'border-theme shadow-theme' : 'border-slate-800 hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]'}`}>
+                   <div key={movie.id} onClick={() => selectMovieToRate(movie.id, movie.title)} className={`bg-slate-900/80 backdrop-blur rounded-3xl overflow-hidden border flex flex-row group cursor-pointer transition-all shadow-xl hover:-translate-y-1 ${isNeon ? 'border-[#39ff14] shadow-[0_0_20px_rgba(57,255,20,0.3)]' : 'border-slate-800 hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]'}`}>
                      <div className="w-28 sm:w-32 bg-black relative shrink-0">
                         <img src={movie.poster} alt="" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"/>
                         <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] to-transparent opacity-80"></div>
-                        <div className={`absolute top-3 left-3 w-8 h-8 rounded-xl text-[#04060C] text-sm font-black flex items-center justify-center shadow-lg ${isNeon ? 'bg-theme' : 'bg-amber-500'}`}>#{idx + 1}</div>
+                        <div className={`absolute top-3 left-3 w-8 h-8 rounded-xl text-[#04060C] text-sm font-black flex items-center justify-center shadow-lg ${isNeon ? 'bg-[#39ff14]' : 'bg-amber-500'}`}>#{idx + 1}</div>
                      </div>
                      <div className="flex-1 p-5 flex flex-col justify-between">
                         <div>
@@ -2169,8 +2148,8 @@ function CineScoreMain() {
                           <div className="flex items-center gap-2 mb-3">
                             <span className="text-sm font-bold px-3 py-1.5 rounded-xl bg-slate-800/50 border border-slate-700 text-slate-300 shadow-inner">{movie.voteCount} {t.voteCount}</span>
                             <div className="relative">
-                              <MiniVFX score={movie.avgScore} themeColor={themeColor} />
-                              <span className={`relative z-10 text-xs font-black px-3 py-1.5 rounded-xl bg-[#04060C] shadow-inner ${isNeon ? 'border shadow-theme animate-pulse' : 'border border-slate-800'}`} style={isNeon ? {borderColor: themeColor, color: themeColor, textShadow: `0 0 10px ${themeColor}`} : {color: getScoreColorHex(movie.avgScore), textShadow: `0 0 10px ${getScoreColorHex(movie.avgScore)}80`}}>{t.average}: {Number(movie.avgScore).toFixed(1)}</span>
+                              <MiniVFX score={movie.avgScore} themeColor={isNeon ? '#39ff14' : themeColor} />
+                              <span className={`relative z-10 text-xs font-black px-3 py-1.5 rounded-xl bg-[#04060C] shadow-inner ${isNeon ? 'border animate-pulse' : 'border border-slate-800'}`} style={isNeon ? {borderColor: '#39ff14', color: '#39ff14', textShadow: `0 0 10px #39ff14`, boxShadow: `0 0 10px rgba(57,255,20,0.5)`} : {color: getScoreColorHex(movie.avgScore), textShadow: `0 0 10px ${getScoreColorHex(movie.avgScore)}80`}}>{t.average}: {Number(movie.avgScore).toFixed(1)}</span>
                             </div>
                           </div>
                         </div>
@@ -2183,7 +2162,7 @@ function CineScoreMain() {
         )}
 
         {/* TAB 4: PROFİL (Çok Sayfalı Yapı & Elite Tasarım) */}
-        {activeTab.startsWith('profile') && !activeTab.startsWith('public') && (
+        {['profile_general', 'profile_ratings', 'profile_watchlist', 'profile_list_detail'].includes(activeTab) && (
           <div className="animate-in fade-in duration-500 max-w-5xl mx-auto space-y-8">
             
             <div className="relative rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl mb-8 group bg-slate-900/50">
