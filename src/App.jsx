@@ -216,6 +216,21 @@ const CustomAnimations = () => (
     .logo-morph-bg svg {
       color: #04060C;
     }
+
+    /* YENİ: ARAYÜZ (UI/UX) EFEKTLERİ */
+    .ambient-glow { filter: blur(60px); opacity: 0.6; transform: scale(1.2); z-index: -1; pointer-events: none; }
+    .magnetic-btn { transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s ease; }
+    .magnetic-btn:hover { transform: scale(1.05) translateY(-4px); }
+    .magnetic-btn:active { transform: scale(0.95) translateY(0); }
+    
+    .holo-badge { position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .holo-badge::before { 
+       content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; 
+       background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); 
+       transform: skewX(-20deg); transition: left 0.6s ease; z-index: 10;
+    }
+    .holo-badge:hover { transform: translateY(-5px) scale(1.05); }
+    .holo-badge:hover::before { left: 150%; }
   `}}/>
 );
 
@@ -691,6 +706,8 @@ function CineScoreMain() {
           })) || [];
         };
 
+        const todayStr = new Date().toISOString().split('T')[0];
+
         const [trendRes, cultRes, actionRes, dramaRes, trRes, sciFiRes, comedyRes, upcomingRes] = await Promise.all([
           fetchTMDB(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}&language=${tmdbLang}`),
           fetchTMDB(`https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_API_KEY}&language=${tmdbLang}&page=1`),
@@ -699,12 +716,15 @@ function CineScoreMain() {
           fetchTMDB(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_original_language=tr&sort_by=vote_average.desc&vote_count.gte=100&language=${tmdbLang}`),
           fetchTMDB(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=878&language=${tmdbLang}&sort_by=popularity.desc`),
           fetchTMDB(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=35&language=${tmdbLang}&sort_by=popularity.desc`),
-          fetchTMDB(`https://api.themoviedb.org/3/movie/upcoming?api_key=${TMDB_API_KEY}&language=${tmdbLang}&region=US|TR&page=1`)
+          // DÜZELTME: Doğrudan bugünün tarihinden İLERİDEKİ EN POPÜLER (beklenen) gişe filmlerini getirir
+          fetchTMDB(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&language=${tmdbLang}&primary_release_date.gte=${todayStr}&sort_by=popularity.desc&page=1`)
         ]);
 
-        // YENİ: Sadece şu anki tarihten ileride olan "GERÇEK" vizyona girecek filmleri süz
         const nowTime = new Date().getTime();
-        const futureOnly = upcomingRes.filter(m => m.fullDate && new Date(m.fullDate).getTime() > nowTime).slice(0, 20);
+        // DÜZELTME: Tarih garantisini tekrar sağla ve SADECE en çok beklenen 7 filmi listele
+        const futureOnly = upcomingRes
+           .filter(m => m.fullDate && new Date(m.fullDate).getTime() > nowTime)
+           .slice(0, 7);
         
         setUpcomingMovies(futureOnly);
         trendRes.length = Math.min(trendRes.length, 20);
@@ -1794,13 +1814,57 @@ function CineScoreMain() {
               </div>
             </div>
             
-            {/* ZEVK UYUMU KARTI */}
+            {/* ZEVK UYUMU KARTI VE RADAR ÇİZELGESİ */}
             {tasteMatchScore !== null && (
-              <div className="flex justify-center -mt-4 mb-4">
+              <div className="flex flex-col items-center justify-center -mt-4 mb-4 gap-6">
                  <div className="flex items-center gap-3 bg-gradient-to-r from-orange-500/10 to-rose-500/10 border border-orange-500/30 px-6 py-3 rounded-2xl shadow-[0_0_20px_rgba(249,115,22,0.15)]">
                     <Flame size={24} className="text-orange-500 animate-pulse" />
                     <span className="text-sm font-bold text-slate-300">{t.tasteMatch}: <strong className="text-orange-400 text-lg ml-1">% {tasteMatchScore}</strong></span>
                  </div>
+                 
+                 {/* YENİ: SİNEMATİK DNA RADAR ÇİZELGESİ (SVG) */}
+                 {userProfile && viewingUserRatings.length >= 20 && sortedMyRatings.length >= 20 && (
+                   <div className="w-full max-w-sm bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 shadow-2xl">
+                     <h4 className="text-center text-xs font-black text-slate-400 uppercase tracking-widest mb-4">DNA Kesişim Radarı</h4>
+                     <div className="relative w-full aspect-square">
+                       <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                         {/* Radar Arka Plan Ağları */}
+                         {[20, 40, 60, 80, 100].map(r => (
+                           <polygon key={r} points={criteriaData.map((_, i) => { const a = (Math.PI * 2 * i / 5) - Math.PI/2; return `${50 + (r/2)*Math.cos(a)},${50 + (r/2)*Math.sin(a)}`; }).join(' ')} fill="none" stroke="#1e293b" strokeWidth="0.5" />
+                         ))}
+                         {/* Radar Eksen Çizgileri ve İsimler */}
+                         {criteriaData.map((c, i) => {
+                           const a = (Math.PI * 2 * i / 5) - Math.PI/2;
+                           const x = 50 + 50 * Math.cos(a); const y = 50 + 50 * Math.sin(a);
+                           const labelX = 50 + 60 * Math.cos(a); const labelY = 50 + 60 * Math.sin(a);
+                           return (
+                             <g key={c.id}>
+                               <line x1="50" y1="50" x2={x} y2={y} stroke="#1e293b" strokeWidth="0.5" />
+                               <text x={labelX} y={labelY} textAnchor="middle" dominantBaseline="middle" fill="#64748b" fontSize="4" fontWeight="bold">{c.name.substring(0,3)}</text>
+                             </g>
+                           )
+                         })}
+                         {/* Ziyaret Edilen Kişinin DNA Poligonu */}
+                         <polygon points={criteriaData.map((c, i) => { 
+                             const a = (Math.PI * 2 * i / 5) - Math.PI/2;
+                             const theirDNA = calculateDNA(sortedViewingUserRatings);
+                             const val = (theirDNA[c.id] || 0) * 5; 
+                             return `${50 + val*Math.cos(a)},${50 + val*Math.sin(a)}`; 
+                           }).join(' ')} fill={`${themeColor}40`} stroke={themeColor} strokeWidth="1" className="transition-all duration-1000"/>
+                         {/* Benim DNA Poligonum */}
+                         <polygon points={criteriaData.map((c, i) => { 
+                             const a = (Math.PI * 2 * i / 5) - Math.PI/2;
+                             const val = (userDNA[c.id] || 0) * 5; 
+                             return `${50 + val*Math.cos(a)},${50 + val*Math.sin(a)}`; 
+                           }).join(' ')} fill="rgba(255,255,255,0.1)" stroke="#ffffff" strokeWidth="1" strokeDasharray="2,1" className="transition-all duration-1000"/>
+                       </svg>
+                     </div>
+                     <div className="flex justify-center gap-6 mt-4 text-[10px] font-bold uppercase tracking-widest">
+                       <span className="flex items-center gap-1 text-white"><span className="w-3 h-3 border border-white border-dashed rounded-full"></span> Senin DNA'n</span>
+                       <span className="flex items-center gap-1" style={{color: themeColor}}><span className="w-3 h-3 rounded-full" style={{backgroundColor: themeColor}}></span> {viewingUser.displayName}</span>
+                     </div>
+                   </div>
+                 )}
               </div>
             )}
 
@@ -2062,7 +2126,10 @@ function CineScoreMain() {
                    </div>
                 </div>
 
-                <img src={selectedMovie?.poster} className="w-48 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.6)] mx-auto mb-6 border-2 border-slate-800 object-cover mt-2" alt="Poster"/>
+                <div className="relative w-48 mx-auto mb-6 mt-2">
+                   <img src={selectedMovie?.poster} className="absolute inset-0 w-full h-full object-cover rounded-2xl ambient-glow" alt=""/>
+                   <img src={selectedMovie?.poster} className="relative w-full rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] border-2 border-slate-800 object-cover z-10" alt="Poster"/>
+                </div>
                 <h2 className="text-3xl font-black text-white leading-tight mb-3 drop-shadow-lg">{selectedMovie?.title}</h2>
                 <div className="flex justify-center flex-wrap gap-2 mb-8">
                   <span className="px-3 py-1.5 bg-[#04060C] rounded-xl text-xs font-black text-slate-300 shadow-inner border border-slate-800">{selectedMovie?.year}</span>
@@ -2176,7 +2243,7 @@ function CineScoreMain() {
                               style={{ borderColor: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore), boxShadow: `0 0 50px ${getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}80` }}>
                             <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore}</span>
                          </div>
-                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all shadow-xl flex items-center gap-3 hover:scale-105 active:scale-95 border border-slate-700">
+                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
                            <Edit3 size={24}/> {t.updateRating}
                          </button>
                       </>
@@ -2186,7 +2253,7 @@ function CineScoreMain() {
                             <Star size={48} style={{color: themeColor}}/>
                          </div>
                          <h3 className="text-3xl font-black text-white mb-8 drop-shadow-md">{t.noRating}</h3>
-                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center gap-3 hover:scale-105 active:scale-95">
+                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center gap-3 magnetic-btn">
                            <Star size={24} className="fill-current"/> {t.rateNow}
                          </button>
                       </>
@@ -2432,6 +2499,51 @@ function CineScoreMain() {
                    </div>
                 </div>
 
+                {/* YENİ: KİŞİSEL İSTATİSTİK PANOSU */}
+                {sortedMyRatings.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {(() => {
+                      let myAvg = 0; let gAvg = 0; const decades = {};
+                      sortedMyRatings.forEach(r => {
+                         myAvg += Number(r.finalScore) || 0;
+                         const g = safeGlobalMovies.find(m => String(m.id) === String(r.id));
+                         gAvg += g ? (Number(g.avgScore) || 0) : (Number(r.finalScore) || 0);
+                         const y = Number(r.year);
+                         if(y) { const dec = Math.floor(y/10)*10; decades[dec] = (decades[dec]||0)+1; }
+                      });
+                      myAvg = myAvg / sortedMyRatings.length; gAvg = gAvg / sortedMyRatings.length;
+                      const diff = (gAvg - myAvg).toFixed(2);
+                      const ruthText = diff > 0.5 ? 'Zor Beğenen (Acımasız)' : diff < -0.5 ? 'Gönlü Bol (Bonkör)' : 'Adil Eleştirmen';
+                      const favDec = Object.keys(decades).length ? Object.keys(decades).reduce((a,b)=>decades[a]>decades[b]?a:b) + "'ler" : '?';
+                      
+                      return (
+                        <>
+                          <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex items-center justify-between group hover:border-theme transition-colors cursor-default">
+                             <div>
+                               <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">Acımasızlık Endeksi</h4>
+                               <h2 className="text-xl font-black text-white drop-shadow-md mb-1">{ruthText}</h2>
+                               <p className="text-xs font-bold text-slate-500">Ortalamadan <strong className={diff > 0 ? 'text-red-400' : 'text-green-400'}>{Math.abs(diff)}</strong> puan {diff > 0 ? 'düşük' : 'yüksek'} veriyorsun.</p>
+                             </div>
+                             <div className="w-16 h-16 rounded-full bg-[#04060C] flex items-center justify-center border border-slate-700 group-hover:border-theme transition-colors shadow-inner">
+                               <TrendingUp size={28} className={diff > 0 ? 'text-red-500' : diff < 0 ? 'text-green-500' : 'text-slate-500'}/>
+                             </div>
+                          </div>
+                          <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex items-center justify-between group hover:border-theme transition-colors cursor-default">
+                             <div>
+                               <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">Favori On Yıl</h4>
+                               <h2 className="text-2xl font-black text-white drop-shadow-md mb-1">{favDec} Sineması</h2>
+                               <p className="text-xs font-bold text-slate-500">En çok puanlanan çıkış yılı aralığı.</p>
+                             </div>
+                             <div className="w-16 h-16 rounded-full bg-[#04060C] flex items-center justify-center border border-slate-700 group-hover:border-theme transition-colors shadow-inner">
+                               <Film size={28} className="text-theme"/>
+                             </div>
+                          </div>
+                        </>
+                      )
+                    })()}
+                  </div>
+                )}
+
                 {/* SİNEMATİK DNA VE BURÇ */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                    <div className="lg:col-span-2 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col justify-center">
@@ -2538,7 +2650,7 @@ function CineScoreMain() {
                   <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Medal className="text-blue-500" size={28}/> {t.badges}</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                      {getAllBadges(sortedMyRatings.length, t).map(badge => (
-                       <div key={badge.id} className={`flex flex-col items-center justify-center p-5 rounded-3xl border-2 text-center transition-all group relative ${badge.earned ? `${badge.color} hover:scale-105 shadow-xl bg-slate-900/50 backdrop-blur` : 'border-slate-800 bg-[#04060C] text-slate-700 opacity-60 grayscale'}`}>
+                       <div key={badge.id} className={`flex flex-col items-center justify-center p-5 rounded-3xl border-2 text-center group relative ${badge.earned ? `${badge.color} holo-badge shadow-xl bg-slate-900/50 backdrop-blur` : 'border-slate-800 bg-[#04060C] text-slate-700 opacity-60 grayscale'}`}>
                          <div className={`mb-4 p-4 rounded-2xl shadow-inner ${badge.earned ? 'bg-[#04060C]/50' : 'bg-slate-900'}`}>{badge.icon}</div>
                          <h4 className="font-black text-sm mb-1">{badge.name}</h4>
                          {!badge.earned && <div className="absolute top-3 right-3 text-slate-600"><Lock size={14}/></div>}
