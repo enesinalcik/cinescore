@@ -218,8 +218,8 @@ const CustomAnimations = () => (
     }
 
     /* YENİ: ARAYÜZ (UI/UX) EFEKTLERİ */
-    .ambient-glow { filter: blur(60px); opacity: 0.6; transform: scale(1.2); z-index: -1; pointer-events: none; }
-    .magnetic-btn { transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s ease; }
+    .ambient-glow { filter: blur(40px); opacity: 0.4; transform: scale(1.1) translateZ(0); z-index: -1; pointer-events: none; will-change: filter, transform; }
+    .magnetic-btn { transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.2s ease; will-change: transform; }
     .magnetic-btn:hover { transform: scale(1.05) translateY(-4px); }
     .magnetic-btn:active { transform: scale(0.95) translateY(0); }
     
@@ -1415,14 +1415,14 @@ function CineScoreMain() {
   return (
     <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#030408] text-slate-300 font-sans relative overflow-x-hidden selection:bg-theme selection:text-[#030408]">
       
-      {/* ELİT KOYU TEMA ARKA PLAN VE DERİNLİK ETKİSİ */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--theme-color-20),_transparent_45%)] opacity-80 mix-blend-screen"></div>
+      {/* ELİT KOYU TEMA ARKA PLAN VE DERİNLİK ETKİSİ (GPU HIZLANDIRMALI) */}
+      <div className="fixed inset-0 z-0 pointer-events-none transform-gpu">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--theme-color-20),_transparent_45%)] opacity-60 mix-blend-screen"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.8),_transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[#030408]/40 backdrop-blur-[100px]"></div>
+        <div className="absolute inset-0 bg-[#030408]/60 backdrop-blur-[40px]"></div>
         {dynamicBg && (
            <>
-             <img src={dynamicBg} className="w-full h-full object-cover opacity-30 blur-[80px] scale-[1.2] saturate-150 mix-blend-screen" alt="bg"/>
+             <img src={dynamicBg} className="w-full h-full object-cover opacity-20 blur-[50px] scale-[1.1] saturate-150 mix-blend-screen transform-gpu" alt="bg"/>
              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030408]/90 to-[#030408]"></div>
            </>
         )}
@@ -1824,7 +1824,7 @@ function CineScoreMain() {
                  
                  {/* YENİ: SİNEMATİK DNA RADAR ÇİZELGESİ (SVG) */}
                  {userProfile && viewingUserRatings.length >= 20 && sortedMyRatings.length >= 20 && (
-                   <div className="w-full max-w-sm bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 shadow-2xl">
+                   <div className="w-full max-w-[90vw] sm:max-w-sm bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 shadow-2xl">
                      <h4 className="text-center text-xs font-black text-slate-400 uppercase tracking-widest mb-4">DNA Kesişim Radarı</h4>
                      <div className="relative w-full aspect-square">
                        <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
@@ -1874,12 +1874,12 @@ function CineScoreMain() {
                  <h3 className="text-3xl sm:text-4xl font-black text-white flex items-center justify-center gap-3 drop-shadow-md mb-2"><Trophy className="text-theme" size={36}/> {t.top3Title}</h3>
                </div>
                
-               <div className="flex justify-center items-center gap-2 sm:gap-6 mt-10 relative z-10">
+               <div className="flex justify-center items-center gap-2 sm:gap-6 mt-6 sm:mt-10 relative z-10 px-2">
                   {[0, 1, 2].map(slot => {
                     const movie = viewingUser.top3?.[slot];
                     const isCenter = slot === 1;
                     return (
-                      <div key={slot} className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl ${isCenter ? 'w-40 sm:w-56 z-20 scale-110' : 'w-32 sm:w-44 border-slate-700 bg-[#04060C] z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
+                      <div key={slot} className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
                         {movie ? (
                           <>
                             <img src={movie.poster} className="w-full h-full object-cover cursor-pointer" onClick={() => selectMovieToRate(movie.id, movie.title)} alt=""/>
@@ -2462,13 +2462,13 @@ function CineScoreMain() {
                      <p className="text-slate-400 font-bold">{t.top3Desc}</p>
                    </div>
                    
-                   <div className="flex justify-center items-center gap-2 sm:gap-6 mt-10 relative z-10">
+                   <div className="flex justify-center items-center gap-2 sm:gap-6 mt-6 sm:mt-10 relative z-10 px-2">
                       {[0, 1, 2].map(slot => {
                         const movie = userProfile?.top3?.[slot];
                         const isCenter = slot === 1;
                         return (
                           <div key={slot} 
-                               className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl ${isCenter ? 'w-40 sm:w-56 z-20 scale-110' : 'w-32 sm:w-44 border-slate-700 bg-[#04060C] hover:border-theme z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
+                               className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] hover:border-theme z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
                             {movie ? (
                               <>
                                 <img src={movie.poster} className="w-full h-full object-cover cursor-pointer" onClick={() => selectMovieToRate(movie.id, movie.title)} alt=""/>
