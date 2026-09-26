@@ -1134,6 +1134,7 @@ function CineScoreMain() {
         setShowCategoryAverages(false); 
         setIsRatingMode(false);
         setActiveTab('rate');
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // YENİ: Filme ilk tıklandığında anında en üste çık
         
         if (shouldResetScores) {
           const safeMyRatings = Array.isArray(myRatings) ? myRatings : [];
@@ -2299,11 +2300,11 @@ function CineScoreMain() {
                           </div>
                        </div>
                        
-                       <div className="relative h-6 flex items-center rounded-full bg-[#04060C] border border-slate-800 shadow-inner">
-                         <div className="absolute h-full rounded-full overflow-hidden transition-all duration-500 ease-out" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor, boxShadow: `0 0 15px ${sliderColor}80`}}></div>
+                       <div className="relative h-8 flex items-center rounded-full bg-[#04060C] border border-slate-800 shadow-[inset_0_4px_6px_rgba(0,0,0,0.5)]">
+                         <div className="absolute h-full rounded-full pointer-events-none" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor, boxShadow: `0 0 20px ${sliderColor}66`, backgroundImage: `linear-gradient(90deg, transparent, rgba(255,255,255,0.2))`}}></div>
                          <input type="range" min="0" max="10" step="0.1" value={currentValue} onChange={(e) => setScores({...scores, [c.id]: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-10"/>
-                         <div className="absolute h-10 w-10 bg-[#04060C] rounded-full flex items-center justify-center pointer-events-none transition-all duration-500 ease-out" style={{left: `calc(${currentValue * 10}% - 20px)`, border: `5px solid ${sliderColor}`, boxShadow: `0 0 15px ${sliderColor}80`}}>
-                            <div className="w-3 h-3 rounded-full transition-colors duration-500 ease-out" style={{backgroundColor: sliderColor}}></div>
+                         <div className="absolute h-10 w-10 bg-[#04060C] rounded-full flex items-center justify-center pointer-events-none" style={{left: `calc(${currentValue * 10}% - 20px)`, border: `4px solid ${sliderColor}`, boxShadow: `0 0 20px ${sliderColor}90, inset 0 0 8px ${sliderColor}66`}}>
+                            <div className="w-4 h-4 rounded-full" style={{backgroundColor: sliderColor, filter: 'brightness(1.2)'}}></div>
                          </div>
                        </div>
                      </div>
@@ -2520,13 +2521,15 @@ function CineScoreMain() {
                          const g = safeGlobalMovies.find(m => String(m.id) === String(r.id));
                          gAvg += g ? (Number(g.avgScore) || 0) : (Number(r.finalScore) || 0);
                          
-                         // DÜZELTME: Yıl verisini güvenli parse etme
-                         const yStr = r.year || (localizedData?.[r.id]?.year) || '';
+                         // DÜZELTME: Yıl verisini en garanti yerden (global DB, kendi kaydı veya API) çekme
+                         const yStr = String(r.year || g?.year || localizedData?.[r.id]?.year || '');
                          const yMatch = yStr.match(/\d{4}/);
                          if(yMatch) { 
                             const y = Number(yMatch[0]);
-                            const dec = Math.floor(y/10)*10; 
-                            decades[dec] = (decades[dec]||0)+1; 
+                            if (y > 1900 && y <= new Date().getFullYear() + 5) {
+                               const dec = Math.floor(y/10)*10; 
+                               decades[dec] = (decades[dec]||0)+1; 
+                            }
                          }
                       });
                       myAvg = myAvg / sortedMyRatings.length; gAvg = gAvg / sortedMyRatings.length;
@@ -2950,7 +2953,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.2</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.3</span></p>
         </div>
       </footer>
 
