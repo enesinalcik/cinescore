@@ -28,11 +28,11 @@ const TMDB_API_KEY = 'c46f8dec150252c1e8339d0e8f59d8c9';
 // 2. DİL DESTEĞİ
 // --------------------------------------------------------
 const LANGUAGES = [
-  { code: 'tr', tmdbCode: 'tr-TR', flag: 'TR', label: 'Türkçe' },
-  { code: 'en', tmdbCode: 'en-US', flag: 'EN', label: 'English' },
-  { code: 'de', tmdbCode: 'de-DE', flag: 'DE', label: 'Deutsch' },
-  { code: 'it', tmdbCode: 'it-IT', flag: 'IT', label: 'Italiano' },
-  { code: 'fr', tmdbCode: 'fr-FR', flag: 'FR', label: 'Français' },
+  { code: 'tr', tmdbCode: 'tr-TR', flag: 'https://flagcdn.com/w40/tr.png', label: 'Türkçe' },
+  { code: 'en', tmdbCode: 'en-US', flag: 'https://flagcdn.com/w40/gb.png', label: 'English' },
+  { code: 'de', tmdbCode: 'de-DE', flag: 'https://flagcdn.com/w40/de.png', label: 'Deutsch' },
+  { code: 'it', tmdbCode: 'it-IT', flag: 'https://flagcdn.com/w40/it.png', label: 'Italiano' },
+  { code: 'fr', tmdbCode: 'fr-FR', flag: 'https://flagcdn.com/w40/fr.png', label: 'Français' },
 ];
 
 const TRANSLATIONS = {
@@ -72,7 +72,8 @@ const TRANSLATIONS = {
     mostVoted: 'En Çok Oylananlar', exactCodeRequired: 'Tam @kodunu yazarak arayın...', followingTab: 'Takip Ettiklerim', followersTab: 'Takipçilerim', theirScore: 'Onun Oyu', theirRatedMovies: 'Oyladığı Filmler',
     tasteMatch: 'Film Zevki Uyumu', matchCalculating: 'Hesaplanıyor...', dnaLockedTitle: 'DNA Analizi Kilitli', dnaLockedDesc: 'film daha oylaman gerekiyor. 20 filme ulaştığında zıt orantı analizin açılacak.', dnaLockedDescPublic: 'Bu kullanıcının analiz için yeterli oyu yok.',
     notifications: 'Bildirimler', noNotifications: 'Henüz bildirim yok.', startedFollowing: 'seni takip etmeye başladı.',
-    auraColor: 'Aura Rengi (Tema)', friendsWatched: 'Arkadaşlarından İzleyenler'
+    auraColor: 'Aura Rengi (Tema)', friendsWatched: 'Arkadaşlarından İzleyenler',
+    deleteRatingTitle: 'Oyu Sil', deleteRatingDesc: 'Bu filme verdiğiniz puanı silmek istediğinize emin misiniz? (Dünya genel ortalamasından da anında düşülecektir.)', cancel: 'İptal', delete: 'Evet, Sil', ratingDeleted: 'Puanınız başarıyla silindi!'
   },
   en: {
     home: 'Home', ranking: 'Ranking', community: 'Community', login: 'Login', logout: 'Log Out',
@@ -113,7 +114,8 @@ const TRANSLATIONS = {
     mostVoted: 'Most Voted', exactCodeRequired: 'Enter exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies',
     tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed. Rate 20 movies to unlock your critical DNA analysis.', dnaLockedDescPublic: 'Not enough data to analyze this user.',
     notifications: 'Notifications', noNotifications: 'No notifications.', startedFollowing: 'started following you.',
-    auraColor: 'Aura Color (Theme)', friendsWatched: 'Friends Who Watched'
+    auraColor: 'Aura Color (Theme)', friendsWatched: 'Friends Who Watched',
+    deleteRatingTitle: 'Delete Rating', deleteRatingDesc: 'Are you sure you want to delete your rating for this movie? (It will be removed from the global average.)', cancel: 'Cancel', delete: 'Yes, Delete', ratingDeleted: 'Rating successfully deleted!'
   },
   de: { 
     home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben'
@@ -329,9 +331,12 @@ const MovieRow = ({ title, movies, icon, t, selectMovieToRate, globalMoviesList,
           }
 
           return (
-          <div key={m.tmdbId} className="group cursor-pointer shrink-0 w-32 sm:w-44" onClick={() => selectMovieToRate(m.tmdbId, m.title)}>
-            <div className={`relative rounded-2xl overflow-hidden shadow-lg border mb-3 aspect-[2/3] bg-slate-900 transition-all duration-300 group-hover:-translate-y-2 ${borderClass}`} style={glowStyle}>
-              <img src={m.poster} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt=""/>
+          <div key={m.tmdbId} className="group cursor-pointer shrink-0 w-32 sm:w-44 relative" onClick={() => selectMovieToRate(m.tmdbId, m.title)}>
+            {/* YENİ: Afiş Arkası Spot Işığı Efekti */}
+            <div className="absolute -inset-2 rounded-2xl bg-gradient-to-t from-theme to-transparent opacity-0 group-hover:opacity-40 blur-[20px] transition-opacity duration-500 z-0 pointer-events-none" style={{'--tw-gradient-from': `${themeColor} 0%`, '--tw-gradient-to': 'transparent 100%'}}></div>
+            
+            <div className={`relative rounded-2xl overflow-hidden shadow-lg border mb-3 aspect-[2/3] bg-slate-900 transition-all duration-300 group-hover:-translate-y-2 z-10 ${borderClass}`} style={glowStyle}>
+              <img src={m.poster} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 saturate-110 group-hover:saturate-150" alt=""/>
               <div className="absolute inset-0 bg-[#04060C]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
                  <span className="bg-theme text-[#04060C] text-xs sm:text-sm font-black px-4 py-2 rounded-xl flex items-center gap-1 shadow-lg"><Star size={16} className="fill-current"/> {t.rateNow}</span>
               </div>
@@ -535,6 +540,10 @@ function CineScoreMain() {
 
   // YENİ: Arkadaşların oyları (Who watched this?)
   const [friendsRatings, setFriendsRatings] = useState([]);
+  
+  // YENİ: Puan Silme Penceresi State'leri
+  const [ratingToDelete, setRatingToDelete] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const searchDropdownRef = useRef(null);
   const langMenuRef = useRef(null);
@@ -1137,7 +1146,8 @@ function CineScoreMain() {
         setShowCategoryAverages(false); 
         setIsRatingMode(false);
         setActiveTab('rate');
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // YENİ: Filme ilk tıklandığında anında en üste çık
+        // DÜZELTME: Animasyonlu fırlamayı iptal edip, anında (instant) en tepeye ışınlıyoruz
+        window.scrollTo(0, 0);
         
         if (shouldResetScores) {
           const safeMyRatings = Array.isArray(myRatings) ? myRatings : [];
@@ -1229,6 +1239,56 @@ function CineScoreMain() {
       setIsRatingMode(false);
       window.scrollTo({ top: 0, behavior: 'smooth' }); // YENİ: Kaydetme sonrası en üste kaydır
     } catch (e) { showToast(t.errorOccurred); } finally { setIsSaving(false); }
+  };
+
+  // YENİ: Puan Silme Penceresini Açma
+  const deleteRating = (movieId, e) => {
+    e.stopPropagation();
+    setRatingToDelete(movieId);
+  };
+
+  // YENİ: Özel Pencereden Onaylanınca Gerçekten Silme İşlemi
+  const confirmDeleteRating = async () => {
+    if (!user || !ratingToDelete) return;
+    setIsDeleting(true);
+    const docId = String(ratingToDelete);
+    try {
+      const movieRef = doc(db, 'movies', docId);
+      const userRatingRef = doc(db, 'users', user.uid, 'ratings', docId);
+      
+      await runTransaction(db, async (trans) => {
+         const mDoc = await trans.get(movieRef);
+         const uDoc = await trans.get(userRatingRef);
+         
+         if (mDoc.exists() && uDoc.exists()) {
+            const oldFinalScore = Number(uDoc.data().finalScore || 0);
+            const oldScores = uDoc.data().scores || {};
+            const d = mDoc.data();
+            
+            let currentTotal = d.totalScore !== undefined ? Number(d.totalScore) : (Number(d.avgScore || 0) * Number(d.voteCount || 0));
+            let currentCount = Number(d.voteCount || 0);
+            const currentCatTotals = d.categoryTotals || { c1:0, c2:0, c3:0, c4:0, c5:0 };
+            
+            currentTotal = Math.max(0, currentTotal - oldFinalScore);
+            currentCount = Math.max(0, currentCount - 1);
+            
+            const newCatTotals = { ...currentCatTotals };
+            criteriaData.forEach(c => {
+              newCatTotals[c.id] = Math.max(0, (Number(currentCatTotals[c.id]) || 0) - (oldScores[c.id] || 0));
+            });
+            
+            const newAvg = currentCount > 0 ? (currentTotal / currentCount) : 0;
+            
+            trans.update(movieRef, {
+              totalScore: currentTotal, voteCount: currentCount, avgScore: parseFloat(newAvg.toFixed(2)),
+              categoryTotals: newCatTotals
+            });
+         }
+         trans.delete(userRatingRef);
+      });
+      showToast(t.ratingDeleted || "Puanınız başarıyla silindi!");
+    } catch (err) { showToast(t.errorOccurred); }
+    finally { setIsDeleting(false); setRatingToDelete(null); }
   };
 
   const handleCloseMovie = () => { setSelectedMovie(null); setDynamicBg(''); setActiveTab('home'); };
@@ -1432,7 +1492,7 @@ function CineScoreMain() {
   }, [activeTab, selectedMovie, viewingUser]);
 
   return (
-    <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#030408] text-slate-300 font-sans relative overflow-x-hidden selection:bg-theme selection:text-[#030408]">
+    <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#030408] text-slate-300 font-sans relative overflow-x-hidden selection:bg-slate-200 selection:text-black">
       
       {/* ELİT KOYU TEMA ARKA PLAN (Optimize Edilmiş, Kasmayan Versiyon) */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#030408]">
@@ -1612,8 +1672,27 @@ function CineScoreMain() {
         </div>
       )}
 
-      {/* --- PREMİUM HEADER --- */}
-      <header className="relative z-40 bg-[#04060C]/80 backdrop-blur-2xl border-b border-slate-800/50 sticky top-0 shadow-sm pt-[env(safe-area-inset-top)]">
+      {/* YENİ: ÖZEL SİLME ONAY PENCERESİ */}
+      {ratingToDelete && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-[2rem] p-8 relative shadow-2xl text-center">
+            <div className="w-20 h-20 bg-red-950 border border-red-500 rounded-[1.25rem] mx-auto flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            </div>
+            <h3 className="text-2xl font-black text-white mb-2">{t.deleteRatingTitle || "Oyu Sil"}</h3>
+            <p className="text-slate-400 font-bold mb-8 text-sm leading-relaxed">{t.deleteRatingDesc || "Bu filme verdiğiniz puanı silmek istediğinize emin misiniz? (Global ortalamadan da düşülecektir.)"}</p>
+            <div className="flex gap-4">
+               <button onClick={() => setRatingToDelete(null)} className="flex-1 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-black transition-colors">{t.cancel || "İptal"}</button>
+               <button onClick={confirmDeleteRating} disabled={isDeleting} className="flex-1 py-4 bg-red-600 hover:bg-red-500 text-white rounded-xl font-black transition-colors flex justify-center items-center">
+                  {isDeleting ? <Loader2 className="animate-spin text-white"/> : (t.delete || "Evet, Sil")}
+               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- PREMİUM HEADER (KESİN SABİT) --- */}
+      <header className="fixed w-full top-0 left-0 z-[100] bg-[#04060C]/85 backdrop-blur-2xl border-b border-slate-700/50 shadow-[0_4px_30px_rgba(0,0,0,0.5)] pt-[env(safe-area-inset-top)] transition-all">
         <div className="max-w-[90rem] mx-auto px-4 h-20 flex items-center justify-between gap-4">
           
           <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0" onClick={handleCloseMovie}>
@@ -1653,15 +1732,17 @@ function CineScoreMain() {
           </div>
 
           <div className="flex items-center gap-3 sm:gap-6 shrink-0">
-            <div className="relative hidden sm:block" ref={langMenuRef}>
-              <button onClick={() => setIsLangMenuOpen(!isLangMenuOpen)} className="flex items-center gap-2 bg-slate-900 border border-slate-800 hover:border-slate-600 px-4 py-2.5 rounded-full transition-colors shadow-sm">
-                 <span className="font-black text-sm text-slate-300">{LANGUAGES.find(l => l.code === lang)?.flag}</span>
+            
+            {/* HER DURUMDA GÖRÜNEN DİL MENÜSÜ */}
+            <div className="relative" ref={langMenuRef}>
+              <button onClick={() => setIsLangMenuOpen(!isLangMenuOpen)} className="w-10 h-10 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner flex items-center justify-center overflow-hidden">
+                 <img src={LANGUAGES.find(l => l.code === lang)?.flag} className="w-5 h-4 object-cover" alt="Lang"/>
               </button>
               {isLangMenuOpen && (
                 <div className="absolute top-full right-0 mt-3 w-40 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-top-2">
                   {LANGUAGES.map(l => (
                     <button key={l.code} onClick={() => {setLang(l.code); setIsLangMenuOpen(false);}} className="w-full text-left px-5 py-3 hover:bg-slate-800 text-sm text-white flex items-center gap-3 first:rounded-t-2xl last:rounded-b-2xl border-b border-slate-800 last:border-0 transition-colors">
-                      <span className="font-black text-theme">{l.flag}</span> <span className="font-bold">{l.label}</span>
+                      <img src={l.flag} className="w-5 h-4 object-cover rounded-sm shadow-sm" alt=""/> <span className="font-bold">{l.label}</span>
                     </button>
                   ))}
                 </div>
@@ -1679,8 +1760,9 @@ function CineScoreMain() {
                  <Loader2 className="animate-spin text-theme w-6 h-6" />
               </div>
             ) : userProfile ? (
-              <div className="flex items-center gap-2">
-                <div className="relative flex items-center justify-center mr-1 sm:mr-3" ref={notifMenuRef}>
+              <div className="flex items-center gap-2 sm:gap-3">
+
+                <div className="relative flex items-center justify-center" ref={notifMenuRef}>
                    <button onClick={() => { setIsNotifMenuOpen(!isNotifMenuOpen); markNotificationsAsRead(); }} className="relative p-2.5 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner group">
                       <Bell size={18} className="text-slate-300 group-hover:text-theme transition-colors"/>
                       {userProfile?.notifications?.some(n => !n.read) && <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#04060C] rounded-full"></span>}
@@ -1742,7 +1824,7 @@ function CineScoreMain() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16">
+      <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
         
         {/* YENİ: TOPLULUK ARAMA EKRANI (GİZLİLİK ODAKLI) */}
         {activeTab === 'community' && (
@@ -2149,9 +2231,11 @@ function CineScoreMain() {
                    </div>
                 </div>
 
-                <div className="relative w-48 mx-auto mb-6 mt-2">
-                   <img src={selectedMovie?.poster} className="absolute inset-0 w-full h-full object-cover rounded-2xl ambient-glow" alt=""/>
-                   <img src={selectedMovie?.poster} className="relative w-full rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] border-2 border-slate-800 object-cover z-10" alt="Poster"/>
+                <div className="relative w-56 sm:w-64 mx-auto mb-8 mt-4 group">
+                   {/* DÜZELTME: Afişin altından ve arkasından vuran güçlü tema spot ışığı */}
+                   <div className="absolute -inset-4 bg-gradient-to-t from-theme to-transparent opacity-40 blur-[50px] rounded-full z-0 transition-opacity group-hover:opacity-60" style={{'--tw-gradient-from': `${themeColor} 0%`, '--tw-gradient-to': 'transparent 100%'}}></div>
+                   <img src={selectedMovie?.poster} className="absolute inset-0 w-full h-full object-cover rounded-2xl ambient-glow opacity-60 saturate-150" alt=""/>
+                   <img src={selectedMovie?.poster} className="relative w-full rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] border border-slate-700 object-cover z-10 hover:-translate-y-2 transition-transform duration-500" alt="Poster"/>
                 </div>
                 <h2 className="text-3xl font-black text-white leading-tight mb-3 drop-shadow-lg">{selectedMovie?.title}</h2>
                 <div className="flex justify-center flex-wrap gap-2 mb-8">
@@ -2266,7 +2350,7 @@ function CineScoreMain() {
                               style={{ borderColor: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore), boxShadow: `0 0 50px ${getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}80` }}>
                             <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore}</span>
                          </div>
-                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
+                         <button onClick={() => { setIsRatingMode(true); setTimeout(() => document.getElementById('rating-slider-box')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="px-10 py-5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
                            <Edit3 size={24}/> {t.updateRating}
                          </button>
                       </>
@@ -2277,46 +2361,56 @@ function CineScoreMain() {
                          </div>
                          <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 drop-shadow-md">{t.noRating}</h3>
                          <p className="text-slate-400 font-bold mb-8">{lang === 'tr' ? 'Bu filmi henüz puanlamadınız. Kendi sinematik zevkinize göre değerlendirin.' : 'You haven\'t rated this movie yet.'}</p>
-                         <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center gap-3 magnetic-btn">
+                         <button onClick={() => { setIsRatingMode(true); setTimeout(() => document.getElementById('rating-slider-box')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="px-10 py-5 rounded-full bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center gap-3 magnetic-btn">
                            <Star size={24} className="fill-current"/> {t.rateNow}
                          </button>
                       </>
                     )}
                  </div>
               ) : (
-                <div className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 lg:p-12 border border-slate-800 shadow-2xl flex flex-col justify-between animate-in zoom-in-95 duration-300">
-                  <div>
-                     <div className="flex flex-col items-center justify-center mb-10 bg-slate-900 border border-slate-700 p-6 rounded-3xl shadow-inner">
-                        <span className="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">{t.yourScoreLabel || "O anki Puanın"}</span>
-                        <div className="text-6xl font-black transition-colors duration-300" style={{color: finalDynColor, textShadow: `0 0 20px ${finalDynColor}80`}}>
-                          {finalScoreVal}
+                <div id="rating-slider-box" className="flex-1 bg-slate-900/80 backdrop-blur-xl rounded-[2rem] p-5 sm:p-8 border border-slate-800 shadow-2xl flex flex-col justify-between animate-in zoom-in-95 duration-300 relative overflow-hidden">
+                  
+                  {/* YENİ: Çift Taraflı Aura Spot Işığı */}
+                  <div className="absolute top-0 right-0 w-96 h-96 opacity-20 pointer-events-none blur-[80px] rounded-full" style={{backgroundColor: themeColor}}></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 opacity-10 pointer-events-none blur-[60px] rounded-full" style={{backgroundColor: themeColor}}></div>
+                  
+                  <div className="relative z-10">
+                     {/* DÜZELTME: Başlık ve Ortalama Puan tek satırda birleştirildi (Alan tasarrufu) */}
+                     <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800/50">
+                        <h3 className="text-lg sm:text-2xl font-black text-white flex items-center gap-2 drop-shadow-md"><Award className="text-amber-500" size={24}/> {t.criteria}</h3>
+                        <div className="flex items-center gap-3 bg-slate-900 border border-slate-700 px-4 py-2 rounded-2xl shadow-inner">
+                           <span className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest">{t.yourScoreLabel || "Puanın"}:</span>
+                           <div className="text-2xl sm:text-4xl font-black transition-colors duration-300" style={{color: finalDynColor, textShadow: `0 0 15px ${finalDynColor}80`}}>
+                             {finalScoreVal}
+                           </div>
                         </div>
                      </div>
-                     <h3 className="text-2xl font-black text-white mb-8 flex items-center gap-3 drop-shadow-md"><Award className="text-amber-500" size={28}/> {t.criteria}</h3>
-                     <div className="space-y-12">
+                     
+                     {/* DÜZELTME: Sliderlar sıkıştırıldı, hepsi aynı ekrana sığsın diye */}
+                     <div className="space-y-4 sm:space-y-5">
                        {criteriaData.map((c) => {
                      const currentValue = scores[c.id] ?? 5; 
                      const sliderColor = getScoreColorHex(currentValue);
                      return (
                      <div key={c.id}>
-                       <div className="flex justify-between items-end mb-5">
-                          <div className="flex items-center gap-3 relative group">
-                             <span className="font-black text-white text-xl sm:text-2xl drop-shadow">{c.name}</span>
-                             <HelpCircle size={20} className="text-slate-500 cursor-help hover:text-theme transition-colors" />
-                             <div className="absolute bottom-full left-0 mb-4 w-72 bg-slate-800 text-slate-200 text-sm p-5 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border border-slate-700">
-                               {c.desc}<div className="absolute top-full left-5 w-3 h-3 bg-slate-800 rotate-45 -mt-1.5 border-r border-b border-slate-700"></div>
+                       <div className="flex justify-between items-end mb-2">
+                          <div className="flex items-center gap-2 relative group">
+                             <span className="font-black text-white text-sm sm:text-lg drop-shadow">{c.name}</span>
+                             <HelpCircle size={16} className="text-slate-500 cursor-help hover:text-theme transition-colors" />
+                             <div className="absolute bottom-full left-0 mb-2 w-64 bg-slate-800 text-slate-200 text-[10px] sm:text-xs p-3 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border border-slate-700">
+                               {c.desc}<div className="absolute top-full left-5 w-2 h-2 bg-slate-800 rotate-45 -mt-1 border-r border-b border-slate-700"></div>
                              </div>
                           </div>
-                          <div className="text-6xl font-black w-24 text-right drop-shadow-md transition-colors duration-500 ease-out" style={{color: sliderColor, textShadow: `0 0 20px ${sliderColor}90`}}>
+                          <div className="text-2xl sm:text-3xl font-black w-16 text-right drop-shadow-md transition-colors duration-100 ease-out" style={{color: sliderColor, textShadow: `0 0 15px ${sliderColor}90`}}>
                             {currentValue}
                           </div>
                        </div>
                        
-                       <div className="relative h-8 flex items-center rounded-full bg-[#04060C] border border-slate-800 shadow-[inset_0_4px_6px_rgba(0,0,0,0.5)]">
-                         <div className="absolute h-full rounded-full pointer-events-none" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor, boxShadow: `0 0 20px ${sliderColor}66`, backgroundImage: `linear-gradient(90deg, transparent, rgba(255,255,255,0.2))`}}></div>
+                       <div className="relative h-6 flex items-center rounded-full bg-[#04060C] border border-slate-800 shadow-[inset_0_4px_6px_rgba(0,0,0,0.5)]">
+                         <div className="absolute h-full rounded-full pointer-events-none" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor, boxShadow: `0 0 15px ${sliderColor}66`, backgroundImage: `linear-gradient(90deg, transparent, rgba(255,255,255,0.2))`}}></div>
                          <input type="range" min="0" max="10" step="0.1" value={currentValue} onChange={(e) => setScores({...scores, [c.id]: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-10"/>
-                         <div className="absolute h-10 w-10 bg-[#04060C] rounded-full flex items-center justify-center pointer-events-none" style={{left: `calc(${currentValue * 10}% - 20px)`, border: `4px solid ${sliderColor}`, boxShadow: `0 0 20px ${sliderColor}90, inset 0 0 8px ${sliderColor}66`}}>
-                            <div className="w-4 h-4 rounded-full" style={{backgroundColor: sliderColor, filter: 'brightness(1.2)'}}></div>
+                         <div className="absolute h-8 w-8 bg-[#04060C] rounded-full flex items-center justify-center pointer-events-none" style={{left: `calc(${currentValue * 10}% - 16px)`, border: `3px solid ${sliderColor}`, boxShadow: `0 0 15px ${sliderColor}90, inset 0 0 6px ${sliderColor}66`}}>
+                            <div className="w-3 h-3 rounded-full" style={{backgroundColor: sliderColor, filter: 'brightness(1.2)'}}></div>
                          </div>
                        </div>
                      </div>
@@ -2324,10 +2418,10 @@ function CineScoreMain() {
                  </div>
               </div>
               
-              <div className="mt-12 pt-8 border-t border-slate-800/50 flex gap-4">
-                     <button onClick={() => setIsRatingMode(false)} className="px-6 py-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all border border-slate-700"><X size={24}/></button>
-                     <button onClick={saveRating} disabled={isSaving} className="flex-1 py-5 rounded-2xl bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
-                       {isSaving ? <Loader2 className="animate-spin text-black"/> : <Save size={24}/>} 
+              <div className="mt-8 pt-4 flex gap-3">
+                     <button onClick={() => setIsRatingMode(false)} className="px-5 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-black text-lg transition-all border border-slate-700"><X size={20}/></button>
+                     <button onClick={saveRating} disabled={isSaving} className="flex-1 py-4 rounded-xl bg-theme hover:bg-theme text-[#04060C] font-black text-lg sm:text-xl transition-all shadow-theme flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]">
+                       {isSaving ? <Loader2 className="animate-spin text-black"/> : <Save size={20}/>} 
                        {user && sortedMyRatings.find(r=>r.id===selectedMovie?.id) ? t.updateRating : t.saveRating}
                      </button>
                   </div>
@@ -2753,7 +2847,12 @@ function CineScoreMain() {
                                   <div className="relative z-10 text-4xl font-black leading-none mb-1 drop-shadow-lg transition-colors" style={{color: getScoreColorHex(safeScore), textShadow: `0 0 10px ${getScoreColorHex(safeScore)}80`}}>{safeScore.toFixed(2)}</div>
                                 </div>
                               </div>
-                              <h4 className="font-bold text-white text-sm leading-tight line-clamp-2 drop-shadow-md mt-1">{displayTitle}</h4>
+                              <h4 className="font-bold text-white text-sm leading-tight line-clamp-2 drop-shadow-md mt-1 mb-2">{displayTitle}</h4>
+                              
+                              {/* YENİ: Çöp Kutusu (Puan Silme Butonu) */}
+                              <button onClick={(e) => deleteRating(safeId, e)} className="absolute bottom-3 right-3 p-2 bg-red-600/80 hover:bg-red-500 text-white rounded-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:scale-110 shadow-lg border border-red-400 z-50">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                              </button>
                            </div>
                         </div>
                       )
@@ -2944,10 +3043,10 @@ function CineScoreMain() {
       </main>
 
       <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#04060C]/95 backdrop-blur-2xl border-t border-slate-800 p-2 pb-[calc(8px+env(safe-area-inset-bottom))] flex justify-around items-center z-[100] shadow-[0_-10px_40px_rgba(0,0,0,0.9)]">
-         <button onClick={() => {setActiveTab('home'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'home' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Clapperboard size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.navShowcase}</span></button>
-         <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'global' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Globe size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.navList}</span></button>
+         <button onClick={() => {setActiveTab('home'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'home' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Clapperboard size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.home}</span></button>
+         <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'global' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Globe size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.ranking}</span></button>
          <button onClick={handleOpenCommunity} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab === 'community' ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><Users size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.community}</span></button>
-         <button onClick={() => { if(!user){setShowLoginModal(true); return;} setActiveTab('profile_general'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab.startsWith('profile') ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><User size={20}/> <span className="text-[10px] uppercase tracking-widest">{t.navProfile}</span></button>
+         <button onClick={() => { if(!user){setShowLoginModal(true); return;} setActiveTab('profile_general'); setDynamicBg(''); setSelectedMovie(null);}} className={`flex-1 py-3 rounded-2xl text-sm font-black flex flex-col items-center gap-1.5 transition-colors ${activeTab.startsWith('profile') ? 'bg-theme shadow-theme' : 'text-slate-500 hover:text-white'}`}><User size={20}/> <span className="text-[10px] uppercase tracking-widest">Profil</span></button>
       </div>
 
       <footer className="relative z-10 border-t border-slate-800/80 bg-[#04060C] py-10 mt-8 text-center pb-28 md:pb-10">
@@ -2962,7 +3061,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.4</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.5</span></p>
         </div>
       </footer>
 
