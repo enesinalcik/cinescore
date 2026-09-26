@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Star, Film, Save, Award, Clapperboard, Search, Loader2, Globe, User, LogIn, LogOut, X, TrendingUp, Edit3, HelpCircle, Users, Info, Settings, Flame, Play, Crown, Ticket, Medal, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock, Rocket, Smile, Bookmark, BookmarkCheck, ListFilter, Plus, Share2, ListPlus, CheckCircle2, Quote, Sparkles, PieChart, Trophy, UserPlus, UserMinus, Link, Bell, Palette } from 'lucide-react';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
@@ -433,17 +433,20 @@ function CineScoreMain() {
   const t = { ...TRANSLATIONS['en'], ...(TRANSLATIONS[lang] || {}) };
   const tmdbLang = LANGUAGES.find(l => l.code === lang)?.tmdbCode || 'tr-TR';
 
+  // YENİ: 404 Hatası verdirmeyen Hash okuyucusu
   const getInitialTab = () => {
     if (typeof window === 'undefined') return 'home';
-    const path = window.location.pathname;
-    const params = new URLSearchParams(window.location.search);
-    if (path.startsWith('/film/')) return 'rate';
-    if (path.startsWith('/user/')) return 'public_profile';
-    if (path === '/siralama') return 'global';
-    if (path === '/topluluk') return 'community';
-    if (path === '/profil/takipciler') return 'profile_followers';
-    if (path === '/profil/takip') return 'profile_following';
-    if (path.startsWith('/profil')) return params.get('sekme') || 'profile_general';
+    const hash = window.location.hash.replace('#', '');
+    if (hash.startsWith('/film/')) return 'rate';
+    if (hash.startsWith('/user/')) return 'public_profile';
+    if (hash === '/siralama') return 'global';
+    if (hash === '/topluluk') return 'community';
+    if (hash === '/profil/takipciler') return 'profile_followers';
+    if (hash === '/profil/takip') return 'profile_following';
+    if (hash.startsWith('/profil')) {
+       const params = new URLSearchParams(hash.split('?')[1] || '');
+       return params.get('sekme') || 'profile_general';
+    }
     return 'home';
   };
 
@@ -1230,7 +1233,10 @@ function CineScoreMain() {
 
   const handleCloseMovie = () => { setSelectedMovie(null); setDynamicBg(''); setActiveTab('home'); };
 
-  const safeGlobalMovies = Array.isArray(globalMovies) ? globalMovies.filter(m => m && m.id) : [];
+  // DÜZELTME 1: Liste donduruldu, saniyede bin kere render etmesi engellendi
+  const safeGlobalMovies = useMemo(() => {
+     return Array.isArray(globalMovies) ? globalMovies.filter(m => m && m.id) : [];
+  }, [globalMovies]);
   
   const getSortedRatings = (ratingsList, sortType) => {
      return [...ratingsList].sort((a, b) => {
@@ -1246,12 +1252,20 @@ function CineScoreMain() {
   };
 
   const safeMyRatings = Array.isArray(myRatings) ? myRatings.filter(r => r && r.id) : [];
-  const sortedMyRatings = getSortedRatings(safeMyRatings, ratingSortType);
+  const sortedMyRatings = useMemo(() => getSortedRatings(safeMyRatings, ratingSortType), [myRatings, ratingSortType, safeGlobalMovies]);
   
   const safeViewingUserRatings = Array.isArray(viewingUserRatings) ? viewingUserRatings.filter(r => r && r.id) : [];
-  const sortedViewingUserRatings = getSortedRatings(safeViewingUserRatings, ratingSortType);
+  const sortedViewingUserRatings = useMemo(() => getSortedRatings(safeViewingUserRatings, ratingSortType), [viewingUserRatings, ratingSortType, safeGlobalMovies]);
 
-  const sortedWatchlist = [...(Array.isArray(myWatchlist) ? myWatchlist : [])].sort((a,b) => (Number(b.dateAdded) || 0) - (Number(a.dateAdded) || 0));
+  const sortedWatchlist = useMemo(() => [...(Array.isArray(myWatchlist) ? myWatchlist : [])].sort((a,b) => (Number(b.dateAdded) || 0) - (Number(a.dateAdded) || 0)), [myWatchlist]);
+
+  // YENİ: Dünya sıralamasını da donduruyoruz!
+  const sortedGlobalMovies = useMemo(() => {
+     return [...safeGlobalMovies].sort((a,b) => {
+        if (globalSortType === 'score_desc') return (b.avgScore || 0) - (a.avgScore || 0);
+        return (b.voteCount || 0) - (a.voteCount || 0);
+     });
+  }, [safeGlobalMovies, globalSortType]);
 
   const calculateDNA = (ratingsList) => {
       const dna = { c1:0, c2:0, c3:0, c4:0, c5:0 };
@@ -1356,80 +1370,78 @@ function CineScoreMain() {
     if (activeTab === 'profile_followers') loadFollowersUsers();
   }, [activeTab, userProfile]);
 
+  // GERÇEK ROUTING MOTORU (Hash Based) - ÇÖKME HATASI GİDERİLDİ
   useEffect(() => {
-    const handleUrlChange = () => {
-      const path = window.location.pathname;
-      const params = new URLSearchParams(window.location.search);
-      
-      if (path.startsWith('/film/')) {
-         const id = path.split('/')[2]?.split('-')[0];
-         if (id && (!selectedMovie || selectedMovie.id !== id)) selectMovieToRate(id, '', false);
-      } else if (path.startsWith('/user/')) {
-         const uid = path.split('/')[2];
-         if (uid && (!viewingUser || viewingUser.uid !== uid)) loadPublicProfile(uid);
-      } else if (path === '/siralama') {
-         setActiveTab('global');
-      } else if (path === '/topluluk') {
-         setActiveTab('community');
-      } else if (path.startsWith('/profil')) {
-         if (path === '/profil/takipciler') setActiveTab('profile_followers');
-         else if (path === '/profil/takip') setActiveTab('profile_following');
-         else setActiveTab(params.get('sekme') || 'profile_general');
-      } else {
-         setActiveTab('home');
-      }
-    };
-    
-    window.addEventListener('popstate', handleUrlChange);
-    if (window.location.pathname !== '/' || window.location.search !== '') {
-       setTimeout(handleUrlChange, 100); 
-    }
-    return () => window.removeEventListener('popstate', handleUrlChange);
-  }, [tmdbLang]);
+     const handleHashChange = () => {
+         const hash = window.location.hash.replace('#', '');
+         const hashPath = hash.split('?')[0];
+         const hashParams = new URLSearchParams(hash.split('?')[1] || '');
+         
+         if (hashPath.startsWith('/film/')) {
+            const id = hashPath.split('/')[2]?.split('-')[0];
+            if (id) selectMovieToRate(id, '', false);
+         } else if (hashPath === '/siralama') { setActiveTab('global');
+         } else if (hashPath === '/topluluk') { setActiveTab('community');
+         } else if (hashPath.startsWith('/profil')) {
+            if (hashPath === '/profil/takipciler') { loadFollowersUsers(); setActiveTab('profile_followers'); }
+            else if (hashPath === '/profil/takip') { loadFollowingUsers(); setActiveTab('profile_following'); }
+            else setActiveTab(hashParams.get('sekme') || 'profile_general');
+         } else if (hashPath.startsWith('/user/')) {
+            const uid = hashPath.split('/')[2];
+            if (uid) loadPublicProfile(uid);
+         } else { setActiveTab('home'); }
+     };
 
+     window.addEventListener('hashchange', handleHashChange);
+     
+     // Sadece sayfa ilk açıldığında 1 kere çalıştır
+     const currentHash = window.location.hash;
+     if (currentHash && currentHash !== '#/') handleHashChange();
+
+     return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []); // DÜZELTME 2: safeGlobalMovies bağımlılığı kaldırıldı, sonsuz döngü bitti!
+
+  // URL SENKRONİZASYONU (Sitede gezerken URL'i kasmadan günceller)
   useEffect(() => {
-     let newPath = '/';
-     let newSearch = '';
+     let newHash = '#/';
+     
      if (activeTab === 'rate' && selectedMovie) {
-        const slug = selectedMovie.title.toLowerCase().replace(/[^a-z0-9\u011F\u011E\u0131\u0130\u00F6\u00D6\u00FC\u00DC\u015F\u015E\u00E7\u00C7]+/g, '-').replace(/(^-|-$)+/g, '');
-        newPath = `/film/${selectedMovie.id}-${slug}`;
+        const slug = selectedMovie.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        newHash = `#/film/${selectedMovie.id}-${slug}`;
      } else if (activeTab === 'global') {
-        newPath = '/siralama';
+        newHash = '#/siralama';
      } else if (activeTab === 'community') {
-        newPath = '/topluluk';
+        newHash = '#/topluluk';
      } else if (activeTab === 'profile_followers') {
-        newPath = '/profil/takipciler';
+        newHash = '#/profil/takipciler';
      } else if (activeTab === 'profile_following') {
-        newPath = '/profil/takip';
+        newHash = '#/profil/takip';
      } else if (activeTab.startsWith('profile_') && !activeTab.startsWith('public_')) {
-        newPath = '/profil';
-        newSearch = `?sekme=${activeTab}`;
+        newHash = `#/profil?sekme=${activeTab}`;
      } else if (activeTab === 'public_profile' && viewingUser) {
-        newPath = `/user/${viewingUser.uid}`;
+        newHash = `#/user/${viewingUser.uid}`;
      } else if (activeTab === 'public_profile_ratings' && viewingUser) {
-        newPath = `/user/${viewingUser.uid}`;
-        newSearch = '?sekme=ratings';
+        newHash = `#/user/${viewingUser.uid}?sekme=ratings`;
      }
      
-     const currentFull = window.location.pathname + window.location.search;
-     const newFull = newPath + newSearch;
-     if (currentFull !== newFull) {
-        window.history.pushState({ path: newFull }, '', newFull);
+     // DÜZELTME: Ana Sayfa (#/) tetiklemesinin engeli kaldırıldı
+     const currentHash = window.location.hash || '#/';
+     if (currentHash !== newHash) {
+        window.history.pushState(null, '', newHash);
      }
   }, [activeTab, selectedMovie, viewingUser]);
 
   return (
     <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#030408] text-slate-300 font-sans relative overflow-x-hidden selection:bg-theme selection:text-[#030408]">
       
-      {/* ELİT KOYU TEMA ARKA PLAN VE DERİNLİK ETKİSİ (GPU HIZLANDIRMALI) */}
-      <div className="fixed inset-0 z-0 pointer-events-none transform-gpu">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--theme-color-20),_transparent_45%)] opacity-60 mix-blend-screen"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.8),_transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[#030408]/60 backdrop-blur-[40px]"></div>
+      {/* ELİT KOYU TEMA ARKA PLAN (Optimize Edilmiş, Kasmayan Versiyon) */}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#030408]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--theme-color-20),_transparent_45%)] opacity-30"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.8),_transparent_50%)] opacity-80"></div>
         {dynamicBg && (
            <>
-             <img src={dynamicBg} className="w-full h-full object-cover opacity-20 blur-[50px] scale-[1.1] saturate-150 mix-blend-screen transform-gpu" alt="bg"/>
-             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030408]/90 to-[#030408]"></div>
+             <img src={dynamicBg} className="w-full h-full object-cover opacity-15 scale-105" style={{ filter: 'blur(20px) saturate(1.2)' }} alt="bg"/>
+             <div className="absolute inset-0 bg-gradient-to-b from-[#030408]/60 via-[#030408]/90 to-[#030408]"></div>
            </>
         )}
       </div>
@@ -2378,10 +2390,7 @@ function CineScoreMain() {
              ) : (
                <>
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                   {[...safeGlobalMovies].sort((a,b) => {
-                      if (globalSortType === 'score_desc') return (b.avgScore || 0) - (a.avgScore || 0);
-                      return (b.voteCount || 0) - (a.voteCount || 0);
-                   }).slice((globalPage - 1) * 20, globalPage * 20).map((movie, index) => {
+                   {sortedGlobalMovies.slice((globalPage - 1) * 20, globalPage * 20).map((movie, index) => {
                      const idx = (globalPage - 1) * 20 + index;
                      const isNeon = movie.avgScore >= 9.0;
                    const displayTitle = localizedData?.[movie.id]?.title || movie.title;
@@ -2953,7 +2962,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.3</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.4</span></p>
         </div>
       </footer>
 
