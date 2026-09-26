@@ -1247,7 +1247,7 @@ function CineScoreMain() {
     setRatingToDelete(movieId);
   };
 
-  // YENİ: Özel Pencereden Onaylanınca Gerçekten Silme İşlemi
+  // YENİ: Özel Pencereden Onaylanınca Gerçekten Silme İşlemi (Hatasız Matematik)
   const confirmDeleteRating = async () => {
     if (!user || !ratingToDelete) return;
     setIsDeleting(true);
@@ -1260,31 +1260,45 @@ function CineScoreMain() {
          const mDoc = await trans.get(movieRef);
          const uDoc = await trans.get(userRatingRef);
          
-         if (mDoc.exists() && uDoc.exists()) {
+         // 1. Önce kullanıcının kendi oyunu veri tabanından siliyoruz.
+         // Bu sayede onSnapshot tetiklenir ve senin DNA analizin anında otomatik düzelir.
+         if (uDoc.exists()) {
             const oldFinalScore = Number(uDoc.data().finalScore || 0);
             const oldScores = uDoc.data().scores || {};
-            const d = mDoc.data();
-            
-            let currentTotal = d.totalScore !== undefined ? Number(d.totalScore) : (Number(d.avgScore || 0) * Number(d.voteCount || 0));
-            let currentCount = Number(d.voteCount || 0);
-            const currentCatTotals = d.categoryTotals || { c1:0, c2:0, c3:0, c4:0, c5:0 };
-            
-            currentTotal = Math.max(0, currentTotal - oldFinalScore);
-            currentCount = Math.max(0, currentCount - 1);
-            
-            const newCatTotals = { ...currentCatTotals };
-            criteriaData.forEach(c => {
-              newCatTotals[c.id] = Math.max(0, (Number(currentCatTotals[c.id]) || 0) - (oldScores[c.id] || 0));
-            });
-            
-            const newAvg = currentCount > 0 ? (currentTotal / currentCount) : 0;
-            
-            trans.update(movieRef, {
-              totalScore: currentTotal, voteCount: currentCount, avgScore: parseFloat(newAvg.toFixed(2)),
-              categoryTotals: newCatTotals
-            });
+            trans.delete(userRatingRef);
+
+            // 2. Global filmin ortalamasını düzeltme işlemi
+            if (mDoc.exists()) {
+               const d = mDoc.data();
+               let currentTotal = d.totalScore !== undefined ? Number(d.totalScore) : (Number(d.avgScore || 0) * Number(d.voteCount || 0));
+               let currentCount = Number(d.voteCount || 0);
+               const currentCatTotals = d.categoryTotals || { c1:0, c2:0, c3:0, c4:0, c5:0 };
+               
+               let newCount = currentCount - 1;
+               
+               // EĞER SİLİNEN OY FİLMİN TEK (SON) OYU İSE:
+               // Filmi 0 puanlı bırakıp listeyi kirletmek yerine tamamen siliyoruz.
+               if (newCount <= 0) {
+                  trans.delete(movieRef);
+               } else {
+                  // EĞER BAŞKA OYLAR VARSA: Matematiği ve kategori ortalamalarını temizce hesapla
+                  let newTotal = Math.max(0, currentTotal - oldFinalScore);
+                  const newCatTotals = { ...currentCatTotals };
+                  criteriaData.forEach(c => {
+                    newCatTotals[c.id] = Math.max(0, (Number(currentCatTotals[c.id]) || 0) - (Number(oldScores[c.id]) || 0));
+                  });
+                  
+                  const newAvg = parseFloat((newTotal / newCount).toFixed(2));
+                  
+                  trans.update(movieRef, {
+                    totalScore: newTotal, 
+                    voteCount: newCount, 
+                    avgScore: newAvg,
+                    categoryTotals: newCatTotals
+                  });
+               }
+            }
          }
-         trans.delete(userRatingRef);
       });
       showToast(t.ratingDeleted || "Puanınız başarıyla silindi!");
     } catch (err) { showToast(t.errorOccurred); }
@@ -1294,8 +1308,11 @@ function CineScoreMain() {
   const handleCloseMovie = () => { setSelectedMovie(null); setDynamicBg(''); setActiveTab('home'); };
 
   // DÜZELTME 1: Liste donduruldu, saniyede bin kere render etmesi engellendi
+  // YENİ: Eskiden kalmış 0 oylu hayalet filmleri siteden sonsuza dek gizle
   const safeGlobalMovies = useMemo(() => {
-     return Array.isArray(globalMovies) ? globalMovies.filter(m => m && m.id) : [];
+     return Array.isArray(globalMovies) 
+       ? globalMovies.filter(m => m && m.id && Number(m.voteCount) > 0) 
+       : [];
   }, [globalMovies]);
   
   const getSortedRatings = (ratingsList, sortType) => {
