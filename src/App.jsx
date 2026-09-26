@@ -1223,6 +1223,7 @@ function CineScoreMain() {
 
       showToast(t.saveRating);
       setIsRatingMode(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // YENİ: Kaydetme sonrası en üste kaydır
     } catch (e) { showToast(t.errorOccurred); } finally { setIsSaving(false); }
   };
 
@@ -1256,18 +1257,22 @@ function CineScoreMain() {
       if(ratingsList.length > 0) {
          ratingsList.forEach(r => {
             const globalData = safeGlobalMovies.find(m => String(m.id) === String(r.id));
-            const globalAvg = globalData ? Number(globalData.avgScore) : r.finalScore;
-            const movieScore = r.finalScore;
+            const globalAvg = globalData ? Number(globalData.avgScore) : Number(r.finalScore);
+            const movieScore = Number(r.finalScore);
             
             criteriaData.forEach(c => { 
-               const catScore = r.scores?.[c.id] || 5;
-               let weight = 0;
-               if (movieScore >= 7 && catScore <= 5) weight += 30;
-               else if (movieScore >= 7 && catScore < movieScore) weight += (movieScore - catScore) * 5;
-               if (globalAvg >= 7.5 && catScore <= 5) weight += 25;
-               if (movieScore <= 5 && catScore >= 7) weight += 20;
-               weight += Math.abs(movieScore - catScore) * 3;
-               dna[c.id] += weight;
+               const catScore = Number(r.scores?.[c.id]) || 5;
+               
+               // Bilimsel Anomali: Kategori puanının, Kendi Genel Puanından ve Dünya Ortalamasından Sapması
+               const internalDeviation = Math.abs(catScore - movieScore);
+               const globalDeviation = Math.abs(catScore - globalAvg);
+               
+               // Standart 5-5-5-5 verenleri filtrele, uç noktalara (1 veya 10) ağırlık ver
+               let extremityMultiplier = (catScore >= 8 || catScore <= 3) ? 1.5 : 1.0;
+               
+               let anomalyWeight = ((internalDeviation * 1.5) + globalDeviation) * extremityMultiplier;
+               
+               dna[c.id] += anomalyWeight;
             });
          });
          
@@ -1824,44 +1829,49 @@ function CineScoreMain() {
                  
                  {/* YENİ: SİNEMATİK DNA RADAR ÇİZELGESİ (SVG) */}
                  {userProfile && viewingUserRatings.length >= 20 && sortedMyRatings.length >= 20 && (
-                   <div className="w-full max-w-[90vw] sm:max-w-sm bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 shadow-2xl">
-                     <h4 className="text-center text-xs font-black text-slate-400 uppercase tracking-widest mb-4">DNA Kesişim Radarı</h4>
+                   <div className="w-full max-w-[95vw] sm:max-w-md bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-[0_0_40px_rgba(0,0,0,0.5)] mt-4">
+                     <div className="flex items-center justify-center gap-3 mb-6 relative">
+                        <div className="absolute inset-0 bg-theme opacity-5 blur-[30px] rounded-full"></div>
+                        <Sparkles size={20} className="text-theme"/>
+                        <h4 className="text-center text-sm font-black text-white uppercase tracking-widest drop-shadow-md">DNA Kesişim Radarı</h4>
+                     </div>
                      <div className="relative w-full aspect-square">
-                       <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                       {/* DÜZELTME: Metinlerin taşmaması için viewBox büyütüldü (-20 -20 140 140) */}
+                       <svg viewBox="-25 -25 150 150" className="w-full h-full overflow-visible">
                          {/* Radar Arka Plan Ağları */}
                          {[20, 40, 60, 80, 100].map(r => (
-                           <polygon key={r} points={criteriaData.map((_, i) => { const a = (Math.PI * 2 * i / 5) - Math.PI/2; return `${50 + (r/2)*Math.cos(a)},${50 + (r/2)*Math.sin(a)}`; }).join(' ')} fill="none" stroke="#1e293b" strokeWidth="0.5" />
+                           <polygon key={r} points={criteriaData.map((_, i) => { const a = (Math.PI * 2 * i / 5) - Math.PI/2; return `${50 + (r/2)*Math.cos(a)},${50 + (r/2)*Math.sin(a)}`; }).join(' ')} fill={r === 100 ? '#04060C' : 'none'} stroke="#1e293b" strokeWidth="0.5" className={r === 100 ? 'opacity-50' : ''}/>
                          ))}
-                         {/* Radar Eksen Çizgileri ve İsimler */}
+                         {/* Radar Eksen Çizgileri ve Tam İsimler */}
                          {criteriaData.map((c, i) => {
                            const a = (Math.PI * 2 * i / 5) - Math.PI/2;
                            const x = 50 + 50 * Math.cos(a); const y = 50 + 50 * Math.sin(a);
-                           const labelX = 50 + 60 * Math.cos(a); const labelY = 50 + 60 * Math.sin(a);
+                           const labelX = 50 + 64 * Math.cos(a); const labelY = 50 + 64 * Math.sin(a); // Etiketler dışarı itildi
                            return (
                              <g key={c.id}>
                                <line x1="50" y1="50" x2={x} y2={y} stroke="#1e293b" strokeWidth="0.5" />
-                               <text x={labelX} y={labelY} textAnchor="middle" dominantBaseline="middle" fill="#64748b" fontSize="4" fontWeight="bold">{c.name.substring(0,3)}</text>
+                               <text x={labelX} y={labelY} textAnchor="middle" dominantBaseline="middle" fill="#94a3b8" fontSize="5" fontWeight="900" className="drop-shadow-md" style={{letterSpacing: '0.05em'}}>{c.name.toUpperCase()}</text>
                              </g>
                            )
                          })}
-                         {/* Ziyaret Edilen Kişinin DNA Poligonu */}
+                         {/* Ziyaret Edilen Kişinin DNA Poligonu (Animasyonlu ve Işıklı) */}
                          <polygon points={criteriaData.map((c, i) => { 
                              const a = (Math.PI * 2 * i / 5) - Math.PI/2;
                              const theirDNA = calculateDNA(sortedViewingUserRatings);
                              const val = (theirDNA[c.id] || 0) * 5; 
                              return `${50 + val*Math.cos(a)},${50 + val*Math.sin(a)}`; 
-                           }).join(' ')} fill={`${themeColor}40`} stroke={themeColor} strokeWidth="1" className="transition-all duration-1000"/>
+                           }).join(' ')} fill={`${themeColor}33`} stroke={themeColor} strokeWidth="1.5" className="transition-all duration-1000 animate-pulse" style={{filter: `drop-shadow(0 0 8px ${themeColor}80)`}}/>
                          {/* Benim DNA Poligonum */}
                          <polygon points={criteriaData.map((c, i) => { 
                              const a = (Math.PI * 2 * i / 5) - Math.PI/2;
                              const val = (userDNA[c.id] || 0) * 5; 
                              return `${50 + val*Math.cos(a)},${50 + val*Math.sin(a)}`; 
-                           }).join(' ')} fill="rgba(255,255,255,0.1)" stroke="#ffffff" strokeWidth="1" strokeDasharray="2,1" className="transition-all duration-1000"/>
+                           }).join(' ')} fill="rgba(255,255,255,0.05)" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="3,2" className="transition-all duration-1000"/>
                        </svg>
                      </div>
-                     <div className="flex justify-center gap-6 mt-4 text-[10px] font-bold uppercase tracking-widest">
-                       <span className="flex items-center gap-1 text-white"><span className="w-3 h-3 border border-white border-dashed rounded-full"></span> Senin DNA'n</span>
-                       <span className="flex items-center gap-1" style={{color: themeColor}}><span className="w-3 h-3 rounded-full" style={{backgroundColor: themeColor}}></span> {viewingUser.displayName}</span>
+                     <div className="flex flex-wrap justify-center gap-6 mt-6 text-[10px] font-black uppercase tracking-widest bg-[#04060C] py-3 px-4 rounded-2xl border border-slate-800 shadow-inner">
+                       <span className="flex items-center gap-2 text-slate-300"><span className="w-4 h-4 border-2 border-white border-dashed rounded-full"></span> SENİN DNA'N</span>
+                       <span className="flex items-center gap-2" style={{color: themeColor}}><span className="w-4 h-4 rounded-full shadow-theme" style={{backgroundColor: themeColor}}></span> {viewingUser.displayName}</span>
                      </div>
                    </div>
                  )}
@@ -2249,10 +2259,11 @@ function CineScoreMain() {
                       </>
                     ) : (
                       <>
-                         <div className="w-32 h-32 rounded-full flex items-center justify-center mb-8 border-[4px] shadow-theme animate-pulse" style={{borderColor: themeColor, backgroundColor: themeColor + '20'}}>
+                         <div className="w-32 h-32 rounded-full flex items-center justify-center mb-6 border-[4px] shadow-theme animate-pulse" style={{borderColor: themeColor, backgroundColor: themeColor + '20'}}>
                             <Star size={48} style={{color: themeColor}}/>
                          </div>
-                         <h3 className="text-3xl font-black text-white mb-8 drop-shadow-md">{t.noRating}</h3>
+                         <h3 className="text-2xl sm:text-3xl font-black text-white mb-2 drop-shadow-md">{t.noRating}</h3>
+                         <p className="text-slate-400 font-bold mb-8">{lang === 'tr' ? 'Bu filmi henüz puanlamadınız. Kendi sinematik zevkinize göre değerlendirin.' : 'You haven\'t rated this movie yet.'}</p>
                          <button onClick={() => setIsRatingMode(true)} className="px-10 py-5 rounded-full bg-theme hover:bg-theme text-[#04060C] font-black text-xl transition-all shadow-theme flex items-center gap-3 magnetic-btn">
                            <Star size={24} className="fill-current"/> {t.rateNow}
                          </button>
@@ -2508,13 +2519,25 @@ function CineScoreMain() {
                          myAvg += Number(r.finalScore) || 0;
                          const g = safeGlobalMovies.find(m => String(m.id) === String(r.id));
                          gAvg += g ? (Number(g.avgScore) || 0) : (Number(r.finalScore) || 0);
-                         const y = Number(r.year);
-                         if(y) { const dec = Math.floor(y/10)*10; decades[dec] = (decades[dec]||0)+1; }
+                         
+                         // DÜZELTME: Yıl verisini güvenli parse etme
+                         const yStr = r.year || (localizedData?.[r.id]?.year) || '';
+                         const yMatch = yStr.match(/\d{4}/);
+                         if(yMatch) { 
+                            const y = Number(yMatch[0]);
+                            const dec = Math.floor(y/10)*10; 
+                            decades[dec] = (decades[dec]||0)+1; 
+                         }
                       });
                       myAvg = myAvg / sortedMyRatings.length; gAvg = gAvg / sortedMyRatings.length;
                       const diff = (gAvg - myAvg).toFixed(2);
                       const ruthText = diff > 0.5 ? 'Zor Beğenen (Acımasız)' : diff < -0.5 ? 'Gönlü Bol (Bonkör)' : 'Adil Eleştirmen';
-                      const favDec = Object.keys(decades).length ? Object.keys(decades).reduce((a,b)=>decades[a]>decades[b]?a:b) + "'ler" : '?';
+                      // DÜZELTME: Güvenli Max Değer Bulma
+                      let favDec = '?';
+                      if (Object.keys(decades).length > 0) {
+                          const bestDec = Object.keys(decades).reduce((a,b)=> decades[a] > decades[b] ? a : b);
+                          favDec = bestDec + "'ler";
+                      }
                       
                       return (
                         <>
@@ -2927,7 +2950,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.1</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.2</span></p>
         </div>
       </footer>
 
