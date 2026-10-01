@@ -1623,6 +1623,61 @@ function CineScoreMain() {
         </div>
       )}
       
+      {/* YENİ: TAM BOYUTLU MOBİL ARAMA PENCERESİ */}
+      {isMobileSearchOpen && (
+        <div id="mobile-search-box" className="fixed inset-0 z-[150] flex items-start justify-center pt-24 p-4 bg-black/85 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-[2rem] p-5 relative shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-black text-white flex items-center gap-2">
+                <Search className="text-theme" size={20}/> {t.searchPlaceholder}
+              </h3>
+              <button onClick={() => { setIsMobileSearchOpen(false); setSearchTerm(''); setSearchResults([]); }} className="p-2 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-800">
+                <X size={18}/>
+              </button>
+            </div>
+            
+            <div className="relative flex items-center mb-3">
+              <Search className="absolute left-4 text-slate-400" size={18}/>
+              <input 
+                type="text" 
+                value={searchTerm} 
+                onChange={(e) => setSearchTerm(e.target.value)} 
+                placeholder={t.searchPlaceholder} 
+                autoFocus
+                className="w-full bg-[#04060C] border border-slate-700 rounded-xl pl-11 pr-10 py-3.5 text-white text-sm outline-none focus:border-theme transition-colors shadow-inner font-bold"
+              />
+              {searchTerm && (
+                <button onClick={() => { setSearchTerm(''); setSearchResults([]); }} className="absolute right-3 text-slate-400 hover:text-white p-1">
+                  <X size={16}/>
+                </button>
+              )}
+              {isSearching && <Loader2 className="absolute right-10 animate-spin text-theme" size={18}/>}
+            </div>
+
+            <div className="max-h-[55vh] overflow-y-auto space-y-2 pr-1">
+               {searchResults.map(res => (
+                 <div 
+                   key={res.id} 
+                   onClick={() => { selectMovieToRate(res.id, res.title); setIsMobileSearchOpen(false); }} 
+                   className="flex items-center gap-3 p-3 bg-[#04060C] border border-slate-800 active:border-theme rounded-xl cursor-pointer transition-colors"
+                 >
+                   <img src={res.poster_path ? `https://image.tmdb.org/t/p/w200${res.poster_path}` : 'https://via.placeholder.com/40'} className="w-12 h-16 object-cover rounded-lg shadow-md shrink-0 border border-slate-800" alt=""/>
+                   <div className="flex-1 min-w-0">
+                     <h4 className="text-white font-black text-sm truncate">{res.title}</h4>
+                     <p className="text-slate-400 text-xs font-bold mt-1 truncate">
+                       {res.release_date?.split('-')[0] || ''} {res.director ? ` • ${res.director}` : ''}
+                     </p>
+                   </div>
+                 </div>
+               ))}
+               {searchTerm.length > 2 && searchResults.length === 0 && !isSearching && (
+                 <p className="text-center text-slate-500 font-bold py-6 text-sm">{t.noData}</p>
+               )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {showTop3Modal && (
         <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
           <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-[2rem] p-6 relative shadow-2xl">
@@ -1722,32 +1777,24 @@ function CineScoreMain() {
             </h1>
           </div>
 
-          <div 
-            className={`${isMobileSearchOpen ? 'block absolute top-20 left-0 w-full p-4 bg-[#04060C] border-b border-slate-800 shadow-2xl z-[110]' : 'hidden'} sm:block sm:static sm:w-auto sm:p-0 sm:bg-transparent sm:border-0 sm:shadow-none flex-1 max-w-2xl relative`} 
-            ref={searchDropdownRef}
-          >
+          <div className="flex-1 max-w-2xl relative hidden sm:block" ref={searchDropdownRef}>
             <div className="relative flex items-center">
               <Search className="absolute left-5 text-slate-400" size={18}/>
               <input 
                 type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder={t.searchPlaceholder} 
-                className="w-full bg-slate-900 border border-slate-700 sm:border-slate-800 hover:border-slate-600 rounded-full pl-12 pr-10 py-3 text-sm text-white outline-none focus:border-theme focus:ring-1 focus:ring-theme transition-all shadow-inner font-medium"
+                className="w-full bg-slate-900 border border-slate-800 hover:border-slate-600 rounded-full pl-12 pr-4 py-3 text-sm text-white outline-none focus:border-theme focus:ring-1 focus:ring-theme transition-all shadow-inner font-medium"
               />
-              {searchTerm && (
-                <button onClick={() => {setSearchTerm(''); setSearchResults([]);}} className="absolute right-4 text-slate-400 hover:text-white">
-                  <X size={16}/>
-                </button>
-              )}
-              {isSearching && <Loader2 className="absolute right-10 animate-spin text-theme" size={16}/>}
+              {isSearching && <Loader2 className="absolute right-5 animate-spin text-theme" size={16}/>}
             </div>
             
             {searchResults.length > 0 && (
-              <div className="mt-2 sm:mt-3 sm:absolute sm:top-full sm:left-0 w-full bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-[60vh] overflow-y-auto">
+              <div className="absolute top-full left-0 w-full mt-3 bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl overflow-hidden z-50">
                 {searchResults.map(result => (
-                  <div key={result.id} onClick={() => { selectMovieToRate(result.id, result.title); setIsMobileSearchOpen(false); }} className="flex items-center gap-4 p-3 hover:bg-slate-800 active:bg-slate-800 cursor-pointer border-b border-slate-800 last:border-0 transition-colors">
-                    <img src={result.poster_path ? `https://image.tmdb.org/t/p/w200${result.poster_path}` : 'https://via.placeholder.com/40'} className="w-10 h-14 object-cover rounded-lg bg-[#04060C] shadow-md border border-slate-800 shrink-0" alt=""/>
-                    <div className="min-w-0 flex-1">
-                       <h4 className="text-white font-black text-sm truncate drop-shadow-sm">{result.title}</h4>
-                       <p className="text-slate-400 text-xs mt-0.5 font-medium truncate">
+                  <div key={result.id} onClick={() => selectMovieToRate(result.id, result.title)} className="flex items-center gap-4 p-3 hover:bg-slate-800 cursor-pointer border-b border-slate-800 last:border-0 transition-colors">
+                    <img src={result.poster_path ? `https://image.tmdb.org/t/p/w200${result.poster_path}` : 'https://via.placeholder.com/40'} className="w-10 h-14 object-cover rounded-lg bg-[#04060C] shadow-md border border-slate-800" alt=""/>
+                    <div>
+                       <h4 className="text-white font-black text-sm line-clamp-1 drop-shadow-sm">{result.title}</h4>
+                       <p className="text-slate-400 text-xs mt-0.5 font-medium">
                          {result.release_date?.split('-')[0] || ''} {result.director ? ` • ${result.director}` : ''}
                        </p>
                     </div>
