@@ -835,7 +835,7 @@ function CineScoreMain() {
 
   useEffect(() => {
     const handleClickOutside = (e) => { 
-      if (searchDropdownRef.current && !searchDropdownRef.current.contains(e.target)) setSearchResults([]); 
+      if (searchDropdownRef.current && !searchDropdownRef.current.contains(e.target) && !e.target.closest('#mobile-search-box')) setSearchResults([]); 
       if (langMenuRef.current && !langMenuRef.current.contains(e.target)) setIsLangMenuOpen(false); 
       if (profileMenuRef.current && !profileMenuRef.current.contains(e.target)) setIsProfileMenuOpen(false); 
       if (notifMenuRef.current && !notifMenuRef.current.contains(e.target)) setIsNotifMenuOpen(false);
@@ -1849,6 +1849,49 @@ function CineScoreMain() {
           </div>
         </div>
       </header>
+
+      {/* YENİ: KESİN GÖRÜNÜR MOBİL ARAMA KATMANI */}
+      {isMobileSearchOpen && (
+        <div id="mobile-search-box" className="fixed top-20 left-0 w-full z-[105] p-4 bg-[#04060C]/95 backdrop-blur-2xl border-b border-slate-700 shadow-[0_20px_50px_rgba(0,0,0,0.9)] animate-in slide-in-from-top-2 duration-200">
+          <div className="relative flex items-center max-w-lg mx-auto">
+            <Search className="absolute left-4 text-theme" size={18}/>
+            <input 
+              type="text" 
+              value={searchTerm} 
+              onChange={(e) => setSearchTerm(e.target.value)} 
+              placeholder={t.searchPlaceholder} 
+              autoFocus
+              className="w-full bg-slate-900 border border-slate-700 focus:border-theme rounded-2xl pl-12 pr-10 py-3.5 text-sm text-white outline-none shadow-inner font-bold"
+            />
+            {searchTerm && (
+              <button onClick={() => {setSearchTerm(''); setSearchResults([]);}} className="absolute right-3 text-slate-400 hover:text-white p-1">
+                <X size={18}/>
+              </button>
+            )}
+            {isSearching && <Loader2 className="absolute right-10 animate-spin text-theme" size={18}/>}
+          </div>
+
+          {searchResults.length > 0 && (
+            <div className="mt-3 max-w-lg mx-auto bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-[60vh] overflow-y-auto">
+              {searchResults.map(result => (
+                <div 
+                  key={result.id} 
+                  onClick={() => { selectMovieToRate(result.id, result.title); setIsMobileSearchOpen(false); }} 
+                  className="flex items-center gap-3 p-3 hover:bg-slate-800 active:bg-slate-800 cursor-pointer border-b border-slate-800 last:border-0 transition-colors"
+                >
+                  <img src={result.poster_path ? `https://image.tmdb.org/t/p/w200${result.poster_path}` : 'https://via.placeholder.com/40'} className="w-10 h-14 object-cover rounded-lg bg-[#04060C] shrink-0 border border-slate-800" alt=""/>
+                  <div className="flex-1 min-w-0">
+                     <h4 className="text-white font-black text-sm truncate">{result.title}</h4>
+                     <p className="text-slate-400 text-xs mt-0.5 font-medium truncate">
+                       {result.release_date?.split('-')[0] || ''} {result.director ? ` • ${result.director}` : ''}
+                     </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
         
