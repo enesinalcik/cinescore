@@ -1722,24 +1722,32 @@ function CineScoreMain() {
             </h1>
           </div>
 
-          <div className="flex-1 max-w-2xl relative hidden sm:block" ref={searchDropdownRef}>
+          <div 
+            className={`${isMobileSearchOpen ? 'block absolute top-20 left-0 w-full p-4 bg-[#04060C] border-b border-slate-800 shadow-2xl z-[110]' : 'hidden'} sm:block sm:static sm:w-auto sm:p-0 sm:bg-transparent sm:border-0 sm:shadow-none flex-1 max-w-2xl relative`} 
+            ref={searchDropdownRef}
+          >
             <div className="relative flex items-center">
               <Search className="absolute left-5 text-slate-400" size={18}/>
               <input 
                 type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder={t.searchPlaceholder} 
-                className="w-full bg-slate-900 border border-slate-800 hover:border-slate-600 rounded-full pl-12 pr-4 py-3 text-sm text-white outline-none focus:border-theme focus:ring-1 focus:ring-theme transition-all shadow-inner font-medium"
+                className="w-full bg-slate-900 border border-slate-700 sm:border-slate-800 hover:border-slate-600 rounded-full pl-12 pr-10 py-3 text-sm text-white outline-none focus:border-theme focus:ring-1 focus:ring-theme transition-all shadow-inner font-medium"
               />
-              {isSearching && <Loader2 className="absolute right-5 animate-spin text-theme" size={16}/>}
+              {searchTerm && (
+                <button onClick={() => {setSearchTerm(''); setSearchResults([]);}} className="absolute right-4 text-slate-400 hover:text-white">
+                  <X size={16}/>
+                </button>
+              )}
+              {isSearching && <Loader2 className="absolute right-10 animate-spin text-theme" size={16}/>}
             </div>
             
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 w-full mt-3 bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
+              <div className="mt-2 sm:mt-3 sm:absolute sm:top-full sm:left-0 w-full bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-[60vh] overflow-y-auto">
                 {searchResults.map(result => (
-                  <div key={result.id} onClick={() => selectMovieToRate(result.id, result.title)} className="flex items-center gap-4 p-3 hover:bg-slate-800 cursor-pointer border-b border-slate-800 last:border-0 transition-colors">
-                    <img src={result.poster_path ? `https://image.tmdb.org/t/p/w200${result.poster_path}` : 'https://via.placeholder.com/40'} className="w-10 h-14 object-cover rounded-lg bg-[#04060C] shadow-md border border-slate-800" alt=""/>
-                    <div>
-                       <h4 className="text-white font-black text-sm line-clamp-1 drop-shadow-sm">{result.title}</h4>
-                       <p className="text-slate-400 text-xs mt-0.5 font-medium">
+                  <div key={result.id} onClick={() => { selectMovieToRate(result.id, result.title); setIsMobileSearchOpen(false); }} className="flex items-center gap-4 p-3 hover:bg-slate-800 active:bg-slate-800 cursor-pointer border-b border-slate-800 last:border-0 transition-colors">
+                    <img src={result.poster_path ? `https://image.tmdb.org/t/p/w200${result.poster_path}` : 'https://via.placeholder.com/40'} className="w-10 h-14 object-cover rounded-lg bg-[#04060C] shadow-md border border-slate-800 shrink-0" alt=""/>
+                    <div className="min-w-0 flex-1">
+                       <h4 className="text-white font-black text-sm truncate drop-shadow-sm">{result.title}</h4>
+                       <p className="text-slate-400 text-xs mt-0.5 font-medium truncate">
                          {result.release_date?.split('-')[0] || ''} {result.director ? ` • ${result.director}` : ''}
                        </p>
                     </div>
@@ -1849,49 +1857,6 @@ function CineScoreMain() {
           </div>
         </div>
       </header>
-
-      {/* YENİ: KESİN GÖRÜNÜR MOBİL ARAMA KATMANI */}
-      {isMobileSearchOpen && (
-        <div id="mobile-search-box" className="fixed top-20 left-0 w-full z-[105] p-4 bg-[#04060C]/95 backdrop-blur-2xl border-b border-slate-700 shadow-[0_20px_50px_rgba(0,0,0,0.9)] animate-in slide-in-from-top-2 duration-200">
-          <div className="relative flex items-center max-w-lg mx-auto">
-            <Search className="absolute left-4 text-theme" size={18}/>
-            <input 
-              type="text" 
-              value={searchTerm} 
-              onChange={(e) => setSearchTerm(e.target.value)} 
-              placeholder={t.searchPlaceholder} 
-              autoFocus
-              className="w-full bg-slate-900 border border-slate-700 focus:border-theme rounded-2xl pl-12 pr-10 py-3.5 text-sm text-white outline-none shadow-inner font-bold"
-            />
-            {searchTerm && (
-              <button onClick={() => {setSearchTerm(''); setSearchResults([]);}} className="absolute right-3 text-slate-400 hover:text-white p-1">
-                <X size={18}/>
-              </button>
-            )}
-            {isSearching && <Loader2 className="absolute right-10 animate-spin text-theme" size={18}/>}
-          </div>
-
-          {searchResults.length > 0 && (
-            <div className="mt-3 max-w-lg mx-auto bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-[60vh] overflow-y-auto">
-              {searchResults.map(result => (
-                <div 
-                  key={result.id} 
-                  onClick={() => { selectMovieToRate(result.id, result.title); setIsMobileSearchOpen(false); }} 
-                  className="flex items-center gap-3 p-3 hover:bg-slate-800 active:bg-slate-800 cursor-pointer border-b border-slate-800 last:border-0 transition-colors"
-                >
-                  <img src={result.poster_path ? `https://image.tmdb.org/t/p/w200${result.poster_path}` : 'https://via.placeholder.com/40'} className="w-10 h-14 object-cover rounded-lg bg-[#04060C] shrink-0 border border-slate-800" alt=""/>
-                  <div className="flex-1 min-w-0">
-                     <h4 className="text-white font-black text-sm truncate">{result.title}</h4>
-                     <p className="text-slate-400 text-xs mt-0.5 font-medium truncate">
-                       {result.release_date?.split('-')[0] || ''} {result.director ? ` • ${result.director}` : ''}
-                     </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
 
       <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
         
