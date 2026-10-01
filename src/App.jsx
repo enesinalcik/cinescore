@@ -544,6 +544,7 @@ function CineScoreMain() {
   // YENİ: Puan Silme Penceresi State'leri
   const [ratingToDelete, setRatingToDelete] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
   const searchDropdownRef = useRef(null);
   const langMenuRef = useRef(null);
@@ -1748,8 +1749,16 @@ function CineScoreMain() {
             )}
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-6 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-6 shrink-0">
             
+            {/* YENİ: MOBİL ARAMA BUTONU (Sadece telefonda görünür) */}
+            <button 
+              onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} 
+              className={`sm:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-all shadow-inner ${isMobileSearchOpen ? 'bg-theme text-[#04060C] border-theme shadow-theme' : 'bg-slate-900 border-slate-800 text-slate-300 hover:border-theme'}`}
+            >
+              {isMobileSearchOpen ? <X size={18}/> : <Search size={18}/>}
+            </button>
+
             {/* HER DURUMDA GÖRÜNEN DİL MENÜSÜ */}
             <div className="relative" ref={langMenuRef}>
               <button onClick={() => setIsLangMenuOpen(!isLangMenuOpen)} className="w-10 h-10 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner flex items-center justify-center overflow-hidden">
