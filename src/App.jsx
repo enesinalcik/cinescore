@@ -121,7 +121,15 @@ const TRANSLATIONS = {
     linksCount: 'Bağlantı', gameWonTitle: 'KÖPRÜ TAMAMLANDI!', gameWonSubtitle: 'İki filmi sinema bilginle birbirine bağladın!',
     winRank1: 'KUSURSUZ SİNEFİL ZEKASI', winRank2: 'USTA KÖPRÜ MİMARI', winRank3: 'SİNEMA GEZGİNİ',
     playAgainBtn: 'Yeni Filmlerle Oyna', retrySameBtn: 'Daha Kısa Yol Dene', changeMovie: 'Değiştir',
-    targetHereBadge: '🎯 HEDEF FİLM!', targetActorHereBadge: '⚡ HEDEF FİLM OYUNCUSU!'
+    targetHereBadge: '🎯 HEDEF FİLM!', targetActorHereBadge: '⚡ HEDEF FİLM OYUNCUSU!',
+    spinWheelBtn: 'Çarkı Çevir', rouletteReadyText: 'Makara hazır! Filmini seçmek için çarkı çevir.',
+    popularGamesTitle: '🔥 En Popüler Oyunlar (Tek Tıkla Seç)',
+    popGame1: 'Zindan Adası ➔ Karayip Korsanları',
+    popGame2: 'Başlangıç ➔ Yüzüklerin Efendisi',
+    popGame3: 'Ucuz Roman ➔ Kara Şövalye',
+    b11Name: 'Köprü Mimarı', b11Desc: 'SineBağ mini oyununda ilk film köprünü başarıyla tamamladın!',
+    b12Name: 'Kestirme Dehası', b12Desc: 'Gizli Başarım: SineBağ oyununda iki filmi 2 veya daha az bağlantıda birleştirdin!',
+    b13Name: 'SineBağ Ustası', b13Desc: 'SineBağ mini oyununda 5 farklı film köprüsü tamamladın!'
   },
   en: {
     home: 'Home', ranking: 'Global Ranking', community: 'Community', login: 'Sign In', logout: 'Log Out', trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Editor\'s Pick', searchPlaceholder: 'Search movies to rate...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot Summary', watchTrailer: 'Watch Trailer', saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', noRating: 'Haven\'t rated any movies yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Your Average', nextLevel: 'Next Badge', globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'My Ratings', editProfile: 'Edit Profile', rateNow: 'Rate Movie', voteCount: 'Votes', average: 'Avg', badges: 'Achievement Badges', communityAvg: 'Community Average', actionPacked: 'Action Packed', emotionalDramas: 'Emotional Dramas', turkishCinema: 'Turkish Masterpieces', sciFi: 'Sci-Fi Worlds', comedy: 'Guaranteed Laughs', c1: 'Screenplay & Depth', c1Desc: 'Plot flow, logic, character development, and originality.', c2: 'Acting Performance', c2Desc: 'Cast harmony, emotional delivery, and believability.', c3: 'Cinematography & Visuals', c3Desc: 'Camera angles, lighting, color palette, and visual atmosphere.', c4: 'Sound, Score & Design', c4Desc: 'Soundtrack, sound effects, and contribution to atmosphere.', c5: 'Editing, Pacing & Directing', c5Desc: 'Scene transitions, tempo, and keeping the audience engaged.', globalDesc: 'The massive cinema archive shaped by the community\'s toughest critics.', registeredMovies: 'Rated Movies', username: 'Username', selectAvatar: 'Choose Avatar', saveChanges: 'Save Changes', noBadges: 'Rate movies to earn badges!', b1Name: 'Popcorn Eater', b1Desc: 'Rated your first movie!', b2Name: 'Movie Buff', b2Desc: 'Passed the 10-movie mark.', b3Name: 'Festival Critic', b3Desc: '50 Movies! Getting serious.', b4Name: 'Golden Ticket', b4Desc: '100 Movies Club member.', b5Name: 'Master Director', b5Desc: '250 Movies! A living archive.', b6Name: 'God of Cinema', b6Desc: '500+ Movies! You wrote the book.', loginOr: 'OR', registerBtn: 'Create Account', namePlaceholder: 'Your Name', emailPlaceholder: 'Email Address', passPlaceholder: 'Password', navShowcase: 'HOME', navList: 'RANKING', navProfile: 'PROFILE', noData: 'No data.', watchlist: 'My Watchlist', addToWatchlist: 'Add to Watchlist', removeFromWatchlist: 'In Watchlist (Remove)', profileGeneral: 'Overview & Stats', sortBy: 'Sort by:', sortDate: 'Date Added', sortMyScore: 'My Score', sortGlobalScore: 'Global Score', emptyWatchlist: 'Your watchlist is empty.', cinematicDNA: 'Critical Focus Analysis (DNA)', dnaDesc: 'Shows which criteria you have the highest expectations for based on your ratings (Inverse proportion: Lower average means tougher standards).', customLists: 'My Custom Lists', createNewList: 'Create New List', listNamePlaceholder: 'E.g., Mind-Bending Movies...', add: 'Create', share: 'Share', copied: 'Link Copied!', selectList: 'Add to Custom List', addedToList: 'Added to list!', addCustomListHover: 'Add to Custom List', addWatchlistHover: 'Add to Watchlist', removeWatchlistHover: 'Remove from Watchlist', autoRemoveSetting: 'Auto-remove rated movies from Watchlist', autoRemoveDesc: 'When enabled, movies you rate are automatically removed from your Watchlist.', listCreated: 'List created!', errorOccurred: 'An error occurred!', bioLabel: 'Cinema Motto (Bio)', bioPlaceholder: 'Write a quote or your cinema view...', selectBanner: 'Select Profile Banner', cineZodiac: 'Cinema Zodiac', cineZodiacDesc: 'Your critic persona based on your toughest criterion.', topGenres: 'Favorite Genres', viewAll: 'View All', zodiacC1: 'Plot Hunter', zodiacC2: 'Emotion Analyst', zodiacC3: 'Visual Esthete', zodiacC4: 'Audiophile Critic', zodiacC5: 'Pacing Master', zodiacDefault: 'Novice Viewer', zC1Desc: 'You never forgive plot holes. A weak story stands no chance.', zC2Desc: 'Fake acting ruins the movie for you. You seek raw emotion.', zC3Desc: 'Your eyes work like a camera lens. Lighting and framing are everything.', zC4Desc: 'You close your eyes and listen. Weak music means a weak movie.', zC5Desc: 'You hate boring moments. Editing and rhythm are your top priorities.', top3Title: 'Holy Trinity (Top 3)', top3Desc: 'The 3 greatest movies of your life.', selectTop3Search: 'Search a movie for this slot...', verifyEmailSent: 'Verification link sent! Please check your email inbox (and Spam folder).', emailNotVerifiedError: 'Your email is not verified yet! Please click the link sent to your email.', followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Following', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!', communityPrivacyTitle: 'Private Code Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter your friend\'s exact 6-digit @code to find them.', mostVoted: 'Most Voted', exactCodeRequired: 'Type exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies', tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed to unlock your critical DNA! (20 Minimum)', dnaLockedDescPublic: 'This user hasn\'t rated enough movies to generate a DNA profile.', notifications: 'Notifications', noNotifications: 'No notifications yet.', startedFollowing: 'started following you.', auraColor: 'Profile Aura (Theme Color)', friendsWatched: 'Friends Who Watched This',
@@ -173,7 +181,15 @@ const TRANSLATIONS = {
     linksCount: 'Links', gameWonTitle: 'BRIDGE COMPLETED!', gameWonSubtitle: 'You connected both movies with your cinema knowledge!',
     winRank1: 'FLAWLESS CINEPHILE GENIUS', winRank2: 'MASTER BRIDGE ARCHITECT', winRank3: 'CINEMA EXPLORER',
     playAgainBtn: 'Play With New Movies', retrySameBtn: 'Try Shorter Path', changeMovie: 'Change',
-    targetHereBadge: '🎯 TARGET MOVIE!', targetActorHereBadge: '⚡ IN TARGET CAST!'
+    targetHereBadge: '🎯 TARGET MOVIE!', targetActorHereBadge: '⚡ IN TARGET CAST!',
+    spinWheelBtn: 'Spin the Reel', rouletteReadyText: 'Reel is ready! Click below to spin for tonight\'s movie.',
+    popularGamesTitle: '🔥 Most Popular Games (Quick Pick)',
+    popGame1: 'Shutter Island ➔ Pirates of the Caribbean',
+    popGame2: 'Inception ➔ Lord of the Rings',
+    popGame3: 'Pulp Fiction ➔ The Dark Knight',
+    b11Name: 'Bridge Architect', b11Desc: 'Completed your first movie bridge in the CineLink mini-game!',
+    b12Name: 'Shortcut Genius', b12Desc: 'Secret: Connected two movies in 2 or fewer links in CineLink!',
+    b13Name: 'CineLink Master', b13Desc: 'Completed 5 movie bridges in the CineLink mini-game!'
   },
   de: { 
     home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben',
@@ -210,7 +226,13 @@ const TRANSLATIONS = {
     linksCount: 'Schritte', gameWonTitle: 'BRÜCKE VOLLENDET!', gameWonSubtitle: 'Du hast beide Filme mit deinem Kinowissen verbunden!',
     winRank1: 'PERFEKTES CINEASTEN-GENIE', winRank2: 'MEISTER-ARCHITEKT', winRank3: 'KINO-ENTDECKER',
     playAgainBtn: 'Mit neuen Filmen spielen', retrySameBtn: 'Kürzeren Weg versuchen', changeMovie: 'Ändern',
-    targetHereBadge: '🎯 ZIELFILM!', targetActorHereBadge: '⚡ IM ZIELFILM!'
+    targetHereBadge: '🎯 ZIELFILM!', targetActorHereBadge: '⚡ IM ZIELFILM!',
+    spinWheelBtn: 'Rad drehen', rouletteReadyText: 'Filmrolle bereit! Klicke zum Drehen.',
+    popularGamesTitle: '🔥 Beliebteste Spiele (Schnellwahl)',
+    popGame1: 'Shutter Island ➔ Fluch der Karibik', popGame2: 'Inception ➔ Herr der Ringe', popGame3: 'Pulp Fiction ➔ The Dark Knight',
+    b11Name: 'Brückenbauer', b11Desc: 'Erste Filmbrücke in CineLink gebaut!',
+    b12Name: 'Abkürzungs-Genie', b12Desc: 'Geheim: Zwei Filme in maximal 2 Schritten verbunden!',
+    b13Name: 'CineLink-Meister', b13Desc: '5 Filmbrücken in CineLink vollendet!'
   },
   it: { 
     home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti.', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato',
@@ -247,7 +269,13 @@ const TRANSLATIONS = {
     linksCount: 'Passi', gameWonTitle: 'PONTE COMPLETATO!', gameWonSubtitle: 'Hai collegato entrambi i film con la tua cultura cinematografica!',
     winRank1: 'GENIO CINEFILO PERFETTO', winRank2: 'MAESTRO ARCHITETTO', winRank3: 'ESPLORATORE DEL CINEMA',
     playAgainBtn: 'Gioca con Nuovi Film', retrySameBtn: 'Prova Percorso Più Breve', changeMovie: 'Cambia',
-    targetHereBadge: '🎯 FILM OBIETTIVO!', targetActorHereBadge: '⚡ NEL CAST OBIETTIVO!'
+    targetHereBadge: '🎯 FILM OBIETTIVO!', targetActorHereBadge: '⚡ NEL CAST OBIETTIVO!',
+    spinWheelBtn: 'Gira la Ruota', rouletteReadyText: 'Bobina pronta! Premi per girare.',
+    popularGamesTitle: '🔥 Giochi Più Popolari (Scelta Rapida)',
+    popGame1: 'Shutter Island ➔ Pirati dei Caraibi', popGame2: 'Inception ➔ Il Signore degli Anelli', popGame3: 'Pulp Fiction ➔ Il Cavaliere Oscuro',
+    b11Name: 'Architetto di Ponti', b11Desc: 'Primo ponte completato in CineLink!',
+    b12Name: 'Genio della Scorciatoia', b12Desc: 'Segreto: Due film collegati in 2 o meno passi!',
+    b13Name: 'Maestro CineLink', b13Desc: '5 ponti completati in CineLink!'
   },
   fr: { 
     home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
@@ -284,7 +312,13 @@ const TRANSLATIONS = {
     linksCount: 'Liens', gameWonTitle: 'PONT TERMINÉ !', gameWonSubtitle: 'Vous avez relié les deux films grâce à votre culture cinéma !',
     winRank1: 'GÉNIE CINÉPHILE PARFAIT', winRank2: 'MAÎTRE ARCHITECTE', winRank3: 'EXPLORATEUR DU CINÉMA',
     playAgainBtn: 'Jouer avec de Nouveaux Films', retrySameBtn: 'Essayer un Chemin Plus Court', changeMovie: 'Changer',
-    targetHereBadge: '🎯 FILM CIBLE !', targetActorHereBadge: '⚡ DANS LE CASTING CIBLE !'
+    targetHereBadge: '🎯 FILM CIBLE !', targetActorHereBadge: '⚡ DANS LE CASTING CIBLE !',
+    spinWheelBtn: 'Tourner la Roue', rouletteReadyText: 'Bobine prête ! Cliquez pour lancer.',
+    popularGamesTitle: '🔥 Jeux les Plus Populaires (Choix Rapide)',
+    popGame1: 'Shutter Island ➔ Pirates des Caraïbes', popGame2: 'Inception ➔ Le Seigneur des Anneaux', popGame3: 'Pulp Fiction ➔ The Dark Knight',
+    b11Name: 'Architecte de Ponts', b11Desc: 'Premier pont complété dans CineLink !',
+    b12Name: 'Génie du Raccourci', b12Desc: 'Secret : Deux films reliés en 2 étapes ou moins !',
+    b13Name: 'Maître CineLink', b13Desc: '5 ponts complétés dans CineLink !'
   }
 };
 
@@ -392,8 +426,7 @@ const CustomAnimations = () => (
        background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); 
        transform: skewX(-20deg); transition: left 0.6s ease; z-index: 10;
     }
-    .holo-badge:hover { transform: translateY(-5px) scale(1.05); }
-    .holo-badge:hover::before { left: 150%; }
+    .group:hover .holo-badge::before { left: 150%; }
 
     /* YENİ: 3D TILT (KOLEKSİYON KARTI EĞİMİ) VE SKELETON EFEKTİ */
     .tilt-card { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; transform-style: preserve-3d; }
@@ -452,6 +485,45 @@ const CustomAnimations = () => (
     }
     header {
       box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.8), 0 1px 0 0 rgba(255, 255, 255, 0.07) !important;
+    }
+
+    /* YENİ: 7 SANİYELİK SİNEMA RULETİ (0-4sn Çok Hızlı, 4-7sn Kademe Kademe Yavaşlayan) */
+    @keyframes reelSpin7s {
+      0% { transform: translate3d(-56px, -50%, 0); }
+      57.14% { transform: translate3d(-5720px, -50%, 0); } /* 4.0. saniye: Yüksek hızda 45 afiş geçer */
+      68% { transform: translate3d(-6310px, -50%, 0); }    /* 4.75. saniye: 1. Kademe yavaşlama */
+      78% { transform: translate3d(-6640px, -50%, 0); }    /* 5.45. saniye: 2. Kademe yavaşlama */
+      87% { transform: translate3d(-6835px, -50%, 0); }    /* 6.10. saniye: 3. Kademe yavaşlama */
+      94% { transform: translate3d(-6932px, -50%, 0); }    /* 6.60. saniye: 4. Kademe yavaşlama */
+      98% { transform: translate3d(-6962px, -50%, 0); }    /* 6.85. saniye: Son tık öncesi */
+      100% { transform: translate3d(-6968px, -50%, 0); }   /* 7.00. saniye: Mercekte tam duruş */
+    }
+    .run-reel-7s {
+      animation: reelSpin7s 7s linear forwards;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    /* PROJEKSİYON CİHAZI MAKARALARININ 7 SANİYELİK DÖNÜŞÜ */
+    @keyframes spoolSpin7s {
+      0% { transform: rotate(0deg); }
+      57.14% { transform: rotate(3240deg); } /* İlk 4 saniye çok hızlı dönüş */
+      72% { transform: rotate(3720deg); }
+      85% { transform: rotate(3960deg); }
+      94% { transform: rotate(4070deg); }
+      100% { transform: rotate(4100deg); }   /* 7. saniyede duruş */
+    }
+    .run-spool-7s {
+      animation: spoolSpin7s 7s linear forwards;
+    }
+
+    /* YENİ: 3D KOLEKSİYONLUK ROZET PARILTISI */
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    .badge-emblem-float {
+      animation: badgeFloat 3.2s ease-in-out infinite;
     }
   `}}/>
 );
@@ -579,17 +651,13 @@ const getAllBadges = (ratingsList, t, globalMoviesList = []) => {
   const list = Array.isArray(ratingsList) ? ratingsList : [];
   const c = list.length;
 
-  // 1. Çöp Avcısı: 3.0 puanın altında 3 film
   const trashCount = list.filter(r => Number(r.finalScore) > 0 && Number(r.finalScore) < 3.0).length;
-  // 2. Acımasız: 2.0 veya altı en az 1 film
   const ruthlessCount = list.filter(r => Number(r.finalScore) > 0 && Number(r.finalScore) <= 2.0).length;
-  // 3. Gece Kuşu: Gece 01:00 - 05:00 arası 3 film
   const nightOwlCount = list.filter(r => {
     if (!r.date) return false;
     const hour = new Date(Number(r.date)).getHours();
     return hour >= 1 && hour <= 5;
   }).length;
-  // 4. Zaman Yolcusu: 4 farklı on yıldan film
   const decades = new Set();
   list.forEach(r => {
     const g = globalMoviesList.find(m => String(m.id) === String(r.id));
@@ -598,18 +666,107 @@ const getAllBadges = (ratingsList, t, globalMoviesList = []) => {
     if (match) decades.add(Math.floor(Number(match[0]) / 10) * 10);
   });
 
+  let gWins = 0, gBest = 999;
+  try {
+    const saved = JSON.parse(localStorage.getItem('cinescore_gamestats') || '{}');
+    gWins = Number(saved.wins) || 0;
+    gBest = Number(saved.bestLinks) || 999;
+  } catch (e) {}
+
   return [
-    { id: 'b1', name: t.b1Name, icon: <Film size={24}/>, color: 'text-zinc-400 border-zinc-700 bg-zinc-800/50', desc: t.b1Desc, earned: c >= 1 },
-    { id: 'b2', name: t.b2Name, icon: <Ticket size={24}/>, color: 'text-sky-400 border-sky-800/50 bg-sky-900/20', desc: t.b2Desc, earned: c >= 10 },
-    { id: 'b3', name: t.b3Name, icon: <Award size={24}/>, color: 'text-fuchsia-400 border-fuchsia-800/50 bg-fuchsia-900/20 shadow-[0_0_15px_rgba(192,38,211,0.2)]', desc: t.b3Desc, earned: c >= 50 },
-    { id: 'b4', name: t.b4Name, icon: <Medal size={24}/>, color: 'text-amber-400 border-amber-500/50 bg-amber-900/20 shadow-[0_0_20px_rgba(245,158,11,0.3)] animate-pulse', desc: t.b4Desc, earned: c >= 100 },
-    { id: 'b5', name: t.b5Name, icon: <Clapperboard size={24}/>, color: 'text-rose-500 border-rose-500/50 bg-rose-900/20 shadow-[0_0_25px_rgba(225,29,72,0.4)]', desc: t.b5Desc, earned: c >= 250 },
-    { id: 'b6', name: t.b6Name, icon: <Crown size={24}/>, color: 'text-emerald-400 border-emerald-400/80 bg-emerald-900/20 shadow-[0_0_30px_rgba(52,211,153,0.6)] animate-bounce', desc: t.b6Desc, earned: c >= 500 },
-    // GİZLİ (EASTER EGG) ROZETLER (Kazanılana kadar açıklaması gizli kalır)
-    { id: 'b7', name: t.b7Name || 'Çöp Avcısı', icon: <Flame size={24}/>, color: 'text-purple-400 border-purple-500/60 bg-purple-950/30 shadow-[0_0_20px_rgba(168,85,247,0.3)]', desc: (trashCount >= 3) ? t.b7Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b7Desc, earned: trashCount >= 3, secret: true },
-    { id: 'b8', name: t.b8Name || 'Zaman Yolcusu', icon: <Rocket size={24}/>, color: 'text-cyan-400 border-cyan-500/60 bg-cyan-950/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]', desc: (decades.size >= 4) ? t.b8Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b8Desc, earned: decades.size >= 4, secret: true },
-    { id: 'b9', name: t.b9Name || 'Gece Kuşu', icon: <Sparkles size={24}/>, color: 'text-indigo-400 border-indigo-500/60 bg-indigo-950/30 shadow-[0_0_20px_rgba(99,102,241,0.3)]', desc: (nightOwlCount >= 3) ? t.b9Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b9Desc, earned: nightOwlCount >= 3, secret: true },
-    { id: 'b10', name: t.b10Name || 'Acımasız', icon: <Trophy size={24}/>, color: 'text-red-500 border-red-500/60 bg-red-950/30 shadow-[0_0_20px_rgba(239,68,68,0.3)]', desc: (ruthlessCount >= 1) ? t.b10Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b10Desc, earned: ruthlessCount >= 1, secret: true },
+    {
+      id: 'b1', name: t.b1Name, icon: <Film size={26}/>, tier: 'BAŞLANGIÇ',
+      cardBg: 'from-blue-950/90 via-slate-900/95 to-cyan-950/90 border-cyan-400/60 shadow-[0_10px_30px_rgba(34,211,238,0.25)]',
+      orbBg: 'from-cyan-400 to-blue-600 text-white shadow-[0_0_25px_rgba(34,211,238,0.6)]',
+      badgePill: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+      desc: t.b1Desc, earned: c >= 1
+    },
+    {
+      id: 'b2', name: t.b2Name, icon: <Ticket size={26}/>, tier: 'BRONZ',
+      cardBg: 'from-sky-950/90 via-indigo-950/90 to-slate-900/95 border-sky-400/60 shadow-[0_10px_30px_rgba(56,189,248,0.28)]',
+      orbBg: 'from-sky-400 to-indigo-600 text-white shadow-[0_0_25px_rgba(56,189,248,0.65)]',
+      badgePill: 'bg-sky-500/20 text-sky-300 border-sky-400/40',
+      desc: t.b2Desc, earned: c >= 10
+    },
+    {
+      id: 'b3', name: t.b3Name, icon: <Award size={26}/>, tier: 'GÜMÜŞ',
+      cardBg: 'from-fuchsia-950/90 via-purple-950/90 to-slate-900/95 border-fuchsia-400/70 shadow-[0_10px_35px_rgba(217,70,239,0.3)]',
+      orbBg: 'from-fuchsia-400 to-purple-600 text-white shadow-[0_0_28px_rgba(217,70,239,0.7)]',
+      badgePill: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-400/40',
+      desc: t.b3Desc, earned: c >= 50
+    },
+    {
+      id: 'b4', name: t.b4Name, icon: <Medal size={26}/>, tier: 'ALTIN',
+      cardBg: 'from-amber-950/90 via-yellow-950/80 to-slate-900/95 border-amber-400/80 shadow-[0_10px_35px_rgba(251,191,36,0.35)]',
+      orbBg: 'from-amber-300 via-amber-500 to-orange-600 text-slate-950 shadow-[0_0_30px_rgba(251,191,36,0.8)]',
+      badgePill: 'bg-amber-500/20 text-amber-300 border-amber-400/50',
+      desc: t.b4Desc, earned: c >= 100
+    },
+    {
+      id: 'b5', name: t.b5Name, icon: <Clapperboard size={26}/>, tier: 'ELMAS',
+      cardBg: 'from-rose-950/90 via-red-950/85 to-slate-900/95 border-rose-400/80 shadow-[0_10px_40px_rgba(244,63,94,0.38)]',
+      orbBg: 'from-rose-400 via-red-500 to-pink-600 text-white shadow-[0_0_32px_rgba(244,63,94,0.8)]',
+      badgePill: 'bg-rose-500/20 text-rose-300 border-rose-400/50',
+      desc: t.b5Desc, earned: c >= 250
+    },
+    {
+      id: 'b6', name: t.b6Name, icon: <Crown size={26}/>, tier: 'MİTİK',
+      cardBg: 'from-emerald-950/95 via-teal-950/90 to-slate-900/95 border-emerald-400/90 shadow-[0_10px_45px_rgba(16,185,129,0.45)]',
+      orbBg: 'from-emerald-300 via-emerald-500 to-teal-600 text-slate-950 shadow-[0_0_35px_rgba(52,211,153,0.9)]',
+      badgePill: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/50',
+      desc: t.b6Desc, earned: c >= 500
+    },
+    // GİZLİ BAŞARIMLAR
+    {
+      id: 'b7', name: t.b7Name || 'Çöp Avcısı', icon: <Flame size={26}/>, tier: 'GİZLİ',
+      cardBg: 'from-purple-950/90 via-violet-950/85 to-slate-900/95 border-purple-400/75 shadow-[0_10px_35px_rgba(168,85,247,0.35)]',
+      orbBg: 'from-purple-400 via-violet-500 to-indigo-600 text-white shadow-[0_0_28px_rgba(168,85,247,0.75)]',
+      badgePill: 'bg-purple-500/25 text-purple-200 border-purple-400/50',
+      desc: (trashCount >= 3) ? t.b7Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b7Desc, earned: trashCount >= 3, secret: true
+    },
+    {
+      id: 'b8', name: t.b8Name || 'Zaman Yolcusu', icon: <Rocket size={26}/>, tier: 'GİZLİ',
+      cardBg: 'from-cyan-950/90 via-teal-950/85 to-slate-900/95 border-cyan-400/75 shadow-[0_10px_35px_rgba(6,182,212,0.35)]',
+      orbBg: 'from-cyan-300 via-cyan-500 to-blue-600 text-slate-950 shadow-[0_0_28px_rgba(6,182,212,0.75)]',
+      badgePill: 'bg-cyan-500/25 text-cyan-200 border-cyan-400/50',
+      desc: (decades.size >= 4) ? t.b8Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b8Desc, earned: decades.size >= 4, secret: true
+    },
+    {
+      id: 'b9', name: t.b9Name || 'Gece Kuşu', icon: <Sparkles size={26}/>, tier: 'GİZLİ',
+      cardBg: 'from-indigo-950/90 via-blue-950/85 to-slate-900/95 border-indigo-400/75 shadow-[0_10px_35px_rgba(99,102,241,0.35)]',
+      orbBg: 'from-indigo-400 via-blue-500 to-violet-600 text-white shadow-[0_0_28px_rgba(99,102,241,0.75)]',
+      badgePill: 'bg-indigo-500/25 text-indigo-200 border-indigo-400/50',
+      desc: (nightOwlCount >= 3) ? t.b9Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b9Desc, earned: nightOwlCount >= 3, secret: true
+    },
+    {
+      id: 'b10', name: t.b10Name || 'Acımasız', icon: <Trophy size={26}/>, tier: 'GİZLİ',
+      cardBg: 'from-red-950/90 via-orange-950/85 to-slate-900/95 border-red-500/75 shadow-[0_10px_35px_rgba(239,68,68,0.35)]',
+      orbBg: 'from-red-400 via-red-600 to-orange-600 text-white shadow-[0_0_28px_rgba(239,68,68,0.8)]',
+      badgePill: 'bg-red-500/25 text-red-200 border-red-400/50',
+      desc: (ruthlessCount >= 1) ? t.b10Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b10Desc, earned: ruthlessCount >= 1, secret: true
+    },
+    // MİNİ OYUN (SİNEBAĞ) ROZETLERİ
+    {
+      id: 'b11', name: t.b11Name || 'Köprü Mimarı', icon: <Clapperboard size={26}/>, tier: 'SİNEBAĞ',
+      cardBg: 'from-orange-950/90 via-amber-950/85 to-slate-900/95 border-orange-400/75 shadow-[0_10px_35px_rgba(249,115,22,0.32)]',
+      orbBg: 'from-amber-400 via-orange-500 to-red-500 text-slate-950 shadow-[0_0_28px_rgba(249,115,22,0.75)]',
+      badgePill: 'bg-orange-500/25 text-orange-200 border-orange-400/50',
+      desc: t.b11Desc, realDesc: t.b11Desc, earned: gWins >= 1
+    },
+    {
+      id: 'b12', name: t.b12Name || 'Kestirme Dehası', icon: <Sparkles size={26}/>, tier: 'GİZLİ OYUN',
+      cardBg: 'from-teal-950/90 via-emerald-950/85 to-slate-900/95 border-teal-400/75 shadow-[0_10px_35px_rgba(20,184,166,0.35)]',
+      orbBg: 'from-teal-300 via-emerald-500 to-cyan-600 text-slate-950 shadow-[0_0_28px_rgba(20,184,166,0.8)]',
+      badgePill: 'bg-teal-500/25 text-teal-200 border-teal-400/50',
+      desc: (gBest <= 2) ? t.b12Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b12Desc, earned: gBest <= 2, secret: true
+    },
+    {
+      id: 'b13', name: t.b13Name || 'SineBağ Ustası', icon: <Crown size={26}/>, tier: 'EFSANEVİ',
+      cardBg: 'from-pink-950/90 via-rose-950/85 to-purple-950/95 border-pink-400/80 shadow-[0_10px_40px_rgba(236,72,153,0.4)]',
+      orbBg: 'from-pink-400 via-rose-500 to-purple-600 text-white shadow-[0_0_32px_rgba(236,72,153,0.85)]',
+      badgePill: 'bg-pink-500/25 text-pink-200 border-pink-400/50',
+      desc: t.b13Desc, realDesc: t.b13Desc, earned: gWins >= 5
+    }
   ];
 };
 
@@ -850,7 +1007,10 @@ function CineScoreMain() {
     }
   };
 
-  // 2) FİLM MAKARASI & PROJEKSİYON RULETİ (Anında İptal Edilebilir & Yumuşak Geçişli)
+  // YENİ: 3D ROZET KUTLAMA PENCERESİ STATE'İ
+  const [unlockedBadgeModal, setUnlockedBadgeModal] = useState(null);
+
+  // 2) PROJEKSİYON CİHAZI & 7 SANİYELİK KADEMELİ YAVAŞLAYAN SİNEMA RULETİ
   const rouletteTimerRef = useRef(null);
 
   const closeCinemaRoulette = () => {
@@ -861,21 +1021,45 @@ function CineScoreMain() {
     setRouletteModal({ show: false, spinning: false, animate: false, strip: [], offsetPx: -56, winner: null });
   };
 
+  // Pencereyi açar, makarayı hazır bekletir
   const startCinemaRoulette = () => {
     if (!myWatchlist || myWatchlist.length === 0) return;
     if (rouletteTimerRef.current) clearTimeout(rouletteTimerRef.current);
 
-    // 30 karelik uzun bir 35mm film şeridi oluşturuyoruz
-    const totalFrames = 30;
-    const winIndex = 24; // Makaranın yumuşakça yavaşlayıp duracağı kare
+    const totalFrames = 60;
+    const reelStrip = [];
+    for (let i = 0; i < totalFrames; i++) {
+      const pick = myWatchlist[i % myWatchlist.length];
+      const fastPoster = typeof pick.poster === 'string' ? pick.poster.replace('/w500/', '/w200/') : pick.poster;
+      reelStrip.push({ ...pick, fastPoster, reelKey: `ready_${pick.id}_${i}` });
+    }
+
+    setRouletteModal({
+      show: true,
+      spinning: false,
+      animate: false,
+      strip: reelStrip,
+      offsetPx: -56,
+      winner: null
+    });
+  };
+
+  // "Çarkı Çevir"e basıldığında 60 karelik sonsuz şeritte 0-4sn çok hızlı, 4-7sn kademeli yavaşlayarak döner
+  const spinCinemaRoulette = () => {
+    if (!myWatchlist || myWatchlist.length === 0 || rouletteModal.spinning) return;
+    if (rouletteTimerRef.current) clearTimeout(rouletteTimerRef.current);
+
+    const totalFrames = 60;
+    const winIndex = 54; // 7. saniyede merceğin tam ortasında duracak olan 55. kare
     const reelStrip = [];
     for (let i = 0; i < totalFrames; i++) {
       const pick = myWatchlist[Math.floor(Math.random() * myWatchlist.length)];
-      reelStrip.push({ ...pick, reelKey: `${pick.id}_${i}` });
+      const fastPoster = typeof pick.poster === 'string' ? pick.poster.replace('/w500/', '/w200/') : pick.poster;
+      reelStrip.push({ ...pick, fastPoster, reelKey: `spin_${pick.id}_${i}_${Date.now()}` });
     }
     const chosenWinner = reelStrip[winIndex];
 
-    // Önce makarayı başlangıç noktasına (0. kareye) yerleştir
+    // Önce makarayı başlangıç konumuna (-56px) sıfırla
     setRouletteModal({
       show: true,
       spinning: true,
@@ -885,22 +1069,21 @@ function CineScoreMain() {
       winner: null
     });
 
-    // 60ms sonra yumuşak sinematik kaymayı başlat (Her kare 112px genişlik + 16px boşluk = 128px)
+    // 40ms sonra 7 saniyelik CSS Keyframe animasyonunu tetikle
     rouletteTimerRef.current = setTimeout(() => {
-      const targetOffset = -(winIndex * 128 + 56);
       setRouletteModal(prev => {
         if (!prev.show) return prev;
-        return { ...prev, animate: true, offsetPx: targetOffset };
+        return { ...prev, animate: true, offsetPx: -6968 };
       });
 
-      // Makara 4.2 saniyede yumuşakça durduğunda filmi projeksiyon perdesine yansıt
+      // Tam 7.0 saniye (7000ms) sonunda kazanan filmi projeksiyon perdesine yansıt
       rouletteTimerRef.current = setTimeout(() => {
         setRouletteModal(prev => {
           if (!prev.show) return prev;
           return { ...prev, spinning: false, winner: chosenWinner };
         });
-      }, 4250);
-    }, 60);
+      }, 7000);
+    }, 40);
   };
 
   // --- YENİ: MİNİ OYUN (SİNEBAĞ / CINELINK) STATE VE FONKSİYONLARI ---
@@ -1379,15 +1562,30 @@ function CineScoreMain() {
     }
   };
 
-// Oyun İçi Ekranı ve Seçim Listesini Anında En Tepeye Çıkarma Yardımcısı
+// Sadece Oyuncu/Film Seçim Listesini En Tepeye Çıkarma (Tüm Sayfayı Yukarı Atmaz)
   const resetGameScrollPosition = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const gridEl = document.getElementById('game-options-grid');
+    if (gridEl) gridEl.scrollTop = 0;
+
     setTimeout(() => {
-      const gridEl = document.getElementById('game-options-grid');
-      if (gridEl) gridEl.scrollTop = 0;
+      const gridAfter = document.getElementById('game-options-grid');
+      if (gridAfter) gridAfter.scrollTop = 0;
+
       const chainEl = document.getElementById('game-chain-list');
-      if (chainEl) chainEl.scrollTop = chainEl.scrollHeight;
-    }, 40);
+      if (chainEl) {
+        chainEl.scrollTop = chainEl.scrollHeight;
+        chainEl.scrollLeft = chainEl.scrollWidth;
+      }
+
+      // Mobilde kullanıcı seçim kutusunun altına kaymışsa sadece seçim kutusunun başlığına hizala
+      const selectionPanel = document.getElementById('game-selection-panel');
+      if (selectionPanel) {
+        const rect = selectionPanel.getBoundingClientRect();
+        if (rect.top < 60 || rect.top > window.innerHeight * 0.65) {
+          window.scrollTo({ top: window.scrollY + rect.top - 82, behavior: 'smooth' });
+        }
+      }
+    }, 30);
   };
 
   // DİL DEĞİŞTİĞİNDE OYUNDAKİ FİLM İSİMLERİNİ VE SEÇENEKLERİ YENİ DİLE ÇEVİRME
@@ -1450,7 +1648,7 @@ function CineScoreMain() {
     }
   };
 
-  // Film Seçildiğinde (Anında Yukarı Çıkar)
+// Film Seçildiğinde (Kazanınca Mini Oyun Rozetlerini ve Bildirimini Tetikler)
   const handlePickGameMovie = async (movie) => {
     resetGameScrollPosition();
     setGameFilterText('');
@@ -1462,6 +1660,50 @@ function CineScoreMain() {
       setGameChain(newChain);
       setGameWon(true);
       resetGameScrollPosition();
+
+      // MİNİ OYUN BAŞARIM ROZETLERİNİ KONTROL ET VE BİLDİRİM GÖNDER
+      try {
+        const linksUsed = Math.floor(newChain.length / 2);
+        const oldBadges = getAllBadges(myRatings, t, safeGlobalMovies).filter(b => b.earned).map(b => b.id);
+
+        const prevStats = JSON.parse(localStorage.getItem('cinescore_gamestats') || '{}');
+        const updatedStats = {
+          wins: (Number(prevStats.wins) || 0) + 1,
+          bestLinks: Math.min(Number(prevStats.bestLinks) || 999, linksUsed)
+        };
+        localStorage.setItem('cinescore_gamestats', JSON.stringify(updatedStats));
+
+        const newBadges = getAllBadges(myRatings, t, safeGlobalMovies).filter(b => b.earned);
+        const newlyUnlocked = newBadges.filter(b => !oldBadges.includes(b.id));
+
+        if (newlyUnlocked.length > 0) {
+          setTimeout(() => {
+            setUnlockedBadgeModal(newlyUnlocked[0]);
+            showToast(`🏆 ${t.newBadgeUnlocked || 'Yeni Rozet Kazandın:'} ${newlyUnlocked[0].name}!`);
+          }, 500);
+          if (user) {
+            const currentNotifs = userProfile?.notifications || [];
+            const badgeNotifs = newlyUnlocked
+              .filter(b => !currentNotifs.some(n => n.type === 'badge' && n.badgeId === b.id))
+              .map(b => ({
+                id: 'notif_badge_' + b.id + '_' + Date.now(),
+                type: 'badge',
+                badgeId: b.id,
+                fromName: `🏆 ${t.newBadgeUnlocked || 'Yeni Rozet:'} ${b.name}`,
+                badgeDesc: b.realDesc || b.desc,
+                date: Date.now(),
+                read: false
+              }));
+            if (badgeNotifs.length > 0) {
+              const updatedNotifs = [...badgeNotifs, ...currentNotifs].slice(0, 20);
+              await setDoc(doc(db, 'users', user.uid), { notifications: updatedNotifs, gameStats: updatedStats }, { merge: true });
+              setUserProfile(prev => ({ ...prev, notifications: updatedNotifs, gameStats: updatedStats }));
+            }
+          }
+        } else if (user) {
+          await setDoc(doc(db, 'users', user.uid), { gameStats: updatedStats }, { merge: true });
+        }
+      } catch (e) {}
       return;
     }
 
@@ -1489,21 +1731,27 @@ function CineScoreMain() {
     setGameStepType(lastState.stepType);
     setGameWon(false);
     setGameFilterText('');
-    setSmartHintData({ loading: false, recommendedId: null, message: '' });
     setGameHistoryStack(prev => prev.slice(0, -1));
   };
 
-  // Rastgele 2 Popüler Film Seçme ve Klasik Rota Yükleme
+  // 3 POPÜLER OYUN ROTASI VE RASTGELE 2 FİLM SEÇME FONKSİYONU
   const loadPresetOrRandomPair = async (type = 'random') => {
     setGameLoading(true);
     try {
-      if (type === 'classic') {
+      const presetPairs = {
+        classic: [11324, 22],   // 1. Zindan Adası ➔ Karayip Korsanları
+        popular2: [27205, 120], // 2. Başlangıç (Inception) ➔ Yüzüklerin Efendisi
+        popular3: [680, 155]    // 3. Ucuz Roman (Pulp Fiction) ➔ Kara Şövalye (The Dark Knight)
+      };
+
+      if (presetPairs[type]) {
+        const [id1, id2] = presetPairs[type];
         const [r1, r2] = await Promise.all([
-          fetch(`https://api.themoviedb.org/3/movie/11324?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json()),
-          fetch(`https://api.themoviedb.org/3/movie/22?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json())
+          fetch(`https://api.themoviedb.org/3/movie/${id1}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json()),
+          fetch(`https://api.themoviedb.org/3/movie/${id2}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json())
         ]);
-        setGameStartMovie({ id: String(r1.id), title: r1.title, year: '2010', poster: `https://image.tmdb.org/t/p/w500${r1.poster_path}` });
-        setGameTargetMovie({ id: String(r2.id), title: r2.title, year: '2003', poster: `https://image.tmdb.org/t/p/w500${r2.poster_path}` });
+        setGameStartMovie({ id: String(r1.id), title: r1.title, year: r1.release_date?.split('-')[0] || '', poster: `https://image.tmdb.org/t/p/w500${r1.poster_path}` });
+        setGameTargetMovie({ id: String(r2.id), title: r2.title, year: r2.release_date?.split('-')[0] || '', poster: `https://image.tmdb.org/t/p/w500${r2.poster_path}` });
       } else {
         const randomPage = Math.floor(Math.random() * 8) + 1;
         const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_API_KEY}&language=${tmdbLang}&page=${randomPage}`);
@@ -2818,7 +3066,10 @@ function CineScoreMain() {
           await setDoc(doc(db, 'users', user.uid), { notifications: updatedNotifs }, { merge: true });
           setUserProfile(prev => ({ ...prev, notifications: updatedNotifs }));
         }
-        setTimeout(() => showToast(`🏆 ${t.newBadgeUnlocked || 'Yeni Rozet Kazandın:'} ${newlyUnlocked[0].name}!`), 900);
+        setTimeout(() => {
+          setUnlockedBadgeModal(newlyUnlocked[0]);
+          showToast(`🏆 ${t.newBadgeUnlocked || 'Yeni Rozet Kazandın:'} ${newlyUnlocked[0].name}!`);
+        }, 600);
       }
 
       if (userProfile?.autoRemoveWatchlist) {
@@ -3283,131 +3534,228 @@ function CineScoreMain() {
         </div>
       )}
 
-      {/* 2. 35MM ESKİ FİLM MAKARASI & SİNEMA PROJEKSİYON PERDESİ RULETİ */}
-      {rouletteModal.show && (
-        <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
-          <div className="bg-slate-900/95 border border-slate-700 w-full max-w-xl rounded-[2.5rem] p-5 sm:p-7 relative shadow-[0_0_60px_rgba(0,0,0,0.95)] text-center overflow-hidden">
+      {/* YENİ: BÜYÜK 3D MADALYON ROZET KUTLAMA PENCERESİ */}
+      {unlockedBadgeModal && (
+        <div className="fixed inset-0 z-[180] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300">
+          <div className={`w-full max-w-sm rounded-[2.5rem] p-6 sm:p-8 relative text-center border-2 bg-gradient-to-br ${unlockedBadgeModal.cardBg || 'from-slate-900 to-[#04060C] border-amber-400'} shadow-[0_0_80px_rgba(0,0,0,0.95)] animate-in zoom-in-95 duration-300 overflow-hidden`}>
             
-            {/* ÇARPI BUTONU (Anında zamanlayıcıyı durdurur ve kapatır) */}
-            <button onClick={closeCinemaRoulette} className="absolute top-5 right-5 p-2.5 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-700 hover:border-theme z-30 transition-colors">
-              <X size={20}/>
+            {/* Arka Plan Işık Halesi */}
+            <div className={`absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-gradient-to-r ${unlockedBadgeModal.orbBg || 'from-amber-400 to-orange-500'} opacity-30 blur-3xl pointer-events-none`}></div>
+
+            <button
+              onClick={() => setUnlockedBadgeModal(null)}
+              className="absolute top-4 right-4 p-2 bg-[#04060C]/80 rounded-full text-slate-300 hover:text-white border border-white/15 z-20 transition-colors"
+            >
+              <X size={18}/>
             </button>
 
-            <h3 className="text-xl sm:text-2xl font-black text-white mb-1.5 flex items-center justify-center gap-2 relative z-10">
-              <Film className="text-theme" size={24}/> {t.rouletteTitle}
+            <span className={`inline-block text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border mb-3 relative z-10 ${unlockedBadgeModal.badgePill || 'bg-amber-500/20 text-amber-300 border-amber-400/50'}`}>
+              🏆 {t.newBadgeUnlocked || 'YENİ ROZET KAZANDIN!'}
+            </span>
+
+            {/* Orta Dev 3D Madalyon */}
+            <div className="relative my-5 flex items-center justify-center z-10">
+              <div className={`absolute w-28 h-28 rounded-full bg-gradient-to-r ${unlockedBadgeModal.orbBg || 'from-amber-400 to-orange-500'} opacity-45 blur-xl animate-pulse`}></div>
+              <div className={`relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl flex items-center justify-center border-2 border-white/50 bg-gradient-to-br ${unlockedBadgeModal.orbBg || 'from-amber-400 to-orange-500'} badge-emblem-float shadow-2xl`}>
+                <div className="scale-150 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
+                  {unlockedBadgeModal.icon}
+                </div>
+              </div>
+            </div>
+
+            <span className="text-[10px] font-black uppercase tracking-widest text-white/70 block mb-1 relative z-10">
+              {unlockedBadgeModal.tier || 'ÖZEL BAŞARIM'}
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-black text-white mb-2.5 drop-shadow relative z-10">
+              {unlockedBadgeModal.name}
             </h3>
-            <p className="text-xs font-bold text-slate-400 max-w-md mx-auto mb-4 leading-relaxed relative z-10">
-              {t.rouletteDesc}
+            <p className="text-xs sm:text-sm font-bold text-slate-200 leading-relaxed mb-6 px-2 relative z-10">
+              {unlockedBadgeModal.realDesc || unlockedBadgeModal.desc}
             </p>
 
-            {/* ÜST SAHNE: SİNEMA PERDESİ (PROJEKSİYON EKRANI) */}
-            <div className="relative mx-auto w-full max-w-md h-48 sm:h-56 rounded-2xl bg-[#03050A] border-2 border-slate-800 shadow-[inset_0_0_50px_rgba(0,0,0,0.95)] flex items-center justify-center overflow-hidden mb-2 z-10">
-              {/* Perde Üstü Işık Huzmesi */}
+            <button
+              onClick={() => setUnlockedBadgeModal(null)}
+              className="w-full py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-[#04060C] font-black text-sm shadow-xl transition-transform active:scale-95 relative z-10"
+            >
+              Harika!
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 2. SADELEŞTİRİLMİŞ PROJEKSİYON CİHAZLI & 7 SANİYELİK SİNEMA RULETİ */}
+      {rouletteModal.show && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-2.5 sm:p-4 bg-black/95 overflow-y-auto">
+          <div className="bg-gradient-to-b from-[#0B101D] to-[#05070E] border border-slate-700/80 w-full max-w-xl rounded-[2rem] p-3.5 sm:p-6 relative shadow-[0_0_70px_rgba(0,0,0,1)] text-center overflow-hidden my-auto">
+            
+            {/* Kapat Butonu */}
+            <button onClick={closeCinemaRoulette} className="absolute top-3.5 right-3.5 p-2 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-700 hover:border-theme z-40 transition-colors">
+              <X size={18}/>
+            </button>
+
+            {/* Başlık */}
+            <div className="mb-2.5 sm:mb-3">
+              <h3 className="text-base sm:text-2xl font-black text-white flex items-center justify-center gap-2">
+                <Film className="text-theme" size={20}/> {t.rouletteTitle}
+              </h3>
+              <p className="text-[10px] sm:text-xs font-bold text-slate-400 max-w-md mx-auto mt-0.5 leading-snug">
+                {t.rouletteDesc}
+              </p>
+            </div>
+
+            {/* 1. BÖLÜM: ÜST SİNEMA PERDESİ */}
+            <div className="relative mx-auto w-full h-36 sm:h-44 rounded-2xl bg-[#020307] border-2 border-slate-800 shadow-[inset_0_0_40px_rgba(0,0,0,0.95)] flex items-center justify-center overflow-hidden">
+              <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-rose-950 via-rose-800 to-rose-950 opacity-80"></div>
+              <div className="absolute inset-y-0 left-0 w-3 sm:w-5 bg-gradient-to-r from-rose-950/50 to-transparent pointer-events-none"></div>
+              <div className="absolute inset-y-0 right-0 w-3 sm:w-5 bg-gradient-to-l from-rose-950/50 to-transparent pointer-events-none"></div>
+
               <div
-                className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+                className="absolute inset-0 pointer-events-none transition-opacity duration-500"
                 style={{
-                  background: `radial-gradient(circle at 50% 100%, ${themeColor}${rouletteModal.winner ? '55' : '18'}, transparent 75%)`
+                  background: `radial-gradient(circle at 50% 100%, ${themeColor}${rouletteModal.winner ? '55' : rouletteModal.spinning ? '30' : '12'}, transparent 75%)`
                 }}
               ></div>
-              {/* Sinema Perdesi Çerçeve Çizgileri */}
-              <div className="absolute top-0 inset-x-6 h-1.5 bg-slate-800 rounded-b-full"></div>
 
               {rouletteModal.spinning ? (
-                <div className="flex flex-col items-center justify-center gap-3 text-slate-400">
-                  <div className="w-14 h-14 rounded-full border-2 border-dashed border-theme flex items-center justify-center animate-spin">
-                    <Film size={26} className="text-theme"/>
+                <div className="flex flex-col items-center justify-center gap-2 relative z-10 px-4">
+                  <div className="px-3 py-1 rounded-full bg-theme/15 border border-theme/40 text-theme text-[10px] sm:text-xs font-black uppercase tracking-widest animate-pulse">
+                    📽️ {t.rouletteSpinning}
                   </div>
-                  <span className="text-xs font-black uppercase tracking-widest text-theme animate-pulse">
-                    {t.rouletteSpinning}
-                  </span>
                 </div>
-              ) : rouletteModal.winner && (
-                <div className="flex items-center gap-4 sm:gap-5 px-5 py-3 w-full animate-in zoom-in-95 duration-500 relative z-10">
+              ) : rouletteModal.winner ? (
+                <div className="flex items-center gap-3.5 sm:gap-5 px-4 sm:px-6 py-2 w-full relative z-10 animate-in zoom-in-95 duration-300">
                   <img
                     src={rouletteModal.winner.poster}
-                    className="w-24 sm:w-28 aspect-[2/3] object-cover rounded-xl border-2 border-theme shadow-theme shrink-0"
+                    className="w-16 sm:w-22 aspect-[2/3] object-cover rounded-xl border-2 border-theme shadow-theme shrink-0"
                     alt=""
                   />
                   <div className="text-left min-w-0 flex-1">
-                    <span className="inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md bg-theme text-[#04060C] mb-2 shadow-sm">
+                    <span className="inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-md bg-theme text-[#04060C] mb-1 shadow">
                       ★ {t.roulettePicked || 'Kaderin Seçimi!'}
                     </span>
-                    <h4 className="text-lg sm:text-xl font-black text-white leading-tight line-clamp-2 drop-shadow-md">
+                    <h4 className="text-sm sm:text-xl font-black text-white leading-tight line-clamp-2 drop-shadow">
                       {localizedData?.[rouletteModal.winner.id]?.title || rouletteModal.winner.title}
                     </h4>
                   </div>
                 </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center gap-1.5 px-6 text-slate-400 relative z-10">
+                  <Sparkles size={22} className="text-theme"/>
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-300">
+                    {t.rouletteReadyText || 'Makara hazır! Filmini seçmek için çarkı çevir.'}
+                  </span>
+                </div>
               )}
             </div>
 
-            {/* PROJEKSİYON IŞIK HUZMESİ (Makaradan Perdeye Yansıyan Işık Konisi) */}
-            <div className="relative h-6 w-full flex justify-center items-center pointer-events-none">
+            {/* 2. BÖLÜM: PROJEKSİYON MERCEĞİNDEN PERDEYE VURAN IŞIK HUZMESİ */}
+            <div className="relative h-5 sm:h-6 w-full flex justify-center items-center pointer-events-none">
               <div
-                className="w-44 h-full projector-beam-active transition-all duration-500"
+                className={`w-44 sm:w-56 h-full transition-opacity duration-300 ${rouletteModal.spinning || rouletteModal.winner ? 'opacity-80' : 'opacity-25'}`}
                 style={{
-                  background: `linear-gradient(to top, ${themeColor}66, ${themeColor}08)`,
-                  clipPath: 'polygon(38% 100%, 62% 100%, 100% 0%, 0% 0%)'
+                  background: `linear-gradient(to top, ${themeColor}88, ${themeColor}05)`,
+                  clipPath: 'polygon(40% 100%, 60% 100%, 100% 0%, 0% 0%)'
                 }}
               ></div>
             </div>
 
-            {/* ALT SAHNE: AKAN 35MM ESKİ FİLM MAKARASI */}
-            <div className="relative w-full h-48 bg-[#161b26] border-y-4 border-slate-700 shadow-2xl overflow-hidden mb-6 select-none">
-              {/* Üst ve Alt 35mm Film Şeridi Delikleri */}
-              <div className="absolute top-1.5 inset-x-0 h-3 film-sprockets z-20 opacity-90"></div>
-              <div className="absolute bottom-1.5 inset-x-0 h-3 film-sprockets z-20 opacity-90"></div>
+            {/* 3. BÖLÜM: SİNEMA PROJEKSİYON CİHAZI GÖVDESİ & ÇİFT DÖNEN MAKARALAR (Yazısız Sade Görünüm) */}
+            <div className="relative rounded-2xl bg-gradient-to-b from-[#161F30] via-[#0D1320] to-[#070A12] border-2 border-slate-700/90 p-2.5 sm:p-3.5 shadow-2xl mb-4">
+              
+              {/* Üst Makaralar ve Orta Mercek */}
+              <div className="flex items-end justify-between px-3 sm:px-8 mb-2">
+                
+                {/* SOL DÖNEN MAKARASI */}
+                <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#05070C] border-[3px] border-slate-500 flex items-center justify-center relative shadow-inner ${rouletteModal.animate ? 'run-spool-7s' : ''}`}>
+                  <div className="absolute inset-1.5 rounded-full border border-dashed border-slate-600"></div>
+                  <div className="w-full h-1 bg-slate-600 absolute"></div>
+                  <div className="w-full h-1 bg-slate-600 absolute rotate-60"></div>
+                  <div className="w-full h-1 bg-slate-600 absolute -rotate-60"></div>
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-slate-300 border-2 border-slate-800 z-10"></div>
+                </div>
 
-              {/* Yan Karanlık Vinyet */}
-              <div className="absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-[#04060C] to-transparent z-20 pointer-events-none"></div>
-              <div className="absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-[#04060C] to-transparent z-20 pointer-events-none"></div>
+                {/* ORTA MERCEK ÇIKINTISI */}
+                <div
+                  className="w-16 sm:w-24 h-3 rounded-t-xl border-t-2 border-x-2"
+                  style={{ borderColor: themeColor, backgroundColor: `${themeColor}25` }}
+                ></div>
 
-              {/* Ortadaki Projeksiyon Merceği Çerçevesi */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[156px] rounded-xl border-[3px] border-theme shadow-theme z-30 pointer-events-none">
-                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-theme"></div>
+                {/* SAĞ DÖNEN MAKARASI */}
+                <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#05070C] border-[3px] border-slate-500 flex items-center justify-center relative shadow-inner ${rouletteModal.animate ? 'run-spool-7s' : ''}`}>
+                  <div className="absolute inset-1.5 rounded-full border border-dashed border-slate-600"></div>
+                  <div className="w-full h-1 bg-slate-600 absolute"></div>
+                  <div className="w-full h-1 bg-slate-600 absolute rotate-60"></div>
+                  <div className="w-full h-1 bg-slate-600 absolute -rotate-60"></div>
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-slate-300 border-2 border-slate-800 z-10"></div>
+                </div>
               </div>
 
-              {/* Yumuşakça Kayarak Duran Afiş Şeridi */}
-              <div
-                className="absolute top-1/2 left-1/2 flex items-center gap-4"
-                style={{
-                  transform: `translate3d(${rouletteModal.offsetPx ?? -56}px, -50%, 0)`,
-                  transition: rouletteModal.animate ? 'transform 4.2s cubic-bezier(0.1, 0.85, 0.15, 1)' : 'none',
-                  willChange: 'transform'
-                }}
-              >
-                {(rouletteModal.strip || []).map((item) => (
-                  <div
-                    key={item.reelKey}
-                    className="w-28 h-36 rounded-lg overflow-hidden bg-[#04060C] border border-slate-700 shrink-0 shadow-md"
-                  >
-                    <img src={item.poster} className="w-full h-full object-cover" alt=""/>
-                  </div>
-                ))}
+              {/* PROJEKSİYON CİHAZININ İÇİNDEN GEÇEN 35MM FİLM ŞERİDİ */}
+              <div className="relative w-full h-40 sm:h-44 bg-[#070A10] rounded-xl border-y-4 border-slate-600 overflow-hidden select-none shadow-inner">
+                <div className="absolute top-1 inset-x-0 h-2.5 film-sprockets z-20 opacity-85"></div>
+                <div className="absolute bottom-1 inset-x-0 h-2.5 film-sprockets z-20 opacity-85"></div>
+
+                <div className="absolute inset-y-0 left-0 w-10 sm:w-20 bg-gradient-to-r from-[#05070C] via-[#05070C]/80 to-transparent z-20 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-10 sm:w-20 bg-gradient-to-l from-[#05070C] via-[#05070C]/80 to-transparent z-20 pointer-events-none"></div>
+
+                {/* Ortadaki Işıklı Projeksiyon Merceği Yuvası */}
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[118px] h-[142px] rounded-xl border-[3px] z-30 pointer-events-none"
+                  style={{ borderColor: themeColor, boxShadow: `0 0 25px ${themeColor}66` }}
+                >
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45" style={{ backgroundColor: themeColor }}></div>
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45" style={{ backgroundColor: themeColor }}></div>
+                </div>
+
+                {/* 60 KARELİK 7 SANİYELİK AKAN AFİŞ ŞERİDİ */}
+                <div
+                  key={rouletteModal.strip?.[0]?.reelKey || 'init'}
+                  className={`absolute top-1/2 left-1/2 flex items-center gap-4 ${rouletteModal.animate ? 'run-reel-7s' : ''}`}
+                  style={!rouletteModal.animate ? { transform: `translate3d(${rouletteModal.offsetPx ?? -56}px, -50%, 0)` } : undefined}
+                >
+                  {(rouletteModal.strip || []).map((item) => (
+                    <div
+                      key={item.reelKey}
+                      className="w-28 h-32 rounded-lg overflow-hidden bg-[#04060C] border border-slate-700 shrink-0"
+                    >
+                      <img src={item.fastPoster || item.poster} decoding="async" className="w-full h-full object-cover" alt=""/>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* AKSİYON BUTONLARI */}
-            <div className="flex gap-3 w-full relative z-10">
+            {/* 4. BÖLÜM: KONTROL BUTONLARI */}
+            {!rouletteModal.winner && !rouletteModal.spinning ? (
               <button
-                onClick={startCinemaRoulette}
-                disabled={rouletteModal.spinning}
-                className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-white rounded-xl font-black text-sm transition-all border border-slate-700"
+                onClick={spinCinemaRoulette}
+                className="w-full py-3.5 bg-theme text-[#04060C] rounded-xl font-black text-sm sm:text-base transition-transform hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2 shadow-theme"
               >
-                {t.spinAgain}
+                <Sparkles size={18}/> {t.spinWheelBtn || 'Çarkı Çevir'}
               </button>
-              <button
-                onClick={() => {
-                  const w = rouletteModal.winner;
-                  if (!w) return;
-                  closeCinemaRoulette();
-                  selectMovieToRate(w.id, w.title);
-                }}
-                disabled={rouletteModal.spinning || !rouletteModal.winner}
-                className="flex-1 py-3.5 bg-theme disabled:opacity-40 text-[#04060C] rounded-xl font-black text-sm transition-all shadow-theme"
-              >
-                {t.goToMovie}
-              </button>
-            </div>
+            ) : (
+              <div className="flex gap-3 w-full">
+                <button
+                  onClick={spinCinemaRoulette}
+                  disabled={rouletteModal.spinning}
+                  className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-white rounded-xl font-black text-xs sm:text-sm transition-colors border border-slate-700"
+                >
+                  {rouletteModal.spinning ? t.rouletteSpinning : t.spinAgain}
+                </button>
+                <button
+                  onClick={() => {
+                    const w = rouletteModal.winner;
+                    if (!w) return;
+                    closeCinemaRoulette();
+                    selectMovieToRate(w.id, w.title);
+                  }}
+                  disabled={rouletteModal.spinning || !rouletteModal.winner}
+                  className="flex-1 py-3 bg-theme disabled:opacity-35 text-[#04060C] rounded-xl font-black text-xs sm:text-sm transition-colors shadow-theme"
+                >
+                  {t.goToMovie}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -3795,120 +4143,141 @@ function CineScoreMain() {
 
       <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
 
-        {/* --- YENİ: MİNİ OYUN: SİNEBAĞ (MATTE NOIR / JİLET SİYAH TASARIM & 5 DİL TAM UYUMLU) --- */}
+        {/* --- YENİ: MİNİ OYUN: SİNEBAĞ (MOBİL KOMPAKT 3'LÜ IZGARA & MATTE NOIR TASARIM) --- */}
         {activeTab === 'game' && (
-          <div className="rounded-3xl bg-[#050506] border border-zinc-800 p-4 sm:p-7 md:p-9 shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
+          <div className="rounded-2xl sm:rounded-3xl bg-[#050506] border border-zinc-800 p-3 sm:p-7 md:p-9 shadow-2xl relative overflow-hidden">
             
-            {/* ÜST BAŞLIK BAR (Mat Siyah & Keskin Çizgiler) */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 mb-6 border-b border-zinc-800/90">
-              <div className="text-center sm:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-700 text-zinc-200 text-[11px] font-black uppercase tracking-widest mb-2">
-                  <Clapperboard size={13} className="text-amber-400"/> {t.miniGameNav}
+            {/* ÜST BAŞLIK BAR */}
+            <div className="flex items-center justify-between gap-2 pb-3.5 sm:pb-5 mb-4 sm:mb-6 border-b border-zinc-800/90">
+              <div className="min-w-0">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-zinc-200 text-[10px] font-black uppercase tracking-widest mb-1">
+                  <Clapperboard size={12} className="text-amber-400"/> {t.miniGameNav}
                 </div>
-                <h1 className="text-xl sm:text-3xl font-black text-white tracking-tight">{t.gameTitle}</h1>
-                <p className="text-xs sm:text-sm text-zinc-400 font-medium mt-1">{t.gameSubtitle}</p>
+                <h1 className="text-base sm:text-3xl font-black text-white tracking-tight truncate">{t.gameTitle}</h1>
+                <p className="text-[11px] sm:text-sm text-zinc-400 font-medium mt-0.5 line-clamp-2">{t.gameSubtitle}</p>
               </div>
 
               <button
                 onClick={() => setShowHowToPlay(!showHowToPlay)}
-                className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 font-black text-xs flex items-center gap-2 shrink-0 transition-colors"
+                className="px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 font-black text-[11px] sm:text-xs flex items-center gap-1.5 shrink-0 transition-colors"
               >
-                <HelpCircle size={15} className="text-amber-400"/> {showHowToPlay ? t.hideGuideBtn : t.showGuideBtn}
+                <HelpCircle size={14} className="text-amber-400"/>
+                <span>{showHowToPlay ? t.hideGuideBtn : t.showGuideBtn}</span>
               </button>
             </div>
 
-            {/* NASIL OYNANIR REHBERİ & ÖRNEK ROTA */}
+            {/* NASIL OYNANIR REHBERİ */}
             {showHowToPlay && (
-              <div className="mb-7 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 sm:p-5 space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <div className="mb-5 sm:mb-7 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3 sm:p-5 space-y-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                   {[
                     { step: '01', title: t.howStep1Title, desc: t.howStep1Desc },
                     { step: '02', title: t.howStep2Title, desc: t.howStep2Desc },
                     { step: '03', title: t.howStep3Title, desc: t.howStep3Desc },
                     { step: '04', title: t.howStep4Title, desc: t.howStep4Desc }
                   ].map((item, idx) => (
-                    <div key={idx} className="bg-[#050506] border border-zinc-800/80 rounded-xl p-3.5">
-                      <span className="text-[10px] font-black text-amber-400 tracking-widest block mb-1">{t.stepLabel} {item.step}</span>
-                      <h4 className="text-sm font-black text-white mb-1">{item.title}</h4>
-                      <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
+                    <div key={idx} className="bg-[#050506] border border-zinc-800/80 rounded-xl p-2.5 sm:p-3.5">
+                      <span className="text-[9px] sm:text-[10px] font-black text-amber-400 tracking-widest block mb-0.5">{t.stepLabel} {item.step}</span>
+                      <h4 className="text-xs sm:text-sm font-black text-white mb-0.5">{item.title}</h4>
+                      <p className="text-[10px] sm:text-xs text-zinc-400 leading-snug">{item.desc}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="bg-[#050506] border border-zinc-800 rounded-xl p-3 flex flex-wrap items-center justify-center gap-2 text-xs font-bold">
+                <div className="bg-[#050506] border border-zinc-800 rounded-xl p-2.5 flex flex-wrap items-center justify-center gap-1.5 text-[10px] sm:text-xs font-bold">
                   <span className="text-amber-400 font-black uppercase tracking-wider mr-1">{t.exampleShortestLabel}</span>
-                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM1}</span>
+                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM1}</span>
                   <span className="text-zinc-600">➔</span>
-                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 Leonardo DiCaprio</span>
+                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 DiCaprio</span>
                   <span className="text-zinc-600">➔</span>
-                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM2}</span>
+                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM2}</span>
                   <span className="text-zinc-600">➔</span>
-                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 Johnny Depp</span>
+                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 Johnny Depp</span>
                   <span className="text-zinc-600">➔</span>
-                  <span className="px-2.5 py-1 rounded-md bg-emerald-950/50 text-emerald-400 border border-emerald-500/40">🎯 {t.exampleM3}</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-950/50 text-emerald-400 border border-emerald-500/40">🎯 {t.exampleM3}</span>
                 </div>
               </div>
             )}
 
             {!gameActive ? (
-              /* AŞAMA 1: BAŞLANGIÇ VE HEDEF FİLM SEÇİM EKRANI */
-              <div className="space-y-6">
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  <button
-                    onClick={() => loadPresetOrRandomPair('classic')}
-                    disabled={gameLoading}
-                    className="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-amber-400 border border-zinc-700 rounded-xl font-black text-xs sm:text-sm flex items-center gap-2 transition-colors"
-                  >
-                    <Flame size={16}/> {t.classicPairBtn}
-                  </button>
-                  <button
-                    onClick={() => loadPresetOrRandomPair('random')}
-                    disabled={gameLoading}
-                    className="px-5 py-2.5 bg-white hover:bg-zinc-200 text-[#050506] rounded-xl font-black text-xs sm:text-sm flex items-center gap-2 transition-colors"
-                  >
-                    {gameLoading ? <Loader2 size={16} className="animate-spin"/> : <Sparkles size={16}/>}
-                    {t.randomPairBtn}
-                  </button>
+              /* AŞAMA 1: BAŞLANGIÇ VE HEDEF FİLM SEÇİM EKRANI & EN POPÜLER 3 OYUN */
+              <div className="space-y-4 sm:space-y-6">
+                <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3.5 sm:p-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+                      {t.popularGamesTitle || '🔥 En Popüler Oyunlar (Tek Tıkla Seç)'}
+                    </span>
+                    <button
+                      onClick={() => loadPresetOrRandomPair('random')}
+                      disabled={gameLoading}
+                      className="px-3.5 py-1.5 bg-white hover:bg-zinc-200 text-[#050506] rounded-lg font-black text-[11px] sm:text-xs flex items-center justify-center gap-1.5 transition-colors shrink-0"
+                    >
+                      {gameLoading ? <Loader2 size={14} className="animate-spin"/> : <Sparkles size={14}/>}
+                      {t.randomPairBtn}
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+                    {[
+                      { key: 'classic', badge: '#1 POPÜLER', label: t.popGame1 || 'Zindan Adası ➔ Karayip Korsanları' },
+                      { key: 'popular2', badge: '#2 POPÜLER', label: t.popGame2 || 'Başlangıç ➔ Yüzüklerin Efendisi' },
+                      { key: 'popular3', badge: '#3 POPÜLER', label: t.popGame3 || 'Ucuz Roman ➔ Kara Şövalye' }
+                    ].map(pg => (
+                      <button
+                        key={pg.key}
+                        onClick={() => loadPresetOrRandomPair(pg.key)}
+                        disabled={gameLoading}
+                        className="text-left p-2.5 sm:p-3 rounded-xl bg-[#050506] hover:bg-zinc-900 border border-zinc-800 hover:border-amber-400/60 transition-all group"
+                      >
+                        <span className="text-[9px] font-black text-amber-400 uppercase tracking-widest block mb-0.5">
+                          {pg.badge}
+                        </span>
+                        <span className="text-xs font-black text-zinc-200 group-hover:text-white line-clamp-1">
+                          🎬 {pg.label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-11 gap-5 items-stretch">
+                <div className="grid grid-cols-1 lg:grid-cols-11 gap-3.5 sm:gap-5 items-stretch">
                   {/* 1. BAŞLANGIÇ FİLMİ */}
-                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-black uppercase tracking-widest text-zinc-300 flex items-center gap-2">
-                        <Film size={16} className="text-white"/> {t.startMovieLabel}
+                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 sm:p-6 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-zinc-300 flex items-center gap-1.5">
+                        <Film size={15} className="text-white"/> {t.startMovieLabel}
                       </span>
                       {gameStartMovie && (
-                        <button onClick={() => { setGameStartMovie(null); setGameStartQuery(''); }} className="text-xs font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
+                        <button onClick={() => { setGameStartMovie(null); setGameStartQuery(''); }} className="text-[11px] font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
                           {t.changeMovie}
                         </button>
                       )}
                     </div>
 
                     {gameStartMovie ? (
-                      <div className="flex items-center gap-4 bg-[#050506] p-3.5 rounded-xl border border-zinc-800">
-                        <img src={gameStartMovie.poster} className="w-20 sm:w-24 aspect-[2/3] object-cover rounded-lg border border-zinc-700 shrink-0" alt=""/>
+                      <div className="flex items-center gap-3.5 bg-[#050506] p-3 rounded-xl border border-zinc-800">
+                        <img src={gameStartMovie.poster} className="w-14 sm:w-20 aspect-[2/3] object-cover rounded-lg border border-zinc-700 shrink-0" alt=""/>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-black text-zinc-400 uppercase block">{t.startPointBadge}</span>
-                          <h4 className="text-lg sm:text-xl font-black text-white truncate mt-0.5">{gameStartMovie.title}</h4>
-                          <p className="text-xs font-bold text-zinc-500 mt-1">{gameStartMovie.year}</p>
+                          <span className="text-[9px] font-black text-zinc-400 uppercase block">{t.startPointBadge}</span>
+                          <h4 className="text-sm sm:text-xl font-black text-white truncate mt-0.5">{gameStartMovie.title}</h4>
+                          <p className="text-xs font-bold text-zinc-500 mt-0.5">{gameStartMovie.year}</p>
                         </div>
                       </div>
                     ) : (
                       <div className="my-auto">
                         <div className="relative flex items-center">
-                          <Search className="absolute left-4 text-zinc-500" size={18}/>
+                          <Search className="absolute left-3.5 text-zinc-500" size={16}/>
                           <input
                             type="text"
                             value={gameStartQuery}
                             onChange={(e) => setGameStartQuery(e.target.value)}
                             placeholder={t.searchMovieGame}
-                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-11 pr-10 py-3.5 text-sm text-white font-bold outline-none transition-colors"
+                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-10 pr-9 py-3 text-xs sm:text-sm text-white font-bold outline-none transition-colors"
                           />
-                          {gameSearchingSide === 'start' && <Loader2 className="absolute right-4 animate-spin text-white" size={18}/>}
+                          {gameSearchingSide === 'start' && <Loader2 className="absolute right-3.5 animate-spin text-white" size={16}/>}
                         </div>
                         {gameStartResults.length > 0 && (
-                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-zinc-900">
+                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-52 overflow-y-auto divide-y divide-zinc-900">
                             {gameStartResults.map(m => (
                               <div
                                 key={m.id}
@@ -3921,12 +4290,12 @@ function CineScoreMain() {
                                   });
                                   setGameStartResults([]);
                                 }}
-                                className="flex items-center gap-3 p-2.5 hover:bg-zinc-900 cursor-pointer transition-colors"
+                                className="flex items-center gap-2.5 p-2 hover:bg-zinc-900 cursor-pointer transition-colors"
                               >
-                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-10 h-14 object-cover rounded-md shrink-0" alt=""/>
+                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-9 h-12 object-cover rounded shrink-0" alt=""/>
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-xs sm:text-sm font-black text-white truncate">{m.title}</p>
-                                  <span className="text-[11px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
+                                  <p className="text-xs font-black text-white truncate">{m.title}</p>
+                                  <span className="text-[10px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
                                 </div>
                               </div>
                             ))}
@@ -3938,48 +4307,48 @@ function CineScoreMain() {
 
                   {/* ORTA İKON */}
                   <div className="lg:col-span-1 flex items-center justify-center">
-                    <div className="w-11 h-11 rounded-xl bg-[#0A0A0C] border border-zinc-800 flex items-center justify-center text-zinc-300 font-black">
+                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-[#0A0A0C] border border-zinc-800 flex items-center justify-center text-zinc-300 font-black text-sm">
                       ⇄
                     </div>
                   </div>
 
                   {/* 2. HEDEF FİLM */}
-                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-black uppercase tracking-widest text-amber-400 flex items-center gap-2">
-                        <Trophy size={16}/> {t.targetMovieLabel}
+                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 sm:p-6 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+                        <Trophy size={15}/> {t.targetMovieLabel}
                       </span>
                       {gameTargetMovie && (
-                        <button onClick={() => { setGameTargetMovie(null); setGameTargetQuery(''); }} className="text-xs font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
+                        <button onClick={() => { setGameTargetMovie(null); setGameTargetQuery(''); }} className="text-[11px] font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
                           {t.changeMovie}
                         </button>
                       )}
                     </div>
 
                     {gameTargetMovie ? (
-                      <div className="flex items-center gap-4 bg-[#050506] p-3.5 rounded-xl border border-amber-500/30">
-                        <img src={gameTargetMovie.poster} className="w-20 sm:w-24 aspect-[2/3] object-cover rounded-lg border border-amber-500/50 shrink-0" alt=""/>
+                      <div className="flex items-center gap-3.5 bg-[#050506] p-3 rounded-xl border border-amber-500/30">
+                        <img src={gameTargetMovie.poster} className="w-14 sm:w-20 aspect-[2/3] object-cover rounded-lg border border-amber-500/50 shrink-0" alt=""/>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-black text-amber-400 uppercase block">{t.targetPointBadge}</span>
-                          <h4 className="text-lg sm:text-xl font-black text-white truncate mt-0.5">{gameTargetMovie.title}</h4>
-                          <p className="text-xs font-bold text-zinc-500 mt-1">{gameTargetMovie.year}</p>
+                          <span className="text-[9px] font-black text-amber-400 uppercase block">{t.targetPointBadge}</span>
+                          <h4 className="text-sm sm:text-xl font-black text-white truncate mt-0.5">{gameTargetMovie.title}</h4>
+                          <p className="text-xs font-bold text-zinc-500 mt-0.5">{gameTargetMovie.year}</p>
                         </div>
                       </div>
                     ) : (
                       <div className="my-auto">
                         <div className="relative flex items-center">
-                          <Search className="absolute left-4 text-amber-400" size={18}/>
+                          <Search className="absolute left-3.5 text-amber-400" size={16}/>
                           <input
                             type="text"
                             value={gameTargetQuery}
                             onChange={(e) => setGameTargetQuery(e.target.value)}
                             placeholder={t.searchMovieGame}
-                            className="w-full bg-[#050506] border border-zinc-800 focus:border-amber-400 rounded-xl pl-11 pr-10 py-3.5 text-sm text-white font-bold outline-none transition-colors"
+                            className="w-full bg-[#050506] border border-zinc-800 focus:border-amber-400 rounded-xl pl-10 pr-9 py-3 text-xs sm:text-sm text-white font-bold outline-none transition-colors"
                           />
-                          {gameSearchingSide === 'target' && <Loader2 className="absolute right-4 animate-spin text-amber-400" size={18}/>}
+                          {gameSearchingSide === 'target' && <Loader2 className="absolute right-3.5 animate-spin text-amber-400" size={16}/>}
                         </div>
                         {gameTargetResults.length > 0 && (
-                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-zinc-900">
+                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-52 overflow-y-auto divide-y divide-zinc-900">
                             {gameTargetResults.map(m => (
                               <div
                                 key={m.id}
@@ -3992,12 +4361,12 @@ function CineScoreMain() {
                                   });
                                   setGameTargetResults([]);
                                 }}
-                                className="flex items-center gap-3 p-2.5 hover:bg-zinc-900 cursor-pointer transition-colors"
+                                className="flex items-center gap-2.5 p-2 hover:bg-zinc-900 cursor-pointer transition-colors"
                               >
-                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-10 h-14 object-cover rounded-md shrink-0" alt=""/>
+                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-9 h-12 object-cover rounded shrink-0" alt=""/>
                                 <div className="min-w-0 flex-1">
-                                  <p className="text-xs sm:text-sm font-black text-white truncate">{m.title}</p>
-                                  <span className="text-[11px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
+                                  <p className="text-xs font-black text-white truncate">{m.title}</p>
+                                  <span className="text-[10px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
                                 </div>
                               </div>
                             ))}
@@ -4012,105 +4381,103 @@ function CineScoreMain() {
                 {gameStartMovie && gameTargetMovie && (
                   <div className="max-w-xl mx-auto">
                     {bridgeStatus.checking ? (
-                      <div className="bg-[#0A0A0C] border border-zinc-800 rounded-xl p-3.5 flex items-center justify-center gap-2.5 text-zinc-300 text-xs font-bold">
-                        <Loader2 size={16} className="animate-spin text-white"/> {t.bridgeChecking}
+                      <div className="bg-[#0A0A0C] border border-zinc-800 rounded-xl p-3 flex items-center justify-center gap-2 text-zinc-300 text-xs font-bold">
+                        <Loader2 size={15} className="animate-spin text-white"/> {t.bridgeChecking}
                       </div>
                     ) : !bridgeStatus.possible ? (
-                      <div className="bg-rose-950/40 border border-rose-500/60 rounded-xl p-4 text-center">
-                        <h4 className="text-sm font-black text-rose-300 mb-1">{t.bridgeImpossibleTitle}</h4>
-                        <p className="text-xs font-bold text-rose-200/90">{bridgeStatus.reason}</p>
+                      <div className="bg-rose-950/40 border border-rose-500/60 rounded-xl p-3.5 text-center">
+                        <h4 className="text-xs sm:text-sm font-black text-rose-300 mb-1">{t.bridgeImpossibleTitle}</h4>
+                        <p className="text-[11px] sm:text-xs font-bold text-rose-200/90">{bridgeStatus.reason}</p>
                       </div>
                     ) : bridgeStatus.reason && (
-                      <div className={`bg-[#0A0A0C] border rounded-xl p-3.5 text-center text-xs font-black ${bridgeStatus.directMatch ? 'border-emerald-500/50 text-emerald-400' : 'border-zinc-800 text-zinc-300'}`}>
+                      <div className={`bg-[#0A0A0C] border rounded-xl p-3 text-center text-[11px] sm:text-xs font-black ${bridgeStatus.directMatch ? 'border-emerald-500/50 text-emerald-400' : 'border-zinc-800 text-zinc-300'}`}>
                         {bridgeStatus.reason}
                       </div>
                     )}
                   </div>
                 )}
 
-                <div className="text-center pt-2">
+                <div className="text-center pt-1">
                   <button
                     onClick={() => startCineLinkGame()}
                     disabled={!gameStartMovie || !gameTargetMovie || String(gameStartMovie.id) === String(gameTargetMovie.id) || gameLoading || bridgeStatus.checking || !bridgeStatus.possible}
-                    className="px-10 py-4 bg-white hover:bg-zinc-200 disabled:opacity-25 text-[#050506] font-black text-base rounded-xl transition-all inline-flex items-center gap-3"
+                    className="w-full sm:w-auto px-10 py-3.5 sm:py-4 bg-white hover:bg-zinc-200 disabled:opacity-25 text-[#050506] font-black text-sm sm:text-base rounded-xl transition-all inline-flex items-center justify-center gap-2.5"
                   >
-                    {gameLoading ? <Loader2 className="animate-spin" size={20}/> : <Play size={18} fill="currentColor"/>}
+                    {gameLoading ? <Loader2 className="animate-spin" size={18}/> : <Play size={16} fill="currentColor"/>}
                     {t.startGameBtn}
                   </button>
                 </div>
               </div>
             ) : (
-              /* AŞAMA 2: AKTİF OYUN — YAN YANA JİLET SİYAH KUMANDA VE SEÇİM PANELİ */
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              /* AŞAMA 2: AKTİF OYUN — MOBİLDE SÜPER KOMPAKT ÜST BAR, MASAÜSTÜNDE YAN YANA PANEL */
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-6 items-start">
                 
-                {/* SOL SÜTUN (4 BİRİM): SABİT KUMANDA PANELİ VE BAĞLANTI ZİNCİRİ */}
-                <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
+                {/* SOL SÜTUN: KUMANDA VE BAĞLANTI ZİNCİRİ */}
+                <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-3">
                   
-                  {/* 1. KUMANDA VE ROTA KUTUSU */}
-                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 space-y-3.5">
-                    <div className="grid grid-cols-2 gap-2.5">
-                      <div className="flex items-center gap-2 bg-[#050506] p-2.5 rounded-xl border border-zinc-800 min-w-0">
-                        <img src={gameStartMovie?.poster} className="w-8 h-11 object-cover rounded-md shrink-0 border border-zinc-700" alt=""/>
+                  {/* 1. KUMANDA KUTUSU */}
+                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3 sm:p-4 space-y-2.5 sm:space-y-3">
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="flex items-center gap-2 bg-[#050506] p-2 rounded-xl border border-zinc-800 min-w-0">
+                        <img src={gameStartMovie?.poster} className="w-7 h-10 object-cover rounded shrink-0 border border-zinc-700" alt=""/>
                         <div className="min-w-0">
-                          <span className="text-[9px] font-black text-zinc-400 uppercase block">{t.chainStartBadge}</span>
-                          <p className="text-xs font-black text-white truncate">{gameStartMovie?.title}</p>
+                          <span className="text-[8px] font-black text-zinc-400 uppercase block">{t.chainStartBadge}</span>
+                          <p className="text-[11px] font-black text-white truncate">{gameStartMovie?.title}</p>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 bg-[#050506] p-2.5 rounded-xl border border-amber-500/30 min-w-0">
-                        <img src={gameTargetMovie?.poster} className="w-8 h-11 object-cover rounded-md shrink-0 border border-amber-500/40" alt=""/>
+                      <div className="flex items-center gap-2 bg-[#050506] p-2 rounded-xl border border-amber-500/30 min-w-0">
+                        <img src={gameTargetMovie?.poster} className="w-7 h-10 object-cover rounded shrink-0 border border-amber-500/40" alt=""/>
                         <div className="min-w-0">
-                          <span className="text-[9px] font-black text-amber-400 uppercase block">{t.targetMovieLabel}</span>
-                          <p className="text-xs font-black text-white truncate">{gameTargetMovie?.title}</p>
+                          <span className="text-[8px] font-black text-amber-400 uppercase block">{t.targetMovieLabel}</span>
+                          <p className="text-[11px] font-black text-white truncate">{gameTargetMovie?.title}</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* KONTROL TUŞLARI */}
-                    <div className="grid grid-cols-2 gap-2">
+                    {/* KONTROL TUŞLARI (Mobilde Tek Satırda 3 Kompakt Buton) */}
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                       <button
                         onClick={handleUndoGameStep}
                         disabled={gameHistoryStack.length === 0 || gameLoading}
-                        className="py-2.5 px-3 rounded-xl bg-[#050506] hover:bg-zinc-900 disabled:opacity-30 text-zinc-200 border border-zinc-800 font-black text-xs flex items-center justify-center gap-1.5 transition-colors"
+                        className="py-2 px-2 rounded-xl bg-[#050506] hover:bg-zinc-900 disabled:opacity-30 text-zinc-200 border border-zinc-800 font-black text-[11px] flex items-center justify-center gap-1 transition-colors"
                       >
-                        <ChevronLeft size={15}/> {t.undoStep}
+                        <ChevronLeft size={14}/> {t.undoStep}
+                      </button>
+
+                      <button
+                        onClick={() => setShowTargetHint(!showTargetHint)}
+                        className={`py-2 px-2 rounded-xl font-black text-[11px] flex items-center justify-center gap-1 border transition-colors truncate ${
+                          showTargetHint
+                            ? 'bg-amber-400 text-[#050506] border-amber-400'
+                            : 'bg-[#050506] hover:bg-zinc-900 text-amber-400 border-amber-500/30'
+                        }`}
+                      >
+                        🎯 {t.cast}
                       </button>
 
                       <button
                         onClick={() => { setGameActive(false); setGameWon(false); }}
-                        className="py-2.5 px-3 rounded-xl bg-[#050506] hover:bg-rose-950/60 text-rose-400 border border-zinc-800 hover:border-rose-500/40 font-black text-xs flex items-center justify-center gap-1.5 transition-colors"
+                        className="py-2 px-2 rounded-xl bg-[#050506] hover:bg-rose-950/60 text-rose-400 border border-zinc-800 font-black text-[11px] flex items-center justify-center gap-1 transition-colors"
                       >
-                        <X size={14}/> {t.resetGame}
+                        <X size={13}/> {t.resetGame}
                       </button>
                     </div>
 
-                    {/* DETAYLI AÇIKLAMALI HEDEF KADRO İPUCU BUTONU */}
-                    <button
-                      onClick={() => setShowTargetHint(!showTargetHint)}
-                      className={`w-full py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-2 border transition-colors ${
-                        showTargetHint
-                          ? 'bg-amber-400 text-[#050506] border-amber-400'
-                          : 'bg-[#050506] hover:bg-zinc-900 text-amber-400 border-amber-500/30'
-                      }`}
-                    >
-                      🎯 {t.targetCastHint} {showTargetHint ? '▲' : '▼'}
-                    </button>
-
                     {/* AÇIKLAMALI HEDEF KADRO KUTUSU */}
                     {showTargetHint && (
-                      <div className="bg-[#050506] border border-amber-500/30 rounded-xl p-3.5 space-y-2.5">
-                        <div className="border-b border-zinc-800 pb-2">
-                          <h5 className="text-[11px] font-black text-amber-400 uppercase tracking-wider">
+                      <div className="bg-[#050506] border border-amber-500/30 rounded-xl p-3 space-y-2">
+                        <div className="border-b border-zinc-800 pb-1.5">
+                          <h5 className="text-[10px] font-black text-amber-400 uppercase tracking-wider">
                             💡 {t.targetCastExplainTitle}
                           </h5>
-                          <p className="text-[11px] text-zinc-400 font-medium leading-relaxed mt-1">
+                          <p className="text-[10px] text-zinc-400 font-medium leading-snug mt-0.5">
                             {t.targetCastExplainDesc}
                           </p>
                         </div>
-                        <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
+                        <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1">
                           {gameTargetCast.map(tc => (
-                            <span key={tc.id} className="px-2 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-200 flex items-center gap-1.5">
-                              {tc.image && <img src={tc.image} className="w-4 h-4 rounded-full object-cover" alt=""/>}
+                            <span key={tc.id} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-zinc-200 flex items-center gap-1">
                               {tc.name}
                             </span>
                           ))}
@@ -4119,29 +4486,28 @@ function CineScoreMain() {
                     )}
                   </div>
 
-                  {/* 2. DİKEY BAĞLANTI ZİNCİRİ */}
-                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4">
-                    <div className="flex items-center justify-between mb-3.5 pb-2.5 border-b border-zinc-800">
-                      <h4 className="text-xs font-black text-zinc-300 uppercase tracking-widest">
+                  {/* 2. BAĞLANTI ZİNCİRİ (Mobilde Yatay Kompakt Şerit, Masaüstünde Dikey Ağaç) */}
+                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3 sm:p-4">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3 pb-2 border-b border-zinc-800">
+                      <h4 className="text-[10px] sm:text-xs font-black text-zinc-300 uppercase tracking-widest">
                         {t.chainMapTitle}
                       </h4>
-                      <span className="px-2.5 py-0.5 rounded-md bg-zinc-900 border border-zinc-700 text-white text-[11px] font-black">
+                      <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-white text-[10px] font-black">
                         {Math.floor(gameChain.length / 2)} {t.linksCount}
                       </span>
                     </div>
 
-                    <div id="game-chain-list" className="relative max-h-[320px] lg:max-h-[440px] overflow-y-auto pr-1 space-y-2.5">
+                    <div
+                      id="game-chain-list"
+                      className="flex lg:flex-col items-center lg:items-stretch gap-2 overflow-x-auto lg:overflow-x-visible lg:max-h-[420px] lg:overflow-y-auto pb-1 lg:pb-0 pr-1 hide-scrollbar"
+                    >
                       {gameChain.map((node, idx) => {
                         const isStart = idx === 0;
                         const isTargetWon = gameWon && idx === gameChain.length - 1;
 
                         return (
-                          <div key={`${node.type}_${node.id}_${idx}`} className="relative flex items-center gap-2.5">
-                            {idx < gameChain.length - 1 && (
-                              <div className="absolute left-3.5 top-8 -bottom-3 w-px bg-zinc-700 z-0"></div>
-                            )}
-
-                            <div className={`relative z-10 w-7 h-7 rounded-md font-black text-[11px] flex items-center justify-center shrink-0 border ${
+                          <div key={`${node.type}_${node.id}_${idx}`} className="relative flex items-center gap-2 shrink-0 lg:shrink">
+                            <div className={`w-6 h-6 rounded font-black text-[10px] flex items-center justify-center shrink-0 border ${
                               isTargetWon
                                 ? 'bg-emerald-400 text-[#050506] border-emerald-300'
                                 : node.type === 'movie'
@@ -4151,7 +4517,7 @@ function CineScoreMain() {
                               {idx + 1}
                             </div>
 
-                            <div className={`flex-1 flex items-center gap-2.5 p-2 rounded-xl border min-w-0 ${
+                            <div className={`flex items-center gap-2 p-1.5 sm:p-2 rounded-xl border min-w-[125px] sm:min-w-0 lg:flex-1 ${
                               isTargetWon
                                 ? 'bg-emerald-950/30 border-emerald-500/50'
                                 : 'bg-[#050506] border-zinc-800'
@@ -4160,109 +4526,94 @@ function CineScoreMain() {
                                 <img
                                   src={node.image}
                                   className={`object-cover shrink-0 border border-zinc-700 ${
-                                    node.type === 'actor' ? 'w-8 h-8 rounded-full' : 'w-7 h-10 rounded-md'
+                                    node.type === 'actor' ? 'w-7 h-7 rounded-full' : 'w-6 h-8 rounded'
                                   }`}
                                   alt=""
                                 />
                               ) : (
-                                <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 shrink-0"><User size={14}/></div>
+                                <div className="w-7 h-7 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 shrink-0"><User size={12}/></div>
                               )}
                               <div className="min-w-0 flex-1">
-                                <span className={`text-[9px] font-black uppercase tracking-wider block ${
+                                <span className={`text-[8px] font-black uppercase tracking-wider block truncate ${
                                   isTargetWon ? 'text-emerald-400' : node.type === 'movie' ? 'text-zinc-400' : 'text-amber-400'
                                 }`}>
-                                  {isStart ? `🎬 ${t.chainStartBadge}` : isTargetWon ? t.targetHereBadge : node.type === 'movie' ? `🎬 ${Math.ceil(idx / 2)}. ${t.nodeMovieLabel}` : `🎭 ${Math.ceil(idx / 2)}. ${t.nodeActorLabel}`}
+                                  {isStart ? t.chainStartBadge : isTargetWon ? t.targetHereBadge : node.type === 'movie' ? `${Math.ceil(idx / 2)}. ${t.nodeMovieLabel}` : `${Math.ceil(idx / 2)}. ${t.nodeActorLabel}`}
                                 </span>
-                                <p className="text-xs font-black text-white truncate">{node.name}</p>
+                                <p className="text-[11px] font-black text-white truncate max-w-[95px] sm:max-w-none">{node.name}</p>
                               </div>
                             </div>
                           </div>
                         );
                       })}
-
-                      {!gameWon && gameTargetMovie && (
-                        <div className="relative flex items-center gap-2.5 pt-1 opacity-60">
-                          <div className="w-7 h-7 rounded-md bg-[#050506] border border-dashed border-amber-500/50 flex items-center justify-center text-[11px] shrink-0">
-                            🎯
-                          </div>
-                          <div className="flex-1 flex items-center gap-2.5 p-2 rounded-xl border border-dashed border-zinc-800 bg-[#050506] min-w-0">
-                            <img src={gameTargetMovie.poster} className="w-7 h-10 object-cover rounded-md grayscale shrink-0" alt=""/>
-                            <div className="min-w-0 flex-1">
-                              <span className="text-[9px] font-black text-amber-400 uppercase block">{t.chainTargetGhost}</span>
-                              <p className="text-xs font-black text-zinc-300 truncate">{gameTargetMovie.title}</p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
 
-                {/* SAĞ SÜTUN (8 BİRİM): ANA SEÇİM SAHNESİ */}
-                <div className="lg:col-span-8">
+                {/* SAĞ SÜTUN: ANA SEÇİM SAHNESİ (Mobilde 3'lü Kompakt Izgara) */}
+                <div id="game-selection-panel" className="lg:col-span-8">
                   {gameWon ? (
-                    <div className="bg-[#0A0A0C] border-2 border-emerald-500/60 rounded-2xl p-8 sm:p-12 text-center animate-in zoom-in-95 duration-300">
-                      <div className="w-16 h-16 rounded-2xl bg-emerald-400 text-[#050506] flex items-center justify-center mx-auto mb-5">
-                        <Trophy size={34}/>
+                    <div className="bg-[#0A0A0C] border-2 border-emerald-500/60 rounded-2xl p-6 sm:p-12 text-center">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-400 text-[#050506] flex items-center justify-center mx-auto mb-4">
+                        <Trophy size={30}/>
                       </div>
-                      <span className="inline-block px-3.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-widest mb-3">
+                      <span className="inline-block px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] sm:text-xs font-black uppercase tracking-widest mb-2">
                         {Math.floor(gameChain.length / 2) <= 2 ? `🏆 ${t.winRank1}` : Math.floor(gameChain.length / 2) <= 4 ? `🌟 ${t.winRank2}` : `🎬 ${t.winRank3}`}
                       </span>
-                      <h2 className="text-2xl sm:text-4xl font-black text-white mb-2">{t.gameWonTitle}</h2>
-                      <p className="text-sm font-bold text-zinc-400 mb-8 max-w-md mx-auto">
+                      <h2 className="text-xl sm:text-4xl font-black text-white mb-2">{t.gameWonTitle}</h2>
+                      <p className="text-xs sm:text-sm font-bold text-zinc-400 mb-6 max-w-md mx-auto">
                         {t.gameWonSubtitle} (<strong className="text-white">{Math.floor(gameChain.length / 2)} {t.linksCount}</strong>)
                       </p>
-                      <div className="flex flex-wrap justify-center gap-3">
+                      <div className="flex flex-wrap justify-center gap-2.5">
                         <button
                           onClick={() => startCineLinkGame(gameStartMovie, gameTargetMovie)}
-                          className="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-black text-xs sm:text-sm border border-zinc-700 transition-colors"
+                          className="px-5 py-3 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-black text-xs border border-zinc-700 transition-colors"
                         >
                           {t.retrySameBtn}
                         </button>
                         <button
                           onClick={() => { setGameActive(false); setGameWon(false); }}
-                          className="px-8 py-3.5 bg-white hover:bg-zinc-200 text-[#050506] rounded-xl font-black text-xs sm:text-sm transition-colors"
+                          className="px-6 py-3 bg-white hover:bg-zinc-200 text-[#050506] rounded-xl font-black text-xs transition-colors"
                         >
                           {t.playAgainBtn}
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-5 sm:p-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-zinc-800">
-                        <div>
-                          <span className={`inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md mb-1.5 border ${
+                    <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3.5 sm:p-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 mb-3.5 sm:mb-5 pb-3 border-b border-zinc-800">
+                        <div className="min-w-0">
+                          <span className={`inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded mb-1 border ${
                             gameStepType === 'actor' ? 'bg-zinc-900 text-amber-400 border-amber-500/30' : 'bg-zinc-900 text-white border-zinc-700'
                           }`}>
                             {gameStepType === 'actor' ? `🎭 ${t.nextMoveActorBadge}` : `🎬 ${t.nextMoveMovieBadge}`}
                           </span>
-                          <h3 className="text-base sm:text-lg font-black text-white">
+                          <h3 className="text-xs sm:text-lg font-black text-white leading-snug">
                             <span className="text-amber-400">{gameChain[gameChain.length - 1]?.name}</span>{' '}
                             <span className="text-zinc-300 font-bold">{gameStepType === 'actor' ? t.stepPickActor : t.stepPickMovie}</span>
                           </h3>
                         </div>
 
                         <div className="relative w-full sm:w-64 shrink-0">
-                          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" size={15}/>
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={14}/>
                           <input
                             type="text"
                             value={gameFilterText}
                             onChange={(e) => setGameFilterText(e.target.value)}
                             placeholder={gameStepType === 'actor' ? t.filterActors : t.filterMovies}
-                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-9 pr-8 py-2.5 text-xs text-white font-bold outline-none transition-colors"
+                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-8 pr-8 py-2 text-xs text-white font-bold outline-none transition-colors"
                           />
                           {gameFilterText && (
                             <button onClick={() => setGameFilterText('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white">
-                              <X size={14}/>
+                              <X size={13}/>
                             </button>
                           )}
                         </div>
                       </div>
 
                       {gameLoading ? (
-                        <div className="py-20 flex justify-center"><Loader2 className="w-8 h-8 animate-spin text-white"/></div>
+                        <div className="py-16 flex justify-center"><Loader2 className="w-7 h-7 animate-spin text-white"/></div>
                       ) : (
-                        <div id="game-options-grid" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 max-h-[65vh] overflow-y-auto pr-1">
+                        <div id="game-options-grid" className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto pr-1">
                           {gameOptions
                             .filter(opt => opt.name.toLowerCase().includes(gameFilterText.toLowerCase()))
                             .map(opt => {
@@ -4272,33 +4623,33 @@ function CineScoreMain() {
                                 <div
                                   key={opt.id}
                                   onClick={() => gameStepType === 'actor' ? handlePickGameActor(opt) : handlePickGameMovie(opt)}
-                                  className={`group cursor-pointer rounded-xl p-2 bg-[#050506] border transition-all hover:-translate-y-0.5 ${
+                                  className={`group cursor-pointer rounded-xl p-1.5 sm:p-2 bg-[#050506] border transition-colors ${
                                     isTargetMatch
                                       ? 'border-2 border-emerald-400'
                                       : isTargetActorMatch
                                       ? 'border-2 border-amber-400'
-                                      : 'border-zinc-800/90 hover:border-zinc-400'
+                                      : 'border-zinc-800/90 hover:border-zinc-400 active:border-amber-400'
                                   }`}
                                 >
-                                  <div className="aspect-[2/3] rounded-lg overflow-hidden bg-zinc-900 mb-2 relative">
+                                  <div className="aspect-[3/4] sm:aspect-[2/3] rounded-lg overflow-hidden bg-zinc-900 mb-1.5 relative">
                                     {opt.image ? (
-                                      <img src={opt.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt=""/>
+                                      <img src={opt.image} loading="lazy" decoding="async" className="w-full h-full object-cover" alt=""/>
                                     ) : (
-                                      <div className="w-full h-full flex items-center justify-center text-zinc-700"><User size={32}/></div>
+                                      <div className="w-full h-full flex items-center justify-center text-zinc-700"><User size={24}/></div>
                                     )}
                                     {isTargetMatch && (
-                                      <div className="absolute top-1.5 inset-x-1.5 bg-emerald-400 text-[#050506] text-[9px] font-black py-1 px-1.5 rounded text-center">
+                                      <div className="absolute top-1 inset-x-1 bg-emerald-400 text-[#050506] text-[8px] sm:text-[9px] font-black py-0.5 px-1 rounded text-center truncate">
                                         {t.targetHereBadge}
                                       </div>
                                     )}
                                     {isTargetActorMatch && (
-                                      <div className="absolute top-1.5 inset-x-1.5 bg-amber-400 text-[#050506] text-[9px] font-black py-1 px-1.5 rounded text-center">
+                                      <div className="absolute top-1 inset-x-1 bg-amber-400 text-[#050506] text-[8px] sm:text-[9px] font-black py-0.5 px-1 rounded text-center truncate">
                                         {t.targetActorHereBadge}
                                       </div>
                                     )}
                                   </div>
-                                  <h4 className="text-xs font-black text-white group-hover:text-amber-400 truncate px-0.5 transition-colors">{opt.name}</h4>
-                                  {opt.sub && <p className="text-[10px] font-bold text-zinc-500 truncate px-0.5 mt-0.5">{opt.sub}</p>}
+                                  <h4 className="text-[11px] sm:text-xs font-black text-white group-hover:text-amber-400 truncate px-0.5">{opt.name}</h4>
+                                  {opt.sub && <p className="text-[9px] sm:text-[10px] font-bold text-zinc-500 truncate px-0.5">{opt.sub}</p>}
                                 </div>
                               );
                             })}
@@ -5407,17 +5758,71 @@ function CineScoreMain() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Medal className="text-blue-500" size={28}/> {t.badges}</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                  <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Medal className="text-amber-400" size={28}/> {t.badges}</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
                      {getAllBadges(sortedMyRatings, t, safeGlobalMovies).map(badge => (
-                       <div key={badge.id} className={`tilt-card flex flex-col items-center justify-center p-5 rounded-3xl border-2 text-center group relative ${badge.earned ? `${badge.color} holo-badge shadow-xl bg-slate-900/50 backdrop-blur` : 'border-slate-800 bg-[#04060C] text-slate-700 opacity-60 grayscale'}`}>
-                         {badge.secret && badge.earned && <span className="absolute top-2.5 left-2.5 text-[8px] font-black px-2 py-0.5 rounded-full bg-white/10 text-white uppercase tracking-widest">GİZLİ</span>}
-                         <div className={`mb-4 p-4 rounded-2xl shadow-inner ${badge.earned ? 'bg-[#04060C]/50' : 'bg-slate-900'}`}>{badge.icon}</div>
-                         <h4 className="font-black text-sm mb-1">{badge.name}</h4>
-                         {!badge.earned && <div className="absolute top-3 right-3 text-slate-600"><Lock size={14}/></div>}
-                         <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-max max-w-[200px] bg-slate-800 text-white text-xs font-bold p-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-2xl border border-slate-600">
-                            {badge.desc}
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-800 rotate-45 -mt-1.5 border-r border-b border-slate-600"></div>
+                       <div
+                         key={badge.id}
+                         tabIndex={0}
+                         onClick={() => { if (badge.earned) setUnlockedBadgeModal(badge); }}
+                         className={`tilt-card flex flex-col items-center justify-between p-5 rounded-[2rem] border-2 text-center group relative overflow-visible hover:z-50 focus:z-50 outline-none transition-all duration-300 ${
+                           badge.earned
+                             ? `bg-gradient-to-br ${badge.cardBg} cursor-pointer`
+                             : 'border-slate-800/90 bg-gradient-to-b from-[#080C16] to-[#04060C] opacity-60 hover:opacity-90'
+                         }`}
+                       >
+                         {/* Holografik Parlama Katmanı (Baloncuğu kesmemesi için iç katmana alındı) */}
+                         {badge.earned && (
+                           <div className="absolute inset-0 rounded-[2rem] holo-badge pointer-events-none"></div>
+                         )}
+
+                         {/* Üst Seviye (Tier) Etiketi */}
+                         <div className="w-full flex items-center justify-between gap-1 mb-2 relative z-10">
+                           <span className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${
+                             badge.earned ? badge.badgePill : 'bg-slate-900 text-slate-500 border-slate-800'
+                           }`}>
+                             {badge.tier || 'ROZET'}
+                           </span>
+                           <span className="text-[10px] font-black">
+                             {badge.earned ? '✨' : '🔒'}
+                           </span>
+                         </div>
+
+                         {/* Orta 3D Parlayan Madalyon Küresi */}
+                         <div className="relative my-3 flex items-center justify-center z-10">
+                           {badge.earned && (
+                             <div className={`absolute -inset-2 rounded-full bg-gradient-to-r ${badge.orbBg} opacity-35 blur-md group-hover:opacity-65 transition-opacity`}></div>
+                           )}
+                           <div className={`relative w-16 h-16 rounded-2xl rotate-3 group-hover:rotate-0 flex items-center justify-center transition-all duration-300 border-2 ${
+                             badge.earned
+                               ? `bg-gradient-to-br ${badge.orbBg} border-white/40 badge-emblem-float`
+                               : 'bg-[#04060C] border-slate-800 text-slate-600 grayscale'
+                           }`}>
+                             <div className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                               {badge.icon}
+                             </div>
+                           </div>
+                         </div>
+
+                         {/* Sadece Rozet İsmi (Açıklama Baloncukta Gösterilir) */}
+                         <div className="mt-2 w-full relative z-10">
+                           <span className={`font-black text-xs sm:text-sm tracking-wide block truncate ${badge.earned ? 'text-white drop-shadow-sm' : 'text-slate-400'}`}>
+                             {badge.name}
+                           </span>
+                         </div>
+
+                         {/* Alt Parlak Neon Çizgi */}
+                         {badge.earned && (
+                           <div className={`w-12 h-1 rounded-full bg-gradient-to-r ${badge.orbBg} mt-3 opacity-80 relative z-10`}></div>
+                         )}
+
+                         {/* Hem Kazanılan Hem Kilitli Rozetlerde Açılan Açıklama Baloncuğu (Mobil Dokunma ve Masaüstü Hover Uyumlu) */}
+                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block group-focus:block group-active:block w-48 sm:w-56 bg-slate-900/95 backdrop-blur-md text-slate-100 text-xs font-bold p-3.5 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.9)] border border-slate-600 z-50 pointer-events-none text-center leading-relaxed">
+                            <strong className={`block mb-1 ${badge.earned ? 'text-amber-400' : 'text-slate-400'}`}>
+                              {badge.name}
+                            </strong>
+                            {badge.earned ? (badge.realDesc || badge.desc) : badge.desc}
+                            <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 rotate-45 -mt-1.5 border-r border-b border-slate-600"></div>
                          </div>
                        </div>
                      ))}
@@ -5718,7 +6123,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v4</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v4.1</span></p>
         </div>
       </footer>
 
