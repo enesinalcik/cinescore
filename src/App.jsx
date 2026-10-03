@@ -73,58 +73,219 @@ const TRANSLATIONS = {
     tasteMatch: 'Film Zevki Uyumu', matchCalculating: 'Hesaplanıyor...', dnaLockedTitle: 'DNA Analizi Kilitli', dnaLockedDesc: 'film daha oylaman gerekiyor. 20 filme ulaştığında zıt orantı analizin açılacak.', dnaLockedDescPublic: 'Bu kullanıcının analiz için yeterli oyu yok.',
     notifications: 'Bildirimler', noNotifications: 'Henüz bildirim yok.', startedFollowing: 'seni takip etmeye başladı.',
     auraColor: 'Aura Rengi (Tema)', friendsWatched: 'Arkadaşlarından İzleyenler',
-    deleteRatingTitle: 'Oyu Sil', deleteRatingDesc: 'Bu filme verdiğiniz puanı silmek istediğinize emin misiniz? (Dünya genel ortalamasından da anında düşülecektir.)', cancel: 'İptal', delete: 'Evet, Sil', ratingDeleted: 'Puanınız başarıyla silindi!'
+    deleteRatingTitle: 'Oyu Sil', deleteRatingDesc: 'Bu filme verdiğiniz puanı silmek istediğinize emin misiniz? (Dünya genel ortalamasından da anında düşülecektir.)', cancel: 'İptal', delete: 'Evet, Sil', ratingDeleted: 'Puanınız başarıyla silindi!',
+    b7Name: 'Çöp Avcısı', b7Desc: 'Gizli Başarım: 3.0 puanın altında 3 berbat filme katlandın!',
+    b8Name: 'Zaman Yolcusu', b8Desc: 'Gizli Başarım: 4 farklı on yıldan (Örn: 80\'ler, 90\'lar...) film oyladın!',
+    b9Name: 'Gece Kuşu', b9Desc: 'Gizli Başarım: Gece 01:00 - 05:00 arasında 3 film puanladın!',
+    b10Name: 'Acımasız', b10Desc: 'Gizli Başarım: Bir filme 2.0 veya altı puan vererek acımadın!',
+    vsTitle: 'Kafa Kafaya (VS) Analizi', vsDisagree: 'En Çok Ayrıştıklarınız', vsAgree: 'Tamamen Aynı Düşündükleriniz', vsDiff: 'Fark',
+    secretLockedDesc: '🔒 Gizli Başarım: Şartı gizlidir. Keşfederek kilidini aç!',
+    newBadgeUnlocked: 'Yeni Rozet Kazandın:',
+    careerCard: 'Kariyer Karnesi', cineScoreCareerAvg: 'CineScore Kariyer Ort.', yourCareerAvg: 'Senin Ortalaman', knownFor: 'Bilinen Filmleri',
+    rouletteBtn: 'Sinema Ruleti', rouletteTitle: 'Bu Gece Ne İzlesem?', spinAgain: 'Tekrar Çevir', goToMovie: 'Filme Git', rouletteSpinning: 'Kaderin Seçiliyor...',
+    createStory: 'Hikaye (Story) Kartı', downloadStory: 'Kartı İndir (PNG)', storyGenerating: 'Kart Hazırlanıyor...',
+    storyTooltip: 'Instagram, TikTok ve WhatsApp hikayelerinde paylaşabileceğin 9:16 dikey, özel tasarım puan kartı oluşturur.',
+    storyStyle1: 'Neon Aura', storyStyle2: 'Sinematik', storyStyle3: 'Klasik Bilet', storyStyle4: 'Dergi Kapağı', storyStyle5: 'Prizma Radar',
+    criticLabel: 'Eleştirmen', ticketHeader: '★ RESMİ ELEŞTİRMEN ARŞİV BİLETİ ★', magazineHeader: 'ÖZEL ELEŞTİRİ SAYISI', radarHeader: 'KRİTİK RADAR ANALİZİ',
+    rouletteDesc: 'İzleme listendeki tüm filmler seçtiğin animasyon modunda karıştırılır ve bu gece izleyeceğin film kaderine göre belirlenir.',
+    spinMode1: '3D Karusel', spinMode2: 'Dikey Slot', spinMode3: 'Prizma Flip', roulettePicked: 'Kaderin Seçimi!',
+    deleteListTitle: 'Listeyi Sil', deleteListDesc: 'Bu özel listeyi kalıcı olarak silmek istediğinize emin misiniz?', listDeleted: 'Liste silindi!',
+    downloadListPoster: 'Görsel İndir', listPosterTitle: 'Liste Paylaşım Kartı',
+    miniGameNav: 'Mini Oyun: SineBağ', gameTitle: 'SİNEBAĞ: FİLMLER ARASI KÖPRÜ',
+    gameSubtitle: 'Ortak oyuncular üzerinden filmografiden filmografiye atlayarak iki filmi birbirine bağla.',
+    showGuideBtn: 'Nasıl Oynanır?', hideGuideBtn: 'Rehberi Gizle', stepLabel: 'ADIM',
+    howStep1Title: 'İki Film Seç', howStep1Desc: 'Başlangıç filmini ve ulaşmak istediğin hedef filmi belirle.',
+    howStep2Title: 'Oyuncu Seç', howStep2Desc: 'Başlangıç filminin kadrosundan bir oyuncuya tıkla.',
+    howStep3Title: 'Filmine Atla', howStep3Desc: 'O oyuncunun oynadığı başka bir filme geçiş yap.',
+    howStep4Title: 'Hedefe Bağla', howStep4Desc: 'Hedef filmin kadrosundaki bir oyuncuya ulaşıp hedef filmi seç!',
+    exampleShortestLabel: 'Örnek En Kısa Köprü:', exampleM1: 'Zindan Adası', exampleM2: 'Gilbert\'ın Hayalleri', exampleM3: 'Karayip Korsanları',
+    startMovieLabel: '1. Başlangıç Filmi', targetMovieLabel: '2. Hedef Film',
+    startPointBadge: 'BAŞLANGIÇ NOKTASI', targetPointBadge: 'ULAŞILACAK HEDEF',
+    searchMovieGame: 'Film adı yazarak ara...', startGameBtn: 'Köprüyü Başlat', randomPairBtn: 'Rastgele 2 Film Seç',
+    classicPairBtn: 'Örnek Rota: Zindan Adası ➔ Karayip Korsanları',
+    bridgeChecking: 'Filmler arası bağlantı uygunluğu taranıyor...',
+    bridgeImpossibleTitle: '⛔ Bu İki Film Arasında Bağ Kurulması İmkansız!',
+    bridgeImpossibleNoCast: 'Seçilen filmlerden birinin veritabanında kayıtlı oyuncu kadrosu bulunmuyor. Lütfen farklı bir film seçin.',
+    bridgeImpossibleIsolated: 'filmindeki oyuncuların başka hiçbir film kaydı yok (izole kadro). Bu filmden köprü kurulamaz!',
+    bridgeDirectPossible: '⚡ Bilgi: Bu iki film arasında doğrudan ortak oyuncu bulunuyor (1 adımda çözülebilir).',
+    bridgeNormalPossible: '✅ Bağlantı Kurulabilir: Her iki filmin kadrosu da sinema ağına bağlı.',
+    chainMapTitle: 'KURULAN BAĞ ZİNCİRİ', chainStartBadge: 'BAŞLANGIÇ', chainTargetGhost: 'ULAŞILACAK HEDEF',
+    nodeMovieLabel: 'FİLM', nodeActorLabel: 'OYUNCU',
+    nextMoveActorBadge: 'SIRADAKİ ADIM: OYUNCU SEÇİMİ', nextMoveMovieBadge: 'SIRADAKİ ADIM: FİLM SEÇİMİ',
+    stepPickActor: 'filminden köprü kuracak bir oyuncu seçin:', stepPickMovie: 'oyuncusunun oynadığı bir film seçin:',
+    filterActors: 'Kadroda oyuncu ara...', filterMovies: 'Filmografide film ara...',
+    undoStep: 'Geri Al', resetGame: 'Yeni Oyun',
+    targetCastHint: 'Hedef Kadro İpucu',
+    targetCastExplainTitle: 'Neden Hedef Filmin Kadrosuna Bakmalısın?',
+    targetCastExplainDesc: 'Aşağıdaki isimler ulaşmaya çalıştığın HEDEF FİLMDE oynayan oyunculardır. Zincir kurarken bu oyunculardan herhangi birine ulaştığın an, bir sonraki adımda doğrudan Hedef Filmi seçip oyunu kazanabilirsin!',
+    linksCount: 'Bağlantı', gameWonTitle: 'KÖPRÜ TAMAMLANDI!', gameWonSubtitle: 'İki filmi sinema bilginle birbirine bağladın!',
+    winRank1: 'KUSURSUZ SİNEFİL ZEKASI', winRank2: 'USTA KÖPRÜ MİMARI', winRank3: 'SİNEMA GEZGİNİ',
+    playAgainBtn: 'Yeni Filmlerle Oyna', retrySameBtn: 'Daha Kısa Yol Dene', changeMovie: 'Değiştir',
+    targetHereBadge: '🎯 HEDEF FİLM!', targetActorHereBadge: '⚡ HEDEF FİLM OYUNCUSU!'
   },
   en: {
-    home: 'Home', ranking: 'Ranking', community: 'Community', login: 'Login', logout: 'Log Out',
-    trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Featured This Week',
-    searchPlaceholder: 'Search movies...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot', watchTrailer: 'Watch Trailer',
-    saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', 
-    noRating: 'No movies rated yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Average', nextLevel: 'Next Level',
-    globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'Ratings', editProfile: 'Edit Profile', rateNow: 'Rate',
-    voteCount: 'Votes', average: 'Avg', badges: 'Earned Badges', communityAvg: 'Community Average',
-    actionPacked: 'Action Packed', emotionalDramas: 'Emotional Dramas', turkishCinema: 'Turkish Masterpieces', sciFi: 'Sci-Fi & Fantasy', comedy: 'Comedy',
-    c1: 'Screenplay', c1Desc: 'Plot, dialogue, and story originality.', c2: 'Acting', c2Desc: 'How believable and engaging the actors are.',
-    c3: 'Cinematography', c3Desc: 'Camera angles, lighting, and visual composition.', c4: 'Sound & Music', c4Desc: 'Music and sound effects that enhance atmosphere.',
-    c5: 'Editing & Pacing', c5Desc: 'Scene transitions and the tempo of the film.',
-    globalDesc: 'The massive cinema archive built by community choices.', registeredMovies: 'Rated Movies',
-    username: 'Username', selectAvatar: 'Select Avatar', saveChanges: 'Save', noBadges: 'Start rating movies to earn badges!',
-    b1Name: 'Popcorn Eater', b1Desc: 'Rated your first movie!', b2Name: 'Moviegoer', b2Desc: 'Passed the 10 movie mark.', b3Name: 'Cinephile', b3Desc: '50 Movies! A true critic.', b4Name: 'Golden Ticket', b4Desc: 'Member of the 100 Movie Club.', b5Name: 'Master Director', b5Desc: '250 Movies.', b6Name: 'Cinema God', b6Desc: '500+ Movies!',
-    loginOr: 'OR', registerBtn: 'Register', namePlaceholder: 'Name', emailPlaceholder: 'Email', passPlaceholder: 'Password',
-    navShowcase: 'SHOWCASE', navList: 'LIST', navProfile: 'PROFILE', noData: 'No data.',
-    watchlist: 'Watchlist', addToWatchlist: 'Add to Watchlist', removeFromWatchlist: 'Remove from Watchlist', profileGeneral: 'Overview', 
-    sortBy: 'Sort By:', sortDate: 'Newest', sortMyScore: 'My Score', sortGlobalScore: 'Global Score', emptyWatchlist: 'Watchlist is empty.',
-    cinematicDNA: 'Critical Focus Analysis', dnaDesc: 'The cinematic flaws never forgiven, based on rating anomalies.',
-    customLists: 'Custom Lists', createNewList: 'Create New List', listNamePlaceholder: 'e.g., Masterpieces...', add: 'Add', share: 'Share', copied: 'Link Copied!', selectList: 'Add to List', addedToList: 'Added to list!',
-    addCustomListHover: 'Add to Custom List', addWatchlistHover: 'Add to Watchlist', removeWatchlistHover: 'Remove from Watchlist',
-    autoRemoveSetting: 'Auto-Remove from Watchlist', autoRemoveDesc: 'When you rate a movie, it will be automatically removed from your Watchlist.',
-    listCreated: 'List successfully created!', errorOccurred: 'An error occurred!',
-    bioLabel: 'Cinema Motto (Bio)', bioPlaceholder: 'e.g., May the force be with you...', selectBanner: 'Profile Banner',
-    cineZodiac: 'Cine-Zodiac', cineZodiacDesc: 'Profile based on critical habits.', topGenres: 'Favorite Genres', viewAll: 'View All',
-    zodiacC1: 'Ruthless Story Hunter', zodiacC2: 'Character Analyst', zodiacC3: 'Visual Aesthete', zodiacC4: 'Audiophile', zodiacC5: 'Rhythm Master', zodiacDefault: 'Beginner',
-    zC1Desc: 'No tolerance for plot holes. If the story is weak, the movie is dead to you.',
-    zC2Desc: 'You don\'t forgive fake acting. Genuine emotion is everything for you.',
-    zC3Desc: 'Your eyes work like a cameraman. You can\'t stand poorly shot movies.',
-    zC4Desc: 'You want to feel the atmosphere and the music in your bones.',
-    zC5Desc: 'Pacing and editing tricks are the most critical details for you.',
-    top3Title: 'Holy Trinity', top3Desc: 'The best 3 movies that touched your life.', selectTop3Search: 'Search movie for showcase...',
-    verifyEmailSent: 'Registration successful! Please check your email to verify your account.', emailNotVerifiedError: 'Your email address is not verified yet. Please check your inbox.',
-    followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Unfollow', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!',
-    communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter the exact 6-char @code to find your friend.',
-    mostVoted: 'Most Voted', exactCodeRequired: 'Enter exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies',
-    tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed. Rate 20 movies to unlock your critical DNA analysis.', dnaLockedDescPublic: 'Not enough data to analyze this user.',
-    notifications: 'Notifications', noNotifications: 'No notifications.', startedFollowing: 'started following you.',
-    auraColor: 'Aura Color (Theme)', friendsWatched: 'Friends Who Watched',
-    deleteRatingTitle: 'Delete Rating', deleteRatingDesc: 'Are you sure you want to delete your rating for this movie? (It will be removed from the global average.)', cancel: 'Cancel', delete: 'Yes, Delete', ratingDeleted: 'Rating successfully deleted!'
+    home: 'Home', ranking: 'Global Ranking', community: 'Community', login: 'Sign In', logout: 'Log Out', trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Editor\'s Pick', searchPlaceholder: 'Search movies to rate...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot Summary', watchTrailer: 'Watch Trailer', saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', noRating: 'Haven\'t rated any movies yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Your Average', nextLevel: 'Next Badge', globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'My Ratings', editProfile: 'Edit Profile', rateNow: 'Rate Movie', voteCount: 'Votes', average: 'Avg', badges: 'Achievement Badges', communityAvg: 'Community Average', actionPacked: 'Action Packed', emotionalDramas: 'Emotional Dramas', turkishCinema: 'Turkish Masterpieces', sciFi: 'Sci-Fi Worlds', comedy: 'Guaranteed Laughs', c1: 'Screenplay & Depth', c1Desc: 'Plot flow, logic, character development, and originality.', c2: 'Acting Performance', c2Desc: 'Cast harmony, emotional delivery, and believability.', c3: 'Cinematography & Visuals', c3Desc: 'Camera angles, lighting, color palette, and visual atmosphere.', c4: 'Sound, Score & Design', c4Desc: 'Soundtrack, sound effects, and contribution to atmosphere.', c5: 'Editing, Pacing & Directing', c5Desc: 'Scene transitions, tempo, and keeping the audience engaged.', globalDesc: 'The massive cinema archive shaped by the community\'s toughest critics.', registeredMovies: 'Rated Movies', username: 'Username', selectAvatar: 'Choose Avatar', saveChanges: 'Save Changes', noBadges: 'Rate movies to earn badges!', b1Name: 'Popcorn Eater', b1Desc: 'Rated your first movie!', b2Name: 'Movie Buff', b2Desc: 'Passed the 10-movie mark.', b3Name: 'Festival Critic', b3Desc: '50 Movies! Getting serious.', b4Name: 'Golden Ticket', b4Desc: '100 Movies Club member.', b5Name: 'Master Director', b5Desc: '250 Movies! A living archive.', b6Name: 'God of Cinema', b6Desc: '500+ Movies! You wrote the book.', loginOr: 'OR', registerBtn: 'Create Account', namePlaceholder: 'Your Name', emailPlaceholder: 'Email Address', passPlaceholder: 'Password', navShowcase: 'HOME', navList: 'RANKING', navProfile: 'PROFILE', noData: 'No data.', watchlist: 'My Watchlist', addToWatchlist: 'Add to Watchlist', removeFromWatchlist: 'In Watchlist (Remove)', profileGeneral: 'Overview & Stats', sortBy: 'Sort by:', sortDate: 'Date Added', sortMyScore: 'My Score', sortGlobalScore: 'Global Score', emptyWatchlist: 'Your watchlist is empty.', cinematicDNA: 'Critical Focus Analysis (DNA)', dnaDesc: 'Shows which criteria you have the highest expectations for based on your ratings (Inverse proportion: Lower average means tougher standards).', customLists: 'My Custom Lists', createNewList: 'Create New List', listNamePlaceholder: 'E.g., Mind-Bending Movies...', add: 'Create', share: 'Share', copied: 'Link Copied!', selectList: 'Add to Custom List', addedToList: 'Added to list!', addCustomListHover: 'Add to Custom List', addWatchlistHover: 'Add to Watchlist', removeWatchlistHover: 'Remove from Watchlist', autoRemoveSetting: 'Auto-remove rated movies from Watchlist', autoRemoveDesc: 'When enabled, movies you rate are automatically removed from your Watchlist.', listCreated: 'List created!', errorOccurred: 'An error occurred!', bioLabel: 'Cinema Motto (Bio)', bioPlaceholder: 'Write a quote or your cinema view...', selectBanner: 'Select Profile Banner', cineZodiac: 'Cinema Zodiac', cineZodiacDesc: 'Your critic persona based on your toughest criterion.', topGenres: 'Favorite Genres', viewAll: 'View All', zodiacC1: 'Plot Hunter', zodiacC2: 'Emotion Analyst', zodiacC3: 'Visual Esthete', zodiacC4: 'Audiophile Critic', zodiacC5: 'Pacing Master', zodiacDefault: 'Novice Viewer', zC1Desc: 'You never forgive plot holes. A weak story stands no chance.', zC2Desc: 'Fake acting ruins the movie for you. You seek raw emotion.', zC3Desc: 'Your eyes work like a camera lens. Lighting and framing are everything.', zC4Desc: 'You close your eyes and listen. Weak music means a weak movie.', zC5Desc: 'You hate boring moments. Editing and rhythm are your top priorities.', top3Title: 'Holy Trinity (Top 3)', top3Desc: 'The 3 greatest movies of your life.', selectTop3Search: 'Search a movie for this slot...', verifyEmailSent: 'Verification link sent! Please check your email inbox (and Spam folder).', emailNotVerifiedError: 'Your email is not verified yet! Please click the link sent to your email.', followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Following', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!', communityPrivacyTitle: 'Private Code Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter your friend\'s exact 6-digit @code to find them.', mostVoted: 'Most Voted', exactCodeRequired: 'Type exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies', tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed to unlock your critical DNA! (20 Minimum)', dnaLockedDescPublic: 'This user hasn\'t rated enough movies to generate a DNA profile.', notifications: 'Notifications', noNotifications: 'No notifications yet.', startedFollowing: 'started following you.', auraColor: 'Profile Aura (Theme Color)', friendsWatched: 'Friends Who Watched This',
+    deleteRatingTitle: 'Delete Rating', deleteRatingDesc: 'Are you sure you want to delete your rating for this movie? (It will be removed from the global average.)', cancel: 'Cancel', delete: 'Yes, Delete', ratingDeleted: 'Rating successfully deleted!',
+    b7Name: 'Trash Hunter', b7Desc: 'Secret: Rated 3 terrible movies under 3.0 score!',
+    b8Name: 'Time Traveler', b8Desc: 'Secret: Rated movies from 4 different decades!',
+    b9Name: 'Night Owl', b9Desc: 'Secret: Rated 3 movies between 01:00 AM and 05:00 AM!',
+    b10Name: 'Ruthless', b10Desc: 'Secret: Gave 2.0 or lower to a movie!',
+    vsTitle: 'Head to Head (VS)', vsDisagree: 'Biggest Disagreements', vsAgree: 'Exact Same Taste', vsDiff: 'Diff',
+    secretLockedDesc: '🔒 Secret Achievement: Keep rating to discover and unlock!',
+    newBadgeUnlocked: 'New Badge Unlocked:',
+    careerCard: 'Career Report Card', cineScoreCareerAvg: 'CineScore Avg', yourCareerAvg: 'Your Average', knownFor: 'Known For',
+    rouletteBtn: 'Cinema Roulette', rouletteTitle: 'What to Watch Tonight?', spinAgain: 'Spin Again', goToMovie: 'Go to Movie', rouletteSpinning: 'Picking Your Fate...',
+    createStory: 'Create Story Card', downloadStory: 'Download Card (PNG)', storyGenerating: 'Generating Card...',
+    storyTooltip: 'Generates a custom 9:16 vertical rating card to share on Instagram, TikTok, or WhatsApp stories.',
+    storyStyle1: 'Neon Aura', storyStyle2: 'Cinematic', storyStyle3: 'Retro Ticket', storyStyle4: 'Magazine', storyStyle5: 'Prism Radar',
+    criticLabel: 'Critic', ticketHeader: '★ OFFICIAL CRITIC ARCHIVE TICKET ★', magazineHeader: 'SPECIAL CRITIC ISSUE', radarHeader: 'CRITICAL RADAR ANALYSIS',
+    rouletteDesc: 'All movies in your watchlist are shuffled on a 35mm reel to pick your movie for tonight.',
+    roulettePicked: 'Fate Decided!',
+    deleteListTitle: 'Delete List', deleteListDesc: 'Are you sure you want to permanently delete this custom list?', listDeleted: 'List deleted!',
+    downloadListPoster: 'Download Image', listPosterTitle: 'List Share Card',
+    miniGameNav: 'Mini Game: CineLink', gameTitle: 'CINELINK: SIX DEGREES OF CINEMA',
+    gameSubtitle: 'Jump from filmography to filmography through shared actors to connect two movies.',
+    showGuideBtn: 'How to Play?', hideGuideBtn: 'Hide Guide', stepLabel: 'STEP',
+    howStep1Title: 'Pick Two Movies', howStep1Desc: 'Choose a starting movie and a target movie you want to reach.',
+    howStep2Title: 'Pick an Actor', howStep2Desc: 'Click an actor from the starting movie\'s cast.',
+    howStep3Title: 'Jump to a Movie', howStep3Desc: 'Select another movie that actor starred in.',
+    howStep4Title: 'Connect to Target', howStep4Desc: 'Reach any actor from the target movie\'s cast and select the target movie!',
+    exampleShortestLabel: 'Shortest Bridge Example:', exampleM1: 'Shutter Island', exampleM2: 'What\'s Eating Gilbert Grape', exampleM3: 'Pirates of the Caribbean',
+    startMovieLabel: '1. Start Movie', targetMovieLabel: '2. Target Movie',
+    startPointBadge: 'STARTING POINT', targetPointBadge: 'TARGET DESTINATION',
+    searchMovieGame: 'Type a movie title...', startGameBtn: 'Start Bridge', randomPairBtn: 'Pick 2 Random Movies',
+    classicPairBtn: 'Classic Route: Shutter Island ➔ Pirates of the Caribbean',
+    bridgeChecking: 'Analyzing bridge feasibility between movies...',
+    bridgeImpossibleTitle: '⛔ Connection Impossible Between These Movies!',
+    bridgeImpossibleNoCast: 'One of the selected movies has no cast records in the database. Please choose another movie.',
+    bridgeImpossibleIsolated: 'has an isolated cast with no other movie credits. A bridge cannot be formed!',
+    bridgeDirectPossible: '⚡ Info: These two movies share a direct cast member (can be solved in 1 link).',
+    bridgeNormalPossible: '✅ Bridge Possible: Both movies have well-connected casts.',
+    chainMapTitle: 'ACTIVE CONNECTION CHAIN', chainStartBadge: 'START', chainTargetGhost: 'TARGET DESTINATION',
+    nodeMovieLabel: 'MOVIE', nodeActorLabel: 'ACTOR',
+    nextMoveActorBadge: 'NEXT STEP: SELECT AN ACTOR', nextMoveMovieBadge: 'NEXT STEP: SELECT A MOVIE',
+    stepPickActor: '— pick an actor from this movie to build the bridge:', stepPickMovie: '— pick a movie featuring this actor:',
+    filterActors: 'Search actor in cast...', filterMovies: 'Search movie in filmography...',
+    undoStep: 'Undo', resetGame: 'New Game',
+    targetCastHint: 'Target Cast Hint',
+    targetCastExplainTitle: 'Why Check the Target Movie Cast?',
+    targetCastExplainDesc: 'The actors listed below star in your TARGET MOVIE. As soon as you reach any of these actors in your chain, you can immediately select the Target Movie on your next step and win!',
+    linksCount: 'Links', gameWonTitle: 'BRIDGE COMPLETED!', gameWonSubtitle: 'You connected both movies with your cinema knowledge!',
+    winRank1: 'FLAWLESS CINEPHILE GENIUS', winRank2: 'MASTER BRIDGE ARCHITECT', winRank3: 'CINEMA EXPLORER',
+    playAgainBtn: 'Play With New Movies', retrySameBtn: 'Try Shorter Path', changeMovie: 'Change',
+    targetHereBadge: '🎯 TARGET MOVIE!', targetActorHereBadge: '⚡ IN TARGET CAST!'
   },
   de: { 
-    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Aus Datenschutzgründen werden Benutzer nicht öffentlich aufgelistet. Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben'
+    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben',
+    criticLabel: 'Kritiker', ticketHeader: '★ OFFIZIELLES KRITIKER-ARCHIVTICKET ★', magazineHeader: 'KRITIKER-SONDERAUSGABE', radarHeader: 'RADAR-ANALYSE',
+    storyStyle1: 'Neon Aura', storyStyle2: 'Kinoposter', storyStyle3: 'Retro-Ticket', storyStyle4: 'Magazin', storyStyle5: 'Prisma-Radar',
+    rouletteBtn: 'Kino-Roulette', rouletteTitle: 'Was schauen wir heute?', rouletteDesc: 'Alle Filme deiner Merkliste werden gemischt, um deinen Film für heute Abend auszuwählen.', roulettePicked: 'Ausgewählt!', spinAgain: 'Nochmal drehen', goToMovie: 'Zum Film', createStory: 'Story-Karte', downloadStory: 'Karte herunterladen (PNG)',
+    miniGameNav: 'Mini-Spiel: CineLink', gameTitle: 'CINELINK: VERBINDE DIE FILME',
+    gameSubtitle: 'Springe über gemeinsame Schauspieler von Filmografie zu Filmografie, um zwei Filme zu verbinden.',
+    showGuideBtn: 'Spielanleitung', hideGuideBtn: 'Anleitung ausblenden', stepLabel: 'SCHRITT',
+    howStep1Title: 'Zwei Filme wählen', howStep1Desc: 'Wähle einen Startfilm und den Zielfilm, den du erreichen möchtest.',
+    howStep2Title: 'Schauspieler wählen', howStep2Desc: 'Klicke auf einen Schauspieler aus der Besetzung des Startfilms.',
+    howStep3Title: 'Zum Film springen', howStep3Desc: 'Wähle einen anderen Film, in dem dieser Schauspieler mitgespielt hat.',
+    howStep4Title: 'Ziel verbinden', howStep4Desc: 'Erreiche einen Schauspieler des Zielfilms und wähle den Zielfilm!',
+    exampleShortestLabel: 'Kürzeste Brücke (Beispiel):', exampleM1: 'Shutter Island', exampleM2: 'Gilbert Grape', exampleM3: 'Fluch der Karibik',
+    startMovieLabel: '1. Startfilm', targetMovieLabel: '2. Zielfilm',
+    startPointBadge: 'STARTPUNKT', targetPointBadge: 'ZIELPUNKT',
+    searchMovieGame: 'Filmtitel eingeben...', startGameBtn: 'Brücke starten', randomPairBtn: '2 Zufallsfilme wählen',
+    classicPairBtn: 'Klassiker: Shutter Island ➔ Fluch der Karibik',
+    bridgeChecking: 'Verbindung wird geprüft...',
+    bridgeImpossibleTitle: '⛔ Keine Verbindung zwischen diesen Filmen möglich!',
+    bridgeImpossibleNoCast: 'Für einen der Filme sind keine Schauspieler hinterlegt. Bitte wähle einen anderen Film.',
+    bridgeImpossibleIsolated: 'hat eine isolierte Besetzung ohne weitere Filme. Keine Brücke möglich!',
+    bridgeDirectPossible: '⚡ Info: Diese beiden Filme teilen sich direkt einen Schauspieler (in 1 Schritt lösbar).',
+    bridgeNormalPossible: '✅ Verbindung möglich: Beide Besetzungen sind gut vernetzt.',
+    chainMapTitle: 'AKTIVE VERBINDUNGSKETTE', chainStartBadge: 'START', chainTargetGhost: 'ZIELFILM',
+    nodeMovieLabel: 'FILM', nodeActorLabel: 'SCHAUSPIELER',
+    nextMoveActorBadge: 'NÄCHSTER SCHRITT: SCHAUSPIELER WÄHLEN', nextMoveMovieBadge: 'NÄCHSTER SCHRITT: FILM WÄHLEN',
+    stepPickActor: '— wähle einen Schauspieler aus diesem Film:', stepPickMovie: '— wähle einen Film mit diesem Schauspieler:',
+    filterActors: 'Schauspieler suchen...', filterMovies: 'Filmografie durchsuchen...',
+    undoStep: 'Zurück', resetGame: 'Neues Spiel',
+    targetCastHint: 'Ziel-Besetzung (Tipp)',
+    targetCastExplainTitle: 'Warum hilft die Besetzung des Zielfilms?',
+    targetCastExplainDesc: 'Die unten aufgeführten Schauspieler spielen im ZIELFILM mit. Sobald du einen dieser Namen in deiner Kette erreichst, kannst du im nächsten Schritt direkt den Zielfilm auswählen und gewinnen!',
+    linksCount: 'Schritte', gameWonTitle: 'BRÜCKE VOLLENDET!', gameWonSubtitle: 'Du hast beide Filme mit deinem Kinowissen verbunden!',
+    winRank1: 'PERFEKTES CINEASTEN-GENIE', winRank2: 'MEISTER-ARCHITEKT', winRank3: 'KINO-ENTDECKER',
+    playAgainBtn: 'Mit neuen Filmen spielen', retrySameBtn: 'Kürzeren Weg versuchen', changeMovie: 'Ändern',
+    targetHereBadge: '🎯 ZIELFILM!', targetActorHereBadge: '⚡ IM ZIELFILM!'
   },
   it: { 
-    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti (proporzionalità inversa).', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Per motivi di privacy, gli utenti non sono elencati pubblicamente. Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti per un\'analisi.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato'
+    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti.', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato',
+    criticLabel: 'Critico', ticketHeader: '★ BIGLIETTO D\'ARCHIVIO CRITICO ★', magazineHeader: 'EDIZIONE SPECIALE CRITICA', radarHeader: 'ANALISI RADAR CRITICA',
+    storyStyle1: 'Neon Aura', storyStyle2: 'Poster Cinema', storyStyle3: 'Biglietto Retro', storyStyle4: 'Rivista', storyStyle5: 'Prisma Radar',
+    rouletteBtn: 'Roulette Cinema', rouletteTitle: 'Cosa guardare stasera?', rouletteDesc: 'Tutti i film nella tua lista vengono mescolati per scegliere il film di stasera.', roulettePicked: 'Scelto dal Destino!', spinAgain: 'Gira Ancora', goToMovie: 'Vai al Film', createStory: 'Crea Story Card', downloadStory: 'Scarica Card (PNG)',
+    miniGameNav: 'Mini Gioco: CineLink', gameTitle: 'CINELINK: COLLEGA I FILM',
+    gameSubtitle: 'Salta da una filmografia all\'altra attraverso gli attori in comune per collegare due film.',
+    showGuideBtn: 'Come si gioca?', hideGuideBtn: 'Nascondi guida', stepLabel: 'PASSO',
+    howStep1Title: 'Scegli Due Film', howStep1Desc: 'Scegli un film di partenza e il film obiettivo da raggiungere.',
+    howStep2Title: 'Scegli un Attore', howStep2Desc: 'Clicca su un attore del cast del film di partenza.',
+    howStep3Title: 'Salta a un Film', howStep3Desc: 'Seleziona un altro film in cui ha recitato quell\'attore.',
+    howStep4Title: 'Raggiungi l\'Obiettivo', howStep4Desc: 'Raggiungi un attore del film obiettivo e seleziona il film finale!',
+    exampleShortestLabel: 'Esempio Ponte Breve:', exampleM1: 'Shutter Island', exampleM2: 'Buon compleanno Mr. Grape', exampleM3: 'Pirati dei Caraibi',
+    startMovieLabel: '1. Film di Partenza', targetMovieLabel: '2. Film Obiettivo',
+    startPointBadge: 'PUNTO DI PARTENZA', targetPointBadge: 'OBIETTIVO FINALE',
+    searchMovieGame: 'Cerca il titolo di un film...', startGameBtn: 'Inizia il Ponte', randomPairBtn: 'Scegli 2 Film Casuali',
+    classicPairBtn: 'Percorso Classico: Shutter Island ➔ Pirati dei Caraibi',
+    bridgeChecking: 'Analisi fattibilità del ponte in corso...',
+    bridgeImpossibleTitle: '⛔ Collegamento Impossibile Tra Questi Film!',
+    bridgeImpossibleNoCast: 'Uno dei film selezionati non ha attori registrati. Scegli un altro film.',
+    bridgeImpossibleIsolated: 'ha un cast isolato senza altri film registrati. Impossibile creare un ponte!',
+    bridgeDirectPossible: '⚡ Info: Questi due film condividono direttamente un attore (risolvibile in 1 passo).',
+    bridgeNormalPossible: '✅ Ponte Possibile: Entrambi i cast sono ben collegati.',
+    chainMapTitle: 'CATENA DI COLLEGAMENTO', chainStartBadge: 'INIZIO', chainTargetGhost: 'OBIETTIVO FINALE',
+    nodeMovieLabel: 'FILM', nodeActorLabel: 'ATTORE',
+    nextMoveActorBadge: 'PROSSIMO PASSO: SCEGLI ATTORE', nextMoveMovieBadge: 'PROSSIMO PASSO: SCEGLI FILM',
+    stepPickActor: '— scegli un attore da questo film:', stepPickMovie: '— scegli un film con questo attore:',
+    filterActors: 'Cerca attore nel cast...', filterMovies: 'Cerca film nella filmografia...',
+    undoStep: 'Indietro', resetGame: 'Nuova Partita',
+    targetCastHint: 'Cast Obiettivo (Indizio)',
+    targetCastExplainTitle: 'Perché guardare il Cast del Film Obiettivo?',
+    targetCastExplainDesc: 'Gli attori elencati qui sotto recitano nel tuo FILM OBIETTIVO. Non appena raggiungi uno qualsiasi di questi attori nella tua catena, potrai selezionare direttamente il Film Obiettivo al passo successivo e vincere!',
+    linksCount: 'Passi', gameWonTitle: 'PONTE COMPLETATO!', gameWonSubtitle: 'Hai collegato entrambi i film con la tua cultura cinematografica!',
+    winRank1: 'GENIO CINEFILO PERFETTO', winRank2: 'MAESTRO ARCHITETTO', winRank3: 'ESPLORATORE DEL CINEMA',
+    playAgainBtn: 'Gioca con Nuovi Film', retrySameBtn: 'Prova Percorso Più Breve', changeMovie: 'Cambia',
+    targetHereBadge: '🎯 FILM OBIETTIVO!', targetActorHereBadge: '⚡ NEL CAST OBIETTIVO!'
   },
   fr: { 
-    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes (proportion inversée).', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données pour l\'analyse.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé' }
+    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
+    criticLabel: 'Critique', ticketHeader: '★ BILLET D\'ARCHIVE CRITIQUE OFFICIEL ★', magazineHeader: 'ÉDITION SPÉCIALE CRITIQUE', radarHeader: 'ANALYSE RADAR CRITIQUE',
+    storyStyle1: 'Neon Aura', storyStyle2: 'Affiche Cinéma', storyStyle3: 'Billet Rétro', storyStyle4: 'Magazine', storyStyle5: 'Prisme Radar',
+    rouletteBtn: 'Roulette Cinéma', rouletteTitle: 'Que regarder ce soir ?', rouletteDesc: 'Tous les films de votre liste sont mélangés pour choisir votre film de ce soir.', roulettePicked: 'Choisi par le Destin !', spinAgain: 'Relancer', goToMovie: 'Voir le Film', createStory: 'Créer Carte Story', downloadStory: 'Télécharger (PNG)',
+    miniGameNav: 'Mini-Jeu: CineLink', gameTitle: 'CINELINK: RELIEZ LES FILMS',
+    gameSubtitle: 'Sautez de filmographie en filmographie via des acteurs communs pour relier deux films.',
+    showGuideBtn: 'Comment jouer ?', hideGuideBtn: 'Masquer le guide', stepLabel: 'ÉTAPE',
+    howStep1Title: 'Choisir Deux Films', howStep1Desc: 'Choisissez un film de départ et le film cible à atteindre.',
+    howStep2Title: 'Choisir un Acteur', howStep2Desc: 'Cliquez sur un acteur du casting du film de départ.',
+    howStep3Title: 'Sauter vers un Film', howStep3Desc: 'Sélectionnez un autre film dans lequel cet acteur a joué.',
+    howStep4Title: 'Relier la Cible', howStep4Desc: 'Atteignez un acteur du film cible et sélectionnez le film final !',
+    exampleShortestLabel: 'Exemple de Pont Court :', exampleM1: 'Shutter Island', exampleM2: 'Gilbert Grape', exampleM3: 'Pirates des Caraïbes',
+    startMovieLabel: '1. Film de Départ', targetMovieLabel: '2. Film Cible',
+    startPointBadge: 'POINT DE DÉPART', targetPointBadge: 'DESTINATION CIBLE',
+    searchMovieGame: 'Tapez le titre d\'un film...', startGameBtn: 'Lancer le Pont', randomPairBtn: 'Choisir 2 Films au Hasard',
+    classicPairBtn: 'Route Classique : Shutter Island ➔ Pirates des Caraïbes',
+    bridgeChecking: 'Analyse de la connexion entre les films...',
+    bridgeImpossibleTitle: '⛔ Connexion Impossible Entre Ces Films !',
+    bridgeImpossibleNoCast: 'L\'un des films sélectionnés n\'a aucun acteur enregistré. Veuillez choisir un autre film.',
+    bridgeImpossibleIsolated: 'a un casting isolé sans aucun autre film. Impossible de créer un pont !',
+    bridgeDirectPossible: '⚡ Info : Ces deux films partagent directement un acteur (résoluble en 1 étape).',
+    bridgeNormalPossible: '✅ Pont Possible : Les deux castings sont bien reliés.',
+    chainMapTitle: 'CHAÎNE DE CONNEXION', chainStartBadge: 'DÉPART', chainTargetGhost: 'DESTINATION CIBLE',
+    nodeMovieLabel: 'FILM', nodeActorLabel: 'ACTEUR',
+    nextMoveActorBadge: 'PROCHAINE ÉTAPE : CHOISIR UN ACTEUR', nextMoveMovieBadge: 'PROCHAINE ÉTAPE : CHOISIR UN FILM',
+    stepPickActor: '— choisissez un acteur de ce film :', stepPickMovie: '— choisissez un film avec cet acteur :',
+    filterActors: 'Chercher un acteur...', filterMovies: 'Chercher dans la filmographie...',
+    undoStep: 'Annuler', resetGame: 'Nouvelle Partie',
+    targetCastHint: 'Casting Cible (Indice)',
+    targetCastExplainTitle: 'Pourquoi consulter le Casting du Film Cible ?',
+    targetCastExplainDesc: 'Les acteurs listés ci-dessous jouent dans votre FILM CIBLE. Dès que vous atteignez l\'un de ces acteurs dans votre chaîne, vous pouvez immédiatement sélectionner le Film Cible à l\'étape suivante et gagner !',
+    linksCount: 'Liens', gameWonTitle: 'PONT TERMINÉ !', gameWonSubtitle: 'Vous avez relié les deux films grâce à votre culture cinéma !',
+    winRank1: 'GÉNIE CINÉPHILE PARFAIT', winRank2: 'MAÎTRE ARCHITECTE', winRank3: 'EXPLORATEUR DU CINÉMA',
+    playAgainBtn: 'Jouer avec de Nouveaux Films', retrySameBtn: 'Essayer un Chemin Plus Court', changeMovie: 'Changer',
+    targetHereBadge: '🎯 FILM CIBLE !', targetActorHereBadge: '⚡ DANS LE CASTING CIBLE !'
+  }
 };
 
 const AURA_COLORS = ["#39ff14", "#0ea5e9", "#f43f5e", "#eab308", "#a855f7", "#ec4899", "#14b8a6", "#f97316"];
@@ -233,6 +394,65 @@ const CustomAnimations = () => (
     }
     .holo-badge:hover { transform: translateY(-5px) scale(1.05); }
     .holo-badge:hover::before { left: 150%; }
+
+    /* YENİ: 3D TILT (KOLEKSİYON KARTI EĞİMİ) VE SKELETON EFEKTİ */
+    .tilt-card { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; transform-style: preserve-3d; }
+    .tilt-card:hover { transform: perspective(1000px) rotateX(6deg) rotateY(-6deg) scale(1.06); box-shadow: 12px 18px 35px rgba(0,0,0,0.85); }
+    .tilt-card:active { transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02); }
+
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    .skeleton-shimmer {
+      background: linear-gradient(90deg, #090d16 25%, #162032 50%, #090d16 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite linear;
+    }
+
+    /* YENİ: CANLI AURORA KOYU TEMA & ELİT CAM DOKUSU */
+    .cyber-grid-bg {
+      background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .bg-slate-900\/80 {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(7, 11, 22, 0.94) 100%) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* YENİ: 35MM ESKİ FİLM MAKARASI VE PROJEKSİYON PERDESİ EFEKTLERİ */
+    .film-sprockets {
+      background-image: repeating-linear-gradient(
+        to right,
+        transparent 0px,
+        transparent 10px,
+        #03050B 10px,
+        #03050B 24px
+      );
+    }
+    @keyframes projectorFlicker {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.65; }
+    }
+    .projector-beam-active {
+      animation: projectorFlicker 2s infinite ease-in-out;
+    }
+
+    /* YENİ: CANLI KART PARILTISI VE ÖNE ÇIKAN FRAGMAN BUTONU */
+    @keyframes trailerPulse {
+      0%, 100% { box-shadow: 0 0 25px rgba(225, 29, 72, 0.45), inset 0 0 15px rgba(255, 255, 255, 0.15); }
+      50% { box-shadow: 0 0 40px rgba(225, 29, 72, 0.75), inset 0 0 20px rgba(255, 255, 255, 0.25); }
+    }
+    .trailer-hero-btn {
+      background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #881337 100%);
+      animation: trailerPulse 2.8s infinite ease-in-out;
+    }
+    .trailer-hero-btn:hover {
+      background: linear-gradient(135deg, #f43f5e 0%, #e11d48 50%, #9f1239 100%);
+      transform: translateY(-2px) scale(1.02);
+    }
+    header {
+      box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.8), 0 1px 0 0 rgba(255, 255, 255, 0.07) !important;
+    }
   `}}/>
 );
 
@@ -355,8 +575,29 @@ const MovieRow = ({ title, movies, icon, t, selectMovieToRate, globalMoviesList,
   );
 };
 
-const getAllBadges = (ratingCount, t) => {
-  const c = Number(ratingCount) || 0;
+const getAllBadges = (ratingsList, t, globalMoviesList = []) => {
+  const list = Array.isArray(ratingsList) ? ratingsList : [];
+  const c = list.length;
+
+  // 1. Çöp Avcısı: 3.0 puanın altında 3 film
+  const trashCount = list.filter(r => Number(r.finalScore) > 0 && Number(r.finalScore) < 3.0).length;
+  // 2. Acımasız: 2.0 veya altı en az 1 film
+  const ruthlessCount = list.filter(r => Number(r.finalScore) > 0 && Number(r.finalScore) <= 2.0).length;
+  // 3. Gece Kuşu: Gece 01:00 - 05:00 arası 3 film
+  const nightOwlCount = list.filter(r => {
+    if (!r.date) return false;
+    const hour = new Date(Number(r.date)).getHours();
+    return hour >= 1 && hour <= 5;
+  }).length;
+  // 4. Zaman Yolcusu: 4 farklı on yıldan film
+  const decades = new Set();
+  list.forEach(r => {
+    const g = globalMoviesList.find(m => String(m.id) === String(r.id));
+    const yStr = String(r.year || g?.year || '');
+    const match = yStr.match(/\d{4}/);
+    if (match) decades.add(Math.floor(Number(match[0]) / 10) * 10);
+  });
+
   return [
     { id: 'b1', name: t.b1Name, icon: <Film size={24}/>, color: 'text-zinc-400 border-zinc-700 bg-zinc-800/50', desc: t.b1Desc, earned: c >= 1 },
     { id: 'b2', name: t.b2Name, icon: <Ticket size={24}/>, color: 'text-sky-400 border-sky-800/50 bg-sky-900/20', desc: t.b2Desc, earned: c >= 10 },
@@ -364,6 +605,11 @@ const getAllBadges = (ratingCount, t) => {
     { id: 'b4', name: t.b4Name, icon: <Medal size={24}/>, color: 'text-amber-400 border-amber-500/50 bg-amber-900/20 shadow-[0_0_20px_rgba(245,158,11,0.3)] animate-pulse', desc: t.b4Desc, earned: c >= 100 },
     { id: 'b5', name: t.b5Name, icon: <Clapperboard size={24}/>, color: 'text-rose-500 border-rose-500/50 bg-rose-900/20 shadow-[0_0_25px_rgba(225,29,72,0.4)]', desc: t.b5Desc, earned: c >= 250 },
     { id: 'b6', name: t.b6Name, icon: <Crown size={24}/>, color: 'text-emerald-400 border-emerald-400/80 bg-emerald-900/20 shadow-[0_0_30px_rgba(52,211,153,0.6)] animate-bounce', desc: t.b6Desc, earned: c >= 500 },
+    // GİZLİ (EASTER EGG) ROZETLER (Kazanılana kadar açıklaması gizli kalır)
+    { id: 'b7', name: t.b7Name || 'Çöp Avcısı', icon: <Flame size={24}/>, color: 'text-purple-400 border-purple-500/60 bg-purple-950/30 shadow-[0_0_20px_rgba(168,85,247,0.3)]', desc: (trashCount >= 3) ? t.b7Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b7Desc, earned: trashCount >= 3, secret: true },
+    { id: 'b8', name: t.b8Name || 'Zaman Yolcusu', icon: <Rocket size={24}/>, color: 'text-cyan-400 border-cyan-500/60 bg-cyan-950/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]', desc: (decades.size >= 4) ? t.b8Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b8Desc, earned: decades.size >= 4, secret: true },
+    { id: 'b9', name: t.b9Name || 'Gece Kuşu', icon: <Sparkles size={24}/>, color: 'text-indigo-400 border-indigo-500/60 bg-indigo-950/30 shadow-[0_0_20px_rgba(99,102,241,0.3)]', desc: (nightOwlCount >= 3) ? t.b9Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b9Desc, earned: nightOwlCount >= 3, secret: true },
+    { id: 'b10', name: t.b10Name || 'Acımasız', icon: <Trophy size={24}/>, color: 'text-red-500 border-red-500/60 bg-red-950/30 shadow-[0_0_20px_rgba(239,68,68,0.3)]', desc: (ruthlessCount >= 1) ? t.b10Desc : (t.secretLockedDesc || '🔒 Gizli Başarım: Keşfederek kilidini aç!'), realDesc: t.b10Desc, earned: ruthlessCount >= 1, secret: true },
   ];
 };
 
@@ -545,6 +791,1316 @@ function CineScoreMain() {
   const [ratingToDelete, setRatingToDelete] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+
+  // YENİ: 2. PAKET STATE'LERİ (Kariyer Karnesi, Sinema Ruleti, Story Kartı)
+  const [personModal, setPersonModal] = useState({ show: false, loading: false, data: null });
+  const [rouletteModal, setRouletteModal] = useState({ show: false, spinning: false, currentMovie: null, winner: null });
+  const [storyModal, setStoryModal] = useState({ show: false, generating: false, imageUrl: null });
+
+  // 1) YÖNETMEN & OYUNCU KARİYER KARNESİ FONKSİYONU
+  const openPersonCareer = async (personId, fallbackName = '', roleType = 'cast') => {
+    if (!personId) return;
+    setPersonModal({ show: true, loading: true, data: null });
+    try {
+      const res = await fetch(`https://api.themoviedb.org/3/person/${personId}?api_key=${TMDB_API_KEY}&append_to_response=movie_credits&language=${tmdbLang}`);
+      const d = await res.json();
+      let rawMovies = [];
+      if (roleType === 'director') {
+        rawMovies = (d.movie_credits?.crew || []).filter(m => m.job === 'Director' && m.poster_path);
+      } else {
+        rawMovies = (d.movie_credits?.cast || []).filter(m => m.poster_path);
+      }
+      const uniqueMap = new Map();
+      rawMovies.forEach(m => { if (!uniqueMap.has(m.id)) uniqueMap.set(m.id, m); });
+      const allPersonMovies = Array.from(uniqueMap.values()).sort((a, b) => (b.vote_count || 0) - (a.vote_count || 0));
+
+      // CineScore Global & Kişisel Kariyer Ortalaması Hesaplama
+      let globalSum = 0, globalCount = 0;
+      let mySum = 0, myCount = 0;
+      allPersonMovies.forEach(m => {
+        const gMatch = globalMovies.find(gm => String(gm.id) === String(m.id) && Number(gm.voteCount) > 0);
+        if (gMatch && gMatch.avgScore > 0) { globalSum += Number(gMatch.avgScore); globalCount++; }
+        const myMatch = myRatings.find(mr => String(mr.id) === String(m.id));
+        if (myMatch && myMatch.finalScore > 0) { mySum += Number(myMatch.finalScore); myCount++; }
+      });
+
+      setPersonModal({
+        show: true,
+        loading: false,
+        data: {
+          id: d.id,
+          name: d.name || fallbackName,
+          photo: d.profile_path ? `https://image.tmdb.org/t/p/w300${d.profile_path}` : null,
+          role: roleType === 'director' ? t.director : t.cast,
+          globalAvg: globalCount > 0 ? (globalSum / globalCount).toFixed(2) : null,
+          globalRatedCount: globalCount,
+          myAvg: myCount > 0 ? (mySum / myCount).toFixed(2) : null,
+          myRatedCount: myCount,
+          movies: allPersonMovies.slice(0, 12).map(m => ({
+            id: String(m.id),
+            title: m.title,
+            poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`,
+            year: m.release_date ? m.release_date.split('-')[0] : ''
+          }))
+        }
+      });
+    } catch (e) {
+      setPersonModal({ show: false, loading: false, data: null });
+      showToast(t.errorOccurred);
+    }
+  };
+
+  // 2) FİLM MAKARASI & PROJEKSİYON RULETİ (Anında İptal Edilebilir & Yumuşak Geçişli)
+  const rouletteTimerRef = useRef(null);
+
+  const closeCinemaRoulette = () => {
+    if (rouletteTimerRef.current) {
+      clearTimeout(rouletteTimerRef.current);
+      rouletteTimerRef.current = null;
+    }
+    setRouletteModal({ show: false, spinning: false, animate: false, strip: [], offsetPx: -56, winner: null });
+  };
+
+  const startCinemaRoulette = () => {
+    if (!myWatchlist || myWatchlist.length === 0) return;
+    if (rouletteTimerRef.current) clearTimeout(rouletteTimerRef.current);
+
+    // 30 karelik uzun bir 35mm film şeridi oluşturuyoruz
+    const totalFrames = 30;
+    const winIndex = 24; // Makaranın yumuşakça yavaşlayıp duracağı kare
+    const reelStrip = [];
+    for (let i = 0; i < totalFrames; i++) {
+      const pick = myWatchlist[Math.floor(Math.random() * myWatchlist.length)];
+      reelStrip.push({ ...pick, reelKey: `${pick.id}_${i}` });
+    }
+    const chosenWinner = reelStrip[winIndex];
+
+    // Önce makarayı başlangıç noktasına (0. kareye) yerleştir
+    setRouletteModal({
+      show: true,
+      spinning: true,
+      animate: false,
+      strip: reelStrip,
+      offsetPx: -56,
+      winner: null
+    });
+
+    // 60ms sonra yumuşak sinematik kaymayı başlat (Her kare 112px genişlik + 16px boşluk = 128px)
+    rouletteTimerRef.current = setTimeout(() => {
+      const targetOffset = -(winIndex * 128 + 56);
+      setRouletteModal(prev => {
+        if (!prev.show) return prev;
+        return { ...prev, animate: true, offsetPx: targetOffset };
+      });
+
+      // Makara 4.2 saniyede yumuşakça durduğunda filmi projeksiyon perdesine yansıt
+      rouletteTimerRef.current = setTimeout(() => {
+        setRouletteModal(prev => {
+          if (!prev.show) return prev;
+          return { ...prev, spinning: false, winner: chosenWinner };
+        });
+      }, 4250);
+    }, 60);
+  };
+
+  // --- YENİ: MİNİ OYUN (SİNEBAĞ / CINELINK) STATE VE FONKSİYONLARI ---
+  const [gameStartMovie, setGameStartMovie] = useState(null);
+  const [gameTargetMovie, setGameTargetMovie] = useState(null);
+  const [gameStartQuery, setGameStartQuery] = useState('');
+  const [gameTargetQuery, setGameTargetQuery] = useState('');
+  const [gameStartResults, setGameStartResults] = useState([]);
+  const [gameTargetResults, setGameTargetResults] = useState([]);
+  const [gameSearchingSide, setGameSearchingSide] = useState(null);
+
+  const [gameActive, setGameActive] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
+  const [gameLoading, setGameLoading] = useState(false);
+  const [gameStepType, setGameStepType] = useState('actor'); // 'actor' | 'movie'
+  const [gameChain, setGameChain] = useState([]); // [{ type: 'movie'|'actor', id, name, image, sub }]
+  const [gameOptions, setGameOptions] = useState([]);
+  const [gameHistoryStack, setGameHistoryStack] = useState([]);
+  const [gameFilterText, setGameFilterText] = useState('');
+  const [gameTargetCast, setGameTargetCast] = useState([]);
+  const [showTargetHint, setShowTargetHint] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+  const [bridgeStatus, setBridgeStatus] = useState({ checking: false, possible: true, directMatch: false, reason: '' });
+
+  // YENİ: 60 Saniye Sayacı, Akıllı Hamle İpucu ve En Kısa Yol State'leri
+  const [gameElapsedSeconds, setGameElapsedSeconds] = useState(0);
+  const [smartHintData, setSmartHintData] = useState({ loading: false, recommendedId: null, message: '' });
+  const [shortestPathModal, setShortestPathModal] = useState({ show: false, loading: false, path: [] });
+  const targetNetworkCacheRef = useRef({ movieId: null, actorMoviesMap: new Map() });
+
+  // Oyun Başladığında Çalışan 60 Saniyelik Geri Sayım Sayacı
+  useEffect(() => {
+    if (!gameActive || gameWon) return;
+    const interval = setInterval(() => {
+      setGameElapsedSeconds(prev => (prev < 60 ? prev + 1 : 60));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [gameActive, gameWon]);
+
+  // Oyun İçi Başlangıç Filmi Arama
+  useEffect(() => {
+    if (gameStartQuery.trim().length < 2) { setGameStartResults([]); return; }
+    const timer = setTimeout(async () => {
+      setGameSearchingSide('start');
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(gameStartQuery)}&language=${tmdbLang}`);
+        const d = await res.json();
+        setGameStartResults((d.results || []).filter(m => m.poster_path).slice(0, 6));
+      } catch (e) {} finally { setGameSearchingSide(null); }
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [gameStartQuery, tmdbLang]);
+
+  // Oyun İçi Hedef Film Arama
+  useEffect(() => {
+    if (gameTargetQuery.trim().length < 2) { setGameTargetResults([]); return; }
+    const timer = setTimeout(async () => {
+      setGameSearchingSide('target');
+      try {
+        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(gameTargetQuery)}&language=${tmdbLang}`);
+        const d = await res.json();
+        setGameTargetResults((d.results || []).filter(m => m.poster_path).slice(0, 6));
+      } catch (e) {} finally { setGameSearchingSide(null); }
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [gameTargetQuery, tmdbLang]);
+
+  // Bir Filmin Oyuncu Kadrosunu Çekme
+  const fetchMovieCastForGame = async (movieId) => {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${TMDB_API_KEY}&language=${tmdbLang}`);
+    const d = await res.json();
+    return (d.cast || []).slice(0, 60).map(c => ({
+      id: String(c.id),
+      name: c.name,
+      sub: c.character || '',
+      image: c.profile_path ? `https://image.tmdb.org/t/p/w300${c.profile_path}` : null
+    }));
+  };
+
+  // Bir Oyuncunun Oynadığı Filmleri Çekme
+  const fetchActorMoviesForGame = async (personId) => {
+    const res = await fetch(`https://api.themoviedb.org/3/person/${personId}/movie_credits?api_key=${TMDB_API_KEY}&language=${tmdbLang}`);
+    const d = await res.json();
+    const unique = new Map();
+    (d.cast || []).forEach(m => {
+      if (m.poster_path && !unique.has(String(m.id))) {
+        unique.set(String(m.id), {
+          id: String(m.id),
+          name: m.title,
+          sub: m.release_date ? m.release_date.split('-')[0] : '',
+          image: `https://image.tmdb.org/t/p/w300${m.poster_path}`,
+          votes: m.vote_count || 0
+        });
+      }
+    });
+    return Array.from(unique.values()).sort((a, b) => b.votes - a.votes);
+  };
+
+  // Hedef Filmin Oyuncu Ağını Ön Belleğe Alma (İpucu ve En Kısa Yol İçin)
+  const ensureTargetNetworkLoaded = async (targetMov, targetCastList) => {
+    if (!targetMov) return new Map();
+    if (targetNetworkCacheRef.current.movieId === String(targetMov.id) && targetNetworkCacheRef.current.actorMoviesMap.size > 0) {
+      return targetNetworkCacheRef.current.actorMoviesMap;
+    }
+    const castToScan = (targetCastList && targetCastList.length > 0 ? targetCastList : await fetchMovieCastForGame(targetMov.id)).slice(0, 10);
+    const map = new Map();
+    await Promise.all(
+      castToScan.map(async (actor) => {
+        try {
+          const movies = await fetchActorMoviesForGame(actor.id);
+          map.set(String(actor.id), { actor, movies });
+        } catch (e) {}
+      })
+    );
+    targetNetworkCacheRef.current = { movieId: String(targetMov.id), actorMoviesMap: map };
+    return map;
+  };
+
+  // İKİ FİLM ARASINDAKİ EN KISA YOLU BULAN ÇİFT YÖNLÜ ARAMA MOTORU
+  const computeShortestBridge = async (startMov, targetMov) => {
+    const [c1, c2] = await Promise.all([
+      fetchMovieCastForGame(startMov.id),
+      fetchMovieCastForGame(targetMov.id)
+    ]);
+
+    const startNode = { type: 'movie', id: String(startMov.id), name: startMov.title, sub: startMov.year || '', image: startMov.poster };
+    const targetNode = { type: 'movie', id: String(targetMov.id), name: targetMov.title, sub: targetMov.year || '', image: targetMov.poster };
+
+    // 1. KONTROL: 1 ADIMLI DOĞRUDAN ORTAK OYUNCU (Film 1 ➔ Oyuncu ➔ Film 2)
+    const c2Map = new Map(c2.map(a => [String(a.id), a]));
+    const directActor = c1.find(a => c2Map.has(String(a.id)));
+    if (directActor) {
+      return [startNode, { type: 'actor', ...directActor }, targetNode];
+    }
+
+    // 2. KONTROL: 2 ADIMLI ORTAK FİLM KÖPRÜSÜ (Film 1 ➔ Oyuncu 1 ➔ Ortak Film ➔ Oyuncu 2 ➔ Film 2)
+    const topStartActors = c1.slice(0, 10);
+    const topTargetActors = c2.slice(0, 10);
+
+    const [startActorCredits, targetNetworkMap] = await Promise.all([
+      Promise.all(topStartActors.map(async a => ({ actor: a, movies: await fetchActorMoviesForGame(a.id) }))),
+      ensureTargetNetworkLoaded(targetMov, topTargetActors)
+    ]);
+
+    // Hedef oyuncuların oynadığı tüm filmleri hızlı arama tablosuna koy
+    const targetMovieLookup = new Map(); // movieId -> { movie, targetActor }
+    targetNetworkMap.forEach(({ actor: tActor, movies: tMovies }) => {
+      tMovies.forEach(tm => {
+        if (String(tm.id) !== String(targetMov.id) && !targetMovieLookup.has(String(tm.id))) {
+          targetMovieLookup.set(String(tm.id), { movie: tm, targetActor: tActor });
+        }
+      });
+    });
+
+    for (const { actor: sActor, movies: sMovies } of startActorCredits) {
+      for (const sm of sMovies) {
+        if (String(sm.id) === String(targetMov.id)) {
+          return [startNode, { type: 'actor', ...sActor }, targetNode];
+        }
+        if (targetMovieLookup.has(String(sm.id))) {
+          const match = targetMovieLookup.get(String(sm.id));
+          return [
+            startNode,
+            { type: 'actor', ...sActor },
+            { type: 'movie', id: String(match.movie.id), name: match.movie.name, sub: match.movie.sub, image: match.movie.image },
+            { type: 'actor', ...match.targetActor },
+            targetNode
+          ];
+        }
+      }
+    }
+
+    // 3. KONTROL: 3 ADIMLI KÖPRÜ (Film 1 ➔ Oyuncu 1 ➔ Film A ➔ Merkez Oyuncu ➔ Film B ➔ Oyuncu 2 ➔ Film 2)
+    const candidateStartMovies = [];
+    const seenMidIds = new Set();
+    startActorCredits.forEach(({ actor: sActor, movies: sMovies }) => {
+      sMovies.slice(0, 3).forEach(m => {
+        if (!seenMidIds.has(String(m.id)) && candidateStartMovies.length < 8) {
+          seenMidIds.add(String(m.id));
+          candidateStartMovies.push({ sActor, movie: m });
+        }
+      });
+    });
+
+    const midCasts = await Promise.all(
+      candidateStartMovies.map(async item => ({
+        ...item,
+        cast: (await fetchMovieCastForGame(item.movie.id)).slice(0, 20)
+      }))
+    );
+
+    // Hedef filmlerin oyuncularını kontrol et
+    const candidateTargetMovies = [];
+    const seenTIds = new Set();
+    targetNetworkMap.forEach(({ actor: tActor, movies: tMovies }) => {
+      tMovies.slice(0, 3).forEach(m => {
+        if (!seenTIds.has(String(m.id)) && candidateTargetMovies.length < 8) {
+          seenTIds.add(String(m.id));
+          candidateTargetMovies.push({ tActor, movie: m });
+        }
+      });
+    });
+
+    const targetMidCasts = await Promise.all(
+      candidateTargetMovies.map(async item => ({
+        ...item,
+        cast: (await fetchMovieCastForGame(item.movie.id)).slice(0, 25)
+      }))
+    );
+
+    const targetActorBridgeLookup = new Map(); // actorId -> { midActor, tMovie, tActor }
+    targetMidCasts.forEach(({ tActor, movie: tMovie, cast }) => {
+      cast.forEach(ca => {
+        if (!targetActorBridgeLookup.has(String(ca.id))) {
+          targetActorBridgeLookup.set(String(ca.id), { midActor: ca, tMovie, tActor });
+        }
+      });
+    });
+
+    for (const { sActor, movie: sMovie, cast } of midCasts) {
+      for (const ca of cast) {
+        if (targetActorBridgeLookup.has(String(ca.id))) {
+          const hit = targetActorBridgeLookup.get(String(ca.id));
+          return [
+            startNode,
+            { type: 'actor', ...sActor },
+            { type: 'movie', id: String(sMovie.id), name: sMovie.name, sub: sMovie.sub, image: sMovie.image },
+            { type: 'actor', ...hit.midActor },
+            { type: 'movie', id: String(hit.tMovie.id), name: hit.tMovie.name, sub: hit.tMovie.sub, image: hit.tMovie.image },
+            { type: 'actor', ...hit.tActor },
+            targetNode
+          ];
+        }
+      }
+    }
+
+    return [];
+  };
+
+  // EN KISA YOLU GÖSTER BUTONU FONKSİYONU
+  const handleRevealShortestPath = async () => {
+    if (!gameStartMovie || !gameTargetMovie) return;
+    setShortestPathModal({ show: true, loading: true, path: [] });
+    try {
+      const foundPath = await computeShortestBridge(gameStartMovie, gameTargetMovie);
+      setShortestPathModal({ show: true, loading: false, path: foundPath });
+    } catch (e) {
+      setShortestPathModal({ show: false, loading: false, path: [] });
+      showToast(t.errorOccurred);
+    }
+  };
+
+  // HERHANGİ BİR ADIMDA TAKILAN OYUNCUYA "SIRADAKİ EN MANTIKLI HAMLE" İPUCU VERME
+  const handleSmartMoveHint = async () => {
+    if (!gameActive || gameWon || gameOptions.length === 0) return;
+    setSmartHintData({ loading: true, recommendedId: null, message: '' });
+
+    try {
+      const targetNet = await ensureTargetNetworkLoaded(gameTargetMovie, gameTargetCast);
+      const targetCastIds = new Set(gameTargetCast.map(a => String(a.id)));
+
+      if (gameStepType === 'actor') {
+        // 1) Şu anki kadroda doğrudan hedef filmde oynayan biri var mı?
+        const directHit = gameOptions.find(opt => targetCastIds.has(String(opt.id)));
+        if (directHit) {
+          setSmartHintData({
+            loading: false,
+            recommendedId: String(directHit.id),
+            message: `🎯 Altın Hamle: "${directHit.name}" doğrudan hedef film olan ${gameTargetMovie.title} kadrosunda yer alıyor! Onu seçip hemen hedef filme atlayabilirsin.`
+          });
+          return;
+        }
+
+        // 2) Şu anki kadrodaki oyunculardan hangisi hedef kadroyla ortak bir filmde oynadı?
+        const topCandidates = gameOptions.slice(0, 8);
+        const candidateCredits = await Promise.all(
+          topCandidates.map(async cand => ({ cand, movies: await fetchActorMoviesForGame(cand.id) }))
+        );
+
+        for (const { cand, movies } of candidateCredits) {
+          for (const m of movies) {
+            for (const [, { actor: tActor, movies: tMovies }] of targetNet.entries()) {
+              if (tMovies.some(tm => String(tm.id) === String(m.id))) {
+                setSmartHintData({
+                  loading: false,
+                  recommendedId: String(cand.id),
+                  message: `💡 En Mantıklı Hamle: "${cand.name}" oyuncusunu seç! Onun oynadığı "${m.name}" filmi üzerinden hedef kadrodaki "${tActor.name}" oyuncusuna bağlanabilirsin.`
+                });
+                return;
+              }
+            }
+          }
+        }
+
+        // 3) Doğrudan kesişim yoksa en geniş filmografiye sahip kilit oyuncuyu öner
+        let bestCand = candidateCredits[0]?.cand || gameOptions[0];
+        let maxCount = 0;
+        candidateCredits.forEach(({ cand, movies }) => {
+          if (movies.length > maxCount) { maxCount = movies.length; bestCand = cand; }
+        });
+        setSmartHintData({
+          loading: false,
+          recommendedId: String(bestCand.id),
+          message: `🧭 Stratejik Hamle: "${bestCand.name}" (${maxCount} popüler film) bu kadrodaki en geniş sinema ağına sahip merkez oyuncu. Köprüyü kurmak için en güçlü tercih!`
+        });
+
+      } else {
+        // FİLM SEÇİM ADIMINDAYIZ
+        // 1) Hedef filmin kendisi listede mi?
+        const exactMovie = gameOptions.find(opt => String(opt.id) === String(gameTargetMovie.id));
+        if (exactMovie) {
+          setSmartHintData({
+            loading: false,
+            recommendedId: String(exactMovie.id),
+            message: `🎯 Zafer Hamlesi: Hedef film "${exactMovie.name}" tam karşında! Seçerek zinciri tamamla.`
+          });
+          return;
+        }
+
+        // 2) Listedeki filmlerden biri hedef kadrodaki bir oyuncunun filmi mi?
+        for (const opt of gameOptions) {
+          for (const [, { actor: tActor, movies: tMovies }] of targetNet.entries()) {
+            if (tMovies.some(tm => String(tm.id) === String(opt.id))) {
+              setSmartHintData({
+                loading: false,
+                recommendedId: String(opt.id),
+                message: `💡 Kritik Köprü: "${opt.name}" filmini seç! Bu filmde hedef filmin kadrosundan "${tActor.name}" da oynuyor.`
+              });
+              return;
+            }
+          }
+        }
+
+        // 3) En popüler / en çok yıldız barındıran merkez filmi öner
+        const bestMovie = gameOptions[0];
+        setSmartHintData({
+          loading: false,
+          recommendedId: String(bestMovie.id),
+          message: `🧭 Stratejik Hamle: "${bestMovie.name}" geniş oyuncu kadrosuyla seni uluslararası yıldızlara en hızlı bağlayacak merkez film.`
+        });
+      }
+    } catch (e) {
+      setSmartHintData({ loading: false, recommendedId: null, message: '' });
+    }
+  };
+
+  // İKİ FİLM SEÇİLDİĞİNDE OTOMATİK "İMKANSIZ BAĞ" VE KÖPRÜ ANALİZİ YAPMA
+  useEffect(() => {
+    if (!gameStartMovie || !gameTargetMovie) {
+      setBridgeStatus({ checking: false, possible: true, directMatch: false, reason: '' });
+      return;
+    }
+    if (String(gameStartMovie.id) === String(gameTargetMovie.id)) {
+      setBridgeStatus({ checking: false, possible: false, directMatch: false, reason: 'Başlangıç ve hedef film aynı olamaz!' });
+      return;
+    }
+
+    let cancelled = false;
+    const verifyBridge = async () => {
+      setBridgeStatus({ checking: true, possible: true, directMatch: false, reason: '' });
+      try {
+        const [c1, c2] = await Promise.all([
+          fetchMovieCastForGame(gameStartMovie.id),
+          fetchMovieCastForGame(gameTargetMovie.id)
+        ]);
+
+        if (cancelled) return;
+
+        if (c1.length === 0 || c2.length === 0) {
+          setBridgeStatus({
+            checking: false,
+            possible: false,
+            directMatch: false,
+            reason: t.bridgeImpossibleNoCast || 'Seçilen filmlerden birinin kayıtlı oyuncu kadrosu bulunmuyor.'
+          });
+          return;
+        }
+
+        const c2Ids = new Set(c2.map(a => String(a.id)));
+        const sharedActor = c1.find(a => c2Ids.has(String(a.id)));
+        if (sharedActor) {
+          setBridgeStatus({
+            checking: false,
+            possible: true,
+            directMatch: true,
+            reason: t.bridgeDirectPossible
+          });
+          return;
+        }
+
+        const sampleStartActors = c1.slice(0, 5);
+        const sampleTargetActors = c2.slice(0, 5);
+
+        const [startCreditsList, targetCreditsList] = await Promise.all([
+          Promise.all(sampleStartActors.map(a => fetchActorMoviesForGame(a.id))),
+          Promise.all(sampleTargetActors.map(a => fetchActorMoviesForGame(a.id)))
+        ]);
+
+        if (cancelled) return;
+
+        const canLeaveStart = startCreditsList.some(list => list.some(m => String(m.id) !== String(gameStartMovie.id)));
+        const canEnterTarget = targetCreditsList.some(list => list.some(m => String(m.id) !== String(gameTargetMovie.id)));
+
+        if (!canLeaveStart) {
+          setBridgeStatus({
+            checking: false,
+            possible: false,
+            directMatch: false,
+            reason: `"${gameStartMovie.title}" ${t.bridgeImpossibleIsolated}`
+          });
+          return;
+        }
+
+        if (!canEnterTarget) {
+          setBridgeStatus({
+            checking: false,
+            possible: false,
+            directMatch: false,
+            reason: `"${gameTargetMovie.title}" ${t.bridgeImpossibleIsolated}`
+          });
+          return;
+        }
+
+        setBridgeStatus({
+          checking: false,
+          possible: true,
+          directMatch: false,
+          reason: t.bridgeNormalPossible
+        });
+      } catch (e) {
+        if (!cancelled) setBridgeStatus({ checking: false, possible: true, directMatch: false, reason: '' });
+      }
+    };
+
+    verifyBridge();
+    return () => { cancelled = true; };
+  }, [gameStartMovie, gameTargetMovie, tmdbLang]);
+
+  // Oyunu Başlatma
+  const startCineLinkGame = async (customStart = null, customTarget = null) => {
+    const sMovie = customStart || gameStartMovie;
+    const tMovie = customTarget || gameTargetMovie;
+    if (!sMovie || !tMovie || String(sMovie.id) === String(tMovie.id) || !bridgeStatus.possible) return;
+
+    setGameLoading(true);
+    setGameActive(true);
+    setGameWon(false);
+    setGameElapsedSeconds(0);
+    setSmartHintData({ loading: false, recommendedId: null, message: '' });
+    setGameFilterText('');
+    setShowTargetHint(false);
+    setGameHistoryStack([]);
+
+    try {
+      const [startCast, targetCast] = await Promise.all([
+        fetchMovieCastForGame(sMovie.id),
+        fetchMovieCastForGame(tMovie.id)
+      ]);
+      setGameTargetCast(targetCast.slice(0, 15));
+      // Arka planda hedef filmin oyuncu ağını hazırla (İpucu ve En Kısa Yol anında çalışsın diye)
+      ensureTargetNetworkLoaded(tMovie, targetCast);
+
+      setGameChain([{
+        type: 'movie',
+        id: String(sMovie.id),
+        name: sMovie.title,
+        sub: sMovie.year || '',
+        image: sMovie.poster
+      }]);
+      setGameOptions(startCast);
+      setGameStepType('actor');
+    } catch (e) {
+      showToast(t.errorOccurred);
+    } finally {
+      setGameLoading(false);
+    }
+  };
+
+// Oyun İçi Ekranı ve Seçim Listesini Anında En Tepeye Çıkarma Yardımcısı
+  const resetGameScrollPosition = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      const gridEl = document.getElementById('game-options-grid');
+      if (gridEl) gridEl.scrollTop = 0;
+      const chainEl = document.getElementById('game-chain-list');
+      if (chainEl) chainEl.scrollTop = chainEl.scrollHeight;
+    }, 40);
+  };
+
+  // DİL DEĞİŞTİĞİNDE OYUNDAKİ FİLM İSİMLERİNİ VE SEÇENEKLERİ YENİ DİLE ÇEVİRME
+  useEffect(() => {
+    let active = true;
+    const localizeGameMovies = async () => {
+      try {
+        if (gameStartMovie?.id) {
+          const r1 = await fetch(`https://api.themoviedb.org/3/movie/${gameStartMovie.id}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json());
+          if (active && r1?.title) {
+            setGameStartMovie(prev => prev ? { ...prev, title: r1.title, poster: r1.poster_path ? `https://image.tmdb.org/t/p/w500${r1.poster_path}` : prev.poster } : prev);
+          }
+        }
+        if (gameTargetMovie?.id) {
+          const r2 = await fetch(`https://api.themoviedb.org/3/movie/${gameTargetMovie.id}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json());
+          if (active && r2?.title) {
+            setGameTargetMovie(prev => prev ? { ...prev, title: r2.title, poster: r2.poster_path ? `https://image.tmdb.org/t/p/w500${r2.poster_path}` : prev.poster } : prev);
+          }
+        }
+        if (gameActive && gameChain.length > 0) {
+          const updatedChain = await Promise.all(gameChain.map(async (node) => {
+            if (node.type !== 'movie') return node;
+            try {
+              const rm = await fetch(`https://api.themoviedb.org/3/movie/${node.id}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json());
+              return rm?.title ? { ...node, name: rm.title } : node;
+            } catch { return node; }
+          }));
+          if (active) setGameChain(updatedChain);
+
+          const lastNode = gameChain[gameChain.length - 1];
+          if (lastNode) {
+            const newOpts = lastNode.type === 'movie'
+              ? await fetchMovieCastForGame(lastNode.id)
+              : await fetchActorMoviesForGame(lastNode.id);
+            if (active) setGameOptions(newOpts);
+          }
+        }
+      } catch (e) {}
+    };
+    localizeGameMovies();
+    return () => { active = false; };
+  }, [tmdbLang]);
+
+  // Oyuncu Seçildiğinde (Anında Yukarı Çıkar)
+  const handlePickGameActor = async (actor) => {
+    resetGameScrollPosition();
+    setGameLoading(true);
+    setGameFilterText('');
+    try {
+      const actorMovies = await fetchActorMoviesForGame(actor.id);
+      setGameHistoryStack(prev => [...prev, { chain: gameChain, options: gameOptions, stepType: gameStepType }]);
+      setGameChain(prev => [...prev, { type: 'actor', id: actor.id, name: actor.name, sub: actor.sub, image: actor.image }]);
+      setGameOptions(actorMovies);
+      setGameStepType('movie');
+      resetGameScrollPosition();
+    } catch (e) {
+      showToast(t.errorOccurred);
+    } finally {
+      setGameLoading(false);
+    }
+  };
+
+  // Film Seçildiğinde (Anında Yukarı Çıkar)
+  const handlePickGameMovie = async (movie) => {
+    resetGameScrollPosition();
+    setGameFilterText('');
+    const newChain = [...gameChain, { type: 'movie', id: movie.id, name: movie.name, sub: movie.sub, image: movie.image }];
+
+    // HEDEF FİLME ULAŞILDI MI KONTROLÜ
+    if (String(movie.id) === String(gameTargetMovie.id)) {
+      setGameHistoryStack(prev => [...prev, { chain: gameChain, options: gameOptions, stepType: gameStepType }]);
+      setGameChain(newChain);
+      setGameWon(true);
+      resetGameScrollPosition();
+      return;
+    }
+
+    setGameLoading(true);
+    try {
+      const nextCast = await fetchMovieCastForGame(movie.id);
+      setGameHistoryStack(prev => [...prev, { chain: gameChain, options: gameOptions, stepType: gameStepType }]);
+      setGameChain(newChain);
+      setGameOptions(nextCast);
+      setGameStepType('actor');
+      resetGameScrollPosition();
+    } catch (e) {
+      showToast(t.errorOccurred);
+    } finally {
+      setGameLoading(false);
+    }
+  };
+
+  // Son Hamleyi Geri Alma (Undo)
+  const handleUndoGameStep = () => {
+    if (gameHistoryStack.length === 0) return;
+    const lastState = gameHistoryStack[gameHistoryStack.length - 1];
+    setGameChain(lastState.chain);
+    setGameOptions(lastState.options);
+    setGameStepType(lastState.stepType);
+    setGameWon(false);
+    setGameFilterText('');
+    setSmartHintData({ loading: false, recommendedId: null, message: '' });
+    setGameHistoryStack(prev => prev.slice(0, -1));
+  };
+
+  // Rastgele 2 Popüler Film Seçme ve Klasik Rota Yükleme
+  const loadPresetOrRandomPair = async (type = 'random') => {
+    setGameLoading(true);
+    try {
+      if (type === 'classic') {
+        const [r1, r2] = await Promise.all([
+          fetch(`https://api.themoviedb.org/3/movie/11324?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json()),
+          fetch(`https://api.themoviedb.org/3/movie/22?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json())
+        ]);
+        setGameStartMovie({ id: String(r1.id), title: r1.title, year: '2010', poster: `https://image.tmdb.org/t/p/w500${r1.poster_path}` });
+        setGameTargetMovie({ id: String(r2.id), title: r2.title, year: '2003', poster: `https://image.tmdb.org/t/p/w500${r2.poster_path}` });
+      } else {
+        const randomPage = Math.floor(Math.random() * 8) + 1;
+        const res = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_API_KEY}&language=${tmdbLang}&page=${randomPage}`);
+        const d = await res.json();
+        const validMovies = (d.results || []).filter(m => m && m.id && m.poster_path && m.vote_count > 500);
+
+        if (validMovies.length >= 2) {
+          const idx1 = Math.floor(Math.random() * validMovies.length);
+          let idx2 = Math.floor(Math.random() * validMovies.length);
+          if (idx2 === idx1) idx2 = (idx1 + 1) % validMovies.length;
+          const m1 = validMovies[idx1];
+          const m2 = validMovies[idx2];
+
+          setGameStartMovie({
+            id: String(m1.id),
+            title: m1.title,
+            year: m1.release_date ? m1.release_date.split('-')[0] : '',
+            poster: `https://image.tmdb.org/t/p/w500${m1.poster_path}`
+          });
+          setGameTargetMovie({
+            id: String(m2.id),
+            title: m2.title,
+            year: m2.release_date ? m2.release_date.split('-')[0] : '',
+            poster: `https://image.tmdb.org/t/p/w500${m2.poster_path}`
+          });
+        }
+      }
+    } catch (e) {
+      showToast(t.errorOccurred);
+    } finally {
+      setGameLoading(false);
+    }
+  };
+
+  const [listToDelete, setListToDelete] = useState(null);
+  const [listPosterModal, setListPosterModal] = useState({ show: false, generating: false, imageUrl: null, listName: '' });
+
+  // ÖZEL LİSTE SİLME VE FİLM ÇIKARMA FONKSİYONLARI
+  const confirmDeleteCustomList = async () => {
+    if (!user || !listToDelete) return;
+    try {
+      await deleteDoc(doc(db, 'users', user.uid, 'customLists', listToDelete));
+      if (activeCustomList && activeCustomList.id === listToDelete) {
+        setActiveCustomList(null);
+        setActiveTab('profile_watchlist');
+      }
+      setListToDelete(null);
+      showToast(t.listDeleted || 'Liste silindi!');
+    } catch (e) { showToast(t.errorOccurred); }
+  };
+
+  const removeMovieFromCustomList = async (listId, movieId, e) => {
+    e.stopPropagation();
+    if (!user) return;
+    const listData = customLists.find(l => l.id === listId);
+    if (!listData) return;
+    const updatedMovies = (listData.movies || []).filter(m => String(m.id) !== String(movieId));
+    try {
+      await setDoc(doc(db, 'users', user.uid, 'customLists', listId), { movies: updatedMovies }, { merge: true });
+      if (activeCustomList && activeCustomList.id === listId) {
+        setActiveCustomList(prev => ({ ...prev, movies: updatedMovies }));
+      }
+      showToast(t.removeFromWatchlist);
+    } catch (err) { showToast(t.errorOccurred); }
+  };
+
+  // ÖZEL LİSTEYİ SIRALI GÖRSEL (POSTER) OLARAK İNDİRME MOTORU
+  const generateListPoster = async (listObj, e) => {
+    if (e) e.stopPropagation();
+    if (!listObj || !listObj.movies || listObj.movies.length === 0) return;
+
+    setListPosterModal({ show: true, generating: true, imageUrl: null, listName: listObj.name });
+    try {
+      const items = listObj.movies.slice(0, 12);
+      const cols = 3;
+      const rows = Math.ceil(items.length / cols);
+      const canvasW = 1080;
+      const canvasH = Math.max(1350, 340 + rows * 430 + 120);
+      const canvas = document.createElement('canvas');
+      canvas.width = canvasW;
+      canvas.height = canvasH;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#04060C';
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      const grad = ctx.createRadialGradient(540, 200, 50, 540, 400, 900);
+      grad.addColorStop(0, themeColor + '40');
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvasW, canvasH);
+
+      ctx.textAlign = 'left';
+      ctx.font = '900 44px Montserrat, sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('CINE', 70, 100);
+      const cw = ctx.measureText('CINE').width;
+      ctx.fillStyle = themeColor;
+      ctx.fillText('SCORE', 70 + cw, 100);
+
+      ctx.textAlign = 'right';
+      ctx.font = 'bold 28px sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      const uCode = userProfile?.userCode || user?.uid?.substring(0, 6).toUpperCase() || 'USER';
+      ctx.fillText(`${userProfile?.displayName || 'Sinefil'} (@${uCode})`, 1010, 95);
+
+      ctx.textAlign = 'center';
+      ctx.font = '900 56px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      const lTitle = listObj.name.length > 26 ? listObj.name.substring(0, 26) + '...' : listObj.name;
+      ctx.fillText(lTitle, 540, 200);
+
+      ctx.strokeStyle = themeColor;
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(390, 230);
+      ctx.lineTo(690, 230);
+      ctx.stroke();
+
+      const loadImg = (url) => new Promise((res) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => res(img);
+        img.onerror = () => res(null);
+        img.src = `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=400&output=jpg`;
+      });
+
+      const loadedImgs = await Promise.all(items.map(m => loadImg(m.poster)));
+
+      const cardW = 280, cardH = 360, gapX = 50, startX = 70, startY = 280;
+      items.forEach((m, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = startX + col * (cardW + gapX);
+        const y = startY + row * 430;
+
+        ctx.save();
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.roundRect(x, y, cardW, cardH, 24);
+        ctx.fill();
+        ctx.clip();
+        if (loadedImgs[i]) ctx.drawImage(loadedImgs[i], x, y, cardW, cardH);
+        ctx.restore();
+
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.roundRect(x, y, cardW, cardH, 24);
+        ctx.stroke();
+
+        ctx.fillStyle = themeColor;
+        ctx.beginPath();
+        ctx.roundRect(x + 12, y + 12, 54, 42, 12);
+        ctx.fill();
+        ctx.fillStyle = '#04060C';
+        ctx.font = '900 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`#${i + 1}`, x + 39, y + 41);
+
+        const myR = myRatings.find(r => String(r.id) === String(m.id));
+        const gR = safeGlobalMovies.find(g => String(g.id) === String(m.id));
+        const sc = myR ? Number(myR.finalScore) : (gR ? Number(gR.avgScore) : null);
+        if (sc) {
+          ctx.fillStyle = '#04060C';
+          ctx.beginPath();
+          ctx.roundRect(x + cardW - 78, y + 12, 66, 42, 12);
+          ctx.fill();
+          ctx.fillStyle = getScoreColorHex(sc);
+          ctx.font = '900 22px sans-serif';
+          ctx.fillText(sc.toFixed(1), x + cardW - 45, y + 40);
+        }
+
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.textAlign = 'center';
+        const disp = (localizedData?.[m.id]?.title || m.title || '');
+        const shortT = disp.length > 20 ? disp.substring(0, 19) + '…' : disp;
+        ctx.fillText(shortT, x + cardW / 2, y + cardH + 36);
+      });
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('cinescore.com.tr • Sinema Arşivi ve Derecelendirme Platformu', 540, canvasH - 45);
+
+      setListPosterModal({ show: true, generating: false, imageUrl: canvas.toDataURL('image/png'), listName: listObj.name });
+    } catch (err) {
+      setListPosterModal({ show: false, generating: false, imageUrl: null, listName: '' });
+      showToast(t.errorOccurred);
+    }
+  };
+
+  // 3) 5 FARKLI TASARIMDA & SEÇİLEN DİLE DUYARLI 9:16 STORY KARTI ÜRETİCİ
+  const generateStoryCard = async () => {
+    if (!selectedMovie) return;
+    const myRatingObj = myRatings.find(r => String(r.id) === String(selectedMovie.id));
+    if (!myRatingObj) return;
+
+    setStoryModal({ show: true, generating: true, imageUrl: null, activeStyle: 'neon', images: {} });
+    try {
+      const loadPoster = (url) => new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=750&output=jpg`;
+      });
+
+      const posterImg = await loadPoster(selectedMovie.poster);
+      const scoreVal = Number(myRatingObj.finalScore).toFixed(2);
+      const scoreHex = getScoreColorHex(myRatingObj.finalScore);
+      const uCode = userProfile?.userCode || user?.uid?.substring(0, 6).toUpperCase() || 'USER';
+      const uName = userProfile?.displayName || 'Sinefil';
+
+      // SEÇİLEN DİLE GÖRE DİNAMİK METİNLER
+      const rawTitle = localizedData?.[selectedMovie.id]?.title || selectedMovie.title || '';
+      const titleText = rawTitle.length > 25 ? rawTitle.substring(0, 25) + '…' : rawTitle;
+      const criticSignature = `${t.criticLabel || 'Eleştirmen'}: ${uName} / @${uCode}`;
+      const scoreTitleLabel = (t.yourScoreLabel || 'PUAN').toUpperCase();
+      const dirLabel = (t.director || 'Yönetmen').toUpperCase();
+
+      // --- TASARIM 1: NEON AURA ---
+      const makeNeon = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1080; canvas.height = 1920;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#03050B'; ctx.fillRect(0, 0, 1080, 1920);
+
+        const gradTop = ctx.createRadialGradient(540, 420, 40, 540, 420, 760);
+        gradTop.addColorStop(0, themeColor + '55'); gradTop.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradTop; ctx.fillRect(0, 0, 1080, 1920);
+
+        const gradBot = ctx.createRadialGradient(540, 1380, 40, 540, 1380, 720);
+        gradBot.addColorStop(0, scoreHex + '38'); gradBot.addColorStop(1, 'transparent');
+        ctx.fillStyle = gradBot; ctx.fillRect(0, 0, 1080, 1920);
+
+        // Üst Bar
+        ctx.font = '900 54px Montserrat, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left';
+        ctx.fillText('CINE', 80, 120);
+        const cineW = ctx.measureText('CINE').width;
+        ctx.fillStyle = themeColor; ctx.fillText('SCORE', 80 + cineW, 120);
+
+        ctx.font = '900 28px sans-serif'; ctx.fillStyle = themeColor; ctx.textAlign = 'right';
+        ctx.fillText(`@${uCode}`, 1000, 115);
+
+        if (posterImg) {
+          ctx.save();
+          ctx.shadowColor = themeColor; ctx.shadowBlur = 50;
+          ctx.beginPath(); ctx.roundRect(310, 165, 460, 670, 40); ctx.clip();
+          ctx.drawImage(posterImg, 310, 165, 460, 670);
+          ctx.restore();
+          ctx.strokeStyle = themeColor; ctx.lineWidth = 5;
+          ctx.beginPath(); ctx.roundRect(310, 165, 460, 670, 40); ctx.stroke();
+        }
+
+        ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 50px sans-serif';
+        ctx.fillText(titleText, 540, 915);
+        ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 28px sans-serif';
+        ctx.fillText(`${selectedMovie.year} • ${dirLabel}: ${selectedMovie.director}`, 540, 965);
+
+        // Orta Puan Rozeti
+        ctx.fillStyle = '#080c17'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 8;
+        ctx.beginPath(); ctx.roundRect(350, 1005, 380, 175, 45); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#94a3b8'; ctx.font = '900 22px sans-serif';
+        ctx.fillText(scoreTitleLabel, 540, 1048);
+        ctx.fillStyle = scoreHex; ctx.font = '900 88px sans-serif';
+        ctx.fillText(scoreVal, 540, 1148);
+
+        // 5 Kriter Barı
+        criteriaData.forEach((c, idx) => {
+          const y = 1255 + idx * 96;
+          const val = Number(myRatingObj.scores?.[c.id] ?? 5);
+          const cHex = getScoreColorHex(val);
+          ctx.textAlign = 'left'; ctx.fillStyle = '#f1f5f9'; ctx.font = 'bold 30px sans-serif'; ctx.fillText(c.name, 100, y);
+          ctx.textAlign = 'right'; ctx.fillStyle = cHex; ctx.font = '900 34px sans-serif'; ctx.fillText(val.toFixed(1), 980, y);
+          ctx.fillStyle = '#0f172a'; ctx.beginPath(); ctx.roundRect(100, y + 16, 880, 24, 12); ctx.fill();
+          ctx.fillStyle = cHex; ctx.beginPath(); ctx.roundRect(100, y + 16, Math.max(24, (val / 10) * 880), 24, 12); ctx.fill();
+        });
+
+        // Alt Eleştirmen İmza Rozeti
+        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = themeColor + '88'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.roundRect(100, 1755, 880, 95, 28); ctx.fill(); ctx.stroke();
+        ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 30px sans-serif';
+        ctx.fillText(criticSignature, 540, 1813);
+        return canvas.toDataURL('image/png');
+      };
+
+      // --- TASARIM 2: SİNEMATİK TAM EKRAN AFİŞ ---
+      const makeCinema = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1080; canvas.height = 1920;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#030408'; ctx.fillRect(0, 0, 1080, 1920);
+
+        if (posterImg) ctx.drawImage(posterImg, 0, 0, 1080, 1420);
+        const darkGrad = ctx.createLinearGradient(0, 120, 0, 1420);
+        darkGrad.addColorStop(0, 'rgba(3,4,8,0.25)');
+        darkGrad.addColorStop(0.55, 'rgba(3,4,8,0.78)');
+        darkGrad.addColorStop(1, '#030408');
+        ctx.fillStyle = darkGrad; ctx.fillRect(0, 0, 1080, 1450);
+
+        // Üst Cam Bar
+        ctx.fillStyle = 'rgba(4,6,12,0.82)'; ctx.strokeStyle = themeColor + '66'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.roundRect(65, 65, 950, 95, 48); ctx.fill(); ctx.stroke();
+        ctx.font = '900 42px Montserrat, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left';
+        ctx.fillText('CINESCORE', 115, 127);
+        ctx.font = '900 26px sans-serif'; ctx.fillStyle = themeColor; ctx.textAlign = 'right';
+        ctx.fillText(`@${uCode}`, 965, 124);
+
+        // Yuvarlak Dev Puan
+        ctx.fillStyle = '#04060C'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 14;
+        ctx.beginPath(); ctx.arc(540, 940, 155, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#94a3b8'; ctx.textAlign = 'center'; ctx.font = '900 22px sans-serif';
+        ctx.fillText(scoreTitleLabel, 540, 875);
+        ctx.fillStyle = scoreHex; ctx.font = '900 98px sans-serif';
+        ctx.fillText(scoreVal, 540, 985);
+
+        ctx.fillStyle = '#ffffff'; ctx.font = '900 56px sans-serif';
+        ctx.fillText(titleText, 540, 1185);
+        ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 30px sans-serif';
+        ctx.fillText(`${selectedMovie.year} • ${dirLabel}: ${selectedMovie.director}`, 540, 1240);
+
+        // 5 Dikey Kriter Sütunu
+        criteriaData.forEach((c, idx) => {
+          const val = Number(myRatingObj.scores?.[c.id] ?? 5);
+          const cHex = getScoreColorHex(val);
+          const bx = 68 + idx * 192;
+          const by = 1315;
+          ctx.fillStyle = '#090d16'; ctx.strokeStyle = cHex; ctx.lineWidth = 4;
+          ctx.beginPath(); ctx.roundRect(bx, by, 176, 235, 28); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = cHex; ctx.font = '900 52px sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(val.toFixed(1), bx + 88, by + 115);
+          ctx.fillStyle = '#e2e8f0'; ctx.font = 'bold 20px sans-serif';
+          const shortCrit = c.name.length > 11 ? c.name.substring(0, 10) + '.' : c.name;
+          ctx.fillText(shortCrit.toUpperCase(), bx + 88, by + 185);
+        });
+
+        // Alt Eleştirmen İmza Barı
+        ctx.fillStyle = '#090d16'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.roundRect(68, 1625, 944, 110, 32); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#ffffff'; ctx.font = '900 32px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(criticSignature, 540, 1692);
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 26px sans-serif';
+        ctx.fillText('cinescore.com.tr', 540, 1835);
+        return canvas.toDataURL('image/png');
+      };
+
+      // --- TASARIM 3: KLASİK ALTIN BİLET (PERFORE OYUKLU) ---
+      const makeTicket = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1080; canvas.height = 1920;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#090705'; ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.fillStyle = '#14100a'; ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.roundRect(65, 65, 950, 1790, 40); ctx.fill(); ctx.stroke();
+
+        // Bilet Yan Oyukları
+        ctx.fillStyle = '#090705';
+        ctx.beginPath(); ctx.arc(65, 1125, 36, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(1015, 1125, 36, 0, Math.PI * 2); ctx.fill();
+
+        ctx.textAlign = 'center'; ctx.fillStyle = '#f59e0b'; ctx.font = '900 26px sans-serif';
+        ctx.fillText(t.ticketHeader || '★ OFFICIAL CRITIC ARCHIVE TICKET ★', 540, 135);
+        ctx.fillStyle = '#ffffff'; ctx.font = '900 66px Montserrat, sans-serif';
+        ctx.fillText('CINESCORE', 540, 212);
+
+        if (posterImg) {
+          ctx.save();
+          ctx.beginPath(); ctx.roundRect(135, 255, 810, 670, 28); ctx.clip();
+          ctx.drawImage(posterImg, 135, 170, 810, 950);
+          ctx.restore();
+          ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 4;
+          ctx.beginPath(); ctx.roundRect(135, 255, 810, 670, 28); ctx.stroke();
+        }
+
+        ctx.fillStyle = '#ffffff'; ctx.font = '900 48px sans-serif';
+        ctx.fillText(titleText.toUpperCase(), 540, 1005);
+        ctx.fillStyle = '#fbbf24'; ctx.font = 'bold 28px sans-serif';
+        ctx.fillText(`${dirLabel}: ${selectedMovie.director.toUpperCase()} (${selectedMovie.year})`, 540, 1058);
+
+        ctx.setLineDash([18, 14]); ctx.strokeStyle = '#b45309'; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.moveTo(115, 1125); ctx.lineTo(965, 1125); ctx.stroke();
+        ctx.setLineDash([]);
+
+        criteriaData.forEach((c, idx) => {
+          const y = 1210 + idx * 92;
+          const val = Number(myRatingObj.scores?.[c.id] ?? 5);
+          ctx.textAlign = 'left'; ctx.fillStyle = '#e7e5e4'; ctx.font = 'bold 28px sans-serif';
+          ctx.fillText(c.name.toUpperCase(), 125, y);
+          ctx.textAlign = 'right'; ctx.fillStyle = '#fbbf24'; ctx.font = '900 34px sans-serif';
+          ctx.fillText(`${val.toFixed(1)} / 10`, 615, y);
+        });
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath(); ctx.roundRect(660, 1175, 285, 395, 32); ctx.fill();
+        ctx.fillStyle = '#090705'; ctx.textAlign = 'center'; ctx.font = '900 24px sans-serif';
+        ctx.fillText(scoreTitleLabel, 802, 1255);
+        ctx.font = '900 92px sans-serif';
+        ctx.fillText(scoreVal, 802, 1395);
+        ctx.font = '900 26px sans-serif';
+        ctx.fillText(`@${uCode}`, 802, 1500);
+
+        // Alt Eleştirmen İmzası
+        ctx.fillStyle = '#fbbf24'; ctx.font = '900 30px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(criticSignature, 540, 1735);
+        ctx.fillStyle = '#78716c'; ctx.font = 'bold 24px sans-serif';
+        ctx.fillText('CINESCORE.COM.TR', 540, 1795);
+        return canvas.toDataURL('image/png');
+      };
+
+      // --- TASARIM 4: EDİTORYAL DERGİ KAPAĞI (CRITERION / EMPIRE STİLİ) ---
+      const makeMagazine = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1080; canvas.height = 1920;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#0c0f17'; ctx.fillRect(0, 0, 1080, 1920);
+
+        // İç Dergi Çerçevesi
+        ctx.strokeStyle = '#334155'; ctx.lineWidth = 4;
+        ctx.strokeRect(55, 55, 970, 1810);
+
+        // Üst Dergi Başlığı (Masthead)
+        ctx.fillStyle = themeColor;
+        ctx.fillRect(95, 95, 890, 52);
+        ctx.fillStyle = '#04060C'; ctx.font = '900 26px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(`${t.magazineHeader || 'SPECIAL CRITIC ISSUE'} • #${selectedMovie.year}`, 540, 130);
+
+        ctx.fillStyle = '#ffffff'; ctx.font = '900 108px Montserrat, sans-serif';
+        ctx.fillText('CINESCORE', 540, 265);
+
+        // Sol Afiş & Sağ Dev Tipografik Puan
+        if (posterImg) {
+          ctx.save();
+          ctx.beginPath(); ctx.roundRect(95, 315, 540, 790, 24); ctx.clip();
+          ctx.drawImage(posterImg, 95, 315, 540, 790);
+          ctx.restore();
+          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 4;
+          ctx.beginPath(); ctx.roundRect(95, 315, 540, 790, 24); ctx.stroke();
+        }
+
+        // Sağ Sütun: Puan ve Kriter Özeti
+        ctx.fillStyle = '#111827'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.roundRect(665, 315, 320, 320, 28); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#94a3b8'; ctx.font = '900 22px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(scoreTitleLabel, 825, 385);
+        ctx.fillStyle = scoreHex; ctx.font = '900 104px sans-serif';
+        ctx.fillText(scoreVal, 825, 515);
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 26px sans-serif';
+        ctx.fillText('/ 10', 825, 585);
+
+        // Sağ Sütun Altı: 5 Kriter Listesi
+        criteriaData.forEach((c, idx) => {
+          const y = 685 + idx * 86;
+          const val = Number(myRatingObj.scores?.[c.id] ?? 5);
+          const cHex = getScoreColorHex(val);
+          ctx.fillStyle = '#111827';
+          ctx.beginPath(); ctx.roundRect(665, y, 320, 70, 16); ctx.fill();
+          ctx.textAlign = 'left'; ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 22px sans-serif';
+          const scName = c.name.length > 12 ? c.name.substring(0, 11) + '.' : c.name;
+          ctx.fillText(scName.toUpperCase(), 688, y + 44);
+          ctx.textAlign = 'right'; ctx.fillStyle = cHex; ctx.font = '900 30px sans-serif';
+          ctx.fillText(val.toFixed(1), 962, y + 46);
+        });
+
+        // Film Başlığı ve Yönetmen (Editoryal Blok)
+        ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = '900 62px sans-serif';
+        ctx.fillText(titleText.toUpperCase(), 95, 1215);
+        ctx.fillStyle = themeColor; ctx.font = '900 32px sans-serif';
+        ctx.fillText(`${dirLabel}: ${selectedMovie.director.toUpperCase()} (${selectedMovie.year})`, 95, 1275);
+
+        ctx.fillStyle = '#1e293b'; ctx.fillRect(95, 1325, 890, 4);
+
+        // Alt Eleştirmen Künyesi
+        ctx.fillStyle = '#111827'; ctx.strokeStyle = themeColor; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.roundRect(95, 1380, 890, 145, 28); ctx.fill(); ctx.stroke();
+        ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 36px sans-serif';
+        ctx.fillText(criticSignature, 540, 1468);
+
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 28px sans-serif';
+        ctx.fillText('WWW.CINESCORE.COM.TR', 540, 1790);
+        return canvas.toDataURL('image/png');
+      };
+
+      // --- TASARIM 5: PRİZMA RADAR (BEŞGEN ANALİZ GRAFİKLİ) ---
+      const makePrism = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1080; canvas.height = 1920;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#020409'; ctx.fillRect(0, 0, 1080, 1920);
+
+        const g1 = ctx.createRadialGradient(200, 300, 20, 200, 300, 650);
+        g1.addColorStop(0, themeColor + '45'); g1.addColorStop(1, 'transparent');
+        ctx.fillStyle = g1; ctx.fillRect(0, 0, 1080, 1920);
+
+        const g2 = ctx.createRadialGradient(880, 1250, 20, 880, 1250, 650);
+        g2.addColorStop(0, '#a855f745'); g2.addColorStop(1, 'transparent');
+        ctx.fillStyle = g2; ctx.fillRect(0, 0, 1080, 1920);
+
+        // Üst Başlık
+        ctx.font = '900 50px Montserrat, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left';
+        ctx.fillText('CINESCORE', 80, 120);
+        ctx.font = '900 26px sans-serif'; ctx.fillStyle = themeColor; ctx.textAlign = 'right';
+        ctx.fillText(t.radarHeader || 'CRITICAL RADAR ANALYSIS', 1000, 115);
+
+        // Üst Film Kartı (Yatay Elit Panel)
+        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.roundRect(80, 165, 920, 480, 36); ctx.fill(); ctx.stroke();
+
+        if (posterImg) {
+          ctx.save();
+          ctx.beginPath(); ctx.roundRect(115, 200, 280, 410, 24); ctx.clip();
+          ctx.drawImage(posterImg, 115, 200, 280, 410);
+          ctx.restore();
+        }
+
+        ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = '900 44px sans-serif';
+        const shortT2 = rawTitle.length > 18 ? rawTitle.substring(0, 18) + '…' : rawTitle;
+        ctx.fillText(shortT2, 430, 275);
+        ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 26px sans-serif';
+        ctx.fillText(`${selectedMovie.year} • ${selectedMovie.director}`, 430, 325);
+
+        ctx.fillStyle = '#04060C'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.roundRect(430, 375, 520, 210, 28); ctx.fill(); ctx.stroke();
+        ctx.textAlign = 'center'; ctx.fillStyle = '#94a3b8'; ctx.font = '900 22px sans-serif';
+        ctx.fillText(scoreTitleLabel, 690, 425);
+        ctx.fillStyle = scoreHex; ctx.font = '900 96px sans-serif';
+        ctx.fillText(scoreVal, 690, 535);
+
+        // Orta: Beşgen Radar Çizimi
+        const cx = 540, cy = 1110, maxR = 290;
+        [0.25, 0.5, 0.75, 1].forEach(level => {
+          ctx.beginPath();
+          criteriaData.forEach((_, i) => {
+            const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+            const x = cx + maxR * level * Math.cos(angle);
+            const y = cy + maxR * level * Math.sin(angle);
+            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          });
+          ctx.closePath();
+          ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 3; ctx.stroke();
+        });
+
+        // Kriter Eksenleri ve Etiketleri
+        criteriaData.forEach((c, i) => {
+          const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+          const x = cx + maxR * Math.cos(angle);
+          const y = cy + maxR * Math.sin(angle);
+          ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x, y);
+          ctx.strokeStyle = '#334155'; ctx.lineWidth = 2; ctx.stroke();
+
+          const lx = cx + (maxR + 78) * Math.cos(angle);
+          const ly = cy + (maxR + 65) * Math.sin(angle);
+          const val = Number(myRatingObj.scores?.[c.id] ?? 5);
+          ctx.textAlign = 'center'; ctx.fillStyle = '#e2e8f0'; ctx.font = '900 24px sans-serif';
+          ctx.fillText(c.name.toUpperCase(), lx, ly - 12);
+          ctx.fillStyle = getScoreColorHex(val); ctx.font = '900 34px sans-serif';
+          ctx.fillText(val.toFixed(1), lx, ly + 28);
+        });
+
+        // Kullanıcının Puan Poligonu
+        ctx.beginPath();
+        criteriaData.forEach((c, i) => {
+          const val = Number(myRatingObj.scores?.[c.id] ?? 5);
+          const r = (val / 10) * maxR;
+          const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+          const x = cx + r * Math.cos(angle);
+          const y = cy + r * Math.sin(angle);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.fillStyle = themeColor + '44'; ctx.fill();
+        ctx.strokeStyle = themeColor; ctx.lineWidth = 6; ctx.stroke();
+
+        // Alt Eleştirmen İmza Kutusu
+        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = themeColor; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.roundRect(80, 1630, 920, 115, 32); ctx.fill(); ctx.stroke();
+        ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 34px sans-serif';
+        ctx.fillText(criticSignature, 540, 1700);
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 26px sans-serif';
+        ctx.fillText('cinescore.com.tr', 540, 1825);
+        return canvas.toDataURL('image/png');
+      };
+
+      const imgs = {
+        neon: makeNeon(),
+        cinema: makeCinema(),
+        ticket: makeTicket(),
+        magazine: makeMagazine(),
+        prism: makePrism()
+      };
+      setStoryModal({ show: true, generating: false, imageUrl: imgs.neon, activeStyle: 'neon', images: imgs });
+    } catch (err) {
+      setStoryModal({ show: false, generating: false, imageUrl: null, activeStyle: 'neon', images: {} });
+      showToast(t.errorOccurred);
+    }
+  };
 
   const searchDropdownRef = useRef(null);
   const langMenuRef = useRef(null);
@@ -1122,8 +2678,11 @@ function CineScoreMain() {
         })));
         const poster = data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : 'https://via.placeholder.com/300x450?text=Poster';
         const backdrop = data.backdrop_path ? `https://image.tmdb.org/t/p/w1280${data.backdrop_path}` : '';
-        const director = data.credits?.crew?.find(c => c.job === 'Director')?.name || 'Bilinmiyor';
-        const cast = data.credits?.cast?.slice(0, 4).map(c => c.name).join(', ') || 'Bilinmiyor';
+        const directorCrew = data.credits?.crew?.find(c => c.job === 'Director');
+        const director = directorCrew?.name || 'Bilinmiyor';
+        const directorId = directorCrew?.id || null;
+        const castObjects = (data.credits?.cast || []).slice(0, 5).map(c => ({ id: c.id, name: c.name }));
+        const cast = castObjects.map(c => c.name).join(', ') || 'Bilinmiyor';
         
         let trailerKey = null;
         if (data.videos?.results) {
@@ -1137,7 +2696,7 @@ function CineScoreMain() {
         setSelectedMovie({ 
           id: data.id.toString(), title: data.title, poster, 
           year: data.release_date ? data.release_date.split('-')[0] : '', 
-          genre: data.genres?.map(g=>g.name).join(', ') || '', director, cast,
+          genre: data.genres?.map(g=>g.name).join(', ') || '', director, directorId, cast, castObjects,
           overview: data.overview || t.noData, trailerKey,
           isReleased, releaseDateStr: data.release_date
         });
@@ -1228,8 +2787,39 @@ function CineScoreMain() {
             categoryTotals: newCatTotals
           });
         }
-        trans.set(userRatingRef, { id: docId, title: selectedMovie.title, poster: selectedMovie.poster, scores: scores, finalScore: newFinalScore, date: Date.now(), genre: selectedMovie.genre });
+        trans.set(userRatingRef, { id: docId, title: selectedMovie.title, poster: selectedMovie.poster, scores: scores, finalScore: newFinalScore, date: Date.now(), genre: selectedMovie.genre, year: selectedMovie.year });
       });
+
+      // YENİ: ROZET KAZANIM KONTROLÜ VE BİLDİRİM GÖNDERİMİ
+      const oldBadges = getAllBadges(myRatings, t, safeGlobalMovies).filter(b => b.earned).map(b => b.id);
+      const updatedRatingsList = [
+        ...myRatings.filter(r => String(r.id) !== docId),
+        { id: docId, title: selectedMovie.title, poster: selectedMovie.poster, scores, finalScore: newFinalScore, date: Date.now(), genre: selectedMovie.genre, year: selectedMovie.year }
+      ];
+      const newBadges = getAllBadges(updatedRatingsList, t, safeGlobalMovies).filter(b => b.earned);
+      const newlyUnlocked = newBadges.filter(b => !oldBadges.includes(b.id));
+
+      if (newlyUnlocked.length > 0) {
+        const currentNotifs = userProfile?.notifications || [];
+        const badgeNotifs = newlyUnlocked
+          .filter(b => !currentNotifs.some(n => n.type === 'badge' && n.badgeId === b.id))
+          .map(b => ({
+            id: 'notif_badge_' + b.id + '_' + Date.now(),
+            type: 'badge',
+            badgeId: b.id,
+            fromName: `🏆 ${t.newBadgeUnlocked || 'Yeni Rozet:'} ${b.name}`,
+            badgeDesc: b.realDesc || b.desc,
+            date: Date.now(),
+            read: false
+          }));
+
+        if (badgeNotifs.length > 0) {
+          const updatedNotifs = [...badgeNotifs, ...currentNotifs].slice(0, 20);
+          await setDoc(doc(db, 'users', user.uid), { notifications: updatedNotifs }, { merge: true });
+          setUserProfile(prev => ({ ...prev, notifications: updatedNotifs }));
+        }
+        setTimeout(() => showToast(`🏆 ${t.newBadgeUnlocked || 'Yeni Rozet Kazandın:'} ${newlyUnlocked[0].name}!`), 900);
+      }
 
       if (userProfile?.autoRemoveWatchlist) {
          const isListed = myWatchlist.find(w => w.id === docId);
@@ -1500,22 +3090,40 @@ function CineScoreMain() {
         newHash = `#/user/${viewingUser.uid}`;
      } else if (activeTab === 'public_profile_ratings' && viewingUser) {
         newHash = `#/user/${viewingUser.uid}?sekme=ratings`;
+     } else if (activeTab === 'game') {
+        newHash = '#/game';
      }
      
-     // DÜZELTME: Ana Sayfa (#/) tetiklemesinin engeli kaldırıldı
      const currentHash = window.location.hash || '#/';
      if (currentHash !== newHash) {
         window.history.pushState(null, '', newHash);
      }
+
+     // YENİ: Hangi sekmeye geçilirse geçilsin sayfa her zaman en yukarıda başlar
+     window.scrollTo(0, 0);
   }, [activeTab, selectedMovie, viewingUser]);
 
   return (
     <div style={{ "--theme-color": themeColor, "--theme-color-50": themeColor+"80", "--theme-color-20": themeColor+"33" }} className="min-h-screen bg-[#030408] text-slate-300 font-sans relative overflow-x-hidden selection:bg-slate-200 selection:text-black">
       
-      {/* ELİT KOYU TEMA ARKA PLAN (Optimize Edilmiş, Kasmayan Versiyon) */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#030408]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--theme-color-20),_transparent_45%)] opacity-30"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(15,23,42,0.8),_transparent_50%)] opacity-80"></div>
+      {/* SAĞDAN VE SOLDAN ÇİFT TARAFLI AURA SPOT IŞIKLI ARKA PLAN */}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#020409] cyber-grid-bg overflow-hidden">
+        {/* SOL AURA SPOT IŞIĞI */}
+        <div 
+          className="absolute -left-24 top-[8%] w-[420px] sm:w-[680px] h-[520px] sm:h-[780px] rounded-full blur-[120px] opacity-35 transition-colors duration-700"
+          style={{ background: `radial-gradient(circle, ${themeColor} 0%, transparent 70%)` }}
+        ></div>
+        {/* SAĞ AURA SPOT IŞIĞI */}
+        <div 
+          className="absolute -right-24 top-[8%] w-[420px] sm:w-[680px] h-[520px] sm:h-[780px] rounded-full blur-[120px] opacity-35 transition-colors duration-700"
+          style={{ background: `radial-gradient(circle, ${themeColor} 0%, transparent 70%)` }}
+        ></div>
+        {/* ALT VE ÜST SİNEMATİK DERİNLİK IŞIĞI */}
+        <div 
+          className="absolute left-1/2 -translate-x-1/2 -top-32 w-[80%] h-[320px] rounded-full blur-[130px] opacity-20"
+          style={{ background: `linear-gradient(90deg, ${themeColor}, #38bdf8, ${themeColor})` }}
+        ></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_95%,_rgba(99,102,241,0.14),_transparent_55%)]"></div>
         {dynamicBg && (
            <>
              <img src={dynamicBg} className="w-full h-full object-cover opacity-15 scale-105" style={{ filter: 'blur(20px) saturate(1.2)' }} alt="bg"/>
@@ -1623,6 +3231,269 @@ function CineScoreMain() {
         </div>
       )}
       
+      {/* 1. YÖNETMEN & OYUNCU KARİYER KARNESİ PENCERESİ */}
+      {personModal.show && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-3xl rounded-[2.5rem] p-6 sm:p-8 relative shadow-2xl max-h-[88vh] overflow-y-auto hide-scrollbar">
+            <button onClick={() => setPersonModal({ show: false, loading: false, data: null })} className="absolute top-6 right-6 p-2 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-800"><X size={20}/></button>
+            {personModal.loading ? (
+              <div className="py-20 flex flex-col items-center justify-center gap-4">
+                <Loader2 className="w-10 h-10 animate-spin text-theme"/>
+              </div>
+            ) : personModal.data && (
+              <div>
+                <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-slate-800">
+                  {personModal.data.photo ? (
+                    <img src={personModal.data.photo} className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-theme shadow-theme shrink-0" alt=""/>
+                  ) : (
+                    <div className="w-24 h-24 rounded-full bg-[#04060C] border-2 border-slate-700 flex items-center justify-center text-slate-500 shrink-0"><User size={40}/></div>
+                  )}
+                  <div className="text-center sm:text-left flex-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-theme text-[#04060C]">{personModal.data.role} • {t.careerCard}</span>
+                    <h3 className="text-2xl sm:text-4xl font-black text-white mt-2">{personModal.data.name}</h3>
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-4 mt-4">
+                      <div className="bg-[#04060C] border border-slate-800 px-4 py-2.5 rounded-2xl">
+                        <span className="text-[10px] font-black text-slate-400 uppercase block">{t.cineScoreCareerAvg}</span>
+                        <span className="text-xl font-black" style={{color: personModal.data.globalAvg ? getScoreColorHex(personModal.data.globalAvg) : '#64748b'}}>
+                          {personModal.data.globalAvg ? `${personModal.data.globalAvg} (${personModal.data.globalRatedCount})` : '—'}
+                        </span>
+                      </div>
+                      <div className="bg-[#04060C] border border-slate-800 px-4 py-2.5 rounded-2xl">
+                        <span className="text-[10px] font-black text-slate-400 uppercase block">{t.yourCareerAvg}</span>
+                        <span className="text-xl font-black" style={{color: personModal.data.myAvg ? getScoreColorHex(personModal.data.myAvg) : '#64748b'}}>
+                          {personModal.data.myAvg ? `${personModal.data.myAvg} (${personModal.data.myRatedCount})` : '—'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mt-6 mb-4">{t.knownFor}</h4>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                  {personModal.data.movies.map(m => (
+                    <div key={m.id} onClick={() => { setPersonModal({ show: false, loading: false, data: null }); selectMovieToRate(m.id, m.title); }} className="cursor-pointer group">
+                      <img src={m.poster} className="w-full aspect-[2/3] object-cover rounded-xl border border-slate-800 group-hover:border-theme transition-all" alt=""/>
+                      <p className="text-xs font-bold text-slate-300 group-hover:text-theme truncate mt-1.5">{m.title}</p>
+                      <span className="text-[10px] text-slate-500 font-bold">{m.year}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 2. 35MM ESKİ FİLM MAKARASI & SİNEMA PROJEKSİYON PERDESİ RULETİ */}
+      {rouletteModal.show && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
+          <div className="bg-slate-900/95 border border-slate-700 w-full max-w-xl rounded-[2.5rem] p-5 sm:p-7 relative shadow-[0_0_60px_rgba(0,0,0,0.95)] text-center overflow-hidden">
+            
+            {/* ÇARPI BUTONU (Anında zamanlayıcıyı durdurur ve kapatır) */}
+            <button onClick={closeCinemaRoulette} className="absolute top-5 right-5 p-2.5 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-700 hover:border-theme z-30 transition-colors">
+              <X size={20}/>
+            </button>
+
+            <h3 className="text-xl sm:text-2xl font-black text-white mb-1.5 flex items-center justify-center gap-2 relative z-10">
+              <Film className="text-theme" size={24}/> {t.rouletteTitle}
+            </h3>
+            <p className="text-xs font-bold text-slate-400 max-w-md mx-auto mb-4 leading-relaxed relative z-10">
+              {t.rouletteDesc}
+            </p>
+
+            {/* ÜST SAHNE: SİNEMA PERDESİ (PROJEKSİYON EKRANI) */}
+            <div className="relative mx-auto w-full max-w-md h-48 sm:h-56 rounded-2xl bg-[#03050A] border-2 border-slate-800 shadow-[inset_0_0_50px_rgba(0,0,0,0.95)] flex items-center justify-center overflow-hidden mb-2 z-10">
+              {/* Perde Üstü Işık Huzmesi */}
+              <div
+                className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+                style={{
+                  background: `radial-gradient(circle at 50% 100%, ${themeColor}${rouletteModal.winner ? '55' : '18'}, transparent 75%)`
+                }}
+              ></div>
+              {/* Sinema Perdesi Çerçeve Çizgileri */}
+              <div className="absolute top-0 inset-x-6 h-1.5 bg-slate-800 rounded-b-full"></div>
+
+              {rouletteModal.spinning ? (
+                <div className="flex flex-col items-center justify-center gap-3 text-slate-400">
+                  <div className="w-14 h-14 rounded-full border-2 border-dashed border-theme flex items-center justify-center animate-spin">
+                    <Film size={26} className="text-theme"/>
+                  </div>
+                  <span className="text-xs font-black uppercase tracking-widest text-theme animate-pulse">
+                    {t.rouletteSpinning}
+                  </span>
+                </div>
+              ) : rouletteModal.winner && (
+                <div className="flex items-center gap-4 sm:gap-5 px-5 py-3 w-full animate-in zoom-in-95 duration-500 relative z-10">
+                  <img
+                    src={rouletteModal.winner.poster}
+                    className="w-24 sm:w-28 aspect-[2/3] object-cover rounded-xl border-2 border-theme shadow-theme shrink-0"
+                    alt=""
+                  />
+                  <div className="text-left min-w-0 flex-1">
+                    <span className="inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md bg-theme text-[#04060C] mb-2 shadow-sm">
+                      ★ {t.roulettePicked || 'Kaderin Seçimi!'}
+                    </span>
+                    <h4 className="text-lg sm:text-xl font-black text-white leading-tight line-clamp-2 drop-shadow-md">
+                      {localizedData?.[rouletteModal.winner.id]?.title || rouletteModal.winner.title}
+                    </h4>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* PROJEKSİYON IŞIK HUZMESİ (Makaradan Perdeye Yansıyan Işık Konisi) */}
+            <div className="relative h-6 w-full flex justify-center items-center pointer-events-none">
+              <div
+                className="w-44 h-full projector-beam-active transition-all duration-500"
+                style={{
+                  background: `linear-gradient(to top, ${themeColor}66, ${themeColor}08)`,
+                  clipPath: 'polygon(38% 100%, 62% 100%, 100% 0%, 0% 0%)'
+                }}
+              ></div>
+            </div>
+
+            {/* ALT SAHNE: AKAN 35MM ESKİ FİLM MAKARASI */}
+            <div className="relative w-full h-48 bg-[#161b26] border-y-4 border-slate-700 shadow-2xl overflow-hidden mb-6 select-none">
+              {/* Üst ve Alt 35mm Film Şeridi Delikleri */}
+              <div className="absolute top-1.5 inset-x-0 h-3 film-sprockets z-20 opacity-90"></div>
+              <div className="absolute bottom-1.5 inset-x-0 h-3 film-sprockets z-20 opacity-90"></div>
+
+              {/* Yan Karanlık Vinyet */}
+              <div className="absolute inset-y-0 left-0 w-12 sm:w-20 bg-gradient-to-r from-[#04060C] to-transparent z-20 pointer-events-none"></div>
+              <div className="absolute inset-y-0 right-0 w-12 sm:w-20 bg-gradient-to-l from-[#04060C] to-transparent z-20 pointer-events-none"></div>
+
+              {/* Ortadaki Projeksiyon Merceği Çerçevesi */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[156px] rounded-xl border-[3px] border-theme shadow-theme z-30 pointer-events-none">
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-theme"></div>
+              </div>
+
+              {/* Yumuşakça Kayarak Duran Afiş Şeridi */}
+              <div
+                className="absolute top-1/2 left-1/2 flex items-center gap-4"
+                style={{
+                  transform: `translate3d(${rouletteModal.offsetPx ?? -56}px, -50%, 0)`,
+                  transition: rouletteModal.animate ? 'transform 4.2s cubic-bezier(0.1, 0.85, 0.15, 1)' : 'none',
+                  willChange: 'transform'
+                }}
+              >
+                {(rouletteModal.strip || []).map((item) => (
+                  <div
+                    key={item.reelKey}
+                    className="w-28 h-36 rounded-lg overflow-hidden bg-[#04060C] border border-slate-700 shrink-0 shadow-md"
+                  >
+                    <img src={item.poster} className="w-full h-full object-cover" alt=""/>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* AKSİYON BUTONLARI */}
+            <div className="flex gap-3 w-full relative z-10">
+              <button
+                onClick={startCinemaRoulette}
+                disabled={rouletteModal.spinning}
+                className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-white rounded-xl font-black text-sm transition-all border border-slate-700"
+              >
+                {t.spinAgain}
+              </button>
+              <button
+                onClick={() => {
+                  const w = rouletteModal.winner;
+                  if (!w) return;
+                  closeCinemaRoulette();
+                  selectMovieToRate(w.id, w.title);
+                }}
+                disabled={rouletteModal.spinning || !rouletteModal.winner}
+                className="flex-1 py-3.5 bg-theme disabled:opacity-40 text-[#04060C] rounded-xl font-black text-sm transition-all shadow-theme"
+              >
+                {t.goToMovie}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. 9:16 HİKAYE (STORY) KARTI ÖNİZLEME VE 5 TASARIM SEÇİM PENCERESİ */}
+      {storyModal.show && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-md rounded-[2.5rem] p-5 sm:p-6 relative shadow-2xl text-center">
+            <button onClick={() => setStoryModal({ show: false, generating: false, imageUrl: null, activeStyle: 'neon', images: {} })} className="absolute top-5 right-5 p-2 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-800 z-10"><X size={18}/></button>
+            <h3 className="text-lg font-black text-white mb-3 flex items-center justify-center gap-2"><Share2 className="text-theme" size={20}/> {t.createStory}</h3>
+            
+            {storyModal.generating ? (
+              <div className="py-24 flex flex-col items-center justify-center gap-3">
+                <Loader2 className="w-10 h-10 animate-spin text-theme"/>
+                <p className="text-xs font-bold text-slate-400">{t.storyGenerating}</p>
+              </div>
+            ) : storyModal.imageUrl && (
+              <div className="flex flex-col items-center">
+                {/* 5 TASARIM SEÇİCİ SEKMELER (Mobil Uyumlu) */}
+                <div className="grid grid-cols-3 sm:grid-cols-5 w-full bg-[#04060C] p-1.5 rounded-2xl border border-slate-800 mb-4 gap-1">
+                  {[
+                    { key: 'neon', label: t.storyStyle1 || 'Neon Aura' },
+                    { key: 'cinema', label: t.storyStyle2 || 'Sinematik' },
+                    { key: 'ticket', label: t.storyStyle3 || 'Klasik Bilet' },
+                    { key: 'magazine', label: t.storyStyle4 || 'Dergi Kapağı' },
+                    { key: 'prism', label: t.storyStyle5 || 'Prizma Radar' }
+                  ].map(st => (
+                    <button
+                      key={st.key}
+                      onClick={() => setStoryModal(prev => ({ ...prev, activeStyle: st.key, imageUrl: prev.images[st.key] }))}
+                      className={`py-2 px-1.5 rounded-xl text-[11px] font-black transition-all truncate ${storyModal.activeStyle === st.key ? 'bg-theme text-[#04060C] shadow-theme' : 'text-slate-400 hover:text-white'}`}
+                    >
+                      {st.label}
+                    </button>
+                  ))}
+                </div>
+
+                <img src={storyModal.imageUrl} className="w-52 sm:w-64 aspect-[9/16] object-contain rounded-2xl border border-slate-700 shadow-2xl mb-4" alt="Story Card"/>
+                <a href={storyModal.imageUrl} download={`CineScore-${selectedMovie?.title || 'Story'}-${storyModal.activeStyle}.png`} className="w-full py-3.5 bg-theme text-[#04060C] rounded-xl font-black text-sm shadow-theme flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+                  <Save size={18}/> {t.downloadStory}
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 4. ÖZEL LİSTE GÖRSELİ (POSTER) ÖNİZLEME VE İNDİRME PENCERESİ */}
+      {listPosterModal.show && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-700 w-full max-w-md rounded-[2.5rem] p-6 relative shadow-2xl text-center">
+            <button onClick={() => setListPosterModal({ show: false, generating: false, imageUrl: null, listName: '' })} className="absolute top-5 right-5 p-2 bg-[#04060C] rounded-full text-slate-400 hover:text-white border border-slate-800 z-10"><X size={18}/></button>
+            <h3 className="text-lg font-black text-white mb-4 flex items-center justify-center gap-2"><ListPlus className="text-theme" size={20}/> {t.listPosterTitle || 'Liste Paylaşım Kartı'}</h3>
+            {listPosterModal.generating ? (
+              <div className="py-24 flex flex-col items-center justify-center gap-3">
+                <Loader2 className="w-10 h-10 animate-spin text-theme"/>
+                <p className="text-xs font-bold text-slate-400">{t.storyGenerating}</p>
+              </div>
+            ) : listPosterModal.imageUrl && (
+              <div className="flex flex-col items-center">
+                <div className="max-h-[60vh] overflow-y-auto rounded-2xl border border-slate-700 shadow-2xl mb-5 hide-scrollbar">
+                  <img src={listPosterModal.imageUrl} className="w-64 sm:w-72 object-contain" alt="List Poster"/>
+                </div>
+                <a href={listPosterModal.imageUrl} download={`CineScore-Liste-${listPosterModal.listName}.png`} className="w-full py-4 bg-theme text-[#04060C] rounded-xl font-black text-sm shadow-theme flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+                  <Save size={18}/> {t.downloadStory}
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 5. ÖZEL LİSTE SİLME ONAY PENCERESİ */}
+      {listToDelete && (
+        <div className="fixed inset-0 z-[160] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-[2rem] p-8 relative shadow-2xl text-center">
+            <h3 className="text-2xl font-black text-white mb-2">{t.deleteListTitle || 'Listeyi Sil'}</h3>
+            <p className="text-slate-400 font-bold mb-8 text-sm">{t.deleteListDesc || 'Bu özel listeyi kalıcı olarak silmek istediğinize emin misiniz?'}</p>
+            <div className="flex gap-4">
+              <button onClick={() => setListToDelete(null)} className="flex-1 py-3.5 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-black">{t.cancel || 'İptal'}</button>
+              <button onClick={confirmDeleteCustomList} className="flex-1 py-3.5 bg-red-600 hover:bg-red-500 text-white rounded-xl font-black">{t.delete || 'Evet, Sil'}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* YENİ: TAM BOYUTLU MOBİL ARAMA PENCERESİ */}
       {isMobileSearchOpen && (
         <div id="mobile-search-box" className="fixed inset-0 z-[150] flex items-start justify-center pt-24 p-4 bg-black/85 backdrop-blur-md">
@@ -1804,8 +3675,18 @@ function CineScoreMain() {
             )}
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-6 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             
+            {/* YENİ: MİNİ OYUN (SİNEBAĞ) SEKME BUTONU */}
+            <button
+              onClick={() => { setSelectedMovie(null); setViewingUser(null); setActiveTab('game'); }}
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full font-black text-xs sm:text-sm flex items-center gap-2 transition-all border ${activeTab === 'game' ? 'bg-theme text-[#04060C] border-theme shadow-theme scale-105' : 'bg-slate-900/90 text-white border-slate-700 hover:border-theme'}`}
+            >
+              <Clapperboard size={16} className={activeTab === 'game' ? 'text-[#04060C]' : 'text-theme'}/>
+              <span className="hidden md:inline">{t.miniGameNav || 'Mini Oyun: SineBağ'}</span>
+              <span className="md:hidden">SineBağ</span>
+            </button>
+
             {/* YENİ: MOBİL ARAMA BUTONU (Sadece telefonda görünür) */}
             <button 
               onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} 
@@ -1853,11 +3734,18 @@ function CineScoreMain() {
                        <div className="p-4 border-b border-slate-800 bg-[#04060C]/50 font-black text-white">{t.notifications}</div>
                        <div className="max-h-64 overflow-y-auto hide-scrollbar">
                           {userProfile?.notifications?.length > 0 ? userProfile.notifications.map(n => (
-                             <div key={n.id} onClick={() => handleNotifClick(n.fromUid)} className="p-4 border-b border-slate-800/50 hover:bg-slate-800 cursor-pointer transition-colors flex gap-3 items-center">
-                                <img src={n.fromAvatar || AVATAR_DEFAULT} className="w-10 h-10 rounded-full border border-slate-700 object-cover shrink-0" alt=""/>
+                             <div key={n.id} onClick={() => { if (n.type === 'badge') { setIsNotifMenuOpen(false); setActiveTab('profile_general'); } else if (n.fromUid) { handleNotifClick(n.fromUid); } }} className="p-4 border-b border-slate-800/50 hover:bg-slate-800 cursor-pointer transition-colors flex gap-3 items-center">
+                                {n.type === 'badge' ? (
+                                   <div className="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center shrink-0 text-amber-400 shadow-md">
+                                      <Trophy size={20}/>
+                                   </div>
+                                ) : (
+                                   <img src={n.fromAvatar || AVATAR_DEFAULT} className="w-10 h-10 rounded-full border border-slate-700 object-cover shrink-0" alt=""/>
+                                )}
                                 <div className="text-xs text-slate-300 leading-tight">
                                    <strong className="text-white block mb-0.5">{n.fromName}</strong>
                                    {n.type === 'follow' && t.startedFollowing}
+                                   {n.type === 'badge' && <span className="text-amber-400 font-bold">{n.badgeDesc}</span>}
                                 </div>
                              </div>
                           )) : <div className="p-6 text-center text-slate-500 text-sm font-bold">{t.noNotifications}</div>}
@@ -1906,6 +3794,524 @@ function CineScoreMain() {
       </header>
 
       <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
+
+        {/* --- YENİ: MİNİ OYUN: SİNEBAĞ (MATTE NOIR / JİLET SİYAH TASARIM & 5 DİL TAM UYUMLU) --- */}
+        {activeTab === 'game' && (
+          <div className="rounded-3xl bg-[#050506] border border-zinc-800 p-4 sm:p-7 md:p-9 shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
+            
+            {/* ÜST BAŞLIK BAR (Mat Siyah & Keskin Çizgiler) */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 mb-6 border-b border-zinc-800/90">
+              <div className="text-center sm:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-700 text-zinc-200 text-[11px] font-black uppercase tracking-widest mb-2">
+                  <Clapperboard size={13} className="text-amber-400"/> {t.miniGameNav}
+                </div>
+                <h1 className="text-xl sm:text-3xl font-black text-white tracking-tight">{t.gameTitle}</h1>
+                <p className="text-xs sm:text-sm text-zinc-400 font-medium mt-1">{t.gameSubtitle}</p>
+              </div>
+
+              <button
+                onClick={() => setShowHowToPlay(!showHowToPlay)}
+                className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 font-black text-xs flex items-center gap-2 shrink-0 transition-colors"
+              >
+                <HelpCircle size={15} className="text-amber-400"/> {showHowToPlay ? t.hideGuideBtn : t.showGuideBtn}
+              </button>
+            </div>
+
+            {/* NASIL OYNANIR REHBERİ & ÖRNEK ROTA */}
+            {showHowToPlay && (
+              <div className="mb-7 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 sm:p-5 space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                  {[
+                    { step: '01', title: t.howStep1Title, desc: t.howStep1Desc },
+                    { step: '02', title: t.howStep2Title, desc: t.howStep2Desc },
+                    { step: '03', title: t.howStep3Title, desc: t.howStep3Desc },
+                    { step: '04', title: t.howStep4Title, desc: t.howStep4Desc }
+                  ].map((item, idx) => (
+                    <div key={idx} className="bg-[#050506] border border-zinc-800/80 rounded-xl p-3.5">
+                      <span className="text-[10px] font-black text-amber-400 tracking-widest block mb-1">{t.stepLabel} {item.step}</span>
+                      <h4 className="text-sm font-black text-white mb-1">{item.title}</h4>
+                      <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-[#050506] border border-zinc-800 rounded-xl p-3 flex flex-wrap items-center justify-center gap-2 text-xs font-bold">
+                  <span className="text-amber-400 font-black uppercase tracking-wider mr-1">{t.exampleShortestLabel}</span>
+                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM1}</span>
+                  <span className="text-zinc-600">➔</span>
+                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 Leonardo DiCaprio</span>
+                  <span className="text-zinc-600">➔</span>
+                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM2}</span>
+                  <span className="text-zinc-600">➔</span>
+                  <span className="px-2.5 py-1 rounded-md bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 Johnny Depp</span>
+                  <span className="text-zinc-600">➔</span>
+                  <span className="px-2.5 py-1 rounded-md bg-emerald-950/50 text-emerald-400 border border-emerald-500/40">🎯 {t.exampleM3}</span>
+                </div>
+              </div>
+            )}
+
+            {!gameActive ? (
+              /* AŞAMA 1: BAŞLANGIÇ VE HEDEF FİLM SEÇİM EKRANI */
+              <div className="space-y-6">
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    onClick={() => loadPresetOrRandomPair('classic')}
+                    disabled={gameLoading}
+                    className="px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-amber-400 border border-zinc-700 rounded-xl font-black text-xs sm:text-sm flex items-center gap-2 transition-colors"
+                  >
+                    <Flame size={16}/> {t.classicPairBtn}
+                  </button>
+                  <button
+                    onClick={() => loadPresetOrRandomPair('random')}
+                    disabled={gameLoading}
+                    className="px-5 py-2.5 bg-white hover:bg-zinc-200 text-[#050506] rounded-xl font-black text-xs sm:text-sm flex items-center gap-2 transition-colors"
+                  >
+                    {gameLoading ? <Loader2 size={16} className="animate-spin"/> : <Sparkles size={16}/>}
+                    {t.randomPairBtn}
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-11 gap-5 items-stretch">
+                  {/* 1. BAŞLANGIÇ FİLMİ */}
+                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-black uppercase tracking-widest text-zinc-300 flex items-center gap-2">
+                        <Film size={16} className="text-white"/> {t.startMovieLabel}
+                      </span>
+                      {gameStartMovie && (
+                        <button onClick={() => { setGameStartMovie(null); setGameStartQuery(''); }} className="text-xs font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
+                          {t.changeMovie}
+                        </button>
+                      )}
+                    </div>
+
+                    {gameStartMovie ? (
+                      <div className="flex items-center gap-4 bg-[#050506] p-3.5 rounded-xl border border-zinc-800">
+                        <img src={gameStartMovie.poster} className="w-20 sm:w-24 aspect-[2/3] object-cover rounded-lg border border-zinc-700 shrink-0" alt=""/>
+                        <div className="min-w-0 flex-1">
+                          <span className="text-[10px] font-black text-zinc-400 uppercase block">{t.startPointBadge}</span>
+                          <h4 className="text-lg sm:text-xl font-black text-white truncate mt-0.5">{gameStartMovie.title}</h4>
+                          <p className="text-xs font-bold text-zinc-500 mt-1">{gameStartMovie.year}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="my-auto">
+                        <div className="relative flex items-center">
+                          <Search className="absolute left-4 text-zinc-500" size={18}/>
+                          <input
+                            type="text"
+                            value={gameStartQuery}
+                            onChange={(e) => setGameStartQuery(e.target.value)}
+                            placeholder={t.searchMovieGame}
+                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-11 pr-10 py-3.5 text-sm text-white font-bold outline-none transition-colors"
+                          />
+                          {gameSearchingSide === 'start' && <Loader2 className="absolute right-4 animate-spin text-white" size={18}/>}
+                        </div>
+                        {gameStartResults.length > 0 && (
+                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-zinc-900">
+                            {gameStartResults.map(m => (
+                              <div
+                                key={m.id}
+                                onClick={() => {
+                                  setGameStartMovie({
+                                    id: String(m.id),
+                                    title: m.title,
+                                    year: m.release_date ? m.release_date.split('-')[0] : '',
+                                    poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
+                                  });
+                                  setGameStartResults([]);
+                                }}
+                                className="flex items-center gap-3 p-2.5 hover:bg-zinc-900 cursor-pointer transition-colors"
+                              >
+                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-10 h-14 object-cover rounded-md shrink-0" alt=""/>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-xs sm:text-sm font-black text-white truncate">{m.title}</p>
+                                  <span className="text-[11px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* ORTA İKON */}
+                  <div className="lg:col-span-1 flex items-center justify-center">
+                    <div className="w-11 h-11 rounded-xl bg-[#0A0A0C] border border-zinc-800 flex items-center justify-center text-zinc-300 font-black">
+                      ⇄
+                    </div>
+                  </div>
+
+                  {/* 2. HEDEF FİLM */}
+                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-black uppercase tracking-widest text-amber-400 flex items-center gap-2">
+                        <Trophy size={16}/> {t.targetMovieLabel}
+                      </span>
+                      {gameTargetMovie && (
+                        <button onClick={() => { setGameTargetMovie(null); setGameTargetQuery(''); }} className="text-xs font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
+                          {t.changeMovie}
+                        </button>
+                      )}
+                    </div>
+
+                    {gameTargetMovie ? (
+                      <div className="flex items-center gap-4 bg-[#050506] p-3.5 rounded-xl border border-amber-500/30">
+                        <img src={gameTargetMovie.poster} className="w-20 sm:w-24 aspect-[2/3] object-cover rounded-lg border border-amber-500/50 shrink-0" alt=""/>
+                        <div className="min-w-0 flex-1">
+                          <span className="text-[10px] font-black text-amber-400 uppercase block">{t.targetPointBadge}</span>
+                          <h4 className="text-lg sm:text-xl font-black text-white truncate mt-0.5">{gameTargetMovie.title}</h4>
+                          <p className="text-xs font-bold text-zinc-500 mt-1">{gameTargetMovie.year}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="my-auto">
+                        <div className="relative flex items-center">
+                          <Search className="absolute left-4 text-amber-400" size={18}/>
+                          <input
+                            type="text"
+                            value={gameTargetQuery}
+                            onChange={(e) => setGameTargetQuery(e.target.value)}
+                            placeholder={t.searchMovieGame}
+                            className="w-full bg-[#050506] border border-zinc-800 focus:border-amber-400 rounded-xl pl-11 pr-10 py-3.5 text-sm text-white font-bold outline-none transition-colors"
+                          />
+                          {gameSearchingSide === 'target' && <Loader2 className="absolute right-4 animate-spin text-amber-400" size={18}/>}
+                        </div>
+                        {gameTargetResults.length > 0 && (
+                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-60 overflow-y-auto divide-y divide-zinc-900">
+                            {gameTargetResults.map(m => (
+                              <div
+                                key={m.id}
+                                onClick={() => {
+                                  setGameTargetMovie({
+                                    id: String(m.id),
+                                    title: m.title,
+                                    year: m.release_date ? m.release_date.split('-')[0] : '',
+                                    poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
+                                  });
+                                  setGameTargetResults([]);
+                                }}
+                                className="flex items-center gap-3 p-2.5 hover:bg-zinc-900 cursor-pointer transition-colors"
+                              >
+                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-10 h-14 object-cover rounded-md shrink-0" alt=""/>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-xs sm:text-sm font-black text-white truncate">{m.title}</p>
+                                  <span className="text-[11px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* İMKANSIZ BAĞ ANALİZ SONUCU */}
+                {gameStartMovie && gameTargetMovie && (
+                  <div className="max-w-xl mx-auto">
+                    {bridgeStatus.checking ? (
+                      <div className="bg-[#0A0A0C] border border-zinc-800 rounded-xl p-3.5 flex items-center justify-center gap-2.5 text-zinc-300 text-xs font-bold">
+                        <Loader2 size={16} className="animate-spin text-white"/> {t.bridgeChecking}
+                      </div>
+                    ) : !bridgeStatus.possible ? (
+                      <div className="bg-rose-950/40 border border-rose-500/60 rounded-xl p-4 text-center">
+                        <h4 className="text-sm font-black text-rose-300 mb-1">{t.bridgeImpossibleTitle}</h4>
+                        <p className="text-xs font-bold text-rose-200/90">{bridgeStatus.reason}</p>
+                      </div>
+                    ) : bridgeStatus.reason && (
+                      <div className={`bg-[#0A0A0C] border rounded-xl p-3.5 text-center text-xs font-black ${bridgeStatus.directMatch ? 'border-emerald-500/50 text-emerald-400' : 'border-zinc-800 text-zinc-300'}`}>
+                        {bridgeStatus.reason}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <div className="text-center pt-2">
+                  <button
+                    onClick={() => startCineLinkGame()}
+                    disabled={!gameStartMovie || !gameTargetMovie || String(gameStartMovie.id) === String(gameTargetMovie.id) || gameLoading || bridgeStatus.checking || !bridgeStatus.possible}
+                    className="px-10 py-4 bg-white hover:bg-zinc-200 disabled:opacity-25 text-[#050506] font-black text-base rounded-xl transition-all inline-flex items-center gap-3"
+                  >
+                    {gameLoading ? <Loader2 className="animate-spin" size={20}/> : <Play size={18} fill="currentColor"/>}
+                    {t.startGameBtn}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* AŞAMA 2: AKTİF OYUN — YAN YANA JİLET SİYAH KUMANDA VE SEÇİM PANELİ */
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                {/* SOL SÜTUN (4 BİRİM): SABİT KUMANDA PANELİ VE BAĞLANTI ZİNCİRİ */}
+                <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
+                  
+                  {/* 1. KUMANDA VE ROTA KUTUSU */}
+                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 space-y-3.5">
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="flex items-center gap-2 bg-[#050506] p-2.5 rounded-xl border border-zinc-800 min-w-0">
+                        <img src={gameStartMovie?.poster} className="w-8 h-11 object-cover rounded-md shrink-0 border border-zinc-700" alt=""/>
+                        <div className="min-w-0">
+                          <span className="text-[9px] font-black text-zinc-400 uppercase block">{t.chainStartBadge}</span>
+                          <p className="text-xs font-black text-white truncate">{gameStartMovie?.title}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 bg-[#050506] p-2.5 rounded-xl border border-amber-500/30 min-w-0">
+                        <img src={gameTargetMovie?.poster} className="w-8 h-11 object-cover rounded-md shrink-0 border border-amber-500/40" alt=""/>
+                        <div className="min-w-0">
+                          <span className="text-[9px] font-black text-amber-400 uppercase block">{t.targetMovieLabel}</span>
+                          <p className="text-xs font-black text-white truncate">{gameTargetMovie?.title}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* KONTROL TUŞLARI */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={handleUndoGameStep}
+                        disabled={gameHistoryStack.length === 0 || gameLoading}
+                        className="py-2.5 px-3 rounded-xl bg-[#050506] hover:bg-zinc-900 disabled:opacity-30 text-zinc-200 border border-zinc-800 font-black text-xs flex items-center justify-center gap-1.5 transition-colors"
+                      >
+                        <ChevronLeft size={15}/> {t.undoStep}
+                      </button>
+
+                      <button
+                        onClick={() => { setGameActive(false); setGameWon(false); }}
+                        className="py-2.5 px-3 rounded-xl bg-[#050506] hover:bg-rose-950/60 text-rose-400 border border-zinc-800 hover:border-rose-500/40 font-black text-xs flex items-center justify-center gap-1.5 transition-colors"
+                      >
+                        <X size={14}/> {t.resetGame}
+                      </button>
+                    </div>
+
+                    {/* DETAYLI AÇIKLAMALI HEDEF KADRO İPUCU BUTONU */}
+                    <button
+                      onClick={() => setShowTargetHint(!showTargetHint)}
+                      className={`w-full py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-2 border transition-colors ${
+                        showTargetHint
+                          ? 'bg-amber-400 text-[#050506] border-amber-400'
+                          : 'bg-[#050506] hover:bg-zinc-900 text-amber-400 border-amber-500/30'
+                      }`}
+                    >
+                      🎯 {t.targetCastHint} {showTargetHint ? '▲' : '▼'}
+                    </button>
+
+                    {/* AÇIKLAMALI HEDEF KADRO KUTUSU */}
+                    {showTargetHint && (
+                      <div className="bg-[#050506] border border-amber-500/30 rounded-xl p-3.5 space-y-2.5">
+                        <div className="border-b border-zinc-800 pb-2">
+                          <h5 className="text-[11px] font-black text-amber-400 uppercase tracking-wider">
+                            💡 {t.targetCastExplainTitle}
+                          </h5>
+                          <p className="text-[11px] text-zinc-400 font-medium leading-relaxed mt-1">
+                            {t.targetCastExplainDesc}
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
+                          {gameTargetCast.map(tc => (
+                            <span key={tc.id} className="px-2 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-200 flex items-center gap-1.5">
+                              {tc.image && <img src={tc.image} className="w-4 h-4 rounded-full object-cover" alt=""/>}
+                              {tc.name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* 2. DİKEY BAĞLANTI ZİNCİRİ */}
+                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4">
+                    <div className="flex items-center justify-between mb-3.5 pb-2.5 border-b border-zinc-800">
+                      <h4 className="text-xs font-black text-zinc-300 uppercase tracking-widest">
+                        {t.chainMapTitle}
+                      </h4>
+                      <span className="px-2.5 py-0.5 rounded-md bg-zinc-900 border border-zinc-700 text-white text-[11px] font-black">
+                        {Math.floor(gameChain.length / 2)} {t.linksCount}
+                      </span>
+                    </div>
+
+                    <div id="game-chain-list" className="relative max-h-[320px] lg:max-h-[440px] overflow-y-auto pr-1 space-y-2.5">
+                      {gameChain.map((node, idx) => {
+                        const isStart = idx === 0;
+                        const isTargetWon = gameWon && idx === gameChain.length - 1;
+
+                        return (
+                          <div key={`${node.type}_${node.id}_${idx}`} className="relative flex items-center gap-2.5">
+                            {idx < gameChain.length - 1 && (
+                              <div className="absolute left-3.5 top-8 -bottom-3 w-px bg-zinc-700 z-0"></div>
+                            )}
+
+                            <div className={`relative z-10 w-7 h-7 rounded-md font-black text-[11px] flex items-center justify-center shrink-0 border ${
+                              isTargetWon
+                                ? 'bg-emerald-400 text-[#050506] border-emerald-300'
+                                : node.type === 'movie'
+                                ? 'bg-white text-[#050506] border-white'
+                                : 'bg-zinc-900 text-zinc-300 border-zinc-700'
+                            }`}>
+                              {idx + 1}
+                            </div>
+
+                            <div className={`flex-1 flex items-center gap-2.5 p-2 rounded-xl border min-w-0 ${
+                              isTargetWon
+                                ? 'bg-emerald-950/30 border-emerald-500/50'
+                                : 'bg-[#050506] border-zinc-800'
+                            }`}>
+                              {node.image ? (
+                                <img
+                                  src={node.image}
+                                  className={`object-cover shrink-0 border border-zinc-700 ${
+                                    node.type === 'actor' ? 'w-8 h-8 rounded-full' : 'w-7 h-10 rounded-md'
+                                  }`}
+                                  alt=""
+                                />
+                              ) : (
+                                <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 shrink-0"><User size={14}/></div>
+                              )}
+                              <div className="min-w-0 flex-1">
+                                <span className={`text-[9px] font-black uppercase tracking-wider block ${
+                                  isTargetWon ? 'text-emerald-400' : node.type === 'movie' ? 'text-zinc-400' : 'text-amber-400'
+                                }`}>
+                                  {isStart ? `🎬 ${t.chainStartBadge}` : isTargetWon ? t.targetHereBadge : node.type === 'movie' ? `🎬 ${Math.ceil(idx / 2)}. ${t.nodeMovieLabel}` : `🎭 ${Math.ceil(idx / 2)}. ${t.nodeActorLabel}`}
+                                </span>
+                                <p className="text-xs font-black text-white truncate">{node.name}</p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      {!gameWon && gameTargetMovie && (
+                        <div className="relative flex items-center gap-2.5 pt-1 opacity-60">
+                          <div className="w-7 h-7 rounded-md bg-[#050506] border border-dashed border-amber-500/50 flex items-center justify-center text-[11px] shrink-0">
+                            🎯
+                          </div>
+                          <div className="flex-1 flex items-center gap-2.5 p-2 rounded-xl border border-dashed border-zinc-800 bg-[#050506] min-w-0">
+                            <img src={gameTargetMovie.poster} className="w-7 h-10 object-cover rounded-md grayscale shrink-0" alt=""/>
+                            <div className="min-w-0 flex-1">
+                              <span className="text-[9px] font-black text-amber-400 uppercase block">{t.chainTargetGhost}</span>
+                              <p className="text-xs font-black text-zinc-300 truncate">{gameTargetMovie.title}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* SAĞ SÜTUN (8 BİRİM): ANA SEÇİM SAHNESİ */}
+                <div className="lg:col-span-8">
+                  {gameWon ? (
+                    <div className="bg-[#0A0A0C] border-2 border-emerald-500/60 rounded-2xl p-8 sm:p-12 text-center animate-in zoom-in-95 duration-300">
+                      <div className="w-16 h-16 rounded-2xl bg-emerald-400 text-[#050506] flex items-center justify-center mx-auto mb-5">
+                        <Trophy size={34}/>
+                      </div>
+                      <span className="inline-block px-3.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-widest mb-3">
+                        {Math.floor(gameChain.length / 2) <= 2 ? `🏆 ${t.winRank1}` : Math.floor(gameChain.length / 2) <= 4 ? `🌟 ${t.winRank2}` : `🎬 ${t.winRank3}`}
+                      </span>
+                      <h2 className="text-2xl sm:text-4xl font-black text-white mb-2">{t.gameWonTitle}</h2>
+                      <p className="text-sm font-bold text-zinc-400 mb-8 max-w-md mx-auto">
+                        {t.gameWonSubtitle} (<strong className="text-white">{Math.floor(gameChain.length / 2)} {t.linksCount}</strong>)
+                      </p>
+                      <div className="flex flex-wrap justify-center gap-3">
+                        <button
+                          onClick={() => startCineLinkGame(gameStartMovie, gameTargetMovie)}
+                          className="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-black text-xs sm:text-sm border border-zinc-700 transition-colors"
+                        >
+                          {t.retrySameBtn}
+                        </button>
+                        <button
+                          onClick={() => { setGameActive(false); setGameWon(false); }}
+                          className="px-8 py-3.5 bg-white hover:bg-zinc-200 text-[#050506] rounded-xl font-black text-xs sm:text-sm transition-colors"
+                        >
+                          {t.playAgainBtn}
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-5 sm:p-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-4 border-b border-zinc-800">
+                        <div>
+                          <span className={`inline-block text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md mb-1.5 border ${
+                            gameStepType === 'actor' ? 'bg-zinc-900 text-amber-400 border-amber-500/30' : 'bg-zinc-900 text-white border-zinc-700'
+                          }`}>
+                            {gameStepType === 'actor' ? `🎭 ${t.nextMoveActorBadge}` : `🎬 ${t.nextMoveMovieBadge}`}
+                          </span>
+                          <h3 className="text-base sm:text-lg font-black text-white">
+                            <span className="text-amber-400">{gameChain[gameChain.length - 1]?.name}</span>{' '}
+                            <span className="text-zinc-300 font-bold">{gameStepType === 'actor' ? t.stepPickActor : t.stepPickMovie}</span>
+                          </h3>
+                        </div>
+
+                        <div className="relative w-full sm:w-64 shrink-0">
+                          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" size={15}/>
+                          <input
+                            type="text"
+                            value={gameFilterText}
+                            onChange={(e) => setGameFilterText(e.target.value)}
+                            placeholder={gameStepType === 'actor' ? t.filterActors : t.filterMovies}
+                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-9 pr-8 py-2.5 text-xs text-white font-bold outline-none transition-colors"
+                          />
+                          {gameFilterText && (
+                            <button onClick={() => setGameFilterText('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white">
+                              <X size={14}/>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {gameLoading ? (
+                        <div className="py-20 flex justify-center"><Loader2 className="w-8 h-8 animate-spin text-white"/></div>
+                      ) : (
+                        <div id="game-options-grid" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 max-h-[65vh] overflow-y-auto pr-1">
+                          {gameOptions
+                            .filter(opt => opt.name.toLowerCase().includes(gameFilterText.toLowerCase()))
+                            .map(opt => {
+                              const isTargetMatch = gameStepType === 'movie' && String(opt.id) === String(gameTargetMovie?.id);
+                              const isTargetActorMatch = gameStepType === 'actor' && gameTargetCast.some(tc => String(tc.id) === String(opt.id));
+                              return (
+                                <div
+                                  key={opt.id}
+                                  onClick={() => gameStepType === 'actor' ? handlePickGameActor(opt) : handlePickGameMovie(opt)}
+                                  className={`group cursor-pointer rounded-xl p-2 bg-[#050506] border transition-all hover:-translate-y-0.5 ${
+                                    isTargetMatch
+                                      ? 'border-2 border-emerald-400'
+                                      : isTargetActorMatch
+                                      ? 'border-2 border-amber-400'
+                                      : 'border-zinc-800/90 hover:border-zinc-400'
+                                  }`}
+                                >
+                                  <div className="aspect-[2/3] rounded-lg overflow-hidden bg-zinc-900 mb-2 relative">
+                                    {opt.image ? (
+                                      <img src={opt.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt=""/>
+                                    ) : (
+                                      <div className="w-full h-full flex items-center justify-center text-zinc-700"><User size={32}/></div>
+                                    )}
+                                    {isTargetMatch && (
+                                      <div className="absolute top-1.5 inset-x-1.5 bg-emerald-400 text-[#050506] text-[9px] font-black py-1 px-1.5 rounded text-center">
+                                        {t.targetHereBadge}
+                                      </div>
+                                    )}
+                                    {isTargetActorMatch && (
+                                      <div className="absolute top-1.5 inset-x-1.5 bg-amber-400 text-[#050506] text-[9px] font-black py-1 px-1.5 rounded text-center">
+                                        {t.targetActorHereBadge}
+                                      </div>
+                                    )}
+                                  </div>
+                                  <h4 className="text-xs font-black text-white group-hover:text-amber-400 truncate px-0.5 transition-colors">{opt.name}</h4>
+                                  {opt.sub && <p className="text-[10px] font-bold text-zinc-500 truncate px-0.5 mt-0.5">{opt.sub}</p>}
+                                </div>
+                              );
+                            })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            )}
+          </div>
+        )}
         
         {/* YENİ: TOPLULUK ARAMA EKRANI (GİZLİLİK ODAKLI) */}
         {activeTab === 'community' && (
@@ -2051,6 +4457,98 @@ function CineScoreMain() {
                      </div>
                    </div>
                  )}
+
+                 {/* YENİ: ARKADAŞLA KAFA KAFAYA (VS) KARŞILAŞTIRMA MODU */}
+                 {(() => {
+                   const common = [];
+                   sortedMyRatings.forEach(myR => {
+                     const theirR = sortedViewingUserRatings.find(tr => String(tr.id) === String(myR.id));
+                     if (theirR) {
+                       common.push({
+                         id: myR.id,
+                         title: localizedData?.[myR.id]?.title || myR.title,
+                         poster: myR.poster,
+                         myScore: Number(myR.finalScore),
+                         theirScore: Number(theirR.finalScore),
+                         diff: Math.abs(Number(myR.finalScore) - Number(theirR.finalScore))
+                       });
+                     }
+                   });
+                   if (common.length === 0) return null;
+                   const disagreements = [...common].sort((a, b) => b.diff - a.diff).filter(m => m.diff >= 1.5).slice(0, 3);
+                   const agreements = [...common].sort((a, b) => a.diff - b.diff).filter(m => m.diff < 1.5).slice(0, 3);
+
+                   return (
+                     <div className="w-full bg-slate-900/70 backdrop-blur-xl border border-slate-800 rounded-[2.5rem] p-6 sm:p-8 shadow-2xl mt-2">
+                       <h4 className="text-center text-lg sm:text-xl font-black text-white flex items-center justify-center gap-2 mb-6">
+                         <Flame className="text-rose-500" size={24}/> {t.vsTitle || 'Kafa Kafaya (VS) Analizi'}
+                       </h4>
+                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                         {/* En Çok Ayrışılanlar */}
+                         <div className="bg-[#04060C] border border-rose-500/20 rounded-3xl p-4 sm:p-5">
+                           <h5 className="text-xs font-black text-rose-400 uppercase tracking-widest mb-4 flex items-center gap-2">⚡ {t.vsDisagree || 'En Çok Ayrıştıklarınız'}</h5>
+                           {disagreements.length === 0 ? <p className="text-xs text-slate-500 font-bold py-4 text-center">Büyük bir fikir ayrılığı yok.</p> : (
+                             <div className="space-y-3">
+                               {disagreements.map(m => (
+                                 <div key={m.id} onClick={() => selectMovieToRate(m.id, m.title)} className="flex items-center justify-between gap-2 p-2.5 bg-slate-900/90 rounded-2xl border border-slate-800 hover:border-rose-500/50 cursor-pointer transition-all">
+                                   <div className="flex items-center gap-3 min-w-0 flex-1">
+                                     <img src={m.poster} className="w-10 h-14 object-cover rounded-lg shrink-0 border border-slate-700" alt=""/>
+                                     <div className="min-w-0">
+                                       <p className="text-xs font-black text-white truncate">{m.title}</p>
+                                       <span className="text-[10px] font-black text-rose-400 bg-rose-950/60 px-2 py-0.5 rounded-md border border-rose-500/30 mt-1 inline-block">{t.vsDiff}: {m.diff.toFixed(1)}</span>
+                                     </div>
+                                   </div>
+                                   <div className="flex items-center gap-2 shrink-0">
+                                     <div className="text-center bg-[#04060C] px-2.5 py-1.5 rounded-xl border border-slate-800">
+                                       <span className="text-[8px] text-slate-400 font-black block uppercase">SEN</span>
+                                       <span className="text-xs font-black" style={{color: getScoreColorHex(m.myScore)}}>{m.myScore.toFixed(1)}</span>
+                                     </div>
+                                     <span className="text-[10px] font-black text-rose-500">VS</span>
+                                     <div className="text-center bg-[#04060C] px-2.5 py-1.5 rounded-xl border border-slate-800">
+                                       <span className="text-[8px] text-slate-400 font-black block uppercase">O</span>
+                                       <span className="text-xs font-black" style={{color: getScoreColorHex(m.theirScore)}}>{m.theirScore.toFixed(1)}</span>
+                                     </div>
+                                   </div>
+                                 </div>
+                               ))}
+                             </div>
+                           )}
+                         </div>
+
+                         {/* Tamamen Aynı Düşünülenler */}
+                         <div className="bg-[#04060C] border border-emerald-500/20 rounded-3xl p-4 sm:p-5">
+                           <h5 className="text-xs font-black text-emerald-400 uppercase tracking-widest mb-4 flex items-center gap-2">🤝 {t.vsAgree || 'Tamamen Aynı Düşündükleriniz'}</h5>
+                           {agreements.length === 0 ? <p className="text-xs text-slate-500 font-bold py-4 text-center">Tam eşleşen film henüz yok.</p> : (
+                             <div className="space-y-3">
+                               {agreements.map(m => (
+                                 <div key={m.id} onClick={() => selectMovieToRate(m.id, m.title)} className="flex items-center justify-between gap-2 p-2.5 bg-slate-900/90 rounded-2xl border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition-all">
+                                   <div className="flex items-center gap-3 min-w-0 flex-1">
+                                     <img src={m.poster} className="w-10 h-14 object-cover rounded-lg shrink-0 border border-slate-700" alt=""/>
+                                     <div className="min-w-0">
+                                       <p className="text-xs font-black text-white truncate">{m.title}</p>
+                                       <span className="text-[10px] font-black text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/30 mt-1 inline-block">{t.vsDiff}: {m.diff.toFixed(1)}</span>
+                                     </div>
+                                   </div>
+                                   <div className="flex items-center gap-2 shrink-0">
+                                     <div className="text-center bg-[#04060C] px-2.5 py-1.5 rounded-xl border border-slate-800">
+                                       <span className="text-[8px] text-slate-400 font-black block uppercase">SEN</span>
+                                       <span className="text-xs font-black" style={{color: getScoreColorHex(m.myScore)}}>{m.myScore.toFixed(1)}</span>
+                                     </div>
+                                     <span className="text-[10px] font-black text-emerald-500">==</span>
+                                     <div className="text-center bg-[#04060C] px-2.5 py-1.5 rounded-xl border border-slate-800">
+                                       <span className="text-[8px] text-slate-400 font-black block uppercase">O</span>
+                                       <span className="text-xs font-black" style={{color: getScoreColorHex(m.theirScore)}}>{m.theirScore.toFixed(1)}</span>
+                                     </div>
+                                   </div>
+                                 </div>
+                               ))}
+                             </div>
+                           )}
+                         </div>
+                       </div>
+                     </div>
+                   );
+                 })()}
               </div>
             )}
 
@@ -2065,7 +4563,7 @@ function CineScoreMain() {
                     const movie = viewingUser.top3?.[slot];
                     const isCenter = slot === 1;
                     return (
-                      <div key={slot} className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
+                      <div key={slot} className={`tilt-card relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
                         {movie ? (
                           <>
                             <img src={movie.poster} className="w-full h-full object-cover cursor-pointer" onClick={() => selectMovieToRate(movie.id, movie.title)} alt=""/>
@@ -2273,6 +4771,16 @@ function CineScoreMain() {
               </div>
             )}
 
+            {trendingData.length === 0 && (
+              <div className="space-y-10">
+                <div className="w-full h-[420px] sm:h-[550px] rounded-[2.5rem] skeleton-shimmer border border-slate-800/80"></div>
+                <div className="flex gap-4 sm:gap-6 overflow-hidden">
+                  {[1,2,3,4,5,6].map(n => (
+                    <div key={n} className="w-32 sm:w-44 aspect-[2/3] rounded-2xl skeleton-shimmer shrink-0 border border-slate-800/80"></div>
+                  ))}
+                </div>
+              </div>
+            )}
             {upcomingMovies.length > 0 && <MovieRow title="Yakında Vizyonda" movies={upcomingMovies} icon={<Rocket className="text-blue-500" size={28}/>} t={t} selectMovieToRate={selectMovieToRate} globalMoviesList={safeGlobalMovies} localizedData={localizedData} themeColor={themeColor}/>}
             {trendingData.length > 0 && <MovieRow title={t.trending} movies={trendingData} icon={<TrendingUp className="text-amber-500" size={28}/>} t={t} selectMovieToRate={selectMovieToRate} globalMoviesList={safeGlobalMovies} localizedData={localizedData} themeColor={themeColor}/>}
             {turkishMovies.length > 0 && <MovieRow title={t.turkishCinema} movies={turkishMovies} icon={<Globe className="text-amber-500" size={28}/>} t={t} selectMovieToRate={selectMovieToRate} globalMoviesList={safeGlobalMovies} localizedData={localizedData} themeColor={themeColor}/>}
@@ -2335,9 +4843,38 @@ function CineScoreMain() {
                    </div>
                 </div>
 
-                <div className="bg-[#04060C] rounded-3xl p-6 text-left border border-slate-800 shadow-inner space-y-5">
-                   <div><span className="text-xs text-amber-500 font-black uppercase flex items-center gap-1.5"><Clapperboard size={14}/> {t.director}</span><p className="text-sm text-slate-200 font-bold mt-1">{selectedMovie?.director}</p></div>
-                   <div><span className="text-xs text-amber-500 font-black uppercase flex items-center gap-1.5"><Users size={14}/> {t.cast}</span><p className="text-sm text-slate-200 font-bold mt-1">{selectedMovie?.cast}</p></div>
+                {/* YENİ: ÜSTTE ÖNE ÇIKAN VİTRİN FRAGMAN BUTONU */}
+                {selectedMovie?.trailerKey && (
+                  <a 
+                    href={`https://www.youtube.com/watch?v=${selectedMovie.trailerKey}`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="trailer-hero-btn w-full py-4 px-5 mb-4 text-white rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-3 transition-all border border-rose-400/50 relative overflow-hidden group"
+                  >
+                    <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+                      <Play size={16} fill="currentColor" className="ml-0.5"/>
+                    </span>
+                    <span className="tracking-wide uppercase drop-shadow-sm">{t.watchTrailer}</span>
+                  </a>
+                )}
+
+                <div className="bg-[#04060C]/90 rounded-3xl p-6 text-left border border-slate-700/70 shadow-[0_15px_35px_rgba(0,0,0,0.6)] space-y-5">
+                   <div>
+                     <span className="text-xs text-amber-500 font-black uppercase flex items-center gap-1.5"><Clapperboard size={14}/> {t.director}</span>
+                     <button onClick={() => openPersonCareer(selectedMovie?.directorId, selectedMovie?.director, 'director')} className="text-sm text-slate-200 hover:text-theme font-bold mt-1.5 px-3 py-1 bg-slate-900 border border-slate-800 hover:border-theme rounded-xl transition-all inline-flex items-center gap-1.5">
+                       {selectedMovie?.director}
+                     </button>
+                   </div>
+                   <div>
+                     <span className="text-xs text-amber-500 font-black uppercase flex items-center gap-1.5"><Users size={14}/> {t.cast}</span>
+                     <div className="flex flex-wrap gap-1.5 mt-1.5">
+                       {selectedMovie?.castObjects?.length > 0 ? selectedMovie.castObjects.map(actor => (
+                         <button key={actor.id} onClick={() => openPersonCareer(actor.id, actor.name, 'cast')} className="text-xs text-slate-200 hover:text-theme font-bold px-2.5 py-1 bg-slate-900 border border-slate-800 hover:border-theme rounded-lg transition-all">
+                           {actor.name}
+                         </button>
+                       )) : <p className="text-sm text-slate-200 font-bold">{selectedMovie?.cast}</p>}
+                     </div>
+                   </div>
                    <div><span className="text-xs text-amber-500 font-black uppercase flex items-center gap-1.5"><Info size={14}/> {t.summary}</span><p className="text-sm text-slate-400 line-clamp-6 leading-relaxed mt-1.5 font-medium">{selectedMovie?.overview}</p></div>
                    
                    {dbSelectedMovieData && dbSelectedMovieData.voteCount > 0 && (
@@ -2400,11 +4937,7 @@ function CineScoreMain() {
                      </div>
                    )}
                    
-                   {selectedMovie?.trailerKey && (
-                     <a href={`https://www.youtube.com/watch?v=${selectedMovie.trailerKey}`} target="_blank" rel="noreferrer" className="w-full mt-4 py-4 bg-red-600/10 hover:bg-red-600/20 text-red-500 border border-red-500/20 rounded-2xl font-black flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98]">
-                       <Play size={20} className="fill-current"/> {t.watchTrailer}
-                     </a>
-                   )}
+                   
                 </div>
               </div>
             </div>
@@ -2431,9 +4964,22 @@ function CineScoreMain() {
                               style={{ borderColor: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore), boxShadow: `0 0 50px ${getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}80` }}>
                             <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore}</span>
                          </div>
-                         <button onClick={() => { setIsRatingMode(true); setTimeout(() => document.getElementById('rating-slider-box')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="px-10 py-5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-xl transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
-                           <Edit3 size={24}/> {t.updateRating}
-                         </button>
+                         <div className="flex flex-col sm:flex-row items-center gap-4">
+                           <button onClick={() => { setIsRatingMode(true); setTimeout(() => document.getElementById('rating-slider-box')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="px-8 py-4 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-lg transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
+                             <Edit3 size={22}/> {t.updateRating}
+                           </button>
+                           
+                           {/* ÜZERİNE GELİNCE AÇIKLAMA BALONCUĞU ÇIKAN STORY BUTONU */}
+                           <div className="relative group">
+                             <button onClick={generateStoryCard} className="px-8 py-4 rounded-full bg-theme text-[#04060C] font-black text-lg transition-all shadow-theme flex items-center gap-2.5 magnetic-btn">
+                               <Share2 size={22}/> {t.createStory} <HelpCircle size={18} className="opacity-70"/>
+                             </button>
+                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-slate-800 text-slate-200 text-xs font-bold p-3.5 rounded-2xl shadow-2xl border border-slate-600 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 text-center leading-relaxed">
+                               {t.storyTooltip}
+                               <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-800 rotate-45 -mt-1.5 border-r border-b border-slate-600"></div>
+                             </div>
+                           </div>
+                         </div>
                       </>
                     ) : (
                       <>
@@ -2561,7 +5107,11 @@ function CineScoreMain() {
              </div>
              
              {safeGlobalMovies.length === 0 ? (
-               <div className="text-center py-20 text-slate-600"><Loader2 className="animate-spin w-10 h-10 mx-auto mb-4 text-theme"/></div>
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                 {[1,2,3,4,5,6].map(n => (
+                   <div key={n} className="h-44 rounded-3xl skeleton-shimmer border border-slate-800"></div>
+                 ))}
+               </div>
              ) : (
                <>
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2664,7 +5214,7 @@ function CineScoreMain() {
                         const isCenter = slot === 1;
                         return (
                           <div key={slot} 
-                               className={`relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center transition-all duration-500 group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] hover:border-theme z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
+                               className={`tilt-card relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] hover:border-theme z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
                             {movie ? (
                               <>
                                 <img src={movie.poster} className="w-full h-full object-cover cursor-pointer" onClick={() => selectMovieToRate(movie.id, movie.title)} alt=""/>
@@ -2858,9 +5408,10 @@ function CineScoreMain() {
 
                 <div>
                   <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Medal className="text-blue-500" size={28}/> {t.badges}</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                     {getAllBadges(sortedMyRatings.length, t).map(badge => (
-                       <div key={badge.id} className={`flex flex-col items-center justify-center p-5 rounded-3xl border-2 text-center group relative ${badge.earned ? `${badge.color} holo-badge shadow-xl bg-slate-900/50 backdrop-blur` : 'border-slate-800 bg-[#04060C] text-slate-700 opacity-60 grayscale'}`}>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                     {getAllBadges(sortedMyRatings, t, safeGlobalMovies).map(badge => (
+                       <div key={badge.id} className={`tilt-card flex flex-col items-center justify-center p-5 rounded-3xl border-2 text-center group relative ${badge.earned ? `${badge.color} holo-badge shadow-xl bg-slate-900/50 backdrop-blur` : 'border-slate-800 bg-[#04060C] text-slate-700 opacity-60 grayscale'}`}>
+                         {badge.secret && badge.earned && <span className="absolute top-2.5 left-2.5 text-[8px] font-black px-2 py-0.5 rounded-full bg-white/10 text-white uppercase tracking-widest">GİZLİ</span>}
                          <div className={`mb-4 p-4 rounded-2xl shadow-inner ${badge.earned ? 'bg-[#04060C]/50' : 'bg-slate-900'}`}>{badge.icon}</div>
                          <h4 className="font-black text-sm mb-1">{badge.name}</h4>
                          {!badge.earned && <div className="absolute top-3 right-3 text-slate-600"><Lock size={14}/></div>}
@@ -2961,9 +5512,17 @@ function CineScoreMain() {
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {customLists.map(list => (
                           <div key={list.id} onClick={() => { setActiveCustomList(list); setActiveTab('profile_list_detail'); }} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl hover:border-theme cursor-pointer transition-colors group">
-                             <div className="flex items-center justify-between mb-4">
-                                <h4 className="text-xl font-black text-white group-hover:text-theme transition-colors">{list.name}</h4>
-                                <button onClick={(e) => handleShareList(e, list.id)} className="p-2 bg-[#04060C] hover:bg-slate-800 rounded-xl border border-slate-700 text-slate-400 hover:text-theme transition-colors"><Share2 size={18}/></button>
+                             <div className="flex items-center justify-between mb-4 gap-2">
+                                <h4 className="text-xl font-black text-white group-hover:text-theme transition-colors truncate">{list.name}</h4>
+                                <div className="flex items-center gap-2 shrink-0">
+                                  {list.movies?.length > 0 && (
+                                    <button onClick={(e) => generateListPoster(list, e)} title={t.downloadListPoster} className="px-3 py-2 bg-[#04060C] hover:bg-slate-800 rounded-xl border border-slate-700 text-theme text-xs font-black flex items-center gap-1.5 transition-colors">
+                                      <Save size={15}/> <span className="hidden sm:inline">{t.downloadListPoster}</span>
+                                    </button>
+                                  )}
+                                  <button onClick={(e) => handleShareList(e, list.id)} title={t.share} className="p-2 bg-[#04060C] hover:bg-slate-800 rounded-xl border border-slate-700 text-slate-400 hover:text-theme transition-colors"><Share2 size={16}/></button>
+                                  <button onClick={(e) => { e.stopPropagation(); setListToDelete(list.id); }} title={t.deleteListTitle} className="p-2 bg-[#04060C] hover:bg-red-950 rounded-xl border border-slate-700 hover:border-red-500 text-rose-500 transition-colors"><X size={16}/></button>
+                                </div>
                              </div>
                              
                              {list.movies && list.movies.length > 0 ? (
@@ -2987,7 +5546,14 @@ function CineScoreMain() {
                 </div>
 
                 <div className="pt-6 border-t border-slate-800/50">
-                  <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Bookmark className="text-theme" size={28}/> {t.watchlist}</h3>
+                  <div className="flex items-center justify-between mb-6 gap-4">
+                    <h3 className="text-2xl font-black text-white flex items-center gap-3 drop-shadow-md"><Bookmark className="text-theme" size={28}/> {t.watchlist}</h3>
+                    {sortedWatchlist.length >= 2 && (
+                      <button onClick={startCinemaRoulette} className="px-4 py-2.5 bg-theme text-[#04060C] rounded-xl font-black text-xs sm:text-sm flex items-center gap-2 shadow-theme hover:scale-105 active:scale-95 transition-all">
+                        <Sparkles size={18}/> {t.rouletteBtn}
+                      </button>
+                    )}
+                  </div>
                   {sortedWatchlist.length === 0 ? (
                      <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800 border-dashed">
                        <p className="text-slate-400 font-bold">{t.emptyWatchlist}</p>
@@ -3031,9 +5597,17 @@ function CineScoreMain() {
                    <ChevronLeft size={18}/> Geri
                 </button>
                 
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
                    <h2 className="text-3xl sm:text-4xl font-black text-white drop-shadow-md flex items-center gap-3"><ListPlus className="text-theme"/> {activeCustomList.name}</h2>
-                   <button onClick={(e) => handleShareList(e, activeCustomList.id)} className="px-4 py-2 bg-theme-transparent hover:bg-theme text-theme border border-theme rounded-xl font-bold flex items-center gap-2 transition-colors"><Share2 size={18}/> <span className="hidden sm:inline">{t.share}</span></button>
+                   <div className="flex items-center gap-2.5">
+                     {activeCustomList.movies?.length > 0 && (
+                       <button onClick={(e) => generateListPoster(activeCustomList, e)} className="px-4 py-2.5 bg-theme text-[#04060C] rounded-xl font-black flex items-center gap-2 shadow-theme hover:scale-105 transition-transform text-xs sm:text-sm">
+                         <Save size={18}/> {t.downloadListPoster}
+                       </button>
+                     )}
+                     <button onClick={(e) => handleShareList(e, activeCustomList.id)} className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 rounded-xl font-bold flex items-center gap-2 transition-colors text-xs sm:text-sm"><Share2 size={18}/> <span className="hidden sm:inline">{t.share}</span></button>
+                     <button onClick={() => setListToDelete(activeCustomList.id)} className="px-3.5 py-2.5 bg-red-950/50 hover:bg-red-600 text-red-400 hover:text-white border border-red-500/40 rounded-xl font-bold flex items-center gap-1.5 transition-colors text-xs sm:text-sm"><X size={18}/></button>
+                   </div>
                 </div>
 
                 {!activeCustomList.movies || activeCustomList.movies.length === 0 ? (
@@ -3051,6 +5625,8 @@ function CineScoreMain() {
 
                       return (
                         <div key={safeId} className="relative group cursor-pointer" onClick={() => selectMovieToRate(safeId, item.title)}>
+                           <div className="absolute top-2.5 left-2.5 z-20 px-2.5 py-1 rounded-lg bg-theme text-[#04060C] font-black text-xs shadow-lg">#{index + 1}</div>
+                           <button onClick={(e) => removeMovieFromCustomList(activeCustomList.id, safeId, e)} className="absolute top-2.5 right-2.5 z-20 p-1.5 rounded-lg bg-red-600/90 hover:bg-red-500 text-white opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"><X size={14}/></button>
                            <img src={safePoster} className="w-full aspect-[2/3] object-cover rounded-3xl bg-slate-900 border border-slate-800 group-hover:border-theme transition-colors shadow-2xl" alt=""/>
                            <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/20 to-transparent rounded-3xl opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
                               {globalData && globalData.avgScore > 0 && (
@@ -3142,7 +5718,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v3.5</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v4</span></p>
         </div>
       </footer>
 
