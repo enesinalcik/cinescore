@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Star, Film, Save, Award, Clapperboard, Search, Loader2, Globe, User, LogIn, LogOut, X, TrendingUp, Edit3, HelpCircle, Users, Info, Settings, Flame, Play, Crown, Ticket, Medal, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock, Rocket, Smile, Bookmark, BookmarkCheck, ListFilter, Plus, Share2, ListPlus, CheckCircle2, Quote, Sparkles, PieChart, Trophy, UserPlus, UserMinus, Link, Bell, Palette } from 'lucide-react';
+import { Star, Film, Save, Award, Clapperboard, Search, Loader2, Globe, User, LogIn, LogOut, X, TrendingUp, Edit3, HelpCircle, Users, Info, Settings, Flame, Play, Crown, Ticket, Medal, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock, Rocket, Smile, Bookmark, BookmarkCheck, ListFilter, Plus, Share2, ListPlus, CheckCircle2, Quote, Sparkles, PieChart, Trophy, UserPlus, UserMinus, Link, Bell, Palette, Volume2, VolumeX } from 'lucide-react';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
 import { getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, runTransaction, query, orderBy, deleteDoc, limit } from 'firebase/firestore';
@@ -129,7 +129,53 @@ const TRANSLATIONS = {
     popGame3: 'Ucuz Roman ➔ Kara Şövalye',
     b11Name: 'Köprü Mimarı', b11Desc: 'SineBağ mini oyununda ilk film köprünü başarıyla tamamladın!',
     b12Name: 'Kestirme Dehası', b12Desc: 'Gizli Başarım: SineBağ oyununda iki filmi 2 veya daha az bağlantıda birleştirdin!',
-    b13Name: 'SineBağ Ustası', b13Desc: 'SineBağ mini oyununda 5 farklı film köprüsü tamamladın!'
+    b13Name: 'SineBağ Ustası', b13Desc: 'SineBağ mini oyununda 5 farklı film köprüsü tamamladın!',
+    dnaLockedDesc: 'film daha puanlamalısın! (En az 10 film)',
+    dnaDesc: 'Seçicilik (varyans), kişisel eşik sertliği ve genel puana karar etkisi üzerinden hesaplanan 3 boyutlu kritik odak analizi.',
+    rankByCriteriaLabel: 'Kriter Liderliğine Göre Sırala:', allCriteriaRank: 'Genel Sıralama',
+    topFocusMyTitle: 'En Çok Dikkat Ettiğin Kriter', topFocusUserTitle: 'En Çok Dikkat Ettiği Kriter',
+    topFocusSubtitle: '3 Boyutlu DNA Algoritması (Seçicilik + Sertlik + Karar Etkisi) Sonucu',
+    focusPowerLabel: 'Kritik Odak Gücü', selectivityLabel: 'Seçicilik', strictnessLabel: 'Sertlik', impactLabel: 'Karar Etkisi',
+    secondFocusLabel: 'İkincil Odak Noktası:', dnaCalibrationLabel: 'DNA Kalibrasyon İlerlemesi',
+    focusAnalysisExplain: 'Bu kriterde otomatik pilota bağlamıyorsun; iyi ile kötüyü en keskin ayırdığın, kusurları affetmediğin ve filme vereceğin nihai puanı belirleyen ana odak noktan burası.',
+    dailyBridgeTitle: 'GÜNÜN KÖPRÜSÜ', dailyBridgeDesc: 'Her gece 00:00\'da yenilenir. Bugün tüm oyuncular aynı iki filmi en az adımda bağlamaya çalışıyor!',
+    playDailyBtn: 'Günün Köprüsünü Oyna', dailyCompletedBadge: 'Bugünün Köprüsü Tamamlandı', nextDailyIn: 'Yeni Köprüye:',
+    communityRecordLabel: 'Bu Etabın Rekoru:', noRecordYet: 'Henüz rekor yok — İlk rekoru sen kır!',
+    newRecordBanner: '🔥 YENİ TOPLULUK REKORU KIRDIN!', recordTiedBanner: '⚡ TOPLULUK REKORUNU EGALE ETTİN!',
+    hardModesTitle: 'Zorlu Modlar (İsteğe Bağlı)',
+    blitzModeTitle: '⚡ Blitz Modu (15sn / Hamle)', blitzModeDesc: 'Her seçim için 15 saniyen var. Süre biterse köprü çöker!',
+    bannedModeTitle: '🚫 Yasaklı Başrol Modu', bannedModeDesc: 'Başlangıç filminin 1 numaralı yıldızı yasaklanır, yan rollerden gitmelisin!',
+    bannedActorBadge: '🚫 YASAKLI OYUNCU', blitzTimeOutTitle: 'SÜRE DOLDU! KÖPRÜ ÇÖKTÜ',
+    blitzTimeOutDesc: '15 saniye içinde hamle yapamadığın için bağlantı koptu.', tryAgainBtn: 'Hemen Tekrar Dene',
+    createWinCardBtn: 'Spoiler\'sız Zafer Kartı (PNG)', copyChallengeBtn: 'Meydan Okuma Linkini Kopyala',
+    challengeCopiedToast: '🔗 Meydan okuma linki kopyalandı! Arkadaşına gönder.',
+    winCardModalTitle: 'SineBağ Zafer Kartı (Spoiler\'sız)', winCardChallengeText: 'SEN DAHA KISA YOLDAN BAĞLAYABİLİR MİSİN?',
+    hiddenStepLabel: 'GİZLİ ADIM', recordBrokenNotif: 'SineBağ rekorunu daha kısa bir yolla kırdı:',
+    stopwatchLabel: 'Süre', secShort: 'sn', yourBestLabel: 'Senin Skorun:',
+    fasterRecordBanner: '⚡ DAHA HIZLI SÜRE REKORU KIRDIN!', popularRoutesHeading: 'Popüler Eşleşmeler',
+    dnaMovieMatchTitle: 'Senin Zevk DNA\'na %{pct} Uyuyor',
+    dnaMovieFocusStrong: 'Odak kriterin olan {crit} bu filmde çok güçlü',
+    dnaMovieFocusMedium: 'Odak kriterin olan {crit} bu filmde dengeli seviyede',
+    dnaMovieFocusWeak: 'Odak kriterin olan {crit} bu filmde zayıf kalmış',
+    dnaMovieBadge: '3B DNA EŞLEŞME ALGORİTMASI',
+    soundOn: 'Ses Efektleri Açık', soundOff: 'Ses Efektleri Kapalı',
+    top3Desc: '',
+    favDirectorTitle: 'En Çok İzlediğin Yönetmen', favDirectorPublicTitle: 'En Çok İzlediği Yönetmen',
+    favDirectorFilmsRated: 'İzlenen Filmi', favDirectorAvgGiven: 'Verdiğin Ort. Puan',
+    openCareerCardBtn: 'Tüm Filmlerini Gör',
+    criteriaFocusMainTitle: 'Bir Filmde En Çok Önem Verdiğin Kriterler',
+    criteriaFocusPublicTitle: 'Bir Filmde En Çok Önem Verdiği Kriterler',
+    criteriaFocusMainDesc: 'Puanladığın filmlere göre seni en çok etkileyen, kusurlarını en zor affettiğin ve son puanını belirleyen kriterlerin dağılımı.',
+    bubbleSelectivityTitle: '🎯 Seçicilik Nedir?',
+    bubbleSelectivityDesc: 'Bu kriterde her filme benzer puanlar vermiyorsun; iyi ile kötüyü en keskin şekilde ayırdığın alan.',
+    bubbleStrictnessTitle: '⚖️ Sertlik Nedir?',
+    bubbleStrictnessDesc: 'Filmin diğer yönlerini beğensen bile bu kriter zayıfsa puanını en çok kırdığın, en zor beğendiğin alan.',
+    bubbleImpactTitle: '⚡ Karar Etkisi Nedir?',
+    bubbleImpactDesc: 'Bu kritere verdiğin puan, filme verdiğin genel puanı doğrudan yukarı veya aşağı çekiyor.',
+    primaryFocusBadge: '1. ÖNCELİKLİ KRİTERİN',
+    uploadFromDevice: 'Cihazdan Yükle (Maks 2MB)',
+    fileSizeLimitError: 'Dosya boyutu çok büyük! Lütfen maksimum 2 MB boyutunda bir görsel seçin.',
+    imageUploadSuccess: 'Görsel başarıyla yüklendi!'
   },
   en: {
     home: 'Home', ranking: 'Global Ranking', community: 'Community', login: 'Sign In', logout: 'Log Out', trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Editor\'s Pick', searchPlaceholder: 'Search movies to rate...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot Summary', watchTrailer: 'Watch Trailer', saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', noRating: 'Haven\'t rated any movies yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Your Average', nextLevel: 'Next Badge', globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'My Ratings', editProfile: 'Edit Profile', rateNow: 'Rate Movie', voteCount: 'Votes', average: 'Avg', badges: 'Achievement Badges', communityAvg: 'Community Average', actionPacked: 'Action Packed', emotionalDramas: 'Emotional Dramas', turkishCinema: 'Turkish Masterpieces', sciFi: 'Sci-Fi Worlds', comedy: 'Guaranteed Laughs', c1: 'Screenplay & Depth', c1Desc: 'Plot flow, logic, character development, and originality.', c2: 'Acting Performance', c2Desc: 'Cast harmony, emotional delivery, and believability.', c3: 'Cinematography & Visuals', c3Desc: 'Camera angles, lighting, color palette, and visual atmosphere.', c4: 'Sound, Score & Design', c4Desc: 'Soundtrack, sound effects, and contribution to atmosphere.', c5: 'Editing, Pacing & Directing', c5Desc: 'Scene transitions, tempo, and keeping the audience engaged.', globalDesc: 'The massive cinema archive shaped by the community\'s toughest critics.', registeredMovies: 'Rated Movies', username: 'Username', selectAvatar: 'Choose Avatar', saveChanges: 'Save Changes', noBadges: 'Rate movies to earn badges!', b1Name: 'Popcorn Eater', b1Desc: 'Rated your first movie!', b2Name: 'Movie Buff', b2Desc: 'Passed the 10-movie mark.', b3Name: 'Festival Critic', b3Desc: '50 Movies! Getting serious.', b4Name: 'Golden Ticket', b4Desc: '100 Movies Club member.', b5Name: 'Master Director', b5Desc: '250 Movies! A living archive.', b6Name: 'God of Cinema', b6Desc: '500+ Movies! You wrote the book.', loginOr: 'OR', registerBtn: 'Create Account', namePlaceholder: 'Your Name', emailPlaceholder: 'Email Address', passPlaceholder: 'Password', navShowcase: 'HOME', navList: 'RANKING', navProfile: 'PROFILE', noData: 'No data.', watchlist: 'My Watchlist', addToWatchlist: 'Add to Watchlist', removeFromWatchlist: 'In Watchlist (Remove)', profileGeneral: 'Overview & Stats', sortBy: 'Sort by:', sortDate: 'Date Added', sortMyScore: 'My Score', sortGlobalScore: 'Global Score', emptyWatchlist: 'Your watchlist is empty.', cinematicDNA: 'Critical Focus Analysis (DNA)', dnaDesc: 'Shows which criteria you have the highest expectations for based on your ratings (Inverse proportion: Lower average means tougher standards).', customLists: 'My Custom Lists', createNewList: 'Create New List', listNamePlaceholder: 'E.g., Mind-Bending Movies...', add: 'Create', share: 'Share', copied: 'Link Copied!', selectList: 'Add to Custom List', addedToList: 'Added to list!', addCustomListHover: 'Add to Custom List', addWatchlistHover: 'Add to Watchlist', removeWatchlistHover: 'Remove from Watchlist', autoRemoveSetting: 'Auto-remove rated movies from Watchlist', autoRemoveDesc: 'When enabled, movies you rate are automatically removed from your Watchlist.', listCreated: 'List created!', errorOccurred: 'An error occurred!', bioLabel: 'Cinema Motto (Bio)', bioPlaceholder: 'Write a quote or your cinema view...', selectBanner: 'Select Profile Banner', cineZodiac: 'Cinema Zodiac', cineZodiacDesc: 'Your critic persona based on your toughest criterion.', topGenres: 'Favorite Genres', viewAll: 'View All', zodiacC1: 'Plot Hunter', zodiacC2: 'Emotion Analyst', zodiacC3: 'Visual Esthete', zodiacC4: 'Audiophile Critic', zodiacC5: 'Pacing Master', zodiacDefault: 'Novice Viewer', zC1Desc: 'You never forgive plot holes. A weak story stands no chance.', zC2Desc: 'Fake acting ruins the movie for you. You seek raw emotion.', zC3Desc: 'Your eyes work like a camera lens. Lighting and framing are everything.', zC4Desc: 'You close your eyes and listen. Weak music means a weak movie.', zC5Desc: 'You hate boring moments. Editing and rhythm are your top priorities.', top3Title: 'Holy Trinity (Top 3)', top3Desc: 'The 3 greatest movies of your life.', selectTop3Search: 'Search a movie for this slot...', verifyEmailSent: 'Verification link sent! Please check your email inbox (and Spam folder).', emailNotVerifiedError: 'Your email is not verified yet! Please click the link sent to your email.', followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Following', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!', communityPrivacyTitle: 'Private Code Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter your friend\'s exact 6-digit @code to find them.', mostVoted: 'Most Voted', exactCodeRequired: 'Type exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies', tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed to unlock your critical DNA! (20 Minimum)', dnaLockedDescPublic: 'This user hasn\'t rated enough movies to generate a DNA profile.', notifications: 'Notifications', noNotifications: 'No notifications yet.', startedFollowing: 'started following you.', auraColor: 'Profile Aura (Theme Color)', friendsWatched: 'Friends Who Watched This',
@@ -189,7 +235,53 @@ const TRANSLATIONS = {
     popGame3: 'Pulp Fiction ➔ The Dark Knight',
     b11Name: 'Bridge Architect', b11Desc: 'Completed your first movie bridge in the CineLink mini-game!',
     b12Name: 'Shortcut Genius', b12Desc: 'Secret: Connected two movies in 2 or fewer links in CineLink!',
-    b13Name: 'CineLink Master', b13Desc: 'Completed 5 movie bridges in the CineLink mini-game!'
+    b13Name: 'CineLink Master', b13Desc: 'Completed 5 movie bridges in the CineLink mini-game!',
+    dnaLockedDesc: 'more movies needed to unlock your critical DNA! (10 Minimum)',
+    dnaDesc: '3D critical focus analysis calculated via Selectivity (variance), Relative Strictness, and Decisive Impact on final scores.',
+    rankByCriteriaLabel: 'Rank by Criterion Leadership:', allCriteriaRank: 'Overall Ranking',
+    topFocusMyTitle: 'Your Most Scrutinized Criterion', topFocusUserTitle: 'Most Scrutinized Criterion',
+    topFocusSubtitle: '3D DNA Algorithm (Selectivity + Strictness + Decisive Impact)',
+    focusPowerLabel: 'Critical Focus Power', selectivityLabel: 'Selectivity', strictnessLabel: 'Strictness', impactLabel: 'Impact',
+    secondFocusLabel: 'Secondary Focus:', dnaCalibrationLabel: 'DNA Calibration Progress',
+    focusAnalysisExplain: 'You never go on autopilot here; this is where you separate masterpieces from failures most sharply and what drives your final verdict.',
+    dailyBridgeTitle: 'BRIDGE OF THE DAY', dailyBridgeDesc: 'Resets daily at 00:00. Everyone tries to connect the exact same pair in the fewest links!',
+    playDailyBtn: 'Play Daily Bridge', dailyCompletedBadge: 'Daily Bridge Completed', nextDailyIn: 'Next in:',
+    communityRecordLabel: 'Stage Record:', noRecordYet: 'No record yet — Be the first to set it!',
+    newRecordBanner: '🔥 NEW COMMUNITY RECORD SET!', recordTiedBanner: '⚡ COMMUNITY RECORD TIED!',
+    hardModesTitle: 'Challenge Modes (Optional)',
+    blitzModeTitle: '⚡ Blitz Mode (15s / Move)', blitzModeDesc: '15 seconds per move. If time runs out, the bridge collapses!',
+    bannedModeTitle: '🚫 Banned Lead Mode', bannedModeDesc: 'The #1 lead star of the start movie is banned!',
+    bannedActorBadge: '🚫 BANNED ACTOR', blitzTimeOutTitle: 'TIME UP! BRIDGE COLLAPSED',
+    blitzTimeOutDesc: 'You ran out of the 15-second move timer.', tryAgainBtn: 'Try Again Now',
+    createWinCardBtn: 'Spoiler-Free Victory Card (PNG)', copyChallengeBtn: 'Copy Challenge Link',
+    challengeCopiedToast: '🔗 Challenge link copied! Send it to a friend.',
+    winCardModalTitle: 'CineLink Victory Card (Spoiler-Free)', winCardChallengeText: 'CAN YOU CONNECT THEM IN FEWER LINKS?',
+    hiddenStepLabel: 'HIDDEN STEP', recordBrokenNotif: 'broke your CineLink record with a shorter path:',
+    stopwatchLabel: 'Time', secShort: 's', yourBestLabel: 'Your Best:',
+    fasterRecordBanner: '⚡ NEW FASTEST TIME RECORD!', popularRoutesHeading: 'Popular Matchups',
+    dnaMovieMatchTitle: 'Matches Your Taste DNA by {pct}%',
+    dnaMovieFocusStrong: 'Your focus criterion ({crit}) is very strong in this movie',
+    dnaMovieFocusMedium: 'Your focus criterion ({crit}) is solid in this movie',
+    dnaMovieFocusWeak: 'Your focus criterion ({crit}) falls weak in this movie',
+    dnaMovieBadge: '3D DNA MATCH ALGORITHM',
+    soundOn: 'Sound Effects On', soundOff: 'Sound Effects Off',
+    top3Desc: '',
+    favDirectorTitle: 'Most Watched Director', favDirectorPublicTitle: 'Most Watched Director',
+    favDirectorFilmsRated: 'Watched Movies', favDirectorAvgGiven: 'Avg Score Given',
+    openCareerCardBtn: 'View All Movies',
+    criteriaFocusMainTitle: 'Criteria You Care About Most in a Movie',
+    criteriaFocusPublicTitle: 'Criteria They Care About Most in a Movie',
+    criteriaFocusMainDesc: 'Based on your ratings, here is how much each criterion influences your final score and where your standards are toughest.',
+    bubbleSelectivityTitle: '🎯 What is Selectivity?',
+    bubbleSelectivityDesc: 'You don\'t give every movie the same score here; this is where you separate good from bad most sharply.',
+    bubbleStrictnessTitle: '⚖️ What is Strictness?',
+    bubbleStrictnessDesc: 'Even if you like other aspects of a movie, if this criterion is weak, you penalize it the most.',
+    bubbleImpactTitle: '⚡ What is Impact?',
+    bubbleImpactDesc: 'Your score on this criterion directly pulls your overall movie rating up or down.',
+    primaryFocusBadge: '#1 TOP PRIORITY',
+    uploadFromDevice: 'Upload Image (Max 2MB)',
+    fileSizeLimitError: 'File is too large! Please select an image under 2 MB.',
+    imageUploadSuccess: 'Image uploaded successfully!'
   },
   de: { 
     home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben',
@@ -232,7 +324,51 @@ const TRANSLATIONS = {
     popGame1: 'Shutter Island ➔ Fluch der Karibik', popGame2: 'Inception ➔ Herr der Ringe', popGame3: 'Pulp Fiction ➔ The Dark Knight',
     b11Name: 'Brückenbauer', b11Desc: 'Erste Filmbrücke in CineLink gebaut!',
     b12Name: 'Abkürzungs-Genie', b12Desc: 'Geheim: Zwei Filme in maximal 2 Schritten verbunden!',
-    b13Name: 'CineLink-Meister', b13Desc: '5 Filmbrücken in CineLink vollendet!'
+    b13Name: 'CineLink-Meister', b13Desc: '5 Filmbrücken in CineLink vollendet!',
+    dnaLockedDesc: 'weitere Filme nötig. (10 Minimum)',
+    rankByCriteriaLabel: 'Nach Kriterium sortieren:', allCriteriaRank: 'Gesamtrangliste',
+    topFocusMyTitle: 'Dein Hauptkriterium', topFocusUserTitle: 'Hauptkriterium',
+    topFocusSubtitle: '3D-DNA-Analyse (Selektivität + Strenge + Einfluss)',
+    focusPowerLabel: 'Fokus-Stärke', selectivityLabel: 'Selektivität', strictnessLabel: 'Strenge', impactLabel: 'Einfluss',
+    secondFocusLabel: 'Sekundärer Fokus:', dnaCalibrationLabel: 'DNA-Kalibrierung',
+    focusAnalysisExplain: 'Hier achtest du am genauesten auf Qualität, verzeihst keine Fehler und lässt dieses Kriterium dein Gesamturteil bestimmen.',
+    dailyBridgeTitle: 'BRÜCKE DES TAGES', dailyBridgeDesc: 'Jeden Tag um 00:00 Uhr neu. Verbinde das Tagespaar mit so wenigen Schritten wie möglich!',
+    playDailyBtn: 'Tagesbrücke spielen', dailyCompletedBadge: 'Tagesbrücke geschafft', nextDailyIn: 'Nächste in:',
+    communityRecordLabel: 'Streckenrekord:', noRecordYet: 'Noch kein Rekord — Stell ihn auf!',
+    newRecordBanner: '🔥 NEUER COMMUNITY-REKORD!', recordTiedBanner: '⚡ REKORD EINGESTELLT!',
+    hardModesTitle: 'Herausforderungsmodi',
+    blitzModeTitle: '⚡ Blitz-Modus (15s / Zug)', blitzModeDesc: '15 Sekunden pro Zug!',
+    bannedModeTitle: '🚫 Gesperrter Hauptdarsteller', bannedModeDesc: 'Der Hauptstar des Startfilms ist gesperrt!',
+    bannedActorBadge: '🚫 GESPERRT', blitzTimeOutTitle: 'ZEIT ABGELAUFEN!',
+    blitzTimeOutDesc: 'Die 15 Sekunden sind abgelaufen.', tryAgainBtn: 'Nochmal versuchen',
+    createWinCardBtn: 'Spoilerfreie Siegkarte (PNG)', copyChallengeBtn: 'Challenge-Link kopieren',
+    challengeCopiedToast: '🔗 Challenge-Link kopiert!',
+    winCardModalTitle: 'CineLink Siegkarte', winCardChallengeText: 'SCHAFFST DU ES KÜRZER?',
+    hiddenStepLabel: 'VERBORGEN', recordBrokenNotif: 'hat deinen CineLink-Rekord gebrochen:'
+    , stopwatchLabel: 'Zeit', secShort: 's', yourBestLabel: 'Dein Score:', fasterRecordBanner: '⚡ NEUER ZEITREKORD!', popularRoutesHeading: 'Beliebte Duelle',
+    dnaMovieMatchTitle: 'Passt zu {pct}% zu deiner Geschmacks-DNA',
+    dnaMovieFocusStrong: 'Dein Fokus-Kriterium ({crit}) ist in diesem Film sehr stark',
+    dnaMovieFocusMedium: 'Dein Fokus-Kriterium ({crit}) ist in diesem Film solide',
+    dnaMovieFocusWeak: 'Dein Fokus-Kriterium ({crit}) ist in diesem Film eher schwach',
+    dnaMovieBadge: '3D-DNA-MATCH-ALGORITHMUS',
+    soundOn: 'Soundeffekte An', soundOff: 'Soundeffekte Aus',
+    top3Desc: '',
+    favDirectorTitle: 'Meistgesehener Regisseur', favDirectorPublicTitle: 'Meistgesehener Regisseur',
+    favDirectorFilmsRated: 'Gesehene Filme', favDirectorAvgGiven: 'Vergebene Ø-Note',
+    openCareerCardBtn: 'Alle Filme ansehen',
+    criteriaFocusMainTitle: 'Kriterien, die dir bei Filmen am wichtigsten sind',
+    criteriaFocusPublicTitle: 'Wichtigste Filmkriterien',
+    criteriaFocusMainDesc: 'Basierend auf deinen Bewertungen zeigt diese Grafik, worauf du bei einem Film am meisten achtest.',
+    bubbleSelectivityTitle: '🎯 Was ist Selektivität?',
+    bubbleSelectivityDesc: 'Hier trennst du gute und schlechte Filme am schärfsten voneinander.',
+    bubbleStrictnessTitle: '⚖️ Was ist Strenge?',
+    bubbleStrictnessDesc: 'Wenn dieses Kriterium schwach ist, ziehst du am meisten Punkte ab.',
+    bubbleImpactTitle: '⚡ Was ist Einfluss?',
+    bubbleImpactDesc: 'Deine Note hier bestimmt maßgeblich deine Gesamtbewertung für den Film.',
+    primaryFocusBadge: '#1 HAUPTFOKUS',
+    uploadFromDevice: 'Hochladen (Max 2MB)',
+    fileSizeLimitError: 'Datei zu groß! Bitte maximal 2 MB auswählen.',
+    imageUploadSuccess: 'Bild erfolgreich hochgeladen!'
   },
   it: { 
     home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTA', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti.', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato',
@@ -275,7 +411,51 @@ const TRANSLATIONS = {
     popGame1: 'Shutter Island ➔ Pirati dei Caraibi', popGame2: 'Inception ➔ Il Signore degli Anelli', popGame3: 'Pulp Fiction ➔ Il Cavaliere Oscuro',
     b11Name: 'Architetto di Ponti', b11Desc: 'Primo ponte completato in CineLink!',
     b12Name: 'Genio della Scorciatoia', b12Desc: 'Segreto: Due film collegati in 2 o meno passi!',
-    b13Name: 'Maestro CineLink', b13Desc: '5 ponti completati in CineLink!'
+    b13Name: 'Maestro CineLink', b13Desc: '5 ponti completati in CineLink!',
+    dnaLockedDesc: 'film necessari. (Minimo 10)',
+    rankByCriteriaLabel: 'Ordina per Criterio:', allCriteriaRank: 'Classifica Generale',
+    topFocusMyTitle: 'Il Tuo Criterio Principale', topFocusUserTitle: 'Criterio Principale',
+    topFocusSubtitle: 'Algoritmo DNA 3D (Selettività + Severità + Impatto)',
+    focusPowerLabel: 'Forza di Focus', selectivityLabel: 'Selettività', strictnessLabel: 'Severità', impactLabel: 'Impatto',
+    secondFocusLabel: 'Focus Secondario:', dnaCalibrationLabel: 'Calibrazione DNA',
+    focusAnalysisExplain: 'Questo è il criterio che analizzi con più attenzione, dove separi nettamente i capolavori dai film mediocri.',
+    dailyBridgeTitle: 'PONTE DEL GIORNO', dailyBridgeDesc: 'Si rinnova ogni giorno a mezzanotte. Collega i due film del giorno con il minor numero di passi!',
+    playDailyBtn: 'Gioca il Ponte del Giorno', dailyCompletedBadge: 'Ponte del Giorno Completato', nextDailyIn: 'Prossimo tra:',
+    communityRecordLabel: 'Record Tratta:', noRecordYet: 'Nessun record — Stabiliscilo tu!',
+    newRecordBanner: '🔥 NUOVO RECORD DELLA COMMUNITY!', recordTiedBanner: '⚡ RECORD PAREGGIATO!',
+    hardModesTitle: 'Modalità Difficili',
+    blitzModeTitle: '⚡ Modalità Blitz (15s / Mossa)', blitzModeDesc: '15 secondi per mossa!',
+    bannedModeTitle: '🚫 Protagonista Vietato', bannedModeDesc: 'La star principale del film di partenza è bloccata!',
+    bannedActorBadge: '🚫 VIETATO', blitzTimeOutTitle: 'TEMPO SCADUTO!',
+    blitzTimeOutDesc: 'Non hai effettuato la mossa entro 15 secondi.', tryAgainBtn: 'Riprova Ora',
+    createWinCardBtn: 'Card Vittoria Senza Spoiler (PNG)', copyChallengeBtn: 'Copia Link Sfida',
+    challengeCopiedToast: '🔗 Link di sfida copiato!',
+    winCardModalTitle: 'Card Vittoria CineLink', winCardChallengeText: 'RIESCI A FARLO IN MENO PASSI?',
+    hiddenStepLabel: 'NASCOSTO', recordBrokenNotif: 'ha battuto il tuo record CineLink:',
+    stopwatchLabel: 'Tempo', secShort: 's', yourBestLabel: 'Tuo Score:', fasterRecordBanner: '⚡ NUOVO RECORD DI TEMPO!', popularRoutesHeading: 'Sfide Popolari',
+    dnaMovieMatchTitle: 'Compatibile al {pct}% con il tuo DNA',
+    dnaMovieFocusStrong: 'Il tuo criterio chiave ({crit}) è molto forte in questo film',
+    dnaMovieFocusMedium: 'Il tuo criterio chiave ({crit}) è equilibrato in questo film',
+    dnaMovieFocusWeak: 'Il tuo criterio chiave ({crit}) è debole in questo film',
+    dnaMovieBadge: 'ALGORITMO MATCH DNA 3D',
+    soundOn: 'Effetti Sonori Attivi', soundOff: 'Effetti Sonori Disattivati',
+    top3Desc: '',
+    favDirectorTitle: 'Regista Più Seguito', favDirectorPublicTitle: 'Regista Più Seguito',
+    favDirectorFilmsRated: 'Film Visti', favDirectorAvgGiven: 'Media Voti Data',
+    openCareerCardBtn: 'Vedi Tutti i Film',
+    criteriaFocusMainTitle: 'I Criteri a Cui Dai Più Importanza in un Film',
+    criteriaFocusPublicTitle: 'I Criteri a Cui Dà Più Importanza',
+    criteriaFocusMainDesc: 'In base ai tuoi voti, ecco gli aspetti che contano di più per te e che decidono il tuo giudizio finale.',
+    bubbleSelectivityTitle: '🎯 Cos\'è la Selettività?',
+    bubbleSelectivityDesc: 'In questo criterio separi in modo netto i film belli da quelli brutti.',
+    bubbleStrictnessTitle: '⚖️ Cos\'è la Severità?',
+    bubbleStrictnessDesc: 'Anche se il resto del film funziona, se questo aspetto è debole abbassi subito il voto.',
+    bubbleImpactTitle: '⚡ Cos\'è l\'Impatto?',
+    bubbleImpactDesc: 'Il voto che dai qui trascina direttamente in alto o in basso il voto finale del film.',
+    primaryFocusBadge: '#1 PRIORITÀ ASSOLUTA',
+    uploadFromDevice: 'Carica Foto (Max 2MB)',
+    fileSizeLimitError: 'File troppo grande! Massimo 2 MB.',
+    imageUploadSuccess: 'Immagine caricata con successo!'
   },
   fr: { 
     home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
@@ -318,7 +498,51 @@ const TRANSLATIONS = {
     popGame1: 'Shutter Island ➔ Pirates des Caraïbes', popGame2: 'Inception ➔ Le Seigneur des Anneaux', popGame3: 'Pulp Fiction ➔ The Dark Knight',
     b11Name: 'Architecte de Ponts', b11Desc: 'Premier pont complété dans CineLink !',
     b12Name: 'Génie du Raccourci', b12Desc: 'Secret : Deux films reliés en 2 étapes ou moins !',
-    b13Name: 'Maître CineLink', b13Desc: '5 ponts complétés dans CineLink !'
+    b13Name: 'Maître CineLink', b13Desc: '5 ponts complétés dans CineLink !',
+    dnaLockedDesc: 'films nécessaires. (10 Minimum)',
+    rankByCriteriaLabel: 'Trier par Critère :', allCriteriaRank: 'Classement Général',
+    topFocusMyTitle: 'Votre Critère Principal', topFocusUserTitle: 'Critère Principal',
+    topFocusSubtitle: 'Algorithme ADN 3D (Sélectivité + Rigueur + Impact)',
+    focusPowerLabel: 'Puissance de Focus', selectivityLabel: 'Sélectivité', strictnessLabel: 'Rigueur', impactLabel: 'Impact',
+    secondFocusLabel: 'Focus Secondaire :', dnaCalibrationLabel: 'Calibrage ADN',
+    focusAnalysisExplain: 'C\'est le critère auquel vous prêtez le plus d\'attention et qui détermine directement votre note finale.',
+    dailyBridgeTitle: 'PONT DU JOUR', dailyBridgeDesc: 'Nouveau défi chaque jour à minuit. Reliez les deux films du jour en un minimum d\'étapes !',
+    playDailyBtn: 'Jouer le Pont du Jour', dailyCompletedBadge: 'Pont du Jour Terminé', nextDailyIn: 'Prochain dans :',
+    communityRecordLabel: 'Record du Parcours :', noRecordYet: 'Aucun record — Soyez le premier !',
+    newRecordBanner: '🔥 NOUVEAU RECORD DE LA COMMUNAUTÉ !', recordTiedBanner: '⚡ RECORD ÉGALÉ !',
+    hardModesTitle: 'Modes Difficiles',
+    blitzModeTitle: '⚡ Mode Blitz (15s / Coup)', blitzModeDesc: '15 secondes par coup !',
+    bannedModeTitle: '🚫 Acteur Principal Interdit', bannedModeDesc: 'La star n°1 du film de départ est interdite !',
+    bannedActorBadge: '🚫 INTERDIT', blitzTimeOutTitle: 'TEMPS ÉCOULÉ !',
+    blitzTimeOutDesc: 'Vous avez dépassé la limite de 15 secondes.', tryAgainBtn: 'Réessayer',
+    createWinCardBtn: 'Carte Victoire Sans Spoiler (PNG)', copyChallengeBtn: 'Copier le Lien de Défi',
+    challengeCopiedToast: '🔗 Lien de défi copié !',
+    winCardModalTitle: 'Carte Victoire CineLink', winCardChallengeText: 'POUVEZ-VOUS FAIRE PLUS COURT ?',
+    hiddenStepLabel: 'CACHÉ', recordBrokenNotif: 'a battu votre record CineLink :',
+    stopwatchLabel: 'Temps', secShort: 's', yourBestLabel: 'Votre Score :', fasterRecordBanner: '⚡ NOUVEAU RECORD DE TEMPS !', popularRoutesHeading: 'Duels Populaires',
+    dnaMovieMatchTitle: 'Compatible à {pct}% avec votre ADN',
+    dnaMovieFocusStrong: 'Votre critère clé ({crit}) est très fort dans ce film',
+    dnaMovieFocusMedium: 'Votre critère clé ({crit}) est équilibré dans ce film',
+    dnaMovieFocusWeak: 'Votre critère clé ({crit}) reste faible dans ce film',
+    dnaMovieBadge: 'ALGORITHME MATCH ADN 3D',
+    soundOn: 'Effets Sonores Activés', soundOff: 'Effets Sonores Désactivés',
+    top3Desc: '',
+    favDirectorTitle: 'Réalisateur le Plus Vu', favDirectorPublicTitle: 'Réalisateur le Plus Vu',
+    favDirectorFilmsRated: 'Films Vus', favDirectorAvgGiven: 'Note Moy. Donnée',
+    openCareerCardBtn: 'Voir Tous les Films',
+    criteriaFocusMainTitle: 'Les Critères Qui Comptent le Plus Pour Vous',
+    criteriaFocusPublicTitle: 'Les Critères Qui Comptent le Plus Pour Lui/Elle',
+    criteriaFocusMainDesc: 'Selon vos notes, voici les critères auxquels vous accordez le plus d\'importance lors d\'un film.',
+    bubbleSelectivityTitle: '🎯 Qu\'est-ce que la Sélectivité ?',
+    bubbleSelectivityDesc: 'C\'est ici que vous distinguez le plus nettement les chefs-d\'œuvre des mauvais films.',
+    bubbleStrictnessTitle: '⚖️ Qu\'est-ce que la Rigueur ?',
+    bubbleStrictnessDesc: 'Même si le reste du film est bon, vous ne pardonnez aucune faiblesse sur ce critère.',
+    bubbleImpactTitle: '⚡ Qu\'est-ce que l\'Impact ?',
+    bubbleImpactDesc: 'Votre note sur ce critère détermine directement votre note globale du film.',
+    primaryFocusBadge: '#1 PRIORITÉ N°1',
+    uploadFromDevice: 'Importer (Max 2Mo)',
+    fileSizeLimitError: 'Fichier trop volumineux ! Maximum 2 Mo.',
+    imageUploadSuccess: 'Image importée avec succès !'
   }
 };
 
@@ -440,6 +664,17 @@ const CustomAnimations = () => (
       animation: shimmer 1.6s infinite linear;
     }
 
+    /* YENİ: GPU HIZLANDIRMA & SCROLL PERFORMANS OPTİMİZASYONU */
+    .fixed.inset-0.z-0.pointer-events-none {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      contain: strict;
+    }
+    .backdrop-blur-xl, .backdrop-blur-2xl, .backdrop-blur-md {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
     /* YENİ: CANLI AURORA KOYU TEMA & ELİT CAM DOKUSU */
     .cyber-grid-bg {
       background-image: 
@@ -525,28 +760,237 @@ const CustomAnimations = () => (
     .badge-emblem-float {
       animation: badgeFloat 3.2s ease-in-out infinite;
     }
+
+    /* YENİ: KUTSAL ÜÇLÜ - KRALİYET & ALTIN VARAK ANİMASYONLARI (AURA BAĞIMSIZ) */
+    main[data-active-tab="profile_general"] > :not(.cinescore-modern-view),
+    main[data-active-tab="community"] > :not(.cinescore-modern-view) {
+      display: none !important;
+    }
+    @keyframes royalCenterFloat {
+      0%, 100% { transform: translateY(0px) scale(1.08); }
+      50% { transform: translateY(-8px) scale(1.10); }
+    }
+    @keyframes royalLeftFloat {
+      0%, 100% { transform: perspective(900px) rotateY(10deg) rotateZ(-1.5deg) translateY(0px); }
+      50% { transform: perspective(900px) rotateY(7deg) rotateZ(-0.5deg) translateY(-6px); }
+    }
+    @keyframes royalRightFloat {
+      0%, 100% { transform: perspective(900px) rotateY(-10deg) rotateZ(1.5deg) translateY(0px); }
+      50% { transform: perspective(900px) rotateY(-7deg) rotateZ(0.5deg) translateY(-6px); }
+    }
+    @keyframes goldFoilSweep {
+      0% { transform: translateX(-180%) skewX(-25deg); opacity: 0; }
+      15% { opacity: 1; }
+      45% { transform: translateX(240%) skewX(-25deg); opacity: 0; }
+      100% { transform: translateX(240%) skewX(-25deg); opacity: 0; }
+    }
+    @keyframes royalCrownHover {
+      0%, 100% { transform: translate(-50%, 0px) rotate(-2deg) scale(1); }
+      50% { transform: translate(-50%, -5px) rotate(2deg) scale(1.06); }
+    }
+    @keyframes goldAuraPulse {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50% { opacity: 0.80; transform: scale(1.05); }
+    }
+
+    .royal-poster-center {
+      animation: royalCenterFloat 6s ease-in-out infinite;
+      will-change: transform;
+    }
+    .royal-poster-left {
+      animation: royalLeftFloat 6.5s ease-in-out infinite;
+      animation-delay: 0.6s;
+      will-change: transform;
+    }
+    .royal-poster-right {
+      animation: royalRightFloat 6.5s ease-in-out infinite;
+      animation-delay: 1.4s;
+      will-change: transform;
+    }
+    .royal-poster-center:hover,
+    .royal-poster-left:hover,
+    .royal-poster-right:hover {
+      animation-play-state: paused;
+      transform: perspective(900px) rotateY(0deg) rotateZ(0deg) translateY(-8px) scale(1.12) !important;
+      z-index: 30 !important;
+    }
+    .gold-foil-sheen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 248, 200, 0.08) 25%,
+        rgba(253, 224, 71, 0.48) 50%,
+        rgba(255, 248, 200, 0.08) 75%,
+        transparent 100%
+      );
+      animation: goldFoilSweep 4.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .royal-crown-anim {
+      animation: royalCrownHover 3s ease-in-out infinite;
+    }
+    .royal-gold-text {
+      background: linear-gradient(180deg, #FFFDF0 0%, #FDE047 35%, #F59E0B 70%, #B45309 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .royal-gold-border {
+      border-color: #F59E0B;
+      box-shadow:
+        0 0 0 1px rgba(254, 240, 138, 0.45),
+        0 15px 40px -5px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(245, 158, 11, 0.45),
+        inset 0 0 18px rgba(251, 191, 36, 0.35);
+    }
+
+    /* YENİ: PUAN SLIDERLARI İÇİN DOĞAL RENK SPEKTRUMU VE YUMUŞAK GEÇİŞ */
+    input[type="range"] {
+      transition: accent-color 0.12s linear, filter 0.2s ease;
+    }
+    #rating-slider-box input[type="range"]::-webkit-slider-runnable-track {
+      background: linear-gradient(
+        90deg,
+        rgba(107, 33, 168, 0.35) 0%,
+        rgba(147, 51, 234, 0.35) 28%,
+        rgba(219, 39, 119, 0.35) 37%,
+        rgba(239, 45, 45, 0.35) 45%,
+        rgba(249, 100, 22, 0.35) 52%,
+        rgba(250, 204, 21, 0.38) 63%,
+        rgba(132, 204, 22, 0.38) 72%,
+        rgba(34, 197, 94, 0.40) 85%,
+        rgba(57, 255, 20, 0.55) 100%
+      );
+      border-radius: 9999px;
+    }
+    #rating-slider-box input[type="range"]::-webkit-slider-thumb {
+      transition: transform 0.15s ease, box-shadow 0.15s linear, background-color 0.12s linear;
+    }
+    #rating-slider-box input[type="range"]:active::-webkit-slider-thumb {
+      transform: scale(1.2);
+    }
+
+    /* YENİ: PUANLAMA MODUNDA MASAÜSTÜ SÜNMESİNİ İPTAL EDİP BUTONU SLIDERLARA YAKLAŞTIRMA */
+    .lg\:col-span-8:has(#rating-slider-box) {
+      gap: 0.85rem !important;
+      justify-content: flex-start !important;
+    }
+    .lg\:col-span-8:has(#rating-slider-box) > div:first-child {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      flex: 0 0 auto !important;
+    }
+    #rating-slider-box {
+      scroll-margin-top: 210px;
+      padding-top: 1.25rem !important;
+      padding-bottom: 1.25rem !important;
+      flex: 0 0 auto !important;
+      height: auto !important;
+      justify-content: flex-start !important;
+    }
+    #rating-slider-box > * {
+      flex: 0 0 auto !important;
+    }
+    #rating-slider-box > button,
+    #rating-slider-box > div:last-child {
+      margin-top: 1.55rem !important;
+      padding-top: 0 !important;
+    }
+
+    /* YENİ: TÜM TELEFON EKRANLARINA (320px - 430px) TAM SIĞAN ÜST MENÜ VE SEKMELER */
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    @media (max-width: 640px) {
+      header > div {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        gap: 0.35rem !important;
+      }
+      header nav,
+      header .overflow-x-auto,
+      .mobile-nav-tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.25rem !important;
+        max-width: 100vw !important;
+      }
+      header nav::-webkit-scrollbar {
+        display: none;
+      }
+      header button,
+      nav button {
+        font-size: clamp(10px, 2.65vw, 12px) !important;
+        padding-left: clamp(6px, 2vw, 11px) !important;
+        padding-right: clamp(6px, 2vw, 11px) !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+      }
+    }
   `}}/>
 );
 
+// YENİ: 0-10 ARASI KESİNTİSİZ (ARA TON GEÇİŞLİ) PUAN RENK MOTORU
+// 0.0 - 3.0 : Mor Tonları
+// 3.0 - 5.5 : Mordan Fuşya/Kızıla -> Kırmızıya -> 5.5'e yaklaşırken Turuncuya doğal geçiş
+// 5.5 - 7.0 : Turuncu-Sarıdan -> Altın Sarısına -> 7.0'ye yaklaşırken Limon Sarısına geçiş
+// 7.0 - 9.0 : Açık Yeşilden -> Doygun Zümrüt Yeşiline geçiş
+// 9.0 - 10.0: Parlak Fosforlu / Elektrik Neon Yeşil
 const getScoreColorHex = (score) => {
-  const s = Number(score) || 0;
-  if (s >= 9.0) return '#39ff14'; 
-  if (s >= 7.5) return '#22c55e'; 
-  if (s >= 5.5) return '#facc15'; 
-  if (s >= 3.5) return '#ef4444'; 
-  if (s >= 2.0) return '#3b82f6'; 
-  return '#a855f7'; 
+  const s = Math.max(0, Math.min(10, Number(score) || 0));
+
+  const stops = [
+    { pos: 0.0, r: 107, g: 33,  b: 168 }, // #6b21a8 (0.0 - Derin Mor)
+    { pos: 2.0, r: 147, g: 51,  b: 234 }, // #9333ea (2.0 - Canlı Mor)
+    { pos: 3.0, r: 168, g: 45,  b: 215 }, // #a82dd7 (3.0 - Mor Sınırı / Kızıl Geçiş Başlangıcı)
+    { pos: 3.7, r: 219, g: 39,  b: 119 }, // #db2777 (3.7 - Mordan Kırmızıya Köprü: Fuşya/Kızıl)
+    { pos: 4.5, r: 239, g: 45,  b: 45  }, // #ef2d2d (4.5 - Tam Kırmızı)
+    { pos: 5.1, r: 249, g: 100, b: 22  }, // #f96416 (5.1 - Kırmızıdan Sarıya Köprü: Koyu Turuncu)
+    { pos: 5.5, r: 245, g: 158, b: 11  }, // #f59e0b (5.5 - Turuncu / Sarı Geçiş Sınırı)
+    { pos: 6.2, r: 250, g: 204, b: 21  }, // #facc15 (6.2 - Saf Parlak Sarı)
+    { pos: 6.8, r: 210, g: 225, b: 28  }, // #d2e11c (6.8 - Sarıdan Yeşile Köprü: Limon Sarısı)
+    { pos: 7.2, r: 132, g: 204, b: 22  }, // #84cc16 (7.2 - Taze Yeşil)
+    { pos: 8.0, r: 34,  g: 197, b: 94  }, // #22c55e (8.0 - Tam Yeşil)
+    { pos: 8.9, r: 16,  g: 210, b: 95  }, // #10d25f (8.9 - Doygun Yeşil)
+    { pos: 9.0, r: 0,   g: 255, b: 102 }, // #00ff66 (9.0 - Neon Yeşil Başlangıcı)
+    { pos: 10.0, r: 57, g: 255, b: 20  }  // #39ff14 (10.0 - Saf Elektrik Neon Yeşil)
+  ];
+
+  for (let i = 0; i < stops.length - 1; i++) {
+    const curr = stops[i];
+    const next = stops[i + 1];
+    if (s >= curr.pos && s <= next.pos) {
+      const range = next.pos - curr.pos;
+      const ratio = range === 0 ? 0 : (s - curr.pos) / range;
+      const r = Math.round(curr.r + (next.r - curr.r) * ratio);
+      const g = Math.round(curr.g + (next.g - curr.g) * ratio);
+      const b = Math.round(curr.b + (next.b - curr.b) * ratio);
+      const toHex = (n) => n.toString(16).padStart(2, '0');
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    }
+  }
+  return '#39ff14';
 };
 
-const MegaScoreVFX = ({ score, themeColor }) => {
+const MegaScoreVFX = ({ score }) => {
   const s = Number(score);
   if (isNaN(s)) return null;
 
   if (s >= 9.0) {
+    const neonGreen = getScoreColorHex(s); // #00ff66 -> #39ff14 arası Neon Yeşil
     return (
       <div className="absolute inset-0 pointer-events-none rounded-full z-0 flex items-center justify-center">
-         <div className="absolute inset-[-15px] rounded-full border-[3px] border-t-transparent border-b-transparent animate-[spin_3s_linear_infinite]" style={{borderColor: themeColor, opacity: 0.8, boxShadow: `0 0 20px ${themeColor}80`}}></div>
-         <div className="absolute inset-[-25px] rounded-full border-[2px] border-l-transparent border-r-transparent animate-[spin_6s_linear_infinite_reverse]" style={{borderColor: themeColor, opacity: 0.3, boxShadow: `0 0 10px ${themeColor}4d`}}></div>
+         <div className="absolute inset-[-15px] rounded-full border-[3px] border-t-transparent border-b-transparent animate-[spin_3s_linear_infinite]" style={{borderColor: neonGreen, opacity: 0.9, boxShadow: `0 0 25px ${neonGreen}99`}}></div>
+         <div className="absolute inset-[-25px] rounded-full border-[2px] border-l-transparent border-r-transparent animate-[spin_6s_linear_infinite_reverse]" style={{borderColor: neonGreen, opacity: 0.45, boxShadow: `0 0 14px ${neonGreen}66`}}></div>
       </div>
     );
   }
@@ -555,7 +999,7 @@ const MegaScoreVFX = ({ score, themeColor }) => {
     const numFlies = Math.min(5, Math.max(1, Math.floor((2.5 - s) / 0.5) + 1));
     return (
       <div className="absolute inset-0 pointer-events-none rounded-full z-20">
-        <div className="absolute inset-[-15px] rounded-full bg-purple-700/20 blur-[25px] animate-[pulse_3s_infinite]"></div>
+        <div className="absolute inset-[-15px] rounded-full bg-purple-700/25 blur-[25px] animate-[pulse_3s_infinite]"></div>
         <div className="fly-wrapper">
            {Array.from({length: numFlies}).map((_, i) => (
              <div key={i} className={`fly fly-${i+1}`}><div className="fly-inner">🪰</div></div>
@@ -567,17 +1011,20 @@ const MegaScoreVFX = ({ score, themeColor }) => {
   return null;
 };
 
-const MiniVFX = ({ score, themeColor }) => {
+const MiniVFX = ({ score }) => {
   const s = Number(score);
   if (isNaN(s)) return null;
-  if (s >= 9.0) return (
-    <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden mix-blend-screen z-0">
-       <div className="absolute inset-0 rounded-xl animate-pulse" style={{boxShadow: `inset 0 0 15px ${themeColor}cc`}}></div>
-    </div>
-  );
+  if (s >= 9.0) {
+    const neonGreen = getScoreColorHex(s);
+    return (
+      <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden mix-blend-screen z-0">
+         <div className="absolute inset-0 rounded-xl animate-pulse" style={{boxShadow: `inset 0 0 18px ${neonGreen}cc`}}></div>
+      </div>
+    );
+  }
   if (s <= 2.5) return (
     <div className="absolute inset-0 pointer-events-none rounded-xl z-20 overflow-visible">
-       <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(168,85,247,0.8)] rounded-xl animate-[pulse_3s_infinite] opacity-60"></div>
+       <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(168,85,247,0.85)] rounded-xl animate-[pulse_3s_infinite] opacity-65"></div>
        <div className="absolute -top-3 -right-2 text-[10px] animate-[bounce_1.5s_infinite] drop-shadow-[0_2px_2px_black]">🪰</div>
     </div>
   );
@@ -642,6 +1089,973 @@ const MovieRow = ({ title, movies, icon, t, selectMovieToRate, globalMoviesList,
             <h4 className="font-bold text-slate-300 text-xs sm:text-sm group-hover:text-theme truncate drop-shadow-md transition-colors">{displayTitle}</h4>
           </div>
         )})}
+      </div>
+    </div>
+  );
+};
+
+// 1) GLOBAL FİLMLERİN ALT KRİTER ORTALAMASINI ÇIKARAN HIZLANDIRILMIŞ (O(1) CACHE) YARDIMCI
+const getMovieCriterionScore = (movie, critId, userRatings = []) => {
+  if (!movie) return 0;
+  if (!critId || critId === 'all') return Number(movie.avgScore) || 0;
+
+  const vCount = Math.max(1, Number(movie.voteCount) || 1);
+  const cacheSignature = `${vCount}_${movie.lastUpdated || 0}`;
+
+  // Önbellekte varsa hiç döngüye girmeden anında döndür (Sıralama kasmasını %100 bitirir)
+  if (movie._critCache && movie._critCache._sig === cacheSignature && movie._critCache[critId] !== undefined) {
+    return movie._critCache[critId];
+  }
+
+  let computed = null;
+
+  // En yaygın kayıt alanı olan categoryTotals'a doğrudan O(1) erişim
+  if (movie.categoryTotals && movie.categoryTotals[critId] !== undefined) {
+    const raw = Number(movie.categoryTotals[critId]) || 0;
+    computed = raw > 10.01 && vCount > 1 ? raw / vCount : raw;
+  } else {
+    const candidateKeys = ['categoryAverages', 'criteriaAverages', 'avgScores', 'scores', 'criteria', 'categoryScores', 'totalScores'];
+    for (let i = 0; i < candidateKeys.length; i++) {
+      const k = candidateKeys[i];
+      if (movie[k] && typeof movie[k] === 'object' && movie[k][critId] !== undefined) {
+        const raw = Number(movie[k][critId]) || 0;
+        computed = raw > 10.01 && vCount > 1 ? raw / vCount : raw;
+        break;
+      }
+    }
+  }
+
+  if (computed === null && movie[critId] !== undefined) {
+    const raw = Number(movie[critId]) || 0;
+    computed = raw > 10.01 && vCount > 1 ? raw / vCount : raw;
+  }
+
+  if (computed === null && Array.isArray(userRatings) && userRatings.length > 0) {
+    const myMatch = userRatings.find(r => String(r.id) === String(movie.id));
+    if (myMatch?.scores?.[critId] !== undefined) {
+      computed = Number(myMatch.scores[critId]) || 0;
+    }
+  }
+
+  const finalVal = computed !== null && computed > 0 ? computed : (Number(movie.avgScore) || 0);
+
+  if (!movie._critCache || movie._critCache._sig !== cacheSignature) {
+    movie._critCache = { _sig: cacheSignature };
+  }
+  movie._critCache[critId] = finalVal;
+  return finalVal;
+};
+
+// 2) KAPSAMLI 3 BOYUTLU DNA ANALİZİ MOTORU (10 FİLM BARAJLI: SEÇİCİLİK + SERTLİK + KARAR ETKİSİ)
+const analyzeComprehensiveDNA = (ratingsList, criteriaList = []) => {
+  const MIN_MOVIES = 10;
+  const validRatings = (Array.isArray(ratingsList) ? ratingsList : []).filter(r => r && r.scores && typeof r.scores === 'object');
+  const count = validRatings.length;
+
+  const baseCriteria = criteriaList.length > 0 ? criteriaList : [
+    { id: 'c1', name: 'Senaryo' },
+    { id: 'c2', name: 'Oyunculuk' },
+    { id: 'c3', name: 'Sinematografi' },
+    { id: 'c4', name: 'Ses & Müzik' },
+    { id: 'c5', name: 'Kurgu & Tempo' }
+  ];
+
+  if (count === 0) {
+    return {
+      unlocked: false,
+      count: 0,
+      minRequired: MIN_MOVIES,
+      remaining: MIN_MOVIES,
+      progressPct: 0,
+      topCriterion: null,
+      secondCriterion: null,
+      breakdown: []
+    };
+  }
+
+  // Her film için kullanıcının 5 kriter ortalamasını ve final puanını hazırla
+  const movieStats = validRatings.map(r => {
+    const vals = baseCriteria.map(c => Number(r.scores?.[c.id] ?? 5));
+    const movieMean = vals.reduce((a, b) => a + b, 0) / vals.length;
+    const finalSc = Number(r.finalScore) || movieMean;
+    return { scores: r.scores, movieMean, finalSc };
+  });
+
+  const overallFinalMean = movieStats.reduce((acc, m) => acc + m.finalSc, 0) / count;
+
+  const rawMetrics = baseCriteria.map(c => {
+    const cId = c.id;
+    const values = movieStats.map(m => Number(m.scores?.[cId] ?? 5));
+    const mean = values.reduce((a, b) => a + b, 0) / count;
+
+    // BOYUT 1: SEÇİCİLİK / VARYANS (Standart Sapma + Makas Açıklığı)
+    // Kullanıcı bu kriterde her filme aynı puanı mı veriyor, yoksa iyiyle kötüyü keskin ayırıyor mu?
+    const variance = values.reduce((acc, v) => acc + Math.pow(v - mean, 2), 0) / count;
+    const stdDev = Math.sqrt(variance);
+    const minVal = Math.min(...values);
+    const maxVal = Math.max(...values);
+    const spread = maxVal - minVal;
+    const selectivityRaw = Math.min(100, (stdDev / 2.35) * 68 + (spread / 9.0) * 32);
+
+    // BOYUT 2: BAĞIL KRİTER SERTLİĞİ (Filmin Kendi Ortalamasına Kıyasla Puan Kırma ve Ceza Oranı)
+    // Düz "10 - ortalama" yerine, o filmdeki diğer kriterlere göre ne kadar sert not kırdığını ölçer
+    let negativeDiffSum = 0;
+    let lowestInMovieCount = 0;
+    movieStats.forEach(m => {
+      const sc = Number(m.scores?.[cId] ?? 5);
+      const diffFromMovieMean = m.movieMean - sc; // Pozitifse bu kriterde filmin ortalamasından daha sert davranmış
+      if (diffFromMovieMean > 0) negativeDiffSum += diffFromMovieMean;
+      const allSc = baseCriteria.map(bc => Number(m.scores?.[bc.id] ?? 5));
+      if (sc === Math.min(...allSc) && Math.max(...allSc) !== Math.min(...allSc)) {
+        lowestInMovieCount++;
+      }
+    });
+    const avgPenalty = negativeDiffSum / count;
+    const lowestRatio = lowestInMovieCount / count;
+    const absoluteToughness = Math.max(0, (8.8 - mean) / 5.5);
+    const strictnessRaw = Math.min(100, Math.min(1, avgPenalty / 1.1) * 45 + Math.min(1, lowestRatio / 0.45) * 30 + Math.min(1, absoluteToughness) * 25);
+
+    // BOYUT 3: GENEL KARAR ETKİSİ (Final Puanıyla Korelasyon + Uç Tepki Etkisi)
+    // Bu kriter yükselip düştüğünde kullanıcının filme verdiği nihai puan ne kadar etkileniyor?
+    let cov = 0, varC = 0, varF = 0;
+    let extremeDecisionCount = 0;
+    movieStats.forEach(m => {
+      const sc = Number(m.scores?.[cId] ?? 5);
+      const dC = sc - mean;
+      const dF = m.finalSc - overallFinalMean;
+      cov += dC * dF;
+      varC += dC * dC;
+      varF += dF * dF;
+      if (Math.abs(sc - m.movieMean) >= 0.85) extremeDecisionCount++;
+    });
+    const corr = (varC > 0 && varF > 0) ? Math.max(0, cov / Math.sqrt(varC * varF)) : 0.5;
+    const extremeRatio = extremeDecisionCount / count;
+    const impactRaw = Math.min(100, corr * 65 + Math.min(1, extremeRatio / 0.55) * 35);
+
+    // 3 BOYUTUN BİRLEŞİK SKORU (%40 Seçicilik + %35 Sertlik + %25 Karar Etkisi)
+    const compositeRaw = selectivityRaw * 0.40 + strictnessRaw * 0.35 + impactRaw * 0.25;
+
+    return {
+      id: cId,
+      name: c.name,
+      desc: c.desc || '',
+      avgScore: Number(mean.toFixed(2)),
+      selectivity: Math.round(Math.max(35, Math.min(99, selectivityRaw + 18))),
+      strictness: Math.round(Math.max(35, Math.min(99, strictnessRaw + 20))),
+      impact: Math.round(Math.max(40, Math.min(99, impactRaw + 15))),
+      compositeRaw
+    };
+  });
+
+  // Kriterler arası farkı netleştiren bağıl kalibrasyon (En dikkat edilen kriter 88-98 bandına oturur)
+  const maxComp = Math.max(...rawMetrics.map(m => m.compositeRaw), 1);
+  const minComp = Math.min(...rawMetrics.map(m => m.compositeRaw), 0);
+  const compRange = Math.max(6, maxComp - minComp);
+
+  const calibrated = rawMetrics.map(m => {
+    const relativePos = (m.compositeRaw - minComp) / compRange; // 0..1
+    const focusIndex = Math.round(Math.min(98, Math.max(52, 58 + relativePos * 38)));
+    return { ...m, focusIndex };
+  });
+
+  const sortedByFocus = [...calibrated].sort((a, b) => b.focusIndex - a.focusIndex || b.compositeRaw - a.compositeRaw);
+
+  return {
+    unlocked: count >= MIN_MOVIES,
+    count,
+    minRequired: MIN_MOVIES,
+    remaining: Math.max(0, MIN_MOVIES - count),
+    progressPct: Math.min(100, Math.round((count / MIN_MOVIES) * 100)),
+    topCriterion: sortedByFocus[0] || null,
+    secondCriterion: sortedByFocus[1] || null,
+    breakdown: calibrated, // Orijinal c1..c5 sırasıyla
+    rankedBreakdown: sortedByFocus // En yüksek odaktan en düşüğe
+  };
+};
+
+// 3) MİKRO SİNEMATİK SES SENTEZLEYİCİ (WEB AUDIO API - SIFIR MP3)
+let sharedAudioCtx = null;
+const getCineAudioCtx = () => {
+  if (typeof window === 'undefined') return null;
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return null;
+  if (!sharedAudioCtx) sharedAudioCtx = new AudioCtx();
+  if (sharedAudioCtx.state === 'suspended') {
+    sharedAudioCtx.resume().catch(() => {});
+  }
+  return sharedAudioCtx;
+};
+
+const playCineSound = (type, enabled = true) => {
+  if (!enabled) return;
+  try {
+    const ctx = getCineAudioCtx();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    if (type === 'tick') {
+      // 35mm Mekanik Film Makarası Dişli Tıkırtısı
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(1150, now);
+      osc.frequency.exponentialRampToValueAtTime(190, now + 0.018);
+      gain.gain.setValueAtTime(0.11, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.018);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    } else if (type === 'rouletteWin') {
+      // Rulet Film Seçildiğinde Sinematik Projektör Vurgusu
+      const sub = ctx.createOscillator();
+      const subGain = ctx.createGain();
+      sub.type = 'sine';
+      sub.frequency.setValueAtTime(110, now);
+      sub.frequency.exponentialRampToValueAtTime(42, now + 0.55);
+      subGain.gain.setValueAtTime(0.22, now);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+      sub.connect(subGain);
+      subGain.connect(ctx.destination);
+      sub.start(now);
+      sub.stop(now + 0.62);
+
+      [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'triangle';
+        const st = now + idx * 0.055;
+        o.frequency.setValueAtTime(freq, st);
+        g.gain.setValueAtTime(0.09, st);
+        g.gain.exponentialRampToValueAtTime(0.001, st + 0.45);
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start(st);
+        o.stop(st + 0.48);
+      });
+    } else if (type === 'badge') {
+      // 3D Rozet Kazanım Tok Bas + Kristal Kutlama Tınısı
+      const bass = ctx.createOscillator();
+      const bGain = ctx.createGain();
+      bass.type = 'sine';
+      bass.frequency.setValueAtTime(95, now);
+      bass.frequency.exponentialRampToValueAtTime(38, now + 0.65);
+      bGain.gain.setValueAtTime(0.25, now);
+      bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+      bass.connect(bGain);
+      bGain.connect(ctx.destination);
+      bass.start(now);
+      bass.stop(now + 0.72);
+
+      [587.33, 739.99, 880, 1174.66, 1479.98].forEach((freq, idx) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        const st = now + 0.05 + idx * 0.07;
+        o.frequency.setValueAtTime(freq, st);
+        g.gain.setValueAtTime(0.11, st);
+        g.gain.exponentialRampToValueAtTime(0.001, st + 0.55);
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start(st);
+        o.stop(st + 0.58);
+      });
+    } else if (type === 'link') {
+      // SineBağ Halka Seçimi Mekanik Kilit Sesi
+      const o1 = ctx.createOscillator();
+      const g1 = ctx.createGain();
+      o1.type = 'sine';
+      o1.frequency.setValueAtTime(260, now);
+      o1.frequency.exponentialRampToValueAtTime(520, now + 0.065);
+      g1.gain.setValueAtTime(0.12, now);
+      g1.gain.exponentialRampToValueAtTime(0.001, now + 0.075);
+      o1.connect(g1);
+      g1.connect(ctx.destination);
+      o1.start(now);
+      o1.stop(now + 0.08);
+    } else if (type === 'undo') {
+      // SineBağ Geri Alma Sesi
+      const o1 = ctx.createOscillator();
+      const g1 = ctx.createGain();
+      o1.type = 'sine';
+      o1.frequency.setValueAtTime(420, now);
+      o1.frequency.exponentialRampToValueAtTime(210, now + 0.065);
+      g1.gain.setValueAtTime(0.09, now);
+      g1.gain.exponentialRampToValueAtTime(0.001, now + 0.075);
+      o1.connect(g1);
+      g1.connect(ctx.destination);
+      o1.start(now);
+      o1.stop(now + 0.08);
+    } else if (type === 'gameWin') {
+      // SineBağ Köprü Tamamlandı Zafer Akoru
+      [440, 554.37, 659.25, 880, 1108.73].forEach((freq, idx) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'triangle';
+        const st = now + idx * 0.065;
+        o.frequency.setValueAtTime(freq, st);
+        g.gain.setValueAtTime(0.12, st);
+        g.gain.exponentialRampToValueAtTime(0.001, st + 0.6);
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start(st);
+        o.stop(st + 0.62);
+      });
+    } else if (type === 'toggle') {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(660, now);
+      o.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+      g.gain.setValueAtTime(0.08, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+      o.connect(g);
+      g.connect(ctx.destination);
+      o.start(now);
+      o.stop(now + 0.095);
+    }
+  } catch (e) {}
+};
+
+// 4) FİLM SAYFASI "SENİN DNA'NA %X UYGUN" EŞLEŞME HESAPLAYICI
+const calculateMovieDNAMatch = (dnaAnalysis, dbMovie, criteriaList, userRatings = []) => {
+  if (!dnaAnalysis?.unlocked || !dnaAnalysis?.topCriterion || !dbMovie || !(Number(dbMovie.voteCount) > 0)) {
+    return null;
+  }
+  let weightedSum = 0;
+  let weightTotal = 0;
+
+  const critDetails = criteriaList.map(c => {
+    const dnaItem = dnaAnalysis.breakdown.find(b => b.id === c.id) || { focusIndex: 60 };
+    const movieCritScore = getMovieCriterionScore(dbMovie, c.id, userRatings);
+    const weight = Math.pow((dnaItem.focusIndex || 60) / 100, 1.8);
+    weightedSum += movieCritScore * weight;
+    weightTotal += weight;
+    return {
+      id: c.id,
+      name: c.name,
+      focusIndex: dnaItem.focusIndex,
+      movieScore: Number(movieCritScore.toFixed(1))
+    };
+  });
+
+  const weightedAvg = weightTotal > 0 ? (weightedSum / weightTotal) : (Number(dbMovie.avgScore) || 0);
+  const topCritId = dnaAnalysis.topCriterion.id;
+  const topCritMovieScore = getMovieCriterionScore(dbMovie, topCritId, userRatings);
+
+  const blendedScore10 = Math.max(1.5, Math.min(9.9, weightedAvg * 0.65 + topCritMovieScore * 0.35));
+  const matchPct = Math.round(blendedScore10 * 10);
+
+  return {
+    matchPct,
+    score10: blendedScore10,
+    topCriterionName: dnaAnalysis.topCriterion.name,
+    topCriterionFocus: dnaAnalysis.topCriterion.focusIndex,
+    topCriterionMovieScore: Number(topCritMovieScore.toFixed(1)),
+    status: topCritMovieScore >= 7.8 ? 'strong' : topCritMovieScore >= 6.2 ? 'medium' : 'weak',
+    critDetails
+  };
+};
+
+// 4.5) KRALİYET & ALTIN VARAKLI "KUTSAL ÜÇLÜ" VİTRİN BİLEŞENİ (AURA BAĞIMSIZ)
+const RoyalTrinityShowcase = ({
+  top3List = [null, null, null],
+  t,
+  isEditable = false,
+  selectMovieToRate,
+  onOpenSlotSearch,
+  onSetCrown,
+  localizedData
+}) => {
+  const slots = [0, 1, 2];
+
+  return (
+    <div
+      className="relative rounded-[2.5rem] p-6 sm:p-12 overflow-hidden border-2 border-amber-500/50 shadow-[0_25px_70px_rgba(0,0,0,0.95),0_0_50px_rgba(245,158,11,0.18)]"
+      style={{
+        background: 'radial-gradient(circle at 50% 0%, rgba(180, 83, 9, 0.32) 0%, rgba(20, 14, 5, 0.96) 52%, #070502 100%)'
+      }}
+    >
+      {/* Altın Varak Köşe İşlemeleri (Kraliyet Çerçevesi) */}
+      <div className="absolute top-3 left-3 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-l-2 border-amber-400/70 rounded-tl-2xl pointer-events-none"></div>
+      <div className="absolute top-3 right-3 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-r-2 border-amber-400/70 rounded-tr-2xl pointer-events-none"></div>
+      <div className="absolute bottom-3 left-3 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-l-2 border-amber-400/70 rounded-bl-2xl pointer-events-none"></div>
+      <div className="absolute bottom-3 right-3 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-r-2 border-amber-400/70 rounded-br-2xl pointer-events-none"></div>
+
+      {/* İç İnce Altın Çizgi */}
+      <div className="absolute inset-2.5 sm:inset-4 rounded-[2rem] border border-yellow-500/20 pointer-events-none"></div>
+
+      {/* Arka Plan Kraliyet Altın Işık Huzmeleri */}
+      <div
+        className="absolute -top-24 left-1/2 -translate-x-1/2 w-80 sm:w-[28rem] h-56 rounded-full blur-[90px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.35) 0%, transparent 70%)', animation: 'goldAuraPulse 5s ease-in-out infinite' }}
+      ></div>
+
+      {/* Üst Kraliyet Başlığı (Açıklamasız, Saf Altın Varak) */}
+      <div className="relative z-10 text-center mb-10 sm:mb-14">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-950/90 via-yellow-900/60 to-amber-950/90 border border-amber-400/50 shadow-[0_0_20px_rgba(251,191,36,0.25)] mb-2.5">
+          <Sparkles size={12} className="text-yellow-300 animate-spin" style={{ animationDuration: '6s' }} />
+          <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.25em] text-amber-200">
+            ROYAL HALL OF FAME
+          </span>
+          <Sparkles size={12} className="text-yellow-300 animate-spin" style={{ animationDuration: '6s' }} />
+        </div>
+
+        <h3 className="text-2xl sm:text-4xl font-black tracking-tight flex items-center justify-center gap-2.5 sm:gap-3.5 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          <Trophy className="text-amber-400 shrink-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" size={32} />
+          <span className="royal-gold-text">{t.top3Title}</span>
+          <Trophy className="text-amber-400 shrink-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" size={32} />
+        </h3>
+
+        {/* Altın Varak Ayırıcı Çizgi */}
+        <div className="flex items-center justify-center gap-2 mt-2.5">
+          <div className="w-12 sm:w-24 h-[1.5px] bg-gradient-to-r from-transparent to-amber-400/80"></div>
+          <div className="w-2 h-2 rotate-45 bg-amber-300 shadow-[0_0_10px_#fbbf24]"></div>
+          <div className="w-12 sm:w-24 h-[1.5px] bg-gradient-to-l from-transparent to-amber-400/80"></div>
+        </div>
+      </div>
+
+      {/* 3'LÜ HAREKETLİ KRALİYET AFİŞ SAHNESİ */}
+      <div className="relative z-10 flex justify-center items-center gap-3 sm:gap-8 md:gap-10 px-1 sm:px-4 pt-4 pb-4">
+        {slots.map((slot) => {
+          const movie = top3List?.[slot];
+          const isCenter = slot === 1;
+          const rankLabel = isCenter ? 'I' : slot === 0 ? 'II' : 'III';
+          const floatClass = isCenter
+            ? 'royal-poster-center w-[34%] sm:w-56 z-20'
+            : slot === 0
+            ? 'royal-poster-left w-[28%] sm:w-44 z-10'
+            : 'royal-poster-right w-[28%] sm:w-44 z-10';
+
+          const dispTitle = movie ? (localizedData?.[movie.id]?.title || movie.title) : '';
+
+          return (
+            <div key={slot} className={`relative flex flex-col items-center shrink-0 transition-all duration-500 ${floatClass}`}>
+              
+              {/* Merkez Afişin Üstündeki Hareketli Kraliyet Tacı */}
+              {isCenter && (
+                <div className="absolute -top-8 sm:-top-11 left-1/2 z-30 pointer-events-none royal-crown-anim">
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-amber-400/40 blur-md animate-pulse"></div>
+                    <Crown
+                      className="w-8 h-8 sm:w-11 sm:h-11 text-yellow-300 fill-amber-400 drop-shadow-[0_0_15px_rgba(251,191,36,1)]"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Afiş Çerçevesi (Altın Varak & Kayan Işık Yansımalı) */}
+              <div
+                className={`relative w-full aspect-[2/3] rounded-2xl sm:rounded-[1.75rem] overflow-hidden group transition-all duration-500 gold-foil-sheen ${
+                  isCenter
+                    ? 'border-[3px] royal-gold-border bg-[#0D0903]'
+                    : 'border-2 border-amber-500/60 bg-[#0B0803] shadow-[0_12px_30px_rgba(0,0,0,0.85),0_0_20px_rgba(217,119,6,0.2)] hover:border-yellow-300'
+                }`}
+              >
+                {movie ? (
+                  <>
+                    <img
+                      src={movie.poster}
+                      onClick={() => selectMovieToRate(movie.id, dispTitle)}
+                      className="w-full h-full object-cover cursor-pointer transition-transform duration-700 group-hover:scale-110 saturate-[1.15]"
+                      alt={dispTitle}
+                    />
+
+                    {/* Altın Varak Köşe Romen Rakamı Rozeti */}
+                    <div
+                      className={`absolute top-2 left-2 z-20 w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center font-serif font-black text-[10px] sm:text-xs border shadow-lg pointer-events-none ${
+                        isCenter
+                          ? 'bg-gradient-to-br from-yellow-200 via-amber-400 to-amber-600 text-[#1A0F00] border-yellow-100'
+                          : 'bg-[#120C04]/90 text-amber-300 border-amber-400/60'
+                      }`}
+                    >
+                      {rankLabel}
+                    </div>
+
+                    {/* Alt Karartma ve Film Adı */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/80 to-transparent p-2 sm:p-3.5 pt-8 pointer-events-none z-20">
+                      <p className="text-[10px] sm:text-xs font-black text-amber-100 text-center truncate drop-shadow">
+                        {dispTitle}
+                      </p>
+                    </div>
+
+                    {/* Kendi Profilinde Düzenleme ve Taçlandırma Butonları */}
+                    {isEditable && (
+                      <div className="absolute top-2 right-2 z-30 flex flex-col gap-1.5 opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onOpenSlotSearch(slot);
+                          }}
+                          title="Filmi Değiştir"
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/85 hover:bg-amber-400 text-amber-300 hover:text-black border border-amber-400/60 flex items-center justify-center shadow-lg transition-colors"
+                        >
+                          <Edit3 size={13} />
+                        </button>
+                        {!isCenter && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onSetCrown(slot);
+                            }}
+                            title="Tahta Çıkar (#1 Yap)"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/85 hover:bg-amber-400 text-yellow-300 hover:text-black border border-amber-400/60 flex items-center justify-center shadow-lg transition-colors"
+                          >
+                            <Crown size={13} />
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  /* Boş Slot Görünümü */
+                  <div
+                    onClick={() => isEditable && onOpenSlotSearch && onOpenSlotSearch(slot)}
+                    className={`w-full h-full flex flex-col items-center justify-center p-3 text-center bg-gradient-to-b from-[#140E04] to-[#080602] ${
+                      isEditable ? 'cursor-pointer hover:bg-amber-950/30' : ''
+                    }`}
+                  >
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-400 mb-2 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                      {isEditable ? <Plus size={22} /> : <Film size={22} className="opacity-50" />}
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-black text-amber-200/80 uppercase tracking-wider">
+                      {rankLabel}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Afiş Altı Altın Kaide Parıltısı */}
+              <div
+                className={`mt-3 rounded-full blur-md pointer-events-none ${
+                  isCenter ? 'w-3/4 h-2.5 bg-amber-400/50' : 'w-2/3 h-1.5 bg-amber-500/30'
+                }`}
+              ></div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+// 5) EN ÇOK İZLENEN YÖNETMEN KARTI BİLEŞENİ (SADE VE DOĞAL BAŞLIKLI)
+const FavoriteDirectorShowcase = ({ favDirector, t, openPersonCareer, selectMovieToRate, localizedData, isPublic = false }) => {
+  if (!favDirector || !favDirector.name) return null;
+  const avgColor = getScoreColorHex(favDirector.avgScore);
+  const isNeon = Number(favDirector.avgScore) >= 9.0;
+  const headerText = isPublic
+    ? (t.favDirectorPublicTitle || 'En Çok İzlediği Yönetmen')
+    : (t.favDirectorTitle || 'En Çok İzlediğin Yönetmen');
+
+  return (
+    <div
+      onClick={() => favDirector.id && openPersonCareer(favDirector.id, favDirector.name, 'director')}
+      className="lg:col-span-2 order-first bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-5 sm:p-7 border border-slate-800 hover:border-theme shadow-2xl transition-all duration-300 cursor-pointer group relative overflow-hidden"
+    >
+      <div
+        className="absolute -right-16 -top-16 w-64 h-64 rounded-full blur-[90px] opacity-20 pointer-events-none transition-opacity group-hover:opacity-35"
+        style={{ backgroundColor: avgColor }}
+      ></div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 relative z-10">
+        {/* Sol: Yönetmen Fotoğrafı & İsim */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5 text-center sm:text-left min-w-0 w-full md:w-auto">
+          <div className="relative shrink-0">
+            {favDirector.photo ? (
+              <img
+                src={favDirector.photo}
+                className="w-20 h-20 sm:w-22 sm:h-22 rounded-full object-cover border-[3px] shadow-xl group-hover:scale-105 transition-transform"
+                style={{ borderColor: avgColor, boxShadow: `0 0 25px ${avgColor}40` }}
+                alt={favDirector.name}
+              />
+            ) : (
+              <div
+                className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#04060C] border-[3px] flex items-center justify-center text-slate-400 shrink-0"
+                style={{ borderColor: avgColor }}
+              >
+                <Clapperboard size={32} style={{ color: avgColor }}/>
+              </div>
+            )}
+          </div>
+
+          <div className="min-w-0">
+            <span className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center justify-center sm:justify-start gap-1.5 mb-1">
+              <Clapperboard size={14} className="text-theme"/> {headerText}
+            </span>
+            <h3 className="text-xl sm:text-3xl font-black text-white group-hover:text-theme transition-colors truncate">
+              {favDirector.name}
+            </h3>
+            <span className="text-xs font-bold text-theme mt-1 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              {t.openCareerCardBtn || 'Tüm Filmlerini Gör'} &rarr;
+            </span>
+          </div>
+        </div>
+
+        {/* Orta: İzlenen Film Sayısı & Ortalama Puan */}
+        <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto justify-center">
+          <div className="flex-1 sm:flex-initial bg-[#04060C] border border-slate-800 px-4 py-3 rounded-2xl text-center min-w-[110px]">
+            <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">
+              {t.favDirectorFilmsRated || 'İzlenen Filmi'}
+            </span>
+            <span className="text-xl sm:text-2xl font-black text-white mt-0.5 block">
+              {favDirector.count}
+            </span>
+          </div>
+
+          <div
+            className="flex-1 sm:flex-initial bg-[#04060C] border px-4 py-3 rounded-2xl text-center min-w-[120px]"
+            style={{
+              borderColor: `${avgColor}66`,
+              boxShadow: isNeon ? `0 0 20px ${avgColor}33` : 'none'
+            }}
+          >
+            <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">
+              {t.favDirectorAvgGiven || 'Verdiğin Ort. Puan'}
+            </span>
+            <span
+              className="text-xl sm:text-2xl font-black mt-0.5 block"
+              style={{ color: avgColor, textShadow: isNeon ? `0 0 12px ${avgColor}` : 'none' }}
+            >
+              {Number(favDirector.avgScore).toFixed(2)}
+            </span>
+          </div>
+        </div>
+
+        {/* Sağ: En Yüksek Puan Verilen 3 Filmi */}
+        {favDirector.topMovies?.length > 0 && (
+          <div className="flex items-center gap-2.5 shrink-0">
+            {favDirector.topMovies.slice(0, 3).map((m) => {
+              const mScoreColor = getScoreColorHex(m.score);
+              const dispTitle = localizedData?.[m.id]?.title || m.title;
+              return (
+                <div
+                  key={m.id}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    selectMovieToRate(m.id, dispTitle);
+                  }}
+                  title={dispTitle}
+                  className="relative w-14 sm:w-16 aspect-[2/3] rounded-xl overflow-hidden border border-slate-700 hover:border-white transition-transform hover:-translate-y-1 shadow-lg shrink-0"
+                >
+                  <img src={m.poster} className="w-full h-full object-cover" alt=""/>
+                  <div className="absolute bottom-1 inset-x-1 bg-[#04060C]/90 rounded-md py-0.5 text-center border border-slate-800">
+                    <span className="text-[10px] font-black block leading-none" style={{ color: mScoreColor }}>
+                      {Number(m.score).toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// 6) TEK PARÇA KRİTER ODAK GRAFİĞİ (TAM GENİŞLİK BEŞGEN RADAR + DAİRESEL HALKALAR + AÇILIR BALONCUKLAR)
+const CriteriaFocusDashboard = ({ ratingsList, criteriaData, t, isPublic = false, themeColor = '#39ff14' }) => {
+  const [activeBubble, setActiveBubble] = useState('selectivity'); // Tıklanan açıklama baloncuğu
+  const [selectedCritId, setSelectedCritId] = useState(null);
+  const dna = useMemo(() => analyzeComprehensiveDNA(ratingsList, criteriaData), [ratingsList, criteriaData]);
+
+  const titleText = isPublic
+    ? (t.criteriaFocusPublicTitle || 'Bir Filmde En Çok Önem Verdiği Kriterler')
+    : (t.criteriaFocusMainTitle || 'Bir Filmde En Çok Önem Verdiğin Kriterler');
+
+  if (!dna.unlocked) {
+    if (isPublic) return null;
+    const radius = 38;
+    const circum = 2 * Math.PI * radius;
+    const dashOffset = circum - (dna.progressPct / 100) * circum;
+    return (
+      <div className="w-full col-span-full bg-slate-900/85 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-2xl text-center">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="relative w-24 h-24 flex items-center justify-center shrink-0">
+            <svg className="w-24 h-24 -rotate-90" viewBox="0 0 96 96">
+              <circle cx="48" cy="48" r={radius} stroke="#1e293b" strokeWidth="8" fill="none" />
+              <circle
+                cx="48" cy="48" r={radius}
+                stroke={themeColor} strokeWidth="8" fill="none"
+                strokeDasharray={circum} strokeDashoffset={dashOffset}
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="absolute text-sm font-black text-white">{dna.count}/{dna.minRequired}</span>
+          </div>
+          <div className="text-center sm:text-left max-w-md">
+            <h3 className="text-lg sm:text-xl font-black text-white mb-1 flex items-center justify-center sm:justify-start gap-2">
+              <Lock size={18} className="text-theme"/> {titleText}
+            </h3>
+            <p className="text-xs sm:text-sm font-bold text-slate-400">
+              <strong className="text-white">{dna.remaining}</strong> {t.dnaLockedDesc}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const activeCrit = dna.rankedBreakdown.find(c => c.id === selectedCritId) || dna.topCriterion;
+  const activeColor = getScoreColorHex((activeCrit?.focusIndex || 80) / 10);
+
+  const bubbles = [
+    {
+      key: 'selectivity',
+      short: t.selectivityLabel || 'Seçicilik',
+      title: t.bubbleSelectivityTitle || '🎯 Seçicilik Nedir?',
+      desc: t.bubbleSelectivityDesc || 'Bu kriterde her filme benzer puanlar vermiyorsun; iyi ile kötüyü en keskin şekilde ayırdığın alan.',
+      val: activeCrit?.selectivity || 0,
+      color: '#38bdf8'
+    },
+    {
+      key: 'strictness',
+      short: t.strictnessLabel || 'Sertlik',
+      title: t.bubbleStrictnessTitle || '⚖️ Sertlik Nedir?',
+      desc: t.bubbleStrictnessDesc || 'Filmin diğer yönlerini beğensen bile bu kriter zayıfsa puanını en çok kırdığın, en zor beğendiğin alan.',
+      val: activeCrit?.strictness || 0,
+      color: '#f43f5e'
+    },
+    {
+      key: 'impact',
+      short: t.impactLabel || 'Karar Etkisi',
+      title: t.bubbleImpactTitle || '⚡ Karar Etkisi Nedir?',
+      desc: t.bubbleImpactDesc || 'Bu kritere verdiğin puan, filme verdiğin genel puanı doğrudan yukarı veya aşağı çekiyor.',
+      val: activeCrit?.impact || 0,
+      color: '#a855f7'
+    }
+  ];
+
+  const currentBubbleObj = bubbles.find(b => b.key === activeBubble);
+
+  return (
+    <div className="w-full col-span-full bg-slate-900/85 backdrop-blur-xl rounded-[2.5rem] p-5 sm:p-8 border border-slate-800 shadow-2xl relative overflow-hidden">
+      <div
+        className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-[110px] opacity-20 pointer-events-none"
+        style={{ backgroundColor: activeColor }}
+      ></div>
+
+      {/* ÜST BAŞLIK VE 1. ÖNCELİKLİ KRİTER ROZETİ */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 mb-5 border-b border-slate-800/80 relative z-10">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
+            <Sparkles className="text-theme shrink-0" size={22}/>
+            <span>{titleText}</span>
+          </h3>
+          <p className="text-xs sm:text-sm font-medium text-slate-400 mt-1 leading-relaxed">
+            {t.criteriaFocusMainDesc}
+          </p>
+        </div>
+
+        {dna.topCriterion && (
+          <div
+            className="self-start md:self-auto px-4 py-2.5 rounded-2xl bg-[#04060C] border flex items-center gap-3 shrink-0"
+            style={{ borderColor: `${getScoreColorHex(dna.topCriterion.focusIndex / 10)}66` }}
+          >
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center font-black text-sm text-[#04060C] shrink-0"
+              style={{ backgroundColor: getScoreColorHex(dna.topCriterion.focusIndex / 10) }}
+            >
+              %{dna.topCriterion.focusIndex}
+            </div>
+            <div>
+              <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 block">
+                {t.primaryFocusBadge || '1. ÖNCELİKLİ KRİTERİN'}
+              </span>
+              <span className="text-sm sm:text-base font-black text-white">
+                {dna.topCriterion.name}
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* TIKLANABİLİR KAVRAM BALONCUKLARI (SEÇİCİLİK / SERTLİK / KARAR ETKİSİ) */}
+      <div className="mb-6 relative z-10">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          {bubbles.map((b) => {
+            const isOpen = activeBubble === b.key;
+            return (
+              <button
+                type="button"
+                key={b.key}
+                onClick={() => setActiveBubble(isOpen ? null : b.key)}
+                className={`px-3.5 py-2 rounded-xl border text-xs font-black flex items-center gap-2 transition-all ${
+                  isOpen ? 'bg-[#04060C] text-white shadow-lg scale-[1.02]' : 'bg-[#04060C]/60 text-slate-300 border-slate-800 hover:border-slate-600'
+                }`}
+                style={isOpen ? { borderColor: b.color, boxShadow: `0 0 18px ${b.color}30` } : undefined}
+              >
+                <span>{b.title}</span>
+                <span
+                  className="px-2 py-0.5 rounded-md text-[11px] font-black bg-slate-900"
+                  style={{ color: b.color }}
+                >
+                  %{b.val}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Açılan Konuşma Baloncuğu Kutusu */}
+        {currentBubbleObj && (
+          <div
+            className="mt-3 p-3.5 sm:p-4 rounded-2xl bg-[#04060C] border flex items-start gap-3 animate-in fade-in duration-200"
+            style={{ borderColor: `${currentBubbleObj.color}66` }}
+          >
+            <Info size={18} className="shrink-0 mt-0.5" style={{ color: currentBubbleObj.color }}/>
+            <div className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+              <strong className="font-black mr-1.5" style={{ color: currentBubbleObj.color }}>
+                {activeCrit?.name} — {currentBubbleObj.short} (%{currentBubbleObj.val}):
+              </strong>
+              <span>{currentBubbleObj.desc}</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ANA GRAFİK ALANI: SOLDA 5 KÖŞELİ RADAR + SAĞDA DAİRESEL HALKA KARTLAR */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+        
+        {/* SOL (5 BİRİM): BEŞGEN RADAR GRAFİĞİ */}
+        <div className="lg:col-span-5 bg-[#04060C]/90 border border-slate-800/90 rounded-3xl p-5 sm:p-6 flex flex-col items-center justify-center">
+          <div className="w-full max-w-[300px] aspect-square relative">
+            <svg viewBox="-35 -30 170 160" className="w-full h-full overflow-visible">
+              {[25, 50, 75, 100].map((lvl) => (
+                <polygon
+                  key={lvl}
+                  points={dna.breakdown.map((_, i) => {
+                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                    const r = (lvl / 100) * 46;
+                    return `${50 + r * Math.cos(angle)},${50 + r * Math.sin(angle)}`;
+                  }).join(' ')}
+                  fill={lvl === 100 ? '#070b14' : 'none'}
+                  stroke="#1e293b"
+                  strokeWidth="0.7"
+                />
+              ))}
+
+              {dna.breakdown.map((c, i) => {
+                const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                const x = 50 + 46 * Math.cos(angle);
+                const y = 50 + 46 * Math.sin(angle);
+                return <line key={c.id} x1="50" y1="50" x2={x} y2={y} stroke="#1e293b" strokeWidth="0.7" />;
+              })}
+
+              <polygon
+                points={dna.breakdown.map((c, i) => {
+                  const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                  const r = ((c.focusIndex || 50) / 100) * 46;
+                  return `${50 + r * Math.cos(angle)},${50 + r * Math.sin(angle)}`;
+                }).join(' ')}
+                fill={`${themeColor}28`}
+                stroke={themeColor}
+                strokeWidth="1.8"
+                style={{ filter: `drop-shadow(0 0 10px ${themeColor}66)` }}
+              />
+
+              {dna.breakdown.map((c, i) => {
+                const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                const r = ((c.focusIndex || 50) / 100) * 46;
+                const px = 50 + r * Math.cos(angle);
+                const py = 50 + r * Math.sin(angle);
+                const lx = 50 + 63 * Math.cos(angle);
+                const ly = 50 + 61 * Math.sin(angle);
+                const nodeColor = getScoreColorHex((c.focusIndex || 70) / 10);
+                const isSelected = activeCrit?.id === c.id;
+
+                return (
+                  <g key={c.id} onClick={() => setSelectedCritId(c.id)} className="cursor-pointer">
+                    <circle cx={px} cy={py} r={isSelected ? '3.6' : '2.6'} fill={nodeColor} stroke="#04060C" strokeWidth="1" />
+                    <text x={lx} y={ly - 2.5} textAnchor="middle" dominantBaseline="middle" fill={isSelected ? '#ffffff' : '#cbd5e1'} fontSize="5" fontWeight="900">
+                      {c.name.toUpperCase()}
+                    </text>
+                    <text x={lx} y={ly + 4.5} textAnchor="middle" dominantBaseline="middle" fill={nodeColor} fontSize="5.4" fontWeight="900">
+                      %{c.focusIndex}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+        </div>
+
+        {/* SAĞ (7 BİRİM): DAİRESEL HALKA KARTLAR */}
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          {dna.rankedBreakdown.map((item, idx) => {
+            const focusHex = getScoreColorHex(item.focusIndex / 10);
+            const avgHex = getScoreColorHex(item.avgScore);
+            const isTop = idx === 0;
+            const isSelected = activeCrit?.id === item.id;
+            const r = 24;
+            const cLen = 2 * Math.PI * r;
+            const offset = cLen - (item.focusIndex / 100) * cLen;
+
+            return (
+              <div
+                key={item.id}
+                onClick={() => setSelectedCritId(item.id)}
+                className={`cursor-pointer p-4 rounded-2xl bg-[#04060C] border transition-all flex items-center gap-4 ${
+                  isTop ? 'sm:col-span-2' : ''
+                } ${isSelected ? 'scale-[1.01]' : 'border-slate-800/90 hover:border-slate-700'}`}
+                style={isSelected ? { borderColor: focusHex, boxShadow: `0 0 22px ${focusHex}25` } : undefined}
+              >
+                <div className="relative w-[60px] h-[60px] flex items-center justify-center shrink-0">
+                  <svg className="-rotate-90" width="60" height="60" viewBox="0 0 60 60">
+                    <circle cx="30" cy="30" r={r} stroke="#1e293b" strokeWidth="5.5" fill="none" />
+                    <circle
+                      cx="30"
+                      cy="30"
+                      r={r}
+                      stroke={focusHex}
+                      strokeWidth="5.5"
+                      fill="none"
+                      strokeDasharray={cLen}
+                      strokeDashoffset={offset}
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <span className="absolute text-xs font-black" style={{ color: focusHex }}>
+                    %{item.focusIndex}
+                  </span>
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="text-[10px] font-black px-2 py-0.5 rounded-md bg-slate-900 text-slate-300 border border-slate-800 shrink-0">
+                        #{idx + 1}
+                      </span>
+                      <h4 className="text-sm sm:text-base font-black text-white truncate">{item.name}</h4>
+                    </div>
+                    <span
+                      className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-slate-900 border shrink-0"
+                      style={{ color: avgHex, borderColor: `${avgHex}44` }}
+                    >
+                      {t.average}: {item.avgScore.toFixed(1)}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-300 border border-sky-500/25">
+                      🎯 {t.selectivityLabel}: %{item.selectivity}
+                    </span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-rose-500/10 text-rose-300 border border-rose-500/25">
+                      ⚖️ {t.strictnessLabel}: %{item.strictness}
+                    </span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-purple-500/10 text-purple-300 border border-purple-500/25">
+                      ⚡ {t.impactLabel}: %{item.impact}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </div>
   );
@@ -845,6 +2259,7 @@ function CineScoreMain() {
   const getInitialTab = () => {
     if (typeof window === 'undefined') return 'home';
     const hash = window.location.hash.replace('#', '');
+    if (hash.startsWith('/game')) return 'game';
     if (hash.startsWith('/film/')) return 'rate';
     if (hash.startsWith('/user/')) return 'public_profile';
     if (hash === '/siralama') return 'global';
@@ -1007,17 +2422,148 @@ function CineScoreMain() {
     }
   };
 
-  // YENİ: 3D ROZET KUTLAMA PENCERESİ STATE'İ
+  // YENİ: 3D ROZET KUTLAMA PENCERESİ STATE'İ VE KRİTER SIRALAMA FİLTRESİ
   const [unlockedBadgeModal, setUnlockedBadgeModal] = useState(null);
+  const [globalCriterionFilter, setGlobalCriterionFilter] = useState('all'); // 'all' | 'c1' | 'c2' | 'c3' | 'c4' | 'c5'
 
-  // 2) PROJEKSİYON CİHAZI & 7 SANİYELİK KADEMELİ YAVAŞLAYAN SİNEMA RULETİ
+  // YENİ: SES EFEKTLERİ KONTROLÜ (LOCALSTORAGE KAYITLI)
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    try { return localStorage.getItem('cinescore_sound') !== 'off'; } catch { return true; }
+  });
+  const soundEnabledRef = useRef(soundEnabled);
+  useEffect(() => { soundEnabledRef.current = soundEnabled; }, [soundEnabled]);
+
+  const toggleSoundEnabled = () => {
+    setSoundEnabled(prev => {
+      const next = !prev;
+      try { localStorage.setItem('cinescore_sound', next ? 'on' : 'off'); } catch {}
+      if (next) playCineSound('toggle', true);
+      return next;
+    });
+  };
+
+  // 3D Rozet Kutlama Penceresi Açıldığında Kristal/Bas Ses Efekti Çal
+  useEffect(() => {
+    if (unlockedBadgeModal) {
+      playCineSound('badge', soundEnabledRef.current);
+    }
+  }, [unlockedBadgeModal]);
+
+  // YENİ: YÖNETMEN ÖNBELLEĞİ VE FAVORİ YÖNETMEN TESPİT MOTORU
+  const [movieDirectorsMap, setMovieDirectorsMap] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('cinescore_dir_cache_v1') || '{}'); } catch { return {}; }
+  });
+
+  useEffect(() => {
+    const allRated = [...(Array.isArray(myRatings) ? myRatings : []), ...(Array.isArray(viewingUserRatings) ? viewingUserRatings : [])];
+    const missingIds = [...new Set(allRated.map(r => String(r?.id || '')).filter(id => id && !movieDirectorsMap[id]))];
+    if (missingIds.length === 0) return;
+
+    let cancelled = false;
+    const fetchMissingDirectors = async () => {
+      const batch = missingIds.slice(0, 15);
+      const updates = {};
+      await Promise.all(batch.map(async (mId) => {
+        try {
+          const res = await fetch(`https://api.themoviedb.org/3/movie/${mId}/credits?api_key=${TMDB_API_KEY}`);
+          const d = await res.json();
+          const dir = (d.crew || []).find(c => c.job === 'Director');
+          if (dir && dir.name) {
+            updates[mId] = {
+              id: dir.id,
+              name: dir.name,
+              photo: dir.profile_path ? `https://image.tmdb.org/t/p/w300${dir.profile_path}` : null
+            };
+          } else {
+            updates[mId] = { id: null, name: null, photo: null };
+          }
+        } catch {}
+      }));
+      if (!cancelled && Object.keys(updates).length > 0) {
+        setMovieDirectorsMap(prev => {
+          const merged = { ...prev, ...updates };
+          try { localStorage.setItem('cinescore_dir_cache_v1', JSON.stringify(merged)); } catch {}
+          return merged;
+        });
+      }
+    };
+    fetchMissingDirectors();
+    return () => { cancelled = true; };
+  }, [myRatings, viewingUserRatings, movieDirectorsMap]);
+
+  const computeFavoriteDirector = (ratingsList) => {
+    const valid = Array.isArray(ratingsList) ? ratingsList : [];
+    if (valid.length === 0) return null;
+    const byDir = {};
+
+    valid.forEach(r => {
+      const cached = movieDirectorsMap[String(r.id)];
+      const dirName = cached?.name || r.director;
+      const dirId = cached?.id || r.directorId || null;
+      const dirPhoto = cached?.photo || null;
+      if (!dirName || dirName === 'Bilinmiyor') return;
+
+      const key = dirId ? String(dirId) : dirName;
+      if (!byDir[key]) {
+        byDir[key] = { id: dirId, name: dirName, photo: dirPhoto, count: 0, totalScore: 0, movies: [] };
+      }
+      if (!byDir[key].photo && dirPhoto) byDir[key].photo = dirPhoto;
+      if (!byDir[key].id && dirId) byDir[key].id = dirId;
+      const sc = Number(r.finalScore) || 0;
+      byDir[key].count += 1;
+      byDir[key].totalScore += sc;
+      byDir[key].movies.push({ id: r.id, title: r.title, poster: r.poster, score: sc });
+    });
+
+    const candidates = Object.values(byDir).map(d => ({
+      ...d,
+      avgScore: d.count > 0 ? d.totalScore / d.count : 0,
+      topMovies: [...d.movies].sort((a, b) => b.score - a.score)
+    }));
+    if (candidates.length === 0) return null;
+
+    candidates.sort((a, b) => b.count - a.count || b.avgScore - a.avgScore);
+    return candidates[0];
+  };
+
+  const myFavoriteDirector = useMemo(() => computeFavoriteDirector(myRatings), [myRatings, movieDirectorsMap]);
+  const viewingFavoriteDirector = useMemo(() => computeFavoriteDirector(viewingUserRatings), [viewingUserRatings, movieDirectorsMap]);
+
+  // 2) PROJEKSİYON CİHAZI & 7 SANİYELİK KADEMELİ YAVAŞLAYAN SİNEMA RULETİ (SES SENKRONLU)
   const rouletteTimerRef = useRef(null);
+  const rouletteSoundTimersRef = useRef([]);
+
+  const clearRouletteSoundTimers = () => {
+    rouletteSoundTimersRef.current.forEach(id => clearTimeout(id));
+    rouletteSoundTimersRef.current = [];
+  };
+
+  const scheduleRouletteReelTicks = () => {
+    clearRouletteSoundTimers();
+    if (!soundEnabledRef.current) return;
+    // 0-4sn yüksek hızda makara tıkırtısı, 4-7sn arası kademeli yavaşlama
+    const tickTimes = [];
+    let tMs = 60;
+    while (tMs < 6920) {
+      tickTimes.push(tMs);
+      if (tMs < 4000) tMs += 78;
+      else if (tMs < 4800) tMs += 115;
+      else if (tMs < 5600) tMs += 170;
+      else if (tMs < 6300) tMs += 260;
+      else tMs += 390;
+    }
+    tickTimes.forEach(delay => {
+      const tid = setTimeout(() => playCineSound('tick', soundEnabledRef.current), delay);
+      rouletteSoundTimersRef.current.push(tid);
+    });
+  };
 
   const closeCinemaRoulette = () => {
     if (rouletteTimerRef.current) {
       clearTimeout(rouletteTimerRef.current);
       rouletteTimerRef.current = null;
     }
+    clearRouletteSoundTimers();
     setRouletteModal({ show: false, spinning: false, animate: false, strip: [], offsetPx: -56, winner: null });
   };
 
@@ -1025,6 +2571,7 @@ function CineScoreMain() {
   const startCinemaRoulette = () => {
     if (!myWatchlist || myWatchlist.length === 0) return;
     if (rouletteTimerRef.current) clearTimeout(rouletteTimerRef.current);
+    clearRouletteSoundTimers();
 
     const totalFrames = 60;
     const reelStrip = [];
@@ -1048,6 +2595,7 @@ function CineScoreMain() {
   const spinCinemaRoulette = () => {
     if (!myWatchlist || myWatchlist.length === 0 || rouletteModal.spinning) return;
     if (rouletteTimerRef.current) clearTimeout(rouletteTimerRef.current);
+    clearRouletteSoundTimers();
 
     const totalFrames = 60;
     const winIndex = 54; // 7. saniyede merceğin tam ortasında duracak olan 55. kare
@@ -1069,15 +2617,18 @@ function CineScoreMain() {
       winner: null
     });
 
-    // 40ms sonra 7 saniyelik CSS Keyframe animasyonunu tetikle
+    // 40ms sonra 7 saniyelik CSS Keyframe animasyonunu ve mekanik makara sesini tetikle
     rouletteTimerRef.current = setTimeout(() => {
+      scheduleRouletteReelTicks();
       setRouletteModal(prev => {
         if (!prev.show) return prev;
         return { ...prev, animate: true, offsetPx: -6968 };
       });
 
-      // Tam 7.0 saniye (7000ms) sonunda kazanan filmi projeksiyon perdesine yansıt
+      // Tam 7.0 saniye (7000ms) sonunda kazanan filmi projeksiyon perdesine yansıt ve vurgu sesini çal
       rouletteTimerRef.current = setTimeout(() => {
+        clearRouletteSoundTimers();
+        playCineSound('rouletteWin', soundEnabledRef.current);
         setRouletteModal(prev => {
           if (!prev.show) return prev;
           return { ...prev, spinning: false, winner: chosenWinner };
@@ -1086,7 +2637,7 @@ function CineScoreMain() {
     }, 40);
   };
 
-  // --- YENİ: MİNİ OYUN (SİNEBAĞ / CINELINK) STATE VE FONKSİYONLARI ---
+// --- YENİ: MİNİ OYUN (SİNEBAĞ / CINELINK) STATE VE FONKSİYONLARI (KRONOMETRE, SÜRELİ REKOR & PRİZMA ARENA) ---
   const [gameStartMovie, setGameStartMovie] = useState(null);
   const [gameTargetMovie, setGameTargetMovie] = useState(null);
   const [gameStartQuery, setGameStartQuery] = useState('');
@@ -1098,8 +2649,8 @@ function CineScoreMain() {
   const [gameActive, setGameActive] = useState(false);
   const [gameWon, setGameWon] = useState(false);
   const [gameLoading, setGameLoading] = useState(false);
-  const [gameStepType, setGameStepType] = useState('actor'); // 'actor' | 'movie'
-  const [gameChain, setGameChain] = useState([]); // [{ type: 'movie'|'actor', id, name, image, sub }]
+  const [gameStepType, setGameStepType] = useState('actor');
+  const [gameChain, setGameChain] = useState([]);
   const [gameOptions, setGameOptions] = useState([]);
   const [gameHistoryStack, setGameHistoryStack] = useState([]);
   const [gameFilterText, setGameFilterText] = useState('');
@@ -1108,20 +2659,264 @@ function CineScoreMain() {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [bridgeStatus, setBridgeStatus] = useState({ checking: false, possible: true, directMatch: false, reason: '' });
 
-  // YENİ: 60 Saniye Sayacı, Akıllı Hamle İpucu ve En Kısa Yol State'leri
-  const [gameElapsedSeconds, setGameElapsedSeconds] = useState(0);
-  const [smartHintData, setSmartHintData] = useState({ loading: false, recommendedId: null, message: '' });
-  const [shortestPathModal, setShortestPathModal] = useState({ show: false, loading: false, path: [] });
-  const targetNetworkCacheRef = useRef({ movieId: null, actorMoviesMap: new Map() });
+  // KRONOMETRE & GELİŞMİŞ REKOR STATE'LERİ
+  const [gameElapsedDeci, setGameElapsedDeci] = useState(0); // Salise (0.1 sn) sayacı
+  const [dailyBridgeData, setDailyBridgeData] = useState({
+    dayNum: 1, dateKey: '', start: null, target: null,
+    completedLinks: null, completedTime: null,
+    bestRecord: null, // { bestLinks, bestTime }
+    countdown: ''
+  });
+  const [isDailyModeActive, setIsDailyModeActive] = useState(false);
+  const [communityRecord, setCommunityRecord] = useState(null); // { bestLinks, bestTime }
+  const [recordBannerStatus, setRecordBannerStatus] = useState(null); // 'new' | 'faster' | 'tied' | null
+  const [blitzMode, setBlitzMode] = useState(false);
+  const [blitzTimeLeft, setBlitzTimeLeft] = useState(15);
+  const [blitzFailed, setBlitzFailed] = useState(false);
+  const [bannedActorMode, setBannedActorMode] = useState(false);
+  const [bannedActorObj, setBannedActorObj] = useState(null);
+  const [winCardModal, setWinCardModal] = useState({ show: false, generating: false, imageUrl: null });
 
-  // Oyun Başladığında Çalışan 60 Saniyelik Geri Sayım Sayacı
+  // Süre Formatlayıcı (Dil Uyumlu: "14.2 sn" / "14.2 s")
+  const unitSec = t.secShort || (lang === 'tr' ? 'sn' : 's');
+  const formatGameSeconds = (secVal) => {
+    if (secVal === null || secVal === undefined || isNaN(secVal) || Number(secVal) <= 0) return null;
+    return `${Number(secVal).toFixed(1)} ${unitSec}`;
+  };
+
+  const formatRecordSummary = (recObj) => {
+    if (!recObj || !recObj.bestLinks) return null;
+    const linksPart = `${recObj.bestLinks} ${t.linksCount}`;
+    const timePart = recObj.bestTime ? ` • ${formatGameSeconds(recObj.bestTime)}` : '';
+    return `${linksPart}${timePart}`;
+  };
+
+  // İki Rekoru Karşılaştırma (Önce Bağlantı Sayısı, Eşitse Süre!)
+  const pickBetterRecord = (recA, recB) => {
+    if (!recA?.bestLinks) return recB?.bestLinks ? recB : null;
+    if (!recB?.bestLinks) return recA;
+    const lA = Number(recA.bestLinks), lB = Number(recB.bestLinks);
+    if (lA < lB) return recA;
+    if (lB < lA) return recB;
+    const tA = recA.bestTime ? Number(recA.bestTime) : 999999;
+    const tB = recB.bestTime ? Number(recB.bestTime) : 999999;
+    return tA <= tB ? recA : recB;
+  };
+
+  // Yerel Rekor Okuma/Yazma (Hem Köprü Sayısı Hem Süre Saklar)
+  const getLocalPairRecord = (id1, id2) => {
+    if (!id1 || !id2) return null;
+    try {
+      const all = JSON.parse(localStorage.getItem('cinescore_pair_records') || '{}');
+      const raw = all[`${id1}_${id2}`];
+      if (!raw) return null;
+      if (typeof raw === 'number') return raw > 0 ? { bestLinks: raw, bestTime: null } : null;
+      if (typeof raw === 'object' && Number(raw.bestLinks) > 0) {
+        return {
+          bestLinks: Number(raw.bestLinks),
+          bestTime: raw.bestTime ? Number(raw.bestTime) : null
+        };
+      }
+      return null;
+    } catch { return null; }
+  };
+
+  const saveLocalPairRecord = (id1, id2, links, timeSec) => {
+    if (!id1 || !id2 || !links) return null;
+    const candidate = { bestLinks: Number(links), bestTime: timeSec ? Number(Number(timeSec).toFixed(1)) : null };
+    try {
+      const key = `${id1}_${id2}`;
+      const all = JSON.parse(localStorage.getItem('cinescore_pair_records') || '{}');
+      const existing = getLocalPairRecord(id1, id2);
+      const winner = pickBetterRecord(candidate, existing);
+      all[key] = winner;
+      localStorage.setItem('cinescore_pair_records', JSON.stringify(all));
+      return winner;
+    } catch { return candidate; }
+  };
+
+  // 1) GÜNÜN KÖPRÜSÜ HAVUZU VE SÜRELİ REKOR SENKRONİZASYONU
   useEffect(() => {
-    if (!gameActive || gameWon) return;
+    const DAILY_PAIRS_POOL = [
+      [1124, 98],       // Prestij ➔ Gladyatör
+      [27205, 1422],    // Başlangıç ➔ Köstebek
+      [550, 157336],    // Dövüş Kulübü ➔ Yıldızlararası
+      [11324, 22],      // Zindan Adası ➔ Karayip Korsanları
+      [680, 155],       // Ucuz Roman ➔ Kara Şövalye
+      [603, 278],       // Matrix ➔ Esaretin Bedeli
+      [807, 872585],    // Se7en ➔ Oppenheimer
+      [77, 68718],      // Akıl Defteri ➔ Zincirsiz
+      [769, 106646],    // Sıkı Dostlar ➔ Para Avcısı
+      [120, 671],       // Yüzüklerin Efendisi ➔ Harry Potter
+      [497, 13],        // Yeşil Yol ➔ Forrest Gump
+      [24, 354912],     // Kill Bill ➔ Coco
+      [101, 274],       // Leon ➔ Kuzuların Sessizliği
+      [475557, 299536], // Joker ➔ Avengers: Sonsuzluk Savaşı
+      [194, 129],       // Amelie ➔ Ruhların Kaçışı
+      [640, 598],       // Sıkıysa Yakala ➔ Tanrıkent
+      [16869, 361743],  // Soysuzlar Çetesi ➔ Top Gun: Maverick
+      [496243, 313369], // Parazit ➔ Aşıklar Şehri
+      [244786, 557],    // Whiplash ➔ Örümcek-Adam
+      [857, 1891]       // Er Ryan'ı Kurtarmak ➔ Yıldız Savaşları
+    ];
+
+    const now = new Date();
+    const dateKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const epochDays = Math.floor(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000);
+    const dayNum = (epochDays - 20300) > 0 ? (epochDays - 20300) : 1;
+    const pairIds = DAILY_PAIRS_POOL[epochDays % DAILY_PAIRS_POOL.length];
+
+    let savedLinks = null, savedTime = null;
+    try {
+      const localDaily = JSON.parse(localStorage.getItem('cinescore_daily_bridge') || '{}');
+      const entry = localDaily[dateKey];
+      if (typeof entry === 'number') {
+        savedLinks = entry;
+      } else if (entry && typeof entry === 'object') {
+        savedLinks = Number(entry.links) || null;
+        savedTime = entry.time ? Number(entry.time) : null;
+      }
+    } catch (e) {}
+
+    const localPairBest = getLocalPairRecord(pairIds[0], pairIds[1]);
+    const myDailyRec = savedLinks ? { bestLinks: savedLinks, bestTime: savedTime } : null;
+    const initialBest = pickBetterRecord(localPairBest, myDailyRec);
+
+    let active = true;
+    Promise.all([
+      fetch(`https://api.themoviedb.org/3/movie/${pairIds[0]}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json()),
+      fetch(`https://api.themoviedb.org/3/movie/${pairIds[1]}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json())
+    ]).then(([r1, r2]) => {
+      if (!active || !r1?.id || !r2?.id) return;
+      const sObj = { id: String(r1.id), title: r1.title, year: r1.release_date?.split('-')[0] || '', poster: `https://image.tmdb.org/t/p/w500${r1.poster_path}` };
+      const tObj = { id: String(r2.id), title: r2.title, year: r2.release_date?.split('-')[0] || '', poster: `https://image.tmdb.org/t/p/w500${r2.poster_path}` };
+      setDailyBridgeData(prev => ({
+        ...prev,
+        dayNum,
+        dateKey,
+        completedLinks: savedLinks,
+        completedTime: savedTime,
+        bestRecord: pickBetterRecord(prev.bestRecord, initialBest),
+        start: sObj,
+        target: tObj
+      }));
+    }).catch(() => {});
+
+    const dailyDocId = `${pairIds[0]}_${pairIds[1]}`;
+    const unsubDaily = onSnapshot(doc(db, 'game_records', dailyDocId), (snap) => {
+      if (snap.exists() && snap.data()?.bestLinks) {
+        const d = snap.data();
+        const remoteRec = { bestLinks: Number(d.bestLinks), bestTime: d.bestTime ? Number(d.bestTime) : null };
+        setDailyBridgeData(prev => ({
+          ...prev,
+          bestRecord: pickBetterRecord(prev.bestRecord, remoteRec)
+        }));
+      }
+    }, () => {});
+
+    const updateCountdown = () => {
+      // Kullanıcı mini oyun sekmesinde değilse tüm siteyi saniyede bir yeniden render etme!
+      if (!window.location.hash.startsWith('#/game')) return;
+      const current = new Date();
+      const midnight = new Date(current.getFullYear(), current.getMonth(), current.getDate() + 1, 0, 0, 0);
+      const diff = Math.max(0, Math.floor((midnight - current) / 1000));
+      const hrs = String(Math.floor(diff / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((diff % 3600) / 60)).padStart(2, '0');
+      const secs = String(diff % 60).padStart(2, '0');
+      setDailyBridgeData(prev => (prev.countdown === `${hrs}:${mins}:${secs}` ? prev : { ...prev, countdown: `${hrs}:${mins}:${secs}` }));
+    };
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+    return () => { active = false; clearInterval(timer); unsubDaily(); };
+  }, [tmdbLang]);
+
+  // 2) MEYDAN OKUMA LİNKİ İLE GELİNDİYSE OTOMATİK YÜKLEME
+  useEffect(() => {
+    const checkChallengeHash = async () => {
+      const hash = window.location.hash || '';
+      if (!hash.startsWith('#/game?')) return;
+      const queryPart = hash.split('?')[1];
+      if (!queryPart) return;
+      const params = new URLSearchParams(queryPart);
+      const sId = params.get('start');
+      const tId = params.get('target');
+      if (sId && tId && sId !== tId) {
+        setActiveTab('game');
+        setGameActive(false);
+        setGameLoading(true);
+        try {
+          const [r1, r2] = await Promise.all([
+            fetch(`https://api.themoviedb.org/3/movie/${sId}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json()),
+            fetch(`https://api.themoviedb.org/3/movie/${tId}?api_key=${TMDB_API_KEY}&language=${tmdbLang}`).then(r => r.json())
+          ]);
+          if (r1?.id && r2?.id) {
+            setGameStartMovie({ id: String(r1.id), title: r1.title, year: r1.release_date?.split('-')[0] || '', poster: `https://image.tmdb.org/t/p/w500${r1.poster_path}` });
+            setGameTargetMovie({ id: String(r2.id), title: r2.title, year: r2.release_date?.split('-')[0] || '', poster: `https://image.tmdb.org/t/p/w500${r2.poster_path}` });
+          }
+        } catch (e) {} finally {
+          setGameLoading(false);
+        }
+      }
+    };
+    checkChallengeHash();
+    window.addEventListener('hashchange', checkChallengeHash);
+    return () => window.removeEventListener('hashchange', checkChallengeHash);
+  }, [tmdbLang]);
+
+  // 3) SEÇİLİ ETAP İÇİN KALICI REKOR DİNLEYİCİSİ (Köprü Sayısı + Süre)
+  useEffect(() => {
+    if (!gameStartMovie?.id || !gameTargetMovie?.id || String(gameStartMovie.id) === String(gameTargetMovie.id)) {
+      setCommunityRecord(null);
+      return;
+    }
+    const sId = String(gameStartMovie.id);
+    const tId = String(gameTargetMovie.id);
+    const pairDocId = `${sId}_${tId}`;
+
+    const localBest = getLocalPairRecord(sId, tId);
+    setCommunityRecord(localBest || null);
+
+    const unsub = onSnapshot(doc(db, 'game_records', pairDocId), (snap) => {
+      const currentLocal = getLocalPairRecord(sId, tId);
+      if (snap.exists() && snap.data()?.bestLinks) {
+        const d = snap.data();
+        const remoteRec = { bestLinks: Number(d.bestLinks), bestTime: d.bestTime ? Number(d.bestTime) : null };
+        const winner = pickBetterRecord(currentLocal, remoteRec);
+        if (winner) saveLocalPairRecord(sId, tId, winner.bestLinks, winner.bestTime);
+        setCommunityRecord(winner);
+      } else {
+        setCommunityRecord(currentLocal || null);
+      }
+    }, () => {
+      setCommunityRecord(getLocalPairRecord(sId, tId) || null);
+    });
+    return () => unsub();
+  }, [gameStartMovie?.id, gameTargetMovie?.id]);
+
+  // 4) GENEL OYUN KRONOMETRESİ (Her oyunda 0.1sn hassasiyetle çalışır, yükleme sırasında duraklar)
+  useEffect(() => {
+    if (!gameActive || gameWon || blitzFailed || gameLoading) return;
+    const timer = setInterval(() => {
+      setGameElapsedDeci(prev => prev + 1);
+    }, 100);
+    return () => clearInterval(timer);
+  }, [gameActive, gameWon, blitzFailed, gameLoading]);
+
+  // 5) BLITZ MODU (15 SANİYE HAMLE SAYACI)
+  useEffect(() => {
+    if (!gameActive || gameWon || blitzFailed || !blitzMode || gameLoading) return;
     const interval = setInterval(() => {
-      setGameElapsedSeconds(prev => (prev < 60 ? prev + 1 : 60));
+      setBlitzTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setBlitzFailed(true);
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
     return () => clearInterval(interval);
-  }, [gameActive, gameWon]);
+  }, [gameActive, gameWon, blitzFailed, blitzMode, gameLoading, gameChain.length]);
 
   // Oyun İçi Başlangıç Filmi Arama
   useEffect(() => {
@@ -1151,7 +2946,6 @@ function CineScoreMain() {
     return () => clearTimeout(timer);
   }, [gameTargetQuery, tmdbLang]);
 
-  // Bir Filmin Oyuncu Kadrosunu Çekme
   const fetchMovieCastForGame = async (movieId) => {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${TMDB_API_KEY}&language=${tmdbLang}`);
     const d = await res.json();
@@ -1163,7 +2957,6 @@ function CineScoreMain() {
     }));
   };
 
-  // Bir Oyuncunun Oynadığı Filmleri Çekme
   const fetchActorMoviesForGame = async (personId) => {
     const res = await fetch(`https://api.themoviedb.org/3/person/${personId}/movie_credits?api_key=${TMDB_API_KEY}&language=${tmdbLang}`);
     const d = await res.json();
@@ -1182,255 +2975,7 @@ function CineScoreMain() {
     return Array.from(unique.values()).sort((a, b) => b.votes - a.votes);
   };
 
-  // Hedef Filmin Oyuncu Ağını Ön Belleğe Alma (İpucu ve En Kısa Yol İçin)
-  const ensureTargetNetworkLoaded = async (targetMov, targetCastList) => {
-    if (!targetMov) return new Map();
-    if (targetNetworkCacheRef.current.movieId === String(targetMov.id) && targetNetworkCacheRef.current.actorMoviesMap.size > 0) {
-      return targetNetworkCacheRef.current.actorMoviesMap;
-    }
-    const castToScan = (targetCastList && targetCastList.length > 0 ? targetCastList : await fetchMovieCastForGame(targetMov.id)).slice(0, 10);
-    const map = new Map();
-    await Promise.all(
-      castToScan.map(async (actor) => {
-        try {
-          const movies = await fetchActorMoviesForGame(actor.id);
-          map.set(String(actor.id), { actor, movies });
-        } catch (e) {}
-      })
-    );
-    targetNetworkCacheRef.current = { movieId: String(targetMov.id), actorMoviesMap: map };
-    return map;
-  };
-
-  // İKİ FİLM ARASINDAKİ EN KISA YOLU BULAN ÇİFT YÖNLÜ ARAMA MOTORU
-  const computeShortestBridge = async (startMov, targetMov) => {
-    const [c1, c2] = await Promise.all([
-      fetchMovieCastForGame(startMov.id),
-      fetchMovieCastForGame(targetMov.id)
-    ]);
-
-    const startNode = { type: 'movie', id: String(startMov.id), name: startMov.title, sub: startMov.year || '', image: startMov.poster };
-    const targetNode = { type: 'movie', id: String(targetMov.id), name: targetMov.title, sub: targetMov.year || '', image: targetMov.poster };
-
-    // 1. KONTROL: 1 ADIMLI DOĞRUDAN ORTAK OYUNCU (Film 1 ➔ Oyuncu ➔ Film 2)
-    const c2Map = new Map(c2.map(a => [String(a.id), a]));
-    const directActor = c1.find(a => c2Map.has(String(a.id)));
-    if (directActor) {
-      return [startNode, { type: 'actor', ...directActor }, targetNode];
-    }
-
-    // 2. KONTROL: 2 ADIMLI ORTAK FİLM KÖPRÜSÜ (Film 1 ➔ Oyuncu 1 ➔ Ortak Film ➔ Oyuncu 2 ➔ Film 2)
-    const topStartActors = c1.slice(0, 10);
-    const topTargetActors = c2.slice(0, 10);
-
-    const [startActorCredits, targetNetworkMap] = await Promise.all([
-      Promise.all(topStartActors.map(async a => ({ actor: a, movies: await fetchActorMoviesForGame(a.id) }))),
-      ensureTargetNetworkLoaded(targetMov, topTargetActors)
-    ]);
-
-    // Hedef oyuncuların oynadığı tüm filmleri hızlı arama tablosuna koy
-    const targetMovieLookup = new Map(); // movieId -> { movie, targetActor }
-    targetNetworkMap.forEach(({ actor: tActor, movies: tMovies }) => {
-      tMovies.forEach(tm => {
-        if (String(tm.id) !== String(targetMov.id) && !targetMovieLookup.has(String(tm.id))) {
-          targetMovieLookup.set(String(tm.id), { movie: tm, targetActor: tActor });
-        }
-      });
-    });
-
-    for (const { actor: sActor, movies: sMovies } of startActorCredits) {
-      for (const sm of sMovies) {
-        if (String(sm.id) === String(targetMov.id)) {
-          return [startNode, { type: 'actor', ...sActor }, targetNode];
-        }
-        if (targetMovieLookup.has(String(sm.id))) {
-          const match = targetMovieLookup.get(String(sm.id));
-          return [
-            startNode,
-            { type: 'actor', ...sActor },
-            { type: 'movie', id: String(match.movie.id), name: match.movie.name, sub: match.movie.sub, image: match.movie.image },
-            { type: 'actor', ...match.targetActor },
-            targetNode
-          ];
-        }
-      }
-    }
-
-    // 3. KONTROL: 3 ADIMLI KÖPRÜ (Film 1 ➔ Oyuncu 1 ➔ Film A ➔ Merkez Oyuncu ➔ Film B ➔ Oyuncu 2 ➔ Film 2)
-    const candidateStartMovies = [];
-    const seenMidIds = new Set();
-    startActorCredits.forEach(({ actor: sActor, movies: sMovies }) => {
-      sMovies.slice(0, 3).forEach(m => {
-        if (!seenMidIds.has(String(m.id)) && candidateStartMovies.length < 8) {
-          seenMidIds.add(String(m.id));
-          candidateStartMovies.push({ sActor, movie: m });
-        }
-      });
-    });
-
-    const midCasts = await Promise.all(
-      candidateStartMovies.map(async item => ({
-        ...item,
-        cast: (await fetchMovieCastForGame(item.movie.id)).slice(0, 20)
-      }))
-    );
-
-    // Hedef filmlerin oyuncularını kontrol et
-    const candidateTargetMovies = [];
-    const seenTIds = new Set();
-    targetNetworkMap.forEach(({ actor: tActor, movies: tMovies }) => {
-      tMovies.slice(0, 3).forEach(m => {
-        if (!seenTIds.has(String(m.id)) && candidateTargetMovies.length < 8) {
-          seenTIds.add(String(m.id));
-          candidateTargetMovies.push({ tActor, movie: m });
-        }
-      });
-    });
-
-    const targetMidCasts = await Promise.all(
-      candidateTargetMovies.map(async item => ({
-        ...item,
-        cast: (await fetchMovieCastForGame(item.movie.id)).slice(0, 25)
-      }))
-    );
-
-    const targetActorBridgeLookup = new Map(); // actorId -> { midActor, tMovie, tActor }
-    targetMidCasts.forEach(({ tActor, movie: tMovie, cast }) => {
-      cast.forEach(ca => {
-        if (!targetActorBridgeLookup.has(String(ca.id))) {
-          targetActorBridgeLookup.set(String(ca.id), { midActor: ca, tMovie, tActor });
-        }
-      });
-    });
-
-    for (const { sActor, movie: sMovie, cast } of midCasts) {
-      for (const ca of cast) {
-        if (targetActorBridgeLookup.has(String(ca.id))) {
-          const hit = targetActorBridgeLookup.get(String(ca.id));
-          return [
-            startNode,
-            { type: 'actor', ...sActor },
-            { type: 'movie', id: String(sMovie.id), name: sMovie.name, sub: sMovie.sub, image: sMovie.image },
-            { type: 'actor', ...hit.midActor },
-            { type: 'movie', id: String(hit.tMovie.id), name: hit.tMovie.name, sub: hit.tMovie.sub, image: hit.tMovie.image },
-            { type: 'actor', ...hit.tActor },
-            targetNode
-          ];
-        }
-      }
-    }
-
-    return [];
-  };
-
-  // EN KISA YOLU GÖSTER BUTONU FONKSİYONU
-  const handleRevealShortestPath = async () => {
-    if (!gameStartMovie || !gameTargetMovie) return;
-    setShortestPathModal({ show: true, loading: true, path: [] });
-    try {
-      const foundPath = await computeShortestBridge(gameStartMovie, gameTargetMovie);
-      setShortestPathModal({ show: true, loading: false, path: foundPath });
-    } catch (e) {
-      setShortestPathModal({ show: false, loading: false, path: [] });
-      showToast(t.errorOccurred);
-    }
-  };
-
-  // HERHANGİ BİR ADIMDA TAKILAN OYUNCUYA "SIRADAKİ EN MANTIKLI HAMLE" İPUCU VERME
-  const handleSmartMoveHint = async () => {
-    if (!gameActive || gameWon || gameOptions.length === 0) return;
-    setSmartHintData({ loading: true, recommendedId: null, message: '' });
-
-    try {
-      const targetNet = await ensureTargetNetworkLoaded(gameTargetMovie, gameTargetCast);
-      const targetCastIds = new Set(gameTargetCast.map(a => String(a.id)));
-
-      if (gameStepType === 'actor') {
-        // 1) Şu anki kadroda doğrudan hedef filmde oynayan biri var mı?
-        const directHit = gameOptions.find(opt => targetCastIds.has(String(opt.id)));
-        if (directHit) {
-          setSmartHintData({
-            loading: false,
-            recommendedId: String(directHit.id),
-            message: `🎯 Altın Hamle: "${directHit.name}" doğrudan hedef film olan ${gameTargetMovie.title} kadrosunda yer alıyor! Onu seçip hemen hedef filme atlayabilirsin.`
-          });
-          return;
-        }
-
-        // 2) Şu anki kadrodaki oyunculardan hangisi hedef kadroyla ortak bir filmde oynadı?
-        const topCandidates = gameOptions.slice(0, 8);
-        const candidateCredits = await Promise.all(
-          topCandidates.map(async cand => ({ cand, movies: await fetchActorMoviesForGame(cand.id) }))
-        );
-
-        for (const { cand, movies } of candidateCredits) {
-          for (const m of movies) {
-            for (const [, { actor: tActor, movies: tMovies }] of targetNet.entries()) {
-              if (tMovies.some(tm => String(tm.id) === String(m.id))) {
-                setSmartHintData({
-                  loading: false,
-                  recommendedId: String(cand.id),
-                  message: `💡 En Mantıklı Hamle: "${cand.name}" oyuncusunu seç! Onun oynadığı "${m.name}" filmi üzerinden hedef kadrodaki "${tActor.name}" oyuncusuna bağlanabilirsin.`
-                });
-                return;
-              }
-            }
-          }
-        }
-
-        // 3) Doğrudan kesişim yoksa en geniş filmografiye sahip kilit oyuncuyu öner
-        let bestCand = candidateCredits[0]?.cand || gameOptions[0];
-        let maxCount = 0;
-        candidateCredits.forEach(({ cand, movies }) => {
-          if (movies.length > maxCount) { maxCount = movies.length; bestCand = cand; }
-        });
-        setSmartHintData({
-          loading: false,
-          recommendedId: String(bestCand.id),
-          message: `🧭 Stratejik Hamle: "${bestCand.name}" (${maxCount} popüler film) bu kadrodaki en geniş sinema ağına sahip merkez oyuncu. Köprüyü kurmak için en güçlü tercih!`
-        });
-
-      } else {
-        // FİLM SEÇİM ADIMINDAYIZ
-        // 1) Hedef filmin kendisi listede mi?
-        const exactMovie = gameOptions.find(opt => String(opt.id) === String(gameTargetMovie.id));
-        if (exactMovie) {
-          setSmartHintData({
-            loading: false,
-            recommendedId: String(exactMovie.id),
-            message: `🎯 Zafer Hamlesi: Hedef film "${exactMovie.name}" tam karşında! Seçerek zinciri tamamla.`
-          });
-          return;
-        }
-
-        // 2) Listedeki filmlerden biri hedef kadrodaki bir oyuncunun filmi mi?
-        for (const opt of gameOptions) {
-          for (const [, { actor: tActor, movies: tMovies }] of targetNet.entries()) {
-            if (tMovies.some(tm => String(tm.id) === String(opt.id))) {
-              setSmartHintData({
-                loading: false,
-                recommendedId: String(opt.id),
-                message: `💡 Kritik Köprü: "${opt.name}" filmini seç! Bu filmde hedef filmin kadrosundan "${tActor.name}" da oynuyor.`
-              });
-              return;
-            }
-          }
-        }
-
-        // 3) En popüler / en çok yıldız barındıran merkez filmi öner
-        const bestMovie = gameOptions[0];
-        setSmartHintData({
-          loading: false,
-          recommendedId: String(bestMovie.id),
-          message: `🧭 Stratejik Hamle: "${bestMovie.name}" geniş oyuncu kadrosuyla seni uluslararası yıldızlara en hızlı bağlayacak merkez film.`
-        });
-      }
-    } catch (e) {
-      setSmartHintData({ loading: false, recommendedId: null, message: '' });
-    }
-  };
-
-  // İKİ FİLM SEÇİLDİĞİNDE OTOMATİK "İMKANSIZ BAĞ" VE KÖPRÜ ANALİZİ YAPMA
+  // İKİ FİLM SEÇİLDİĞİNDE OTOMATİK BAĞLANTI ANALİZİ
   useEffect(() => {
     if (!gameStartMovie || !gameTargetMovie) {
       setBridgeStatus({ checking: false, possible: true, directMatch: false, reason: '' });
@@ -1449,90 +2994,66 @@ function CineScoreMain() {
           fetchMovieCastForGame(gameStartMovie.id),
           fetchMovieCastForGame(gameTargetMovie.id)
         ]);
-
         if (cancelled) return;
-
         if (c1.length === 0 || c2.length === 0) {
-          setBridgeStatus({
-            checking: false,
-            possible: false,
-            directMatch: false,
-            reason: t.bridgeImpossibleNoCast || 'Seçilen filmlerden birinin kayıtlı oyuncu kadrosu bulunmuyor.'
-          });
+          setBridgeStatus({ checking: false, possible: false, directMatch: false, reason: t.bridgeImpossibleNoCast });
           return;
         }
-
         const c2Ids = new Set(c2.map(a => String(a.id)));
         const sharedActor = c1.find(a => c2Ids.has(String(a.id)));
         if (sharedActor) {
-          setBridgeStatus({
-            checking: false,
-            possible: true,
-            directMatch: true,
-            reason: t.bridgeDirectPossible
-          });
+          setBridgeStatus({ checking: false, possible: true, directMatch: true, reason: t.bridgeDirectPossible });
           return;
         }
-
         const sampleStartActors = c1.slice(0, 5);
         const sampleTargetActors = c2.slice(0, 5);
-
         const [startCreditsList, targetCreditsList] = await Promise.all([
           Promise.all(sampleStartActors.map(a => fetchActorMoviesForGame(a.id))),
           Promise.all(sampleTargetActors.map(a => fetchActorMoviesForGame(a.id)))
         ]);
-
         if (cancelled) return;
-
         const canLeaveStart = startCreditsList.some(list => list.some(m => String(m.id) !== String(gameStartMovie.id)));
         const canEnterTarget = targetCreditsList.some(list => list.some(m => String(m.id) !== String(gameTargetMovie.id)));
 
         if (!canLeaveStart) {
-          setBridgeStatus({
-            checking: false,
-            possible: false,
-            directMatch: false,
-            reason: `"${gameStartMovie.title}" ${t.bridgeImpossibleIsolated}`
-          });
+          setBridgeStatus({ checking: false, possible: false, directMatch: false, reason: `"${gameStartMovie.title}" ${t.bridgeImpossibleIsolated}` });
           return;
         }
-
         if (!canEnterTarget) {
-          setBridgeStatus({
-            checking: false,
-            possible: false,
-            directMatch: false,
-            reason: `"${gameTargetMovie.title}" ${t.bridgeImpossibleIsolated}`
-          });
+          setBridgeStatus({ checking: false, possible: false, directMatch: false, reason: `"${gameTargetMovie.title}" ${t.bridgeImpossibleIsolated}` });
           return;
         }
-
-        setBridgeStatus({
-          checking: false,
-          possible: true,
-          directMatch: false,
-          reason: t.bridgeNormalPossible
-        });
+        setBridgeStatus({ checking: false, possible: true, directMatch: false, reason: t.bridgeNormalPossible });
       } catch (e) {
         if (!cancelled) setBridgeStatus({ checking: false, possible: true, directMatch: false, reason: '' });
       }
     };
-
     verifyBridge();
     return () => { cancelled = true; };
   }, [gameStartMovie, gameTargetMovie, tmdbLang]);
 
-  // Oyunu Başlatma
-  const startCineLinkGame = async (customStart = null, customTarget = null) => {
+  // Oyunu Başlatma (Kronometreyi 0.0 sn'ye sıfırlar)
+  const startCineLinkGame = async (customStart = null, customTarget = null, isDaily = false) => {
     const sMovie = customStart || gameStartMovie;
     const tMovie = customTarget || gameTargetMovie;
-    if (!sMovie || !tMovie || String(sMovie.id) === String(tMovie.id) || !bridgeStatus.possible) return;
+    if (!sMovie || !tMovie || String(sMovie.id) === String(tMovie.id) || (!isDaily && !bridgeStatus.possible)) return;
+
+    if (customStart) setGameStartMovie(customStart);
+    if (customTarget) setGameTargetMovie(customTarget);
+    setIsDailyModeActive(Boolean(isDaily));
+
+    const existingBest = getLocalPairRecord(sMovie.id, tMovie.id);
+    if (existingBest) {
+      setCommunityRecord(prev => pickBetterRecord(prev, existingBest));
+    }
 
     setGameLoading(true);
     setGameActive(true);
     setGameWon(false);
-    setGameElapsedSeconds(0);
-    setSmartHintData({ loading: false, recommendedId: null, message: '' });
+    setGameElapsedDeci(0);
+    setBlitzFailed(false);
+    setBlitzTimeLeft(15);
+    setRecordBannerStatus(null);
     setGameFilterText('');
     setShowTargetHint(false);
     setGameHistoryStack([]);
@@ -1542,9 +3063,16 @@ function CineScoreMain() {
         fetchMovieCastForGame(sMovie.id),
         fetchMovieCastForGame(tMovie.id)
       ]);
-      setGameTargetCast(targetCast.slice(0, 15));
-      // Arka planda hedef filmin oyuncu ağını hazırla (İpucu ve En Kısa Yol anında çalışsın diye)
-      ensureTargetNetworkLoaded(tMovie, targetCast);
+      setGameTargetCast(targetCast.slice(0, 14));
+
+      if (bannedActorMode && startCast.length > 1) {
+        const tIds = new Set(targetCast.map(a => String(a.id)));
+        const shared = startCast.find(a => tIds.has(String(a.id)));
+        const toBan = shared || startCast[0];
+        setBannedActorObj({ id: String(toBan.id), name: toBan.name });
+      } else {
+        setBannedActorObj(null);
+      }
 
       setGameChain([{
         type: 'movie',
@@ -1555,6 +3083,7 @@ function CineScoreMain() {
       }]);
       setGameOptions(startCast);
       setGameStepType('actor');
+      setGameElapsedDeci(0);
     } catch (e) {
       showToast(t.errorOccurred);
     } finally {
@@ -1562,7 +3091,25 @@ function CineScoreMain() {
     }
   };
 
-// Sadece Oyuncu/Film Seçim Listesini En Tepeye Çıkarma (Tüm Sayfayı Yukarı Atmaz)
+  const scrollToRatingView = () => {
+    setTimeout(() => {
+      const sliderBox = document.getElementById('rating-slider-box');
+      if (!sliderBox) return;
+      const topScoreBox = sliderBox.previousElementSibling || sliderBox;
+      const topRect = topScoreBox.getBoundingClientRect();
+      const botRect = sliderBox.getBoundingClientRect();
+      const groupTop = topRect.top + window.scrollY;
+      const groupBottom = botRect.bottom + window.scrollY;
+      const groupHeight = groupBottom - groupTop;
+      const headerOffset = 86;
+      const availableHeight = window.innerHeight - headerOffset;
+      const targetY = groupHeight < availableHeight
+        ? groupTop - headerOffset - ((availableHeight - groupHeight) / 2)
+        : groupTop - headerOffset - 10;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }, 100);
+  };
+
   const resetGameScrollPosition = () => {
     const gridEl = document.getElementById('game-options-grid');
     if (gridEl) gridEl.scrollTop = 0;
@@ -1577,7 +3124,6 @@ function CineScoreMain() {
         chainEl.scrollLeft = chainEl.scrollWidth;
       }
 
-      // Mobilde kullanıcı seçim kutusunun altına kaymışsa sadece seçim kutusunun başlığına hizala
       const selectionPanel = document.getElementById('game-selection-panel');
       if (selectionPanel) {
         const rect = selectionPanel.getBoundingClientRect();
@@ -1588,7 +3134,6 @@ function CineScoreMain() {
     }, 30);
   };
 
-  // DİL DEĞİŞTİĞİNDE OYUNDAKİ FİLM İSİMLERİNİ VE SEÇENEKLERİ YENİ DİLE ÇEVİRME
   useEffect(() => {
     let active = true;
     const localizeGameMovies = async () => {
@@ -1629,17 +3174,22 @@ function CineScoreMain() {
     return () => { active = false; };
   }, [tmdbLang]);
 
-  // Oyuncu Seçildiğinde (Anında Yukarı Çıkar)
   const handlePickGameActor = async (actor) => {
+    if (bannedActorObj && String(actor.id) === String(bannedActorObj.id)) {
+      showToast(`${actor.name} — ${t.bannedActorBadge || 'Yasaklı Oyuncu!'}`);
+      return;
+    }
     resetGameScrollPosition();
     setGameLoading(true);
     setGameFilterText('');
     try {
       const actorMovies = await fetchActorMoviesForGame(actor.id);
       setGameHistoryStack(prev => [...prev, { chain: gameChain, options: gameOptions, stepType: gameStepType }]);
+      playCineSound('link', soundEnabledRef.current);
       setGameChain(prev => [...prev, { type: 'actor', id: actor.id, name: actor.name, sub: actor.sub, image: actor.image }]);
       setGameOptions(actorMovies);
       setGameStepType('movie');
+      setBlitzTimeLeft(15);
       resetGameScrollPosition();
     } catch (e) {
       showToast(t.errorOccurred);
@@ -1648,24 +3198,87 @@ function CineScoreMain() {
     }
   };
 
-// Film Seçildiğinde (Kazanınca Mini Oyun Rozetlerini ve Bildirimini Tetikler)
+  // Film Seçildiğinde (Köprü Sayısı + Kronometre Süresi İle Rekor Karşılaştırması)
   const handlePickGameMovie = async (movie) => {
     resetGameScrollPosition();
     setGameFilterText('');
     const newChain = [...gameChain, { type: 'movie', id: movie.id, name: movie.name, sub: movie.sub, image: movie.image }];
 
-    // HEDEF FİLME ULAŞILDI MI KONTROLÜ
     if (String(movie.id) === String(gameTargetMovie.id)) {
+      playCineSound('gameWin', soundEnabledRef.current);
       setGameHistoryStack(prev => [...prev, { chain: gameChain, options: gameOptions, stepType: gameStepType }]);
       setGameChain(newChain);
       setGameWon(true);
       resetGameScrollPosition();
 
-      // MİNİ OYUN BAŞARIM ROZETLERİNİ KONTROL ET VE BİLDİRİM GÖNDER
-      try {
-        const linksUsed = Math.floor(newChain.length / 2);
-        const oldBadges = getAllBadges(myRatings, t, safeGlobalMovies).filter(b => b.earned).map(b => b.id);
+      const linksUsed = Math.floor(newChain.length / 2);
+      const timeUsedSec = Math.max(0.5, Number((gameElapsedDeci / 10).toFixed(1)));
+      const startId = String(newChain[0]?.id || gameStartMovie.id);
+      const targetId = String(gameTargetMovie.id);
+      const pairDocId = `${startId}_${targetId}`;
 
+      const prevLocal = getLocalPairRecord(startId, targetId);
+      const prevCombined = pickBetterRecord(prevLocal, communityRecord);
+
+      let isNewBest = false;
+      if (!prevCombined || !prevCombined.bestLinks) {
+        isNewBest = true;
+        setRecordBannerStatus('new');
+      } else if (linksUsed < Number(prevCombined.bestLinks)) {
+        isNewBest = true;
+        setRecordBannerStatus('new');
+      } else if (linksUsed === Number(prevCombined.bestLinks)) {
+        const oldT = prevCombined.bestTime ? Number(prevCombined.bestTime) : 999999;
+        if (timeUsedSec < oldT) {
+          isNewBest = true;
+          setRecordBannerStatus('faster');
+        } else {
+          setRecordBannerStatus('tied');
+        }
+      }
+
+      const savedWinner = saveLocalPairRecord(startId, targetId, linksUsed, timeUsedSec);
+      setCommunityRecord(savedWinner);
+
+      // A) GÜNÜN KÖPRÜSÜ İSE GÜNLÜK SKORU VE GÜNLÜK REKORU SÜRESİYLE GÜNCELLE
+      if (isDailyModeActive || (dailyBridgeData.start && startId === String(dailyBridgeData.start.id) && targetId === String(dailyBridgeData.target.id))) {
+        try {
+          const localDaily = JSON.parse(localStorage.getItem('cinescore_daily_bridge') || '{}');
+          const oldEntry = localDaily[dailyBridgeData.dateKey];
+          const oldDailyRec = typeof oldEntry === 'number'
+            ? { bestLinks: oldEntry, bestTime: null }
+            : (oldEntry?.links ? { bestLinks: Number(oldEntry.links), bestTime: Number(oldEntry.time) || null } : null);
+
+          const newDailyRec = pickBetterRecord({ bestLinks: linksUsed, bestTime: timeUsedSec }, oldDailyRec);
+          localDaily[dailyBridgeData.dateKey] = { links: newDailyRec.bestLinks, time: newDailyRec.bestTime };
+          localStorage.setItem('cinescore_daily_bridge', JSON.stringify(localDaily));
+
+          setDailyBridgeData(prev => ({
+            ...prev,
+            completedLinks: newDailyRec.bestLinks,
+            completedTime: newDailyRec.bestTime,
+            bestRecord: pickBetterRecord(prev.bestRecord, newDailyRec)
+          }));
+        } catch (e) {}
+      }
+
+      // B) DAHA KISA KÖPRÜ VEYA AYNI KÖPRÜDE DAHA HIZLI SÜRE İSE FIRESTORE'U GÜNCELLE
+      if (isNewBest) {
+        try {
+          await setDoc(doc(db, 'game_records', pairDocId), {
+            bestLinks: linksUsed,
+            bestTime: timeUsedSec,
+            holderUid: user?.uid || 'guest',
+            startTitle: gameStartMovie.title,
+            targetTitle: gameTargetMovie.title,
+            updatedAt: Date.now()
+          }, { merge: true });
+        } catch (e) {}
+      }
+
+      // C) MİNİ OYUN BAŞARIM ROZETLERİ
+      try {
+        const oldBadges = getAllBadges(myRatings, t, safeGlobalMovies).filter(b => b.earned).map(b => b.id);
         const prevStats = JSON.parse(localStorage.getItem('cinescore_gamestats') || '{}');
         const updatedStats = {
           wins: (Number(prevStats.wins) || 0) + 1,
@@ -1710,10 +3323,12 @@ function CineScoreMain() {
     setGameLoading(true);
     try {
       const nextCast = await fetchMovieCastForGame(movie.id);
+      playCineSound('link', soundEnabledRef.current);
       setGameHistoryStack(prev => [...prev, { chain: gameChain, options: gameOptions, stepType: gameStepType }]);
       setGameChain(newChain);
       setGameOptions(nextCast);
       setGameStepType('actor');
+      setBlitzTimeLeft(15);
       resetGameScrollPosition();
     } catch (e) {
       showToast(t.errorOccurred);
@@ -1722,26 +3337,236 @@ function CineScoreMain() {
     }
   };
 
-  // Son Hamleyi Geri Alma (Undo)
   const handleUndoGameStep = () => {
     if (gameHistoryStack.length === 0) return;
+    playCineSound('undo', soundEnabledRef.current);
     const lastState = gameHistoryStack[gameHistoryStack.length - 1];
     setGameChain(lastState.chain);
     setGameOptions(lastState.options);
     setGameStepType(lastState.stepType);
     setGameWon(false);
+    setBlitzFailed(false);
+    setBlitzTimeLeft(15);
     setGameFilterText('');
     setGameHistoryStack(prev => prev.slice(0, -1));
+  };
+
+  const copySineBagChallengeLink = () => {
+    if (!gameStartMovie?.id || !gameTargetMovie?.id) return;
+    const baseUrl = window.location.origin + window.location.pathname;
+    const challengeUrl = `${baseUrl}#/game?start=${gameStartMovie.id}&target=${gameTargetMovie.id}`;
+    navigator.clipboard.writeText(challengeUrl);
+    showToast(t.challengeCopiedToast || 'Meydan okuma linki kopyalandı!');
+  };
+
+  // 6) SÜRE VE KÖPRÜ DETAYLI PRİZMA ZAFER KARTI (PNG) ÜRETİCİSİ
+  const generateSineBagVictoryCard = async () => {
+    if (!gameStartMovie || !gameTargetMovie || gameChain.length < 3) return;
+    setWinCardModal({ show: true, generating: true, imageUrl: null });
+
+    try {
+      const loadImg = (url) => new Promise((resolve) => {
+        if (!url) return resolve(null);
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=600&output=jpg`;
+      });
+
+      const [startImg, targetImg] = await Promise.all([
+        loadImg(gameStartMovie.poster),
+        loadImg(gameTargetMovie.poster)
+      ]);
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080;
+      canvas.height = 1920;
+      const ctx = canvas.getContext('2d');
+
+      // Derin Sinematik Prizma Arka Plan
+      ctx.fillStyle = '#05060B';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Sol Camgöbeği & Sağ Fuşya Işık Huzmeleri
+      const gCyan = ctx.createRadialGradient(220, 440, 20, 220, 440, 680);
+      gCyan.addColorStop(0, 'rgba(6, 182, 212, 0.25)');
+      gCyan.addColorStop(1, 'transparent');
+      ctx.fillStyle = gCyan;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      const gRose = ctx.createRadialGradient(860, 440, 20, 860, 440, 680);
+      gRose.addColorStop(0, 'rgba(236, 72, 153, 0.25)');
+      gRose.addColorStop(1, 'transparent');
+      ctx.fillStyle = gRose;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Dış Çerçeve
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.roundRect(52, 52, 976, 1816, 40);
+      ctx.stroke();
+
+      // Üst Marka ve Etap Başlığı
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '900 24px sans-serif';
+      const headerLabel = isDailyModeActive
+        ? `🎯 ${t.dailyBridgeTitle || 'GÜNÜN KÖPRÜSÜ'} #${dailyBridgeData.dayNum}`
+        : `🎬 ${t.miniGameNav || 'MİNİ OYUN: SİNEBAĞ'}`;
+      ctx.fillText(headerLabel.toUpperCase(), 96, 128);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 40px Montserrat, sans-serif';
+      ctx.fillText('CINESCORE', 984, 132);
+
+      // Başlangıç (Cyan Çerçeve) ve Hedef (Rose Çerçeve) Afişleri
+      if (startImg) {
+        ctx.save();
+        ctx.beginPath(); ctx.roundRect(96, 190, 380, 550, 28); ctx.clip();
+        ctx.drawImage(startImg, 96, 190, 380, 550);
+        ctx.restore();
+        ctx.strokeStyle = '#06b6d4'; ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.roundRect(96, 190, 380, 550, 28); ctx.stroke();
+      }
+      if (targetImg) {
+        ctx.save();
+        ctx.beginPath(); ctx.roundRect(604, 190, 380, 550, 28); ctx.clip();
+        ctx.drawImage(targetImg, 604, 190, 380, 550);
+        ctx.restore();
+        ctx.strokeStyle = '#ec4899'; ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.roundRect(604, 190, 380, 550, 28); ctx.stroke();
+      }
+
+      // Orta Enerji Köprüsü İkonu
+      ctx.fillStyle = '#090D18';
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.arc(540, 465, 54, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 42px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('⇄', 540, 480);
+
+      // Film İsimleri
+      const trimT = (s) => (s && s.length > 21 ? s.substring(0, 20) + '…' : (s || ''));
+      ctx.fillStyle = '#22d3ee';
+      ctx.font = '900 28px sans-serif';
+      ctx.fillText(trimT(gameStartMovie.title), 286, 790);
+      ctx.fillStyle = '#f472b6';
+      ctx.fillText(trimT(gameTargetMovie.title), 794, 790);
+
+      // MERKEZ SKOR & KRONOMETRE SÜRESİ KUTUSU
+      const linksUsed = Math.floor(gameChain.length / 2);
+      const timeUsedSec = Math.max(0.5, Number((gameElapsedDeci / 10).toFixed(1)));
+
+      ctx.fillStyle = '#090D18';
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.roundRect(96, 840, 888, 235, 34); ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = '#34d399';
+      ctx.font = '900 24px sans-serif';
+      const rankTitle = linksUsed <= 2 ? t.winRank1 : linksUsed <= 4 ? t.winRank2 : t.winRank3;
+      ctx.fillText(`🏆 ${rankTitle}`, 540, 892);
+
+      // Köprü Sayısı ve Kronometre Süresi Yan Yana
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 70px Montserrat, sans-serif';
+      ctx.fillText(`${linksUsed} ${(t.linksCount || 'BAĞLANTI').toUpperCase()}  •  ⏱ ${timeUsedSec.toFixed(1)}${unitSec}`, 540, 982);
+
+      if (recordBannerStatus === 'new' || recordBannerStatus === 'faster') {
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '900 24px sans-serif';
+        ctx.fillText(recordBannerStatus === 'faster' ? (t.fasterRecordBanner || '⚡ YENİ SÜRE REKORU!') : (t.newRecordBanner || '🔥 YENİ TOPLULUK REKORU!'), 540, 1042);
+      }
+
+      // SPOILER KORUMALI ROTA ŞEMASI
+      const totalNodes = gameChain.length;
+      const boxY = 1120;
+      ctx.fillStyle = '#090D18';
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(96, boxY, 888, 360, 32); ctx.fill(); ctx.stroke();
+
+      const stepsToShow = [
+        { code: '01', type: t.chainStartBadge || 'BAŞLANGIÇ', label: trimT(gameStartMovie.title), accent: '#06b6d4' },
+        { code: '🔒', type: `${totalNodes - 2} ${t.hiddenStepLabel || 'GİZLİ ADIM'}`, label: 'SPOILER KORUMALI ROTA [ ? ]', accent: '#a855f7' },
+        { code: String(totalNodes).padStart(2, '0'), type: t.targetPointBadge || 'HEDEF FİLM', label: trimT(gameTargetMovie.title), accent: '#ec4899' }
+      ];
+
+      stepsToShow.forEach((st, idx) => {
+        const rowY = boxY + 34 + idx * 102;
+        ctx.fillStyle = '#05060B';
+        ctx.strokeStyle = st.accent;
+        ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.roundRect(130, rowY, 820, 78, 20); ctx.fill(); ctx.stroke();
+
+        ctx.fillStyle = st.accent;
+        ctx.beginPath(); ctx.roundRect(130, rowY, 92, 78, 20); ctx.fill();
+        ctx.fillStyle = '#05060B';
+        ctx.textAlign = 'center';
+        ctx.font = '900 26px sans-serif';
+        ctx.fillText(st.code, 176, rowY + 48);
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = st.accent;
+        ctx.font = '900 18px sans-serif';
+        ctx.fillText(st.type.toUpperCase(), 248, rowY + 30);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 25px sans-serif';
+        ctx.fillText(st.label.toUpperCase(), 248, rowY + 58);
+      });
+
+      // Kullanıcı İmzası (Story Kartında Görünür)
+      const uCode = userProfile?.userCode || user?.uid?.substring(0, 6).toUpperCase() || 'OYUNCU';
+      const uName = userProfile?.displayName || 'Sinefil';
+
+      ctx.fillStyle = '#090D18';
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.roundRect(96, 1530, 888, 130, 28); ctx.fill(); ctx.stroke();
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = 'bold 20px sans-serif';
+      ctx.fillText((t.criticLabel || 'OYUNCU').toUpperCase(), 136, 1575);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 36px sans-serif';
+      ctx.fillText(uName, 136, 1626);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '900 34px monospace';
+      ctx.fillText(`@${uCode}`, 944, 1615);
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 28px sans-serif';
+      ctx.fillText(t.winCardChallengeText || 'SEN DAHA KISA SÜREDE BAĞLAYABİLİR MİSİN?', 540, 1745);
+      ctx.fillStyle = '#64748b';
+      ctx.font = 'bold 22px sans-serif';
+      ctx.fillText('cinescore.com.tr', 540, 1805);
+
+      setWinCardModal({ show: true, generating: false, imageUrl: canvas.toDataURL('image/png') });
+    } catch (e) {
+      setWinCardModal({ show: false, generating: false, imageUrl: null });
+      showToast(t.errorOccurred);
+    }
   };
 
   // 3 POPÜLER OYUN ROTASI VE RASTGELE 2 FİLM SEÇME FONKSİYONU
   const loadPresetOrRandomPair = async (type = 'random') => {
     setGameLoading(true);
+    setIsDailyModeActive(false);
     try {
       const presetPairs = {
-        classic: [11324, 22],   // 1. Zindan Adası ➔ Karayip Korsanları
-        popular2: [27205, 120], // 2. Başlangıç (Inception) ➔ Yüzüklerin Efendisi
-        popular3: [680, 155]    // 3. Ucuz Roman (Pulp Fiction) ➔ Kara Şövalye (The Dark Knight)
+        classic: [11324, 22],
+        popular2: [27205, 120],
+        popular3: [680, 155]
       };
 
       if (presetPairs[type]) {
@@ -1779,7 +3604,7 @@ function CineScoreMain() {
           });
         }
       }
-    } catch (e) {
+} catch (e) {
       showToast(t.errorOccurred);
     } finally {
       setGameLoading(false);
@@ -1788,7 +3613,6 @@ function CineScoreMain() {
 
   const [listToDelete, setListToDelete] = useState(null);
   const [listPosterModal, setListPosterModal] = useState({ show: false, generating: false, imageUrl: null, listName: '' });
-
   // ÖZEL LİSTE SİLME VE FİLM ÇIKARMA FONKSİYONLARI
   const confirmDeleteCustomList = async () => {
     if (!user || !listToDelete) return;
@@ -1944,7 +3768,7 @@ function CineScoreMain() {
     }
   };
 
-  // 3) 5 FARKLI TASARIMDA & SEÇİLEN DİLE DUYARLI 9:16 STORY KARTI ÜRETİCİ
+// 3) 5 FARKLI TASARIMDA & YENİ PUAN RENK SPEKTRUMLU 9:16 STORY KARTI ÜRETİCİ
   const generateStoryCard = async () => {
     if (!selectedMovie) return;
     const myRatingObj = myRatings.find(r => String(r.id) === String(selectedMovie.id));
@@ -1961,12 +3785,13 @@ function CineScoreMain() {
       });
 
       const posterImg = await loadPoster(selectedMovie.poster);
-      const scoreVal = Number(myRatingObj.finalScore).toFixed(2);
-      const scoreHex = getScoreColorHex(myRatingObj.finalScore);
+      const numericFinal = Number(myRatingObj.finalScore) || 0;
+      const scoreVal = numericFinal.toFixed(2);
+      const scoreHex = getScoreColorHex(numericFinal);
+      const isNeonScore = numericFinal >= 9.0;
       const uCode = userProfile?.userCode || user?.uid?.substring(0, 6).toUpperCase() || 'USER';
       const uName = userProfile?.displayName || 'Sinefil';
 
-      // SEÇİLEN DİLE GÖRE DİNAMİK METİNLER
       const rawTitle = localizedData?.[selectedMovie.id]?.title || selectedMovie.title || '';
       const titleText = rawTitle.length > 25 ? rawTitle.substring(0, 25) + '…' : rawTitle;
       const criticSignature = `${t.criticLabel || 'Eleştirmen'}: ${uName} / @${uCode}`;
@@ -1981,29 +3806,28 @@ function CineScoreMain() {
         ctx.fillStyle = '#03050B'; ctx.fillRect(0, 0, 1080, 1920);
 
         const gradTop = ctx.createRadialGradient(540, 420, 40, 540, 420, 760);
-        gradTop.addColorStop(0, themeColor + '55'); gradTop.addColorStop(1, 'transparent');
+        gradTop.addColorStop(0, scoreHex + '44'); gradTop.addColorStop(1, 'transparent');
         ctx.fillStyle = gradTop; ctx.fillRect(0, 0, 1080, 1920);
 
         const gradBot = ctx.createRadialGradient(540, 1380, 40, 540, 1380, 720);
         gradBot.addColorStop(0, scoreHex + '38'); gradBot.addColorStop(1, 'transparent');
         ctx.fillStyle = gradBot; ctx.fillRect(0, 0, 1080, 1920);
 
-        // Üst Bar
         ctx.font = '900 54px Montserrat, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left';
         ctx.fillText('CINE', 80, 120);
         const cineW = ctx.measureText('CINE').width;
-        ctx.fillStyle = themeColor; ctx.fillText('SCORE', 80 + cineW, 120);
+        ctx.fillStyle = scoreHex; ctx.fillText('SCORE', 80 + cineW, 120);
 
-        ctx.font = '900 28px sans-serif'; ctx.fillStyle = themeColor; ctx.textAlign = 'right';
+        ctx.font = '900 28px sans-serif'; ctx.fillStyle = scoreHex; ctx.textAlign = 'right';
         ctx.fillText(`@${uCode}`, 1000, 115);
 
         if (posterImg) {
           ctx.save();
-          ctx.shadowColor = themeColor; ctx.shadowBlur = 50;
+          ctx.shadowColor = scoreHex; ctx.shadowBlur = isNeonScore ? 65 : 45;
           ctx.beginPath(); ctx.roundRect(310, 165, 460, 670, 40); ctx.clip();
           ctx.drawImage(posterImg, 310, 165, 460, 670);
           ctx.restore();
-          ctx.strokeStyle = themeColor; ctx.lineWidth = 5;
+          ctx.strokeStyle = scoreHex; ctx.lineWidth = 5;
           ctx.beginPath(); ctx.roundRect(310, 165, 460, 670, 40); ctx.stroke();
         }
 
@@ -2012,15 +3836,20 @@ function CineScoreMain() {
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 28px sans-serif';
         ctx.fillText(`${selectedMovie.year} • ${dirLabel}: ${selectedMovie.director}`, 540, 965);
 
-        // Orta Puan Rozeti
+        ctx.save();
+        if (isNeonScore) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 35; }
         ctx.fillStyle = '#080c17'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 8;
         ctx.beginPath(); ctx.roundRect(350, 1005, 380, 175, 45); ctx.fill(); ctx.stroke();
+        ctx.restore();
+
         ctx.fillStyle = '#94a3b8'; ctx.font = '900 22px sans-serif';
         ctx.fillText(scoreTitleLabel, 540, 1048);
+        ctx.save();
+        if (isNeonScore) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 25; }
         ctx.fillStyle = scoreHex; ctx.font = '900 88px sans-serif';
         ctx.fillText(scoreVal, 540, 1148);
+        ctx.restore();
 
-        // 5 Kriter Barı
         criteriaData.forEach((c, idx) => {
           const y = 1255 + idx * 96;
           const val = Number(myRatingObj.scores?.[c.id] ?? 5);
@@ -2028,11 +3857,13 @@ function CineScoreMain() {
           ctx.textAlign = 'left'; ctx.fillStyle = '#f1f5f9'; ctx.font = 'bold 30px sans-serif'; ctx.fillText(c.name, 100, y);
           ctx.textAlign = 'right'; ctx.fillStyle = cHex; ctx.font = '900 34px sans-serif'; ctx.fillText(val.toFixed(1), 980, y);
           ctx.fillStyle = '#0f172a'; ctx.beginPath(); ctx.roundRect(100, y + 16, 880, 24, 12); ctx.fill();
+          ctx.save();
+          if (val >= 9.0) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 18; }
           ctx.fillStyle = cHex; ctx.beginPath(); ctx.roundRect(100, y + 16, Math.max(24, (val / 10) * 880), 24, 12); ctx.fill();
+          ctx.restore();
         });
 
-        // Alt Eleştirmen İmza Rozeti
-        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = themeColor + '88'; ctx.lineWidth = 3;
+        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = scoreHex + '88'; ctx.lineWidth = 3;
         ctx.beginPath(); ctx.roundRect(100, 1755, 880, 95, 28); ctx.fill(); ctx.stroke();
         ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 30px sans-serif';
         ctx.fillText(criticSignature, 540, 1813);
@@ -2053,17 +3884,19 @@ function CineScoreMain() {
         darkGrad.addColorStop(1, '#030408');
         ctx.fillStyle = darkGrad; ctx.fillRect(0, 0, 1080, 1450);
 
-        // Üst Cam Bar
-        ctx.fillStyle = 'rgba(4,6,12,0.82)'; ctx.strokeStyle = themeColor + '66'; ctx.lineWidth = 3;
+        ctx.fillStyle = 'rgba(4,6,12,0.82)'; ctx.strokeStyle = scoreHex + '66'; ctx.lineWidth = 3;
         ctx.beginPath(); ctx.roundRect(65, 65, 950, 95, 48); ctx.fill(); ctx.stroke();
         ctx.font = '900 42px Montserrat, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left';
         ctx.fillText('CINESCORE', 115, 127);
-        ctx.font = '900 26px sans-serif'; ctx.fillStyle = themeColor; ctx.textAlign = 'right';
+        ctx.font = '900 26px sans-serif'; ctx.fillStyle = scoreHex; ctx.textAlign = 'right';
         ctx.fillText(`@${uCode}`, 965, 124);
 
-        // Yuvarlak Dev Puan
+        ctx.save();
+        if (isNeonScore) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 40; }
         ctx.fillStyle = '#04060C'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 14;
         ctx.beginPath(); ctx.arc(540, 940, 155, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.restore();
+
         ctx.fillStyle = '#94a3b8'; ctx.textAlign = 'center'; ctx.font = '900 22px sans-serif';
         ctx.fillText(scoreTitleLabel, 540, 875);
         ctx.fillStyle = scoreHex; ctx.font = '900 98px sans-serif';
@@ -2074,7 +3907,6 @@ function CineScoreMain() {
         ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 30px sans-serif';
         ctx.fillText(`${selectedMovie.year} • ${dirLabel}: ${selectedMovie.director}`, 540, 1240);
 
-        // 5 Dikey Kriter Sütunu
         criteriaData.forEach((c, idx) => {
           const val = Number(myRatingObj.scores?.[c.id] ?? 5);
           const cHex = getScoreColorHex(val);
@@ -2089,7 +3921,6 @@ function CineScoreMain() {
           ctx.fillText(shortCrit.toUpperCase(), bx + 88, by + 185);
         });
 
-        // Alt Eleştirmen İmza Barı
         ctx.fillStyle = '#090d16'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 3;
         ctx.beginPath(); ctx.roundRect(68, 1625, 944, 110, 32); ctx.fill(); ctx.stroke();
         ctx.fillStyle = '#ffffff'; ctx.font = '900 32px sans-serif'; ctx.textAlign = 'center';
@@ -2099,22 +3930,21 @@ function CineScoreMain() {
         return canvas.toDataURL('image/png');
       };
 
-      // --- TASARIM 3: KLASİK ALTIN BİLET (PERFORE OYUKLU) ---
+      // --- TASARIM 3: KLASİK BİLET (YENİ RENK SPEKTRUMUYLA TAM UYUMLU) ---
       const makeTicket = () => {
         const canvas = document.createElement('canvas');
         canvas.width = 1080; canvas.height = 1920;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#090705'; ctx.fillRect(0, 0, 1080, 1920);
+        ctx.fillStyle = '#07080c'; ctx.fillRect(0, 0, 1080, 1920);
 
-        ctx.fillStyle = '#14100a'; ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 6;
+        ctx.fillStyle = '#0d1017'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 6;
         ctx.beginPath(); ctx.roundRect(65, 65, 950, 1790, 40); ctx.fill(); ctx.stroke();
 
-        // Bilet Yan Oyukları
-        ctx.fillStyle = '#090705';
+        ctx.fillStyle = '#07080c';
         ctx.beginPath(); ctx.arc(65, 1125, 36, 0, Math.PI * 2); ctx.fill();
         ctx.beginPath(); ctx.arc(1015, 1125, 36, 0, Math.PI * 2); ctx.fill();
 
-        ctx.textAlign = 'center'; ctx.fillStyle = '#f59e0b'; ctx.font = '900 26px sans-serif';
+        ctx.textAlign = 'center'; ctx.fillStyle = scoreHex; ctx.font = '900 26px sans-serif';
         ctx.fillText(t.ticketHeader || '★ OFFICIAL CRITIC ARCHIVE TICKET ★', 540, 135);
         ctx.fillStyle = '#ffffff'; ctx.font = '900 66px Montserrat, sans-serif';
         ctx.fillText('CINESCORE', 540, 212);
@@ -2124,58 +3954,60 @@ function CineScoreMain() {
           ctx.beginPath(); ctx.roundRect(135, 255, 810, 670, 28); ctx.clip();
           ctx.drawImage(posterImg, 135, 170, 810, 950);
           ctx.restore();
-          ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 4;
+          ctx.strokeStyle = scoreHex; ctx.lineWidth = 4;
           ctx.beginPath(); ctx.roundRect(135, 255, 810, 670, 28); ctx.stroke();
         }
 
         ctx.fillStyle = '#ffffff'; ctx.font = '900 48px sans-serif';
         ctx.fillText(titleText.toUpperCase(), 540, 1005);
-        ctx.fillStyle = '#fbbf24'; ctx.font = 'bold 28px sans-serif';
+        ctx.fillStyle = scoreHex; ctx.font = 'bold 28px sans-serif';
         ctx.fillText(`${dirLabel}: ${selectedMovie.director.toUpperCase()} (${selectedMovie.year})`, 540, 1058);
 
-        ctx.setLineDash([18, 14]); ctx.strokeStyle = '#b45309'; ctx.lineWidth = 4;
+        ctx.setLineDash([18, 14]); ctx.strokeStyle = '#334155'; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.moveTo(115, 1125); ctx.lineTo(965, 1125); ctx.stroke();
         ctx.setLineDash([]);
 
         criteriaData.forEach((c, idx) => {
           const y = 1210 + idx * 92;
           const val = Number(myRatingObj.scores?.[c.id] ?? 5);
-          ctx.textAlign = 'left'; ctx.fillStyle = '#e7e5e4'; ctx.font = 'bold 28px sans-serif';
+          const cHex = getScoreColorHex(val);
+          ctx.textAlign = 'left'; ctx.fillStyle = '#e2e8f0'; ctx.font = 'bold 28px sans-serif';
           ctx.fillText(c.name.toUpperCase(), 125, y);
-          ctx.textAlign = 'right'; ctx.fillStyle = '#fbbf24'; ctx.font = '900 34px sans-serif';
+          ctx.textAlign = 'right'; ctx.fillStyle = cHex; ctx.font = '900 34px sans-serif';
           ctx.fillText(`${val.toFixed(1)} / 10`, 615, y);
         });
 
-        ctx.fillStyle = '#f59e0b';
+        ctx.save();
+        if (isNeonScore) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 35; }
+        ctx.fillStyle = scoreHex;
         ctx.beginPath(); ctx.roundRect(660, 1175, 285, 395, 32); ctx.fill();
-        ctx.fillStyle = '#090705'; ctx.textAlign = 'center'; ctx.font = '900 24px sans-serif';
+        ctx.restore();
+
+        ctx.fillStyle = '#04060C'; ctx.textAlign = 'center'; ctx.font = '900 24px sans-serif';
         ctx.fillText(scoreTitleLabel, 802, 1255);
         ctx.font = '900 92px sans-serif';
         ctx.fillText(scoreVal, 802, 1395);
         ctx.font = '900 26px sans-serif';
         ctx.fillText(`@${uCode}`, 802, 1500);
 
-        // Alt Eleştirmen İmzası
-        ctx.fillStyle = '#fbbf24'; ctx.font = '900 30px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffffff'; ctx.font = '900 30px sans-serif'; ctx.textAlign = 'center';
         ctx.fillText(criticSignature, 540, 1735);
-        ctx.fillStyle = '#78716c'; ctx.font = 'bold 24px sans-serif';
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 24px sans-serif';
         ctx.fillText('CINESCORE.COM.TR', 540, 1795);
         return canvas.toDataURL('image/png');
       };
 
-      // --- TASARIM 4: EDİTORYAL DERGİ KAPAĞI (CRITERION / EMPIRE STİLİ) ---
+      // --- TASARIM 4: EDİTORYAL DERGİ KAPAĞI ---
       const makeMagazine = () => {
         const canvas = document.createElement('canvas');
         canvas.width = 1080; canvas.height = 1920;
         const ctx = canvas.getContext('2d');
         ctx.fillStyle = '#0c0f17'; ctx.fillRect(0, 0, 1080, 1920);
 
-        // İç Dergi Çerçevesi
         ctx.strokeStyle = '#334155'; ctx.lineWidth = 4;
         ctx.strokeRect(55, 55, 970, 1810);
 
-        // Üst Dergi Başlığı (Masthead)
-        ctx.fillStyle = themeColor;
+        ctx.fillStyle = scoreHex;
         ctx.fillRect(95, 95, 890, 52);
         ctx.fillStyle = '#04060C'; ctx.font = '900 26px sans-serif'; ctx.textAlign = 'center';
         ctx.fillText(`${t.magazineHeader || 'SPECIAL CRITIC ISSUE'} • #${selectedMovie.year}`, 540, 130);
@@ -2183,19 +4015,21 @@ function CineScoreMain() {
         ctx.fillStyle = '#ffffff'; ctx.font = '900 108px Montserrat, sans-serif';
         ctx.fillText('CINESCORE', 540, 265);
 
-        // Sol Afiş & Sağ Dev Tipografik Puan
         if (posterImg) {
           ctx.save();
           ctx.beginPath(); ctx.roundRect(95, 315, 540, 790, 24); ctx.clip();
           ctx.drawImage(posterImg, 95, 315, 540, 790);
           ctx.restore();
-          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 4;
+          ctx.strokeStyle = scoreHex; ctx.lineWidth = 4;
           ctx.beginPath(); ctx.roundRect(95, 315, 540, 790, 24); ctx.stroke();
         }
 
-        // Sağ Sütun: Puan ve Kriter Özeti
+        ctx.save();
+        if (isNeonScore) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 35; }
         ctx.fillStyle = '#111827'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 6;
         ctx.beginPath(); ctx.roundRect(665, 315, 320, 320, 28); ctx.fill(); ctx.stroke();
+        ctx.restore();
+
         ctx.fillStyle = '#94a3b8'; ctx.font = '900 22px sans-serif'; ctx.textAlign = 'center';
         ctx.fillText(scoreTitleLabel, 825, 385);
         ctx.fillStyle = scoreHex; ctx.font = '900 104px sans-serif';
@@ -2203,7 +4037,6 @@ function CineScoreMain() {
         ctx.fillStyle = '#ffffff'; ctx.font = 'bold 26px sans-serif';
         ctx.fillText('/ 10', 825, 585);
 
-        // Sağ Sütun Altı: 5 Kriter Listesi
         criteriaData.forEach((c, idx) => {
           const y = 685 + idx * 86;
           const val = Number(myRatingObj.scores?.[c.id] ?? 5);
@@ -2217,16 +4050,14 @@ function CineScoreMain() {
           ctx.fillText(val.toFixed(1), 962, y + 46);
         });
 
-        // Film Başlığı ve Yönetmen (Editoryal Blok)
         ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = '900 62px sans-serif';
         ctx.fillText(titleText.toUpperCase(), 95, 1215);
-        ctx.fillStyle = themeColor; ctx.font = '900 32px sans-serif';
+        ctx.fillStyle = scoreHex; ctx.font = '900 32px sans-serif';
         ctx.fillText(`${dirLabel}: ${selectedMovie.director.toUpperCase()} (${selectedMovie.year})`, 95, 1275);
 
         ctx.fillStyle = '#1e293b'; ctx.fillRect(95, 1325, 890, 4);
 
-        // Alt Eleştirmen Künyesi
-        ctx.fillStyle = '#111827'; ctx.strokeStyle = themeColor; ctx.lineWidth = 4;
+        ctx.fillStyle = '#111827'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.roundRect(95, 1380, 890, 145, 28); ctx.fill(); ctx.stroke();
         ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 36px sans-serif';
         ctx.fillText(criticSignature, 540, 1468);
@@ -2244,20 +4075,18 @@ function CineScoreMain() {
         ctx.fillStyle = '#020409'; ctx.fillRect(0, 0, 1080, 1920);
 
         const g1 = ctx.createRadialGradient(200, 300, 20, 200, 300, 650);
-        g1.addColorStop(0, themeColor + '45'); g1.addColorStop(1, 'transparent');
+        g1.addColorStop(0, scoreHex + '40'); g1.addColorStop(1, 'transparent');
         ctx.fillStyle = g1; ctx.fillRect(0, 0, 1080, 1920);
 
         const g2 = ctx.createRadialGradient(880, 1250, 20, 880, 1250, 650);
-        g2.addColorStop(0, '#a855f745'); g2.addColorStop(1, 'transparent');
+        g2.addColorStop(0, scoreHex + '35'); g2.addColorStop(1, 'transparent');
         ctx.fillStyle = g2; ctx.fillRect(0, 0, 1080, 1920);
 
-        // Üst Başlık
         ctx.font = '900 50px Montserrat, sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left';
         ctx.fillText('CINESCORE', 80, 120);
-        ctx.font = '900 26px sans-serif'; ctx.fillStyle = themeColor; ctx.textAlign = 'right';
+        ctx.font = '900 26px sans-serif'; ctx.fillStyle = scoreHex; ctx.textAlign = 'right';
         ctx.fillText(t.radarHeader || 'CRITICAL RADAR ANALYSIS', 1000, 115);
 
-        // Üst Film Kartı (Yatay Elit Panel)
         ctx.fillStyle = '#090e1a'; ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.roundRect(80, 165, 920, 480, 36); ctx.fill(); ctx.stroke();
 
@@ -2274,14 +4103,17 @@ function CineScoreMain() {
         ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 26px sans-serif';
         ctx.fillText(`${selectedMovie.year} • ${selectedMovie.director}`, 430, 325);
 
+        ctx.save();
+        if (isNeonScore) { ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 30; }
         ctx.fillStyle = '#04060C'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 6;
         ctx.beginPath(); ctx.roundRect(430, 375, 520, 210, 28); ctx.fill(); ctx.stroke();
+        ctx.restore();
+
         ctx.textAlign = 'center'; ctx.fillStyle = '#94a3b8'; ctx.font = '900 22px sans-serif';
         ctx.fillText(scoreTitleLabel, 690, 425);
         ctx.fillStyle = scoreHex; ctx.font = '900 96px sans-serif';
         ctx.fillText(scoreVal, 690, 535);
 
-        // Orta: Beşgen Radar Çizimi
         const cx = 540, cy = 1110, maxR = 290;
         [0.25, 0.5, 0.75, 1].forEach(level => {
           ctx.beginPath();
@@ -2295,7 +4127,6 @@ function CineScoreMain() {
           ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 3; ctx.stroke();
         });
 
-        // Kriter Eksenleri ve Etiketleri
         criteriaData.forEach((c, i) => {
           const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
           const x = cx + maxR * Math.cos(angle);
@@ -2312,7 +4143,6 @@ function CineScoreMain() {
           ctx.fillText(val.toFixed(1), lx, ly + 28);
         });
 
-        // Kullanıcının Puan Poligonu
         ctx.beginPath();
         criteriaData.forEach((c, i) => {
           const val = Number(myRatingObj.scores?.[c.id] ?? 5);
@@ -2323,11 +4153,10 @@ function CineScoreMain() {
           if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
         });
         ctx.closePath();
-        ctx.fillStyle = themeColor + '44'; ctx.fill();
-        ctx.strokeStyle = themeColor; ctx.lineWidth = 6; ctx.stroke();
+        ctx.fillStyle = scoreHex + '44'; ctx.fill();
+        ctx.strokeStyle = scoreHex; ctx.lineWidth = 6; ctx.stroke();
 
-        // Alt Eleştirmen İmza Kutusu
-        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = themeColor; ctx.lineWidth = 4;
+        ctx.fillStyle = '#090e1a'; ctx.strokeStyle = scoreHex; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.roundRect(80, 1630, 920, 115, 32); ctx.fill(); ctx.stroke();
         ctx.textAlign = 'center'; ctx.fillStyle = '#ffffff'; ctx.font = '900 34px sans-serif';
         ctx.fillText(criticSignature, 540, 1700);
@@ -2355,14 +4184,13 @@ function CineScoreMain() {
   const profileMenuRef = useRef(null);
   const notifMenuRef = useRef(null);
 
-  const getCriteriaData = () => [
+  const criteriaData = useMemo(() => [
     { id: 'c1', name: t.c1, weight: 30, desc: t.c1Desc },
     { id: 'c2', name: t.c2, weight: 25, desc: t.c2Desc },
     { id: 'c3', name: t.c3, weight: 20, desc: t.c3Desc },
     { id: 'c4', name: t.c4, weight: 15, desc: t.c4Desc },
     { id: 'c5', name: t.c5, weight: 10, desc: t.c5Desc },
-  ];
-  const criteriaData = getCriteriaData();
+  ], [lang]);
   const [scores, setScores] = useState(criteriaData.reduce((acc, c) => ({ ...acc, [c.id]: 5 }), {}));
 
   // GLOBAL AURA TEMA RENGİ HESAPLAMA
@@ -2732,6 +4560,66 @@ function CineScoreMain() {
     } catch(e) { showToast(t.errorOccurred); }
   };
 
+  // YENİ: CİHAZDAN PROFİL FOTOĞRAFI VE BANNER YÜKLEME (MAKS 2MB + OTOMATİK SIKIŞTIRMA)
+  const handleCustomImageUpload = (e, targetType = 'avatar') => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // 2 MB Boyut Sınırı Kontrolü
+    const MAX_BYTES = 2 * 1024 * 1024;
+    if (file.size > MAX_BYTES) {
+      showToast(t.fileSizeLimitError || 'Dosya boyutu maksimum 2 MB olmalıdır!');
+      e.target.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const maxW = targetType === 'avatar' ? 260 : 960;
+        const maxH = targetType === 'avatar' ? 260 : 360;
+
+        let width = img.width;
+        let height = img.height;
+
+        if (targetType === 'avatar') {
+          // Avatar için kare merkez kırpma
+          const size = Math.min(width, height);
+          const sx = (width - size) / 2;
+          const sy = (height - size) / 2;
+          canvas.width = maxW;
+          canvas.height = maxH;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, sx, sy, size, size, 0, 0, maxW, maxH);
+        } else {
+          // Banner için 16:6 oranında ölçekleme
+          const ratio = Math.max(maxW / width, maxH / height);
+          const sw = maxW / ratio;
+          const sh = maxH / ratio;
+          const sx = (width - sw) / 2;
+          const sy = (height - sh) / 2;
+          canvas.width = maxW;
+          canvas.height = maxH;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, sx, sy, sw, sh, 0, 0, maxW, maxH);
+        }
+
+        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        if (targetType === 'avatar') {
+          setEditAvatar(compressedDataUrl);
+        } else {
+          setEditBanner(compressedDataUrl);
+        }
+        showToast(t.imageUploadSuccess || 'Görsel başarıyla yüklendi!');
+      };
+      img.src = ev.target?.result;
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
   const openProfileEdit = () => {
     setEditName(userProfile?.displayName || '');
     setEditAvatar(userProfile?.avatar || AVATAR_DEFAULT);
@@ -3035,7 +4923,7 @@ function CineScoreMain() {
             categoryTotals: newCatTotals
           });
         }
-        trans.set(userRatingRef, { id: docId, title: selectedMovie.title, poster: selectedMovie.poster, scores: scores, finalScore: newFinalScore, date: Date.now(), genre: selectedMovie.genre, year: selectedMovie.year });
+        trans.set(userRatingRef, { id: docId, title: selectedMovie.title, poster: selectedMovie.poster, scores: scores, finalScore: newFinalScore, date: Date.now(), genre: selectedMovie.genre, year: selectedMovie.year, director: selectedMovie.director || '', directorId: selectedMovie.directorId || null });
       });
 
       // YENİ: ROZET KAZANIM KONTROLÜ VE BİLDİRİM GÖNDERİMİ
@@ -3234,36 +5122,35 @@ function CineScoreMain() {
       return { title, desc };
   };
 
-  const userDNA = calculateDNA(sortedMyRatings);
-  const { title: zodiacTitle, desc: zodiacDesc } = getZodiac(userDNA, sortedMyRatings.length);
+  const userDNA = useMemo(() => calculateDNA(sortedMyRatings), [sortedMyRatings, safeGlobalMovies, criteriaData]);
+  const { title: zodiacTitle, desc: zodiacDesc } = useMemo(() => getZodiac(userDNA, sortedMyRatings.length), [userDNA, sortedMyRatings.length, lang]);
 
-  const getTasteMatch = () => {
-    if (!myRatings.length || !viewingUserRatings.length) return null;
+  const tasteMatchScore = useMemo(() => {
+    if (!viewingUser || !myRatings.length || !viewingUserRatings.length) return null;
+    const theirMap = new Map(viewingUserRatings.map(tr => [String(tr.id), Number(tr.finalScore) || 0]));
     let commonCount = 0;
     let totalMatch = 0;
-    myRatings.forEach(myR => {
-       const theirR = viewingUserRatings.find(tr => tr.id === myR.id);
-       if (theirR) {
-          commonCount++;
-          const diff = Math.abs((myR.finalScore || 0) - (theirR.finalScore || 0));
-          const matchPercent = 100 - ((diff / 9) * 100);
-          totalMatch += matchPercent;
-        }
-    });
-    if (commonCount === 0) return null;
-    return Math.round(totalMatch / commonCount);
-  };
-  const tasteMatchScore = viewingUser ? getTasteMatch() : null;
+    for (let i = 0; i < myRatings.length; i++) {
+      const myR = myRatings[i];
+      const theirScore = theirMap.get(String(myR.id));
+      if (theirScore !== undefined) {
+        commonCount++;
+        const diff = Math.abs((Number(myR.finalScore) || 0) - theirScore);
+        totalMatch += 100 - ((diff / 9) * 100);
+      }
+    }
+    return commonCount === 0 ? null : Math.round(totalMatch / commonCount);
+  }, [viewingUser, myRatings, viewingUserRatings]);
 
   const getTopGenres = (ratingsList) => {
-      const counts = {};
-      ratingsList.forEach(m => {
-        if(m.genre) m.genre.split(', ').forEach(g => { counts[g] = (counts[g] || 0) + 1; });
-      });
-      return Object.entries(counts).sort((a,b) => b[1] - a[1]).slice(0, 3);
+    const counts = {};
+    ratingsList.forEach(m => {
+      if (m.genre) m.genre.split(', ').forEach(g => { counts[g] = (counts[g] || 0) + 1; });
+    });
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3);
   };
-  const topGenres = getTopGenres(sortedMyRatings);
-  const topGenresViewing = getTopGenres(sortedViewingUserRatings);
+  const topGenres = useMemo(() => getTopGenres(sortedMyRatings), [sortedMyRatings]);
+  const topGenresViewing = useMemo(() => getTopGenres(sortedViewingUserRatings), [sortedViewingUserRatings]);
 
   const featuredMovies = trendingData.slice(0, 5);
   const currentFeatured = featuredMovies[heroIndex] || null;
@@ -3308,6 +5195,8 @@ function CineScoreMain() {
          } else if (hashPath.startsWith('/user/')) {
             const uid = hashPath.split('/')[2];
             if (uid) loadPublicProfile(uid);
+         } else if (hashPath.startsWith('/game')) {
+            setActiveTab('game');
          } else { setActiveTab('home'); }
      };
 
@@ -3398,54 +5287,154 @@ function CineScoreMain() {
       )}
 
       {showProfileModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in overflow-y-auto pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
-          <div className="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-[2rem] p-8 relative shadow-2xl my-8">
-            <button onClick={() => setShowProfileModal(false)} className="absolute top-6 right-6 text-slate-500 hover:text-white"><X/></button>
-            <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3"><Settings className="text-theme"/> {t.editProfile}</h3>
-            <form onSubmit={handleUpdateProfile} className="space-y-6">
-               <div>
-                  <label className="text-xs text-slate-400 font-black uppercase mb-2 block tracking-wider">{t.username}</label>
-                  <input type="text" value={editName} onChange={e=>setEditName(e.target.value)} autoComplete="name" className="w-full bg-[#04060C] border border-slate-800 p-4 rounded-xl text-white outline-none focus:border-theme shadow-inner font-bold transition-colors"/>
-               </div>
-               <div>
-                  <label className="text-xs text-slate-400 font-black uppercase mb-2 block tracking-wider">{t.bioLabel}</label>
-                  <input type="text" value={editBio} onChange={e=>setEditBio(e.target.value)} placeholder={t.bioPlaceholder} maxLength={60} className="w-full bg-[#04060C] border border-slate-800 p-4 rounded-xl text-white outline-none focus:border-theme shadow-inner font-bold transition-colors italic"/>
-               </div>
-               <div>
-                  <label className="text-xs text-slate-400 font-black uppercase mb-3 block tracking-wider">{t.auraColor}</label>
-                  <div className="flex flex-wrap gap-3 mb-3">
-                    {AURA_COLORS.map(color => (
-                       <button type="button" key={color} onClick={() => setEditAura(color)} className={`w-10 h-10 rounded-full border-[3px] transition-transform ${editAura === color ? 'scale-110' : 'scale-90 border-transparent opacity-50'}`} style={{backgroundColor: color, borderColor: editAura === color ? 'white' : 'transparent'}}></button>
-                    ))}
+        <div className="fixed inset-0 z-[220] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in">
+          <div className="bg-slate-900 border border-slate-700/90 w-full max-w-lg rounded-[2rem] shadow-[0_25px_70px_rgba(0,0,0,0.95)] flex flex-col max-h-[88vh] overflow-hidden">
+            
+            {/* SABİT ÜST BAR (Çarpı Butonu Her Zaman Net Görünür) */}
+            <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-800 bg-[#04060C]/90 shrink-0">
+              <h3 className="text-lg sm:text-xl font-black text-white flex items-center gap-2.5">
+                <Settings size={20} style={{ color: editAura || themeColor }}/> {t.editProfile}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowProfileModal(false)}
+                className="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition-colors"
+              >
+                <X size={18}/>
+              </button>
+            </div>
+
+            {/* KAYDIRILABİLİR İÇERİK ALANI */}
+            <form onSubmit={handleUpdateProfile} className="p-5 sm:p-6 space-y-5 overflow-y-auto flex-1">
+              
+              {/* CANLI MİNİ PROFİL ÖNİZLEMESİ */}
+              <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-[#04060C]">
+                <div className="h-24 sm:h-28 w-full relative">
+                  <img src={editBanner || BANNER_PRESETS[0]} className="w-full h-full object-cover opacity-80" alt="Banner Preview"/>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/40 to-transparent"></div>
+                </div>
+                <div className="px-4 pb-3.5 -mt-10 relative flex items-end gap-3.5">
+                  <img
+                    src={editAvatar || AVATAR_DEFAULT}
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-[3px] bg-[#04060C] shrink-0"
+                    style={{ borderColor: editAura || themeColor, boxShadow: `0 0 20px ${(editAura || themeColor)}55` }}
+                    alt="Avatar Preview"
+                  />
+                  <div className="min-w-0 flex-1 pb-0.5">
+                    <h4 className="text-base sm:text-lg font-black text-white truncate">{editName || 'Sinefil'}</h4>
+                    {editBio && <p className="text-xs italic truncate" style={{ color: editAura || themeColor }}>"{editBio}"</p>}
                   </div>
-               </div>
-               <div>
-                  <label className="text-xs text-slate-400 font-black uppercase mb-3 block tracking-wider">{t.selectAvatar}</label>
-                  <div className="grid grid-cols-5 gap-3 mb-3 max-h-32 overflow-y-auto hide-scrollbar p-1">
-                    {AVATAR_PRESETS.map((url, i) => (
-                      <img key={i} src={url} onClick={()=>setEditAvatar(url)} className={`w-full aspect-square rounded-xl cursor-pointer border-2 transition-all object-cover ${editAvatar===url ? 'border-theme scale-110 shadow-theme' : 'border-slate-800 hover:border-slate-500 opacity-60 hover:opacity-100'}`} alt="Avatar"/>
-                    ))}
-                  </div>
-               </div>
-               <div>
-                  <label className="text-xs text-slate-400 font-black uppercase mb-3 block tracking-wider">{t.selectBanner}</label>
-                  <div className="grid grid-cols-2 gap-3 mb-3 max-h-40 overflow-y-auto hide-scrollbar p-1">
-                    {BANNER_PRESETS.map((url, i) => (
-                      <img key={i} src={url} onClick={()=>setEditBanner(url)} className={`w-full h-16 rounded-xl cursor-pointer border-2 transition-all object-cover ${editBanner===url ? 'border-theme shadow-theme scale-105' : 'border-slate-800 opacity-50 hover:opacity-100'}`} alt="Banner"/>
-                    ))}
-                  </div>
-               </div>
-               <div className="flex items-center justify-between p-4 bg-[#04060C] border border-slate-800 rounded-xl">
-                  <div>
-                     <h4 className="text-sm font-black text-white">{t.autoRemoveSetting}</h4>
-                     <p className="text-xs text-slate-500 font-bold mt-1 max-w-[250px]">{t.autoRemoveDesc}</p>
-                  </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked={editAutoRemove} onChange={() => setEditAutoRemove(!editAutoRemove)} className="sr-only peer"/>
-                    <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-theme"></div>
+                </div>
+              </div>
+
+              {/* İSİM VE MOTTO (BİO) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label className="text-[11px] text-slate-400 font-black uppercase mb-1.5 block tracking-wider">{t.username}</label>
+                  <input
+                    type="text"
+                    value={editName}
+                    onChange={e => setEditName(e.target.value)}
+                    autoComplete="name"
+                    className="w-full bg-[#04060C] border border-slate-800 px-3.5 py-3 rounded-xl text-sm text-white outline-none focus:border-theme font-bold transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="text-[11px] text-slate-400 font-black uppercase mb-1.5 block tracking-wider">{t.bioLabel}</label>
+                  <input
+                    type="text"
+                    value={editBio}
+                    onChange={e => setEditBio(e.target.value)}
+                    placeholder={t.bioPlaceholder}
+                    maxLength={60}
+                    className="w-full bg-[#04060C] border border-slate-800 px-3.5 py-3 rounded-xl text-sm text-white outline-none focus:border-theme font-bold italic transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* AURA TEMA RENGİ */}
+              <div>
+                <label className="text-[11px] text-slate-400 font-black uppercase mb-2 block tracking-wider">{t.auraColor}</label>
+                <div className="flex flex-wrap gap-2.5 bg-[#04060C] p-3 rounded-2xl border border-slate-800">
+                  {AURA_COLORS.map(color => (
+                    <button
+                      type="button"
+                      key={color}
+                      onClick={() => setEditAura(color)}
+                      className={`w-8 h-8 rounded-full border-2 transition-transform ${editAura === color ? 'scale-115' : 'opacity-55 hover:opacity-100'}`}
+                      style={{ backgroundColor: color, borderColor: editAura === color ? '#ffffff' : 'transparent' }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* PROFİL FOTOĞRAFI (HAZIR SEÇİM + CİHAZDAN YÜKLEME) */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-[11px] text-slate-400 font-black uppercase tracking-wider">{t.selectAvatar}</label>
+                  <label className="cursor-pointer px-3 py-1 rounded-lg bg-[#04060C] hover:bg-slate-800 text-theme border border-slate-700 text-[11px] font-black flex items-center gap-1.5 transition-colors">
+                    <Plus size={13}/> {t.uploadFromDevice || 'Cihazdan Yükle (Maks 2MB)'}
+                    <input type="file" accept="image/*" onChange={(e) => handleCustomImageUpload(e, 'avatar')} className="hidden" />
                   </label>
-               </div>
-               <button type="submit" className="w-full bg-theme hover:bg-theme text-slate-950 font-black p-4 rounded-xl transition-all shadow-theme hover:scale-[1.02] active:scale-[0.98]">{t.saveChanges}</button>
+                </div>
+                <div className="grid grid-cols-5 gap-2.5 max-h-28 overflow-y-auto p-2 bg-[#04060C] rounded-2xl border border-slate-800">
+                  {AVATAR_PRESETS.map((url, i) => (
+                    <img
+                      key={i}
+                      src={url}
+                      onClick={() => setEditAvatar(url)}
+                      className={`w-full aspect-square rounded-xl cursor-pointer border-2 transition-all object-cover ${
+                        editAvatar === url ? 'border-theme scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'
+                      }`}
+                      alt="Avatar"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* ARKA PLAN / BANNER (HAZIR SEÇİM + CİHAZDAN YÜKLEME) */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-[11px] text-slate-400 font-black uppercase tracking-wider">{t.selectBanner}</label>
+                  <label className="cursor-pointer px-3 py-1 rounded-lg bg-[#04060C] hover:bg-slate-800 text-theme border border-slate-700 text-[11px] font-black flex items-center gap-1.5 transition-colors">
+                    <Plus size={13}/> {t.uploadFromDevice || 'Cihazdan Yükle (Maks 2MB)'}
+                    <input type="file" accept="image/*" onChange={(e) => handleCustomImageUpload(e, 'banner')} className="hidden" />
+                  </label>
+                </div>
+                <div className="grid grid-cols-2 gap-2.5 max-h-32 overflow-y-auto p-2 bg-[#04060C] rounded-2xl border border-slate-800">
+                  {BANNER_PRESETS.map((url, i) => (
+                    <img
+                      key={i}
+                      src={url}
+                      onClick={() => setEditBanner(url)}
+                      className={`w-full h-14 rounded-xl cursor-pointer border-2 transition-all object-cover ${
+                        editBanner === url ? 'border-theme scale-[1.02]' : 'border-slate-800 opacity-55 hover:opacity-100'
+                      }`}
+                      alt="Banner"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* OTOMATİK İZLEME LİSTESİNDEN KALDIRMA AYARI */}
+              <div className="flex items-center justify-between p-3.5 bg-[#04060C] border border-slate-800 rounded-2xl">
+                <div className="pr-3">
+                  <h4 className="text-xs sm:text-sm font-black text-white">{t.autoRemoveSetting}</h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">{t.autoRemoveDesc}</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                  <input type="checkbox" checked={editAutoRemove} onChange={() => setEditAutoRemove(!editAutoRemove)} className="sr-only peer"/>
+                  <div className="w-11 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-theme"></div>
+                </label>
+              </div>
+
+              {/* KAYDET BUTONU */}
+              <button
+                type="submit"
+                className="w-full bg-theme text-[#04060C] font-black py-3.5 rounded-xl transition-all shadow-theme hover:opacity-95 active:scale-[0.99]"
+              >
+                {t.saveChanges}
+              </button>
             </form>
           </div>
         </div>
@@ -3983,19 +5972,21 @@ function CineScoreMain() {
         </div>
       )}
 
-      {/* --- PREMİUM HEADER (KESİN SABİT) --- */}
-      <header className="fixed w-full top-0 left-0 z-[100] bg-[#04060C]/85 backdrop-blur-2xl border-b border-slate-700/50 shadow-[0_4px_30px_rgba(0,0,0,0.5)] pt-[env(safe-area-inset-top)] transition-all">
-        <div className="max-w-[90rem] mx-auto px-4 h-20 flex items-center justify-between gap-4">
+{/* --- PREMİUM HEADER (HER EKRAN BOYUTUNA UYUMLU & KESİN SABİT) --- */}
+      <header className="fixed w-full top-0 left-0 z-[100] bg-[#04060C]/90 backdrop-blur-2xl border-b border-slate-700/50 shadow-[0_4px_30px_rgba(0,0,0,0.5)] pt-[env(safe-area-inset-top)] transition-all">
+        <div className="max-w-[90rem] mx-auto px-2.5 sm:px-4 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4">
           
-          <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group shrink-0" onClick={handleCloseMovie}>
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center border-[2px] border-transparent transition-transform duration-500 group-hover:scale-105 shadow-[0_0_15px_rgba(255,255,255,0.1)] logo-morph-bg">
-              <Clapperboard size={24} />
+          {/* LOGO */}
+          <div className="flex items-center gap-1.5 sm:gap-3 cursor-pointer group shrink-0" onClick={handleCloseMovie}>
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center border-[2px] border-transparent transition-transform duration-500 group-hover:scale-105 shadow-[0_0_15px_rgba(255,255,255,0.1)] logo-morph-bg shrink-0">
+              <Clapperboard className="w-4 h-4 sm:w-6 sm:h-6" />
             </div>
-            <h1 className="text-xl sm:text-3xl font-black tracking-tighter flex items-center transition-transform duration-500 group-hover:scale-105" style={{fontFamily: "'Montserrat', sans-serif"}}>
+            <h1 className="text-base sm:text-3xl font-black tracking-tighter flex items-center transition-transform duration-500 group-hover:scale-105" style={{fontFamily: "'Montserrat', sans-serif"}}>
                <span className="text-white">CINE</span><span className="logo-morph-text drop-shadow-md">SCORE</span>
             </h1>
           </div>
 
+          {/* MASAÜSTÜ ARAMA ÇUBUĞU */}
           <div className="flex-1 max-w-2xl relative hidden sm:block" ref={searchDropdownRef}>
             <div className="relative flex items-center">
               <Search className="absolute left-5 text-slate-400" size={18}/>
@@ -4023,30 +6014,52 @@ function CineScoreMain() {
             )}
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          {/* SAĞ KONTROLLER (MOBİLDE KOMPAKT & TAŞMAYAN YAPI) */}
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
             
-            {/* YENİ: MİNİ OYUN (SİNEBAĞ) SEKME BUTONU */}
+            {/* MİNİ OYUN: SİNEBAĞ BUTONU (Mobilde de Mini Oyun olduğu net yazar) */}
             <button
               onClick={() => { setSelectedMovie(null); setViewingUser(null); setActiveTab('game'); }}
-              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full font-black text-xs sm:text-sm flex items-center gap-2 transition-all border ${activeTab === 'game' ? 'bg-theme text-[#04060C] border-theme shadow-theme scale-105' : 'bg-slate-900/90 text-white border-slate-700 hover:border-theme'}`}
+              className={`px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-xl sm:rounded-full font-black text-[10px] sm:text-sm flex items-center gap-1.5 transition-all border shrink-0 ${
+                activeTab === 'game'
+                  ? 'bg-rose-600 text-white border-rose-500 shadow-[0_0_20px_rgba(225,29,72,0.5)]'
+                  : 'bg-slate-900/95 text-white border-slate-700 hover:border-rose-500'
+              }`}
             >
-              <Clapperboard size={16} className={activeTab === 'game' ? 'text-[#04060C]' : 'text-theme'}/>
-              <span className="hidden md:inline">{t.miniGameNav || 'Mini Oyun: SineBağ'}</span>
-              <span className="md:hidden">SineBağ</span>
+              <Clapperboard size={14} className={activeTab === 'game' ? 'text-white' : 'text-rose-500'}/>
+              <div className="flex flex-col sm:flex-row sm:items-center leading-none text-left">
+                <span className="text-[7px] sm:hidden font-mono uppercase tracking-wider text-rose-400 block">MİNİ OYUN</span>
+                <span className="sm:hidden font-black text-[10px]">SİNEBAĞ</span>
+                <span className="hidden sm:inline">{t.miniGameNav || 'Mini Oyun: SineBağ'}</span>
+              </div>
             </button>
 
-            {/* YENİ: MOBİL ARAMA BUTONU (Sadece telefonda görünür) */}
+            {/* MOBİL ARAMA BUTONU */}
             <button 
               onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)} 
-              className={`sm:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-all shadow-inner ${isMobileSearchOpen ? 'bg-theme text-[#04060C] border-theme shadow-theme' : 'bg-slate-900 border-slate-800 text-slate-300 hover:border-theme'}`}
+              className={`sm:hidden w-8 h-8 rounded-full border flex items-center justify-center transition-all shadow-inner shrink-0 ${isMobileSearchOpen ? 'bg-theme text-[#04060C] border-theme shadow-theme' : 'bg-slate-900 border-slate-800 text-slate-300'}`}
             >
-              {isMobileSearchOpen ? <X size={18}/> : <Search size={18}/>}
+              {isMobileSearchOpen ? <X size={15}/> : <Search size={15}/>}
             </button>
 
-            {/* HER DURUMDA GÖRÜNEN DİL MENÜSÜ */}
-            <div className="relative" ref={langMenuRef}>
-              <button onClick={() => setIsLangMenuOpen(!isLangMenuOpen)} className="w-10 h-10 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner flex items-center justify-center overflow-hidden">
-                 <img src={LANGUAGES.find(l => l.code === lang)?.flag} className="w-5 h-4 object-cover" alt="Lang"/>
+            {/* SES AÇ/KAPAT BUTONU */}
+            <button
+              onClick={toggleSoundEnabled}
+              title={soundEnabled ? t.soundOn : t.soundOff}
+              aria-label={soundEnabled ? t.soundOn : t.soundOff}
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border transition-all shadow-inner flex items-center justify-center shrink-0 ${
+                soundEnabled
+                  ? 'bg-slate-900 border-slate-700 text-theme hover:border-theme'
+                  : 'bg-slate-900/70 border-slate-800 text-slate-500 hover:text-slate-300'
+              }`}
+            >
+              {soundEnabled ? <Volume2 size={16}/> : <VolumeX size={16}/>}
+            </button>
+
+            {/* DİL MENÜSÜ */}
+            <div className="relative shrink-0" ref={langMenuRef}>
+              <button onClick={() => setIsLangMenuOpen(!isLangMenuOpen)} className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner flex items-center justify-center overflow-hidden">
+                 <img src={LANGUAGES.find(l => l.code === lang)?.flag} className="w-4 h-3 sm:w-5 sm:h-4 object-cover" alt="Lang"/>
               </button>
               {isLangMenuOpen && (
                 <div className="absolute top-full right-0 mt-3 w-40 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl z-50 animate-in fade-in slide-in-from-top-2">
@@ -4059,23 +6072,24 @@ function CineScoreMain() {
               )}
             </div>
 
+            {/* MASAÜSTÜ SEKMELER */}
             <nav className="hidden md:flex bg-slate-900/50 p-1.5 rounded-full border border-slate-800 shadow-inner gap-2">
-               <button onClick={handleCloseMovie} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'home' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.home}</button>
-               <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'global' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.ranking}</button>
-               <button onClick={handleOpenCommunity} className={`px-6 py-2.5 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
+               <button onClick={handleCloseMovie} className={`px-5 py-2 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'home' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.home}</button>
+               <button onClick={() => {setActiveTab('global'); setDynamicBg(''); setSelectedMovie(null);}} className={`px-5 py-2 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'global' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.ranking}</button>
+               <button onClick={handleOpenCommunity} className={`px-5 py-2 rounded-full text-sm font-black transition-all duration-300 hover:scale-105 active:scale-95 ${activeTab === 'community' ? 'bg-theme shadow-theme' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white shadow-md'}`}>{t.community}</button>
             </nav>
 
             {isAuthChecking ? (
-              <div className="flex items-center justify-center px-6 py-3">
-                 <Loader2 className="animate-spin text-theme w-6 h-6" />
+              <div className="flex items-center justify-center px-3 py-2">
+                 <Loader2 className="animate-spin text-theme w-5 h-5" />
               </div>
             ) : userProfile ? (
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
 
                 <div className="relative flex items-center justify-center" ref={notifMenuRef}>
-                   <button onClick={() => { setIsNotifMenuOpen(!isNotifMenuOpen); markNotificationsAsRead(); }} className="relative p-2.5 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner group">
-                      <Bell size={18} className="text-slate-300 group-hover:text-theme transition-colors"/>
-                      {userProfile?.notifications?.some(n => !n.read) && <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 border-2 border-[#04060C] rounded-full"></span>}
+                   <button onClick={() => { setIsNotifMenuOpen(!isNotifMenuOpen); markNotificationsAsRead(); }} className="relative w-8 h-8 sm:w-10 sm:h-10 bg-slate-900 border border-slate-800 rounded-full hover:border-theme transition-colors shadow-inner flex items-center justify-center group">
+                      <Bell size={16} className="text-slate-300 group-hover:text-theme transition-colors"/>
+                      {userProfile?.notifications?.some(n => !n.read) && <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-[#04060C] rounded-full"></span>}
                    </button>
                    {isNotifMenuOpen && (
                      <div className="absolute top-full right-0 mt-3 w-72 bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2">
@@ -4102,12 +6116,12 @@ function CineScoreMain() {
                    )}
                 </div>
 
-                <div className="relative md:pl-4 md:border-l border-slate-800" ref={profileMenuRef}>
-                  <div className="flex items-center gap-3 group cursor-pointer" onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}>
+                <div className="relative md:pl-3 md:border-l border-slate-800" ref={profileMenuRef}>
+                  <div className="flex items-center cursor-pointer group" onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}>
                     <div className="relative">
-                      <img src={userProfile?.avatar || AVATAR_DEFAULT} className={`w-11 h-11 rounded-full border-[3px] transition-all duration-300 object-cover shadow-lg ${activeTab.startsWith('profile') ? 'border-theme shadow-theme' : 'border-slate-700 bg-slate-900 group-hover:border-theme'}`} alt="Avatar"/>
-                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 rounded-full border-2 border-[#04060C] flex items-center justify-center shadow-lg">
-                         <span className="text-[10px] font-black text-white">{sortedMyRatings.length}</span>
+                      <img src={userProfile?.avatar || AVATAR_DEFAULT} className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 sm:border-[3px] transition-all duration-300 object-cover shadow-lg ${activeTab.startsWith('profile') ? 'border-theme shadow-theme' : 'border-slate-700 bg-slate-900 group-hover:border-theme'}`} alt="Avatar"/>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-red-600 rounded-full border border-[#04060C] flex items-center justify-center shadow-lg">
+                         <span className="text-[8px] sm:text-[10px] font-black text-white">{sortedMyRatings.length}</span>
                       </div>
                     </div>
                   </div>
@@ -4133,573 +6147,1594 @@ function CineScoreMain() {
                 </div>
               </div>
             ) : (
-              <button onClick={() => setShowLoginModal(true)} className="flex items-center gap-2 px-6 py-3 bg-theme hover:bg-theme text-[#04060C] rounded-full transition-all text-sm font-black shadow-theme hover:scale-105 active:scale-95">
-                <LogIn size={18} /> <span className="hidden sm:inline">{t.login}</span>
+              <button onClick={() => setShowLoginModal(true)} className="flex items-center gap-1.5 px-3 sm:px-6 py-2 sm:py-3 bg-theme hover:bg-theme text-[#04060C] rounded-full transition-all text-xs sm:text-sm font-black shadow-theme shrink-0">
+                <LogIn size={16} /> <span className="hidden sm:inline">{t.login}</span>
               </button>
             )}
           </div>
         </div>
       </header>
 
-      <main className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
+      <main data-active-tab={activeTab} className="relative z-10 max-w-[90rem] mx-auto px-4 py-6 sm:py-10 pb-36 md:pb-16 pt-24 sm:pt-28">
 
-        {/* --- YENİ: MİNİ OYUN: SİNEBAĞ (MOBİL KOMPAKT 3'LÜ IZGARA & MATTE NOIR TASARIM) --- */}
-        {activeTab === 'game' && (
-          <div className="rounded-2xl sm:rounded-3xl bg-[#050506] border border-zinc-800 p-3 sm:p-7 md:p-9 shadow-2xl relative overflow-hidden">
+        {/* 1) SAF REACT TOPLULUK (COMMUNITY) EKRANI — KULLANICI @KOD ARAMA ÇUBUĞU VE EN ÇOK OYLANANLAR */}
+        {activeTab === 'community' && (
+          <div className="cinescore-modern-view max-w-5xl mx-auto space-y-8 animate-in fade-in duration-500">
             
-            {/* ÜST BAŞLIK BAR */}
-            <div className="flex items-center justify-between gap-2 pb-3.5 sm:pb-5 mb-4 sm:mb-6 border-b border-zinc-800/90">
-              <div className="min-w-0">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-zinc-200 text-[10px] font-black uppercase tracking-widest mb-1">
-                  <Clapperboard size={12} className="text-amber-400"/> {t.miniGameNav}
-                </div>
-                <h1 className="text-base sm:text-3xl font-black text-white tracking-tight truncate">{t.gameTitle}</h1>
-                <p className="text-[11px] sm:text-sm text-zinc-400 font-medium mt-0.5 line-clamp-2">{t.gameSubtitle}</p>
+            {/* ÜST GİZLİ TOPLULUK & @KOD ARAMA PANELİ */}
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden text-center">
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-64 rounded-full blur-[110px] opacity-20 pointer-events-none" style={{ backgroundColor: themeColor }}></div>
+
+              <div className="w-16 h-16 rounded-2xl bg-[#04060C] border border-slate-700 flex items-center justify-center mx-auto mb-4 shadow-xl text-theme">
+                <Users size={30}/>
               </div>
 
-              <button
-                onClick={() => setShowHowToPlay(!showHowToPlay)}
-                className="px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700 font-black text-[11px] sm:text-xs flex items-center gap-1.5 shrink-0 transition-colors"
-              >
-                <HelpCircle size={14} className="text-amber-400"/>
-                <span>{showHowToPlay ? t.hideGuideBtn : t.showGuideBtn}</span>
-              </button>
+              <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-2">
+                {t.communityPrivacyTitle}
+              </h2>
+              <p className="text-xs sm:text-sm font-bold text-slate-400 max-w-xl mx-auto mb-6 leading-relaxed">
+                {t.communityPrivacyDesc}
+              </p>
+
+              {/* KULLANICININ KENDİ @KODU (GİRİŞ YAPILMIŞSA) */}
+              {userProfile && (
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-[#04060C] border border-slate-800 mb-6 shadow-inner">
+                  <span className="text-xs font-bold text-slate-400">Senin Kodun:</span>
+                  <span className="text-sm font-black font-mono text-theme">
+                    @{userProfile.userCode || user?.uid?.substring(0, 6).toUpperCase()}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const myCode = `@${userProfile.userCode || user?.uid?.substring(0, 6).toUpperCase()}`;
+                      navigator.clipboard.writeText(myCode);
+                      showToast(t.userCodeCopied);
+                    }}
+                    className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-black text-white transition-colors"
+                  >
+                    {t.share}
+                  </button>
+                </div>
+              )}
+
+              {/* @KOD ARAMA ÇUBUĞU */}
+              <div className="max-w-lg mx-auto relative flex items-center">
+                <Search className="absolute left-4 text-theme" size={20}/>
+                <input
+                  type="text"
+                  value={communitySearch}
+                  onChange={(e) => setCommunitySearch(e.target.value)}
+                  maxLength={7}
+                  placeholder={t.exactCodeRequired || t.searchUsers}
+                  className="w-full bg-[#04060C] border-2 border-slate-700 focus:border-theme rounded-2xl pl-12 pr-12 py-4 text-sm sm:text-base text-white font-black tracking-wider uppercase outline-none transition-all shadow-inner"
+                />
+                {communitySearch && (
+                  <button
+                    type="button"
+                    onClick={() => setCommunitySearch('')}
+                    className="absolute right-4 p-1 rounded-full bg-slate-800 text-slate-400 hover:text-white"
+                  >
+                    <X size={16}/>
+                  </button>
+                )}
+              </div>
+
+              {/* ARAMA SONUÇLARI */}
+              {communitySearch.replace('@', '').trim().length > 0 && (
+                <div className="max-w-lg mx-auto mt-5">
+                  {filteredCommunityUsers.length > 0 ? (
+                    <div className="space-y-3">
+                      {filteredCommunityUsers.map((u) => (
+                        <div
+                          key={u.uid}
+                          onClick={() => loadPublicProfile(u.uid)}
+                          className="flex items-center justify-between gap-4 p-4 rounded-2xl bg-[#04060C] border border-slate-700 hover:border-theme cursor-pointer transition-all shadow-xl group"
+                        >
+                          <div className="flex items-center gap-3.5 min-w-0">
+                            <img
+                              src={u.avatar || AVATAR_DEFAULT}
+                              className="w-14 h-14 rounded-full object-cover border-2 border-slate-700 group-hover:border-theme shrink-0"
+                              alt=""
+                            />
+                            <div className="text-left min-w-0">
+                              <h4 className="text-base sm:text-lg font-black text-white group-hover:text-theme truncate">
+                                {u.displayName}
+                              </h4>
+                              <span className="text-xs font-black font-mono text-theme">
+                                @{u.userCode || u.uid?.substring(0, 6).toUpperCase()}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 shrink-0">
+                            <div className="text-right hidden sm:block">
+                              <span className="text-xs font-black text-white block">{u.followers?.length || 0}</span>
+                              <span className="text-[10px] font-bold text-slate-500 uppercase">{t.followers}</span>
+                            </div>
+                            <ChevronRight size={20} className="text-slate-500 group-hover:text-theme group-hover:translate-x-1 transition-all"/>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : communitySearch.replace('@', '').trim().length === 6 ? (
+                    <div className="p-5 rounded-2xl bg-[#04060C] border border-slate-800 text-slate-400 text-sm font-bold">
+                      {t.noData}
+                    </div>
+                  ) : null}
+                </div>
+              )}
             </div>
 
-            {/* NASIL OYNANIR REHBERİ */}
-            {showHowToPlay && (
-              <div className="mb-5 sm:mb-7 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3 sm:p-5 space-y-3">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-                  {[
-                    { step: '01', title: t.howStep1Title, desc: t.howStep1Desc },
-                    { step: '02', title: t.howStep2Title, desc: t.howStep2Desc },
-                    { step: '03', title: t.howStep3Title, desc: t.howStep3Desc },
-                    { step: '04', title: t.howStep4Title, desc: t.howStep4Desc }
-                  ].map((item, idx) => (
-                    <div key={idx} className="bg-[#050506] border border-zinc-800/80 rounded-xl p-2.5 sm:p-3.5">
-                      <span className="text-[9px] sm:text-[10px] font-black text-amber-400 tracking-widest block mb-0.5">{t.stepLabel} {item.step}</span>
-                      <h4 className="text-xs sm:text-sm font-black text-white mb-0.5">{item.title}</h4>
-                      <p className="text-[10px] sm:text-xs text-zinc-400 leading-snug">{item.desc}</p>
-                    </div>
-                  ))}
+            {/* TOPLULUKTA EN ÇOK OYLANAN FİLMLER VİTRİNİ */}
+            {safeGlobalMovies.length > 0 && (
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-2xl">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
+                    <Flame className="text-theme" size={24}/> {t.mostVoted}
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('global')}
+                    className="text-xs font-black text-theme hover:text-white transition-colors"
+                  >
+                    {t.viewAll} &rarr;
+                  </button>
                 </div>
 
-                <div className="bg-[#050506] border border-zinc-800 rounded-xl p-2.5 flex flex-wrap items-center justify-center gap-1.5 text-[10px] sm:text-xs font-bold">
-                  <span className="text-amber-400 font-black uppercase tracking-wider mr-1">{t.exampleShortestLabel}</span>
-                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM1}</span>
-                  <span className="text-zinc-600">➔</span>
-                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 DiCaprio</span>
-                  <span className="text-zinc-600">➔</span>
-                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-white border border-zinc-700">🎬 {t.exampleM2}</span>
-                  <span className="text-zinc-600">➔</span>
-                  <span className="px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800">🎭 Johnny Depp</span>
-                  <span className="text-zinc-600">➔</span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-950/50 text-emerald-400 border border-emerald-500/40">🎯 {t.exampleM3}</span>
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                  {[...safeGlobalMovies]
+                    .sort((a, b) => (Number(b.voteCount) || 0) - (Number(a.voteCount) || 0))
+                    .slice(0, 12)
+                    .map((m) => {
+                      const dispTitle = localizedData?.[m.id]?.title || m.title;
+                      const sColor = getScoreColorHex(m.avgScore);
+                      return (
+                        <div
+                          key={m.id}
+                          onClick={() => selectMovieToRate(m.id, dispTitle)}
+                          className="group cursor-pointer"
+                        >
+                          <div className="relative aspect-[2/3] rounded-2xl overflow-hidden border border-slate-800 group-hover:border-theme transition-all mb-2 bg-[#04060C]">
+                            <img src={m.poster} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt=""/>
+                            <div className="absolute top-2 right-2 px-2 py-1 rounded-lg bg-[#04060C]/90 border border-slate-700 text-center">
+                              <span className="text-xs font-black block leading-none" style={{ color: sColor }}>
+                                {Number(m.avgScore).toFixed(2)}
+                              </span>
+                            </div>
+                            <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-[#04060C]/85 text-[10px] font-black text-slate-300">
+                              {m.voteCount} {t.voteCount}
+                            </div>
+                          </div>
+                          <h4 className="text-xs font-bold text-slate-200 group-hover:text-theme truncate">{dispTitle}</h4>
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             )}
+          </div>
+        )}
 
-            {!gameActive ? (
-              /* AŞAMA 1: BAŞLANGIÇ VE HEDEF FİLM SEÇİM EKRANI & EN POPÜLER 3 OYUN */
-              <div className="space-y-4 sm:space-y-6">
-                <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3.5 sm:p-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                    <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
-                      {t.popularGamesTitle || '🔥 En Popüler Oyunlar (Tek Tıkla Seç)'}
-                    </span>
+        {/* 2) SAF REACT KULLANICI PROFİLİ (PROFILE_GENERAL) EKRANI — SAYFA YENİLEMEDEN İLK TIKLAMADA ANINDA AÇILIR */}
+        {activeTab === 'profile_general' && userProfile && (() => {
+          const myAvgScore = sortedMyRatings.length > 0
+            ? (sortedMyRatings.reduce((acc, r) => acc + (Number(r.finalScore) || 0), 0) / sortedMyRatings.length)
+            : 0;
+
+          // Eleştirmen Kimliği (Acımasızlık Endeksi) Hesabı
+          let diffSum = 0, diffCount = 0;
+          sortedMyRatings.forEach((r) => {
+            const g = safeGlobalMovies.find((gm) => String(gm.id) === String(r.id));
+            if (g && Number(g.voteCount) > 0) {
+              diffSum += (Number(r.finalScore) || 0) - (Number(g.avgScore) || 0);
+              diffCount++;
+            }
+          });
+          const avgDiff = diffCount > 0 ? (diffSum / diffCount) : 0;
+          const criticTitle = avgDiff <= -0.5 ? 'Acımasız Eleştirmen' : avgDiff >= 0.5 ? 'Cömert Sinefil' : 'Adil Eleştirmen';
+          const criticSubtitle = avgDiff <= 0
+            ? `Ortalamadan ${Math.abs(avgDiff).toFixed(2)} puan düşük veriyorsun`
+            : `Ortalamadan ${avgDiff.toFixed(2)} puan yüksek veriyorsun`;
+
+          // Favori On Yıl Hesabı
+          const decadeCounts = {};
+          sortedMyRatings.forEach((r) => {
+            const g = safeGlobalMovies.find((gm) => String(gm.id) === String(r.id));
+            const yStr = String(r.year || g?.year || '');
+            const m = yStr.match(/\d{4}/);
+            if (m) {
+              const dec = Math.floor(Number(m[0]) / 10) * 10;
+              decadeCounts[dec] = (decadeCounts[dec] || 0) + 1;
+            }
+          });
+          const topDecadeEntry = Object.entries(decadeCounts).sort((a, b) => b[1] - a[1])[0];
+          const favDecadeLabel = topDecadeEntry ? `${topDecadeEntry[0]}'ler Sineması` : '—';
+
+          const allMyBadges = getAllBadges(myRatings, t, safeGlobalMovies);
+
+          return (
+            <div className="cinescore-modern-view max-w-5xl mx-auto space-y-8 animate-in fade-in duration-500">
+              
+              {/* 1. ÜST PROFİL BANNER & KULLANICI BİLGİ KARTI */}
+              <div className="relative rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-2xl bg-slate-900/50">
+                <div className="h-48 sm:h-64 w-full relative">
+                  <img src={userProfile.banner || BANNER_PRESETS[0]} className="w-full h-full object-cover opacity-80" alt="Banner"/>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/60 to-transparent"></div>
+
+                  <div className="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-center gap-2 z-20">
                     <button
-                      onClick={() => loadPresetOrRandomPair('random')}
-                      disabled={gameLoading}
-                      className="px-3.5 py-1.5 bg-white hover:bg-zinc-200 text-[#050506] rounded-lg font-black text-[11px] sm:text-xs flex items-center justify-center gap-1.5 transition-colors shrink-0"
+                      type="button"
+                      onClick={() => copyProfileLink(user.uid)}
+                      className="px-3.5 py-2 bg-[#04060C]/70 text-slate-200 hover:text-white border border-slate-700 hover:border-white rounded-xl backdrop-blur font-bold text-xs sm:text-sm flex items-center gap-2 transition-all shadow-lg"
                     >
-                      {gameLoading ? <Loader2 size={14} className="animate-spin"/> : <Sparkles size={14}/>}
-                      {t.randomPairBtn}
+                      <Link size={15}/> <span className="hidden sm:inline">{t.shareProfile}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={openProfileEdit}
+                      className="px-3.5 py-2 bg-theme text-[#04060C] rounded-xl font-black text-xs sm:text-sm flex items-center gap-2 transition-all shadow-theme hover:scale-105"
+                    >
+                      <Edit3 size={15}/> <span>{t.editProfile}</span>
                     </button>
                   </div>
+                </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-                    {[
-                      { key: 'classic', badge: '#1 POPÜLER', label: t.popGame1 || 'Zindan Adası ➔ Karayip Korsanları' },
-                      { key: 'popular2', badge: '#2 POPÜLER', label: t.popGame2 || 'Başlangıç ➔ Yüzüklerin Efendisi' },
-                      { key: 'popular3', badge: '#3 POPÜLER', label: t.popGame3 || 'Ucuz Roman ➔ Kara Şövalye' }
-                    ].map(pg => (
-                      <button
-                        key={pg.key}
-                        onClick={() => loadPresetOrRandomPair(pg.key)}
-                        disabled={gameLoading}
-                        className="text-left p-2.5 sm:p-3 rounded-xl bg-[#050506] hover:bg-zinc-900 border border-zinc-800 hover:border-amber-400/60 transition-all group"
+                <div className="px-6 pb-8 sm:px-12 relative -mt-20 sm:-mt-24 flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5 sm:gap-7 text-center sm:text-left">
+                    <div className="relative shrink-0">
+                      <img
+                        src={userProfile.avatar || AVATAR_DEFAULT}
+                        className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-[#04060C] bg-[#04060C] object-cover z-10 relative"
+                        style={{ boxShadow: `0 0 30px ${themeColor}4d` }}
+                        alt="Avatar"
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-9 h-9 bg-theme rounded-full border-[3px] border-[#04060C] flex items-center justify-center shadow-lg z-20">
+                        <span className="text-xs font-black text-[#04060C]">{sortedMyRatings.length}</span>
+                      </div>
+                    </div>
+
+                    <div className="mb-1">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-1">
+                        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">{userProfile.displayName}</h2>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const codeStr = `@${userProfile.userCode || user?.uid?.substring(0, 6).toUpperCase()}`;
+                            navigator.clipboard.writeText(codeStr);
+                            showToast(t.userCodeCopied);
+                          }}
+                          className="font-black text-sm px-3 py-1 rounded-xl border w-max mx-auto sm:mx-0 transition-transform hover:scale-105"
+                          style={{ color: themeColor, backgroundColor: `${themeColor}1a`, borderColor: `${themeColor}4d` }}
+                        >
+                          @{userProfile.userCode || user?.uid?.substring(0, 6).toUpperCase()}
+                        </button>
+                      </div>
+
+                      <div className="flex items-center justify-center sm:justify-start gap-5 my-2.5">
+                        <button
+                          type="button"
+                          onClick={() => { loadFollowersUsers(); setActiveTab('profile_followers'); }}
+                          className="text-slate-400 hover:text-white font-bold text-sm transition-colors"
+                        >
+                          <strong className="text-white">{userProfile.followers?.length || 0}</strong> {t.followers}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => { loadFollowingUsers(); setActiveTab('profile_following'); }}
+                          className="text-slate-400 hover:text-white font-bold text-sm transition-colors"
+                        >
+                          <strong className="text-white">{userProfile.following?.length || 0}</strong> {t.following}
+                        </button>
+                      </div>
+
+                      {userProfile.bio && (
+                        <div className="flex items-start justify-center sm:justify-start gap-2 text-theme mt-1">
+                          <Quote size={14} className="mt-1 opacity-60 shrink-0"/>
+                          <p className="font-medium italic text-sm sm:text-base max-w-lg">{userProfile.bio}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Sağ Özet İstatistik Kutuları */}
+                  <div className="flex items-center gap-3 shrink-0">
+                    <div className="bg-[#04060C]/90 border border-slate-800 px-4 py-3 rounded-2xl text-center min-w-[100px]">
+                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">{t.ratedFilmsLabel}</span>
+                      <span className="text-2xl font-black text-white mt-0.5 block">{sortedMyRatings.length}</span>
+                    </div>
+                    <div className="bg-[#04060C]/90 border border-slate-800 px-4 py-3 rounded-2xl text-center min-w-[100px]">
+                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider block">{t.yourAvg}</span>
+                      <span
+                        className="text-2xl font-black mt-0.5 block"
+                        style={{ color: myAvgScore > 0 ? getScoreColorHex(myAvgScore) : '#64748b' }}
                       >
-                        <span className="text-[9px] font-black text-amber-400 uppercase tracking-widest block mb-0.5">
-                          {pg.badge}
-                        </span>
-                        <span className="text-xs font-black text-zinc-200 group-hover:text-white line-clamp-1">
-                          🎬 {pg.label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-11 gap-3.5 sm:gap-5 items-stretch">
-                  {/* 1. BAŞLANGIÇ FİLMİ */}
-                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 sm:p-6 flex flex-col justify-between">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-zinc-300 flex items-center gap-1.5">
-                        <Film size={15} className="text-white"/> {t.startMovieLabel}
+                        {myAvgScore > 0 ? myAvgScore.toFixed(2) : '—'}
                       </span>
-                      {gameStartMovie && (
-                        <button onClick={() => { setGameStartMovie(null); setGameStartQuery(''); }} className="text-[11px] font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
-                          {t.changeMovie}
-                        </button>
-                      )}
-                    </div>
-
-                    {gameStartMovie ? (
-                      <div className="flex items-center gap-3.5 bg-[#050506] p-3 rounded-xl border border-zinc-800">
-                        <img src={gameStartMovie.poster} className="w-14 sm:w-20 aspect-[2/3] object-cover rounded-lg border border-zinc-700 shrink-0" alt=""/>
-                        <div className="min-w-0 flex-1">
-                          <span className="text-[9px] font-black text-zinc-400 uppercase block">{t.startPointBadge}</span>
-                          <h4 className="text-sm sm:text-xl font-black text-white truncate mt-0.5">{gameStartMovie.title}</h4>
-                          <p className="text-xs font-bold text-zinc-500 mt-0.5">{gameStartMovie.year}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="my-auto">
-                        <div className="relative flex items-center">
-                          <Search className="absolute left-3.5 text-zinc-500" size={16}/>
-                          <input
-                            type="text"
-                            value={gameStartQuery}
-                            onChange={(e) => setGameStartQuery(e.target.value)}
-                            placeholder={t.searchMovieGame}
-                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-10 pr-9 py-3 text-xs sm:text-sm text-white font-bold outline-none transition-colors"
-                          />
-                          {gameSearchingSide === 'start' && <Loader2 className="absolute right-3.5 animate-spin text-white" size={16}/>}
-                        </div>
-                        {gameStartResults.length > 0 && (
-                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-52 overflow-y-auto divide-y divide-zinc-900">
-                            {gameStartResults.map(m => (
-                              <div
-                                key={m.id}
-                                onClick={() => {
-                                  setGameStartMovie({
-                                    id: String(m.id),
-                                    title: m.title,
-                                    year: m.release_date ? m.release_date.split('-')[0] : '',
-                                    poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
-                                  });
-                                  setGameStartResults([]);
-                                }}
-                                className="flex items-center gap-2.5 p-2 hover:bg-zinc-900 cursor-pointer transition-colors"
-                              >
-                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-9 h-12 object-cover rounded shrink-0" alt=""/>
-                                <div className="min-w-0 flex-1">
-                                  <p className="text-xs font-black text-white truncate">{m.title}</p>
-                                  <span className="text-[10px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* ORTA İKON */}
-                  <div className="lg:col-span-1 flex items-center justify-center">
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-[#0A0A0C] border border-zinc-800 flex items-center justify-center text-zinc-300 font-black text-sm">
-                      ⇄
                     </div>
                   </div>
-
-                  {/* 2. HEDEF FİLM */}
-                  <div className="lg:col-span-5 bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-4 sm:p-6 flex flex-col justify-between">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
-                        <Trophy size={15}/> {t.targetMovieLabel}
-                      </span>
-                      {gameTargetMovie && (
-                        <button onClick={() => { setGameTargetMovie(null); setGameTargetQuery(''); }} className="text-[11px] font-bold text-zinc-400 hover:text-white px-2.5 py-1 rounded-lg bg-[#050506] border border-zinc-800">
-                          {t.changeMovie}
-                        </button>
-                      )}
-                    </div>
-
-                    {gameTargetMovie ? (
-                      <div className="flex items-center gap-3.5 bg-[#050506] p-3 rounded-xl border border-amber-500/30">
-                        <img src={gameTargetMovie.poster} className="w-14 sm:w-20 aspect-[2/3] object-cover rounded-lg border border-amber-500/50 shrink-0" alt=""/>
-                        <div className="min-w-0 flex-1">
-                          <span className="text-[9px] font-black text-amber-400 uppercase block">{t.targetPointBadge}</span>
-                          <h4 className="text-sm sm:text-xl font-black text-white truncate mt-0.5">{gameTargetMovie.title}</h4>
-                          <p className="text-xs font-bold text-zinc-500 mt-0.5">{gameTargetMovie.year}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="my-auto">
-                        <div className="relative flex items-center">
-                          <Search className="absolute left-3.5 text-amber-400" size={16}/>
-                          <input
-                            type="text"
-                            value={gameTargetQuery}
-                            onChange={(e) => setGameTargetQuery(e.target.value)}
-                            placeholder={t.searchMovieGame}
-                            className="w-full bg-[#050506] border border-zinc-800 focus:border-amber-400 rounded-xl pl-10 pr-9 py-3 text-xs sm:text-sm text-white font-bold outline-none transition-colors"
-                          />
-                          {gameSearchingSide === 'target' && <Loader2 className="absolute right-3.5 animate-spin text-amber-400" size={16}/>}
-                        </div>
-                        {gameTargetResults.length > 0 && (
-                          <div className="mt-2 bg-[#050506] border border-zinc-800 rounded-xl overflow-hidden max-h-52 overflow-y-auto divide-y divide-zinc-900">
-                            {gameTargetResults.map(m => (
-                              <div
-                                key={m.id}
-                                onClick={() => {
-                                  setGameTargetMovie({
-                                    id: String(m.id),
-                                    title: m.title,
-                                    year: m.release_date ? m.release_date.split('-')[0] : '',
-                                    poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
-                                  });
-                                  setGameTargetResults([]);
-                                }}
-                                className="flex items-center gap-2.5 p-2 hover:bg-zinc-900 cursor-pointer transition-colors"
-                              >
-                                <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-9 h-12 object-cover rounded shrink-0" alt=""/>
-                                <div className="min-w-0 flex-1">
-                                  <p className="text-xs font-black text-white truncate">{m.title}</p>
-                                  <span className="text-[10px] font-bold text-zinc-500">{m.release_date?.split('-')[0]}</span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* İMKANSIZ BAĞ ANALİZ SONUCU */}
-                {gameStartMovie && gameTargetMovie && (
-                  <div className="max-w-xl mx-auto">
-                    {bridgeStatus.checking ? (
-                      <div className="bg-[#0A0A0C] border border-zinc-800 rounded-xl p-3 flex items-center justify-center gap-2 text-zinc-300 text-xs font-bold">
-                        <Loader2 size={15} className="animate-spin text-white"/> {t.bridgeChecking}
-                      </div>
-                    ) : !bridgeStatus.possible ? (
-                      <div className="bg-rose-950/40 border border-rose-500/60 rounded-xl p-3.5 text-center">
-                        <h4 className="text-xs sm:text-sm font-black text-rose-300 mb-1">{t.bridgeImpossibleTitle}</h4>
-                        <p className="text-[11px] sm:text-xs font-bold text-rose-200/90">{bridgeStatus.reason}</p>
-                      </div>
-                    ) : bridgeStatus.reason && (
-                      <div className={`bg-[#0A0A0C] border rounded-xl p-3 text-center text-[11px] sm:text-xs font-black ${bridgeStatus.directMatch ? 'border-emerald-500/50 text-emerald-400' : 'border-zinc-800 text-zinc-300'}`}>
-                        {bridgeStatus.reason}
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                <div className="text-center pt-1">
-                  <button
-                    onClick={() => startCineLinkGame()}
-                    disabled={!gameStartMovie || !gameTargetMovie || String(gameStartMovie.id) === String(gameTargetMovie.id) || gameLoading || bridgeStatus.checking || !bridgeStatus.possible}
-                    className="w-full sm:w-auto px-10 py-3.5 sm:py-4 bg-white hover:bg-zinc-200 disabled:opacity-25 text-[#050506] font-black text-sm sm:text-base rounded-xl transition-all inline-flex items-center justify-center gap-2.5"
-                  >
-                    {gameLoading ? <Loader2 className="animate-spin" size={18}/> : <Play size={16} fill="currentColor"/>}
-                    {t.startGameBtn}
-                  </button>
                 </div>
               </div>
-            ) : (
-              /* AŞAMA 2: AKTİF OYUN — MOBİLDE SÜPER KOMPAKT ÜST BAR, MASAÜSTÜNDE YAN YANA PANEL */
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 sm:gap-6 items-start">
-                
-                {/* SOL SÜTUN: KUMANDA VE BAĞLANTI ZİNCİRİ */}
-                <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-3">
-                  
-                  {/* 1. KUMANDA KUTUSU */}
-                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3 sm:p-4 space-y-2.5 sm:space-y-3">
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="flex items-center gap-2 bg-[#050506] p-2 rounded-xl border border-zinc-800 min-w-0">
-                        <img src={gameStartMovie?.poster} className="w-7 h-10 object-cover rounded shrink-0 border border-zinc-700" alt=""/>
-                        <div className="min-w-0">
-                          <span className="text-[8px] font-black text-zinc-400 uppercase block">{t.chainStartBadge}</span>
-                          <p className="text-[11px] font-black text-white truncate">{gameStartMovie?.title}</p>
-                        </div>
-                      </div>
 
-                      <div className="flex items-center gap-2 bg-[#050506] p-2 rounded-xl border border-amber-500/30 min-w-0">
-                        <img src={gameTargetMovie?.poster} className="w-7 h-10 object-cover rounded shrink-0 border border-amber-500/40" alt=""/>
-                        <div className="min-w-0">
-                          <span className="text-[8px] font-black text-amber-400 uppercase block">{t.targetMovieLabel}</span>
-                          <p className="text-[11px] font-black text-white truncate">{gameTargetMovie?.title}</p>
-                        </div>
-                      </div>
-                    </div>
+              {/* 2. KRALİYET & ALTIN VARAKLI KUTSAL ÜÇLÜ (AURA BAĞIMSIZ, KESİNTİSİZ ANİMASYONLU) */}
+              <RoyalTrinityShowcase
+                top3List={userProfile.top3 || [null, null, null]}
+                t={t}
+                isEditable={true}
+                selectMovieToRate={selectMovieToRate}
+                onOpenSlotSearch={(slot) => {
+                  setTop3SlotIndex(slot);
+                  setTop3SearchTerm('');
+                  setTop3Results([]);
+                  setShowTop3Modal(true);
+                }}
+                onSetCrown={setCrown}
+                localizedData={localizedData}
+              />
 
-                    {/* KONTROL TUŞLARI (Mobilde Tek Satırda 3 Kompakt Buton) */}
-                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-                      <button
-                        onClick={handleUndoGameStep}
-                        disabled={gameHistoryStack.length === 0 || gameLoading}
-                        className="py-2 px-2 rounded-xl bg-[#050506] hover:bg-zinc-900 disabled:opacity-30 text-zinc-200 border border-zinc-800 font-black text-[11px] flex items-center justify-center gap-1 transition-colors"
-                      >
-                        <ChevronLeft size={14}/> {t.undoStep}
-                      </button>
+              {/* 3. KUTSAL ÜÇLÜ'NÜN HEMEN ALTINDA: EN ÇOK İZLEDİĞİN YÖNETMEN */}
+              {myFavoriteDirector && (
+                <FavoriteDirectorShowcase
+                  favDirector={myFavoriteDirector}
+                  t={t}
+                  openPersonCareer={openPersonCareer}
+                  selectMovieToRate={selectMovieToRate}
+                  localizedData={localizedData}
+                  isPublic={false}
+                />
+              )}
 
-                      <button
-                        onClick={() => setShowTargetHint(!showTargetHint)}
-                        className={`py-2 px-2 rounded-xl font-black text-[11px] flex items-center justify-center gap-1 border transition-colors truncate ${
-                          showTargetHint
-                            ? 'bg-amber-400 text-[#050506] border-amber-400'
-                            : 'bg-[#050506] hover:bg-zinc-900 text-amber-400 border-amber-500/30'
-                        }`}
-                      >
-                        🎯 {t.cast}
-                      </button>
+              {/* 4. YÖNETMENİN HEMEN ALTINDA: BİR FİLMDE EN ÇOK ÖNEM VERDİĞİN KRİTERLER (BEŞGEN RADAR + HALKA GRAFİK + BALONCUKLAR) */}
+              <CriteriaFocusDashboard
+                ratingsList={sortedMyRatings}
+                criteriaData={criteriaData}
+                t={t}
+                isPublic={false}
+                themeColor={themeColor}
+              />
 
-                      <button
-                        onClick={() => { setGameActive(false); setGameWon(false); }}
-                        className="py-2 px-2 rounded-xl bg-[#050506] hover:bg-rose-950/60 text-rose-400 border border-zinc-800 font-black text-[11px] flex items-center justify-center gap-1 transition-colors"
-                      >
-                        <X size={13}/> {t.resetGame}
-                      </button>
-                    </div>
-
-                    {/* AÇIKLAMALI HEDEF KADRO KUTUSU */}
-                    {showTargetHint && (
-                      <div className="bg-[#050506] border border-amber-500/30 rounded-xl p-3 space-y-2">
-                        <div className="border-b border-zinc-800 pb-1.5">
-                          <h5 className="text-[10px] font-black text-amber-400 uppercase tracking-wider">
-                            💡 {t.targetCastExplainTitle}
-                          </h5>
-                          <p className="text-[10px] text-zinc-400 font-medium leading-snug mt-0.5">
-                            {t.targetCastExplainDesc}
-                          </p>
-                        </div>
-                        <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1">
-                          {gameTargetCast.map(tc => (
-                            <span key={tc.id} className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-zinc-200 flex items-center gap-1">
-                              {tc.name}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+              {/* 5. ÜÇLÜ YAN YANA ÖZET SATIRI: ACIMASIZLIK ENDEKSİ + FAVORİ ON YIL + SİNEMA BURCU */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {/* Kutu 1: Acımasızlık Endeksi / Eleştirmen Kimliği */}
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl p-6 border border-slate-800 shadow-xl flex items-center justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
+                      ELEŞTİRMEN KİMLİĞİ
+                    </span>
+                    <h4 className="text-xl sm:text-2xl font-black text-white truncate">{criticTitle}</h4>
+                    <p className="text-xs font-bold text-slate-400 mt-1 line-clamp-2 leading-snug">{criticSubtitle}</p>
                   </div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#04060C] border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0 shadow-inner">
+                    <TrendingUp size={22}/>
+                  </div>
+                </div>
 
-                  {/* 2. BAĞLANTI ZİNCİRİ (Mobilde Yatay Kompakt Şerit, Masaüstünde Dikey Ağaç) */}
-                  <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3 sm:p-4">
-                    <div className="flex items-center justify-between mb-2 sm:mb-3 pb-2 border-b border-zinc-800">
-                      <h4 className="text-[10px] sm:text-xs font-black text-zinc-300 uppercase tracking-widest">
-                        {t.chainMapTitle}
-                      </h4>
-                      <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-white text-[10px] font-black">
-                        {Math.floor(gameChain.length / 2)} {t.linksCount}
-                      </span>
-                    </div>
+                {/* Kutu 2: Favori On Yıl */}
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl p-6 border border-slate-800 shadow-xl flex items-center justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
+                      FAVORİ DÖNEM
+                    </span>
+                    <h4 className="text-xl sm:text-2xl font-black text-white truncate">{favDecadeLabel}</h4>
+                    <p className="text-xs font-bold text-slate-400 mt-1 line-clamp-2 leading-snug">En çok puanlanan çıkış yılı aralığı</p>
+                  </div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#04060C] border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
+                    <Film size={22}/>
+                  </div>
+                </div>
 
-                    <div
-                      id="game-chain-list"
-                      className="flex lg:flex-col items-center lg:items-stretch gap-2 overflow-x-auto lg:overflow-x-visible lg:max-h-[420px] lg:overflow-y-auto pb-1 lg:pb-0 pr-1 hide-scrollbar"
-                    >
-                      {gameChain.map((node, idx) => {
-                        const isStart = idx === 0;
-                        const isTargetWon = gameWon && idx === gameChain.length - 1;
+                {/* Kutu 3: Küçültülmüş Sinema Burcu */}
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl p-6 border border-slate-800 shadow-xl flex items-center justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
+                      {t.cineZodiac}
+                    </span>
+                    <h4 className="text-xl sm:text-2xl font-black text-white truncate">{zodiacTitle}</h4>
+                    <p className="text-xs font-bold text-slate-400 mt-1 line-clamp-2 leading-snug">
+                      {zodiacDesc || t.cineZodiacDesc}
+                    </p>
+                  </div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#04060C] border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 shadow-inner">
+                    <Smile size={22}/>
+                  </div>
+                </div>
+              </div>
 
+              {/* 6. İKİLİ SATIR: FAVORİ TÜRLER & İZLEME LİSTEM (+ SİNEMA RULETİ) */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Favori Türler */}
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-xl flex flex-col">
+                  <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3">
+                    <PieChart className="text-theme" size={24}/> {t.topGenres}
+                  </h3>
+                  {topGenres.length === 0 ? (
+                    <p className="text-slate-500 text-sm font-bold text-center py-8">{t.noRating}</p>
+                  ) : (
+                    <div className="space-y-4 my-auto">
+                      {topGenres.map(([genre, count]) => {
+                        const percentage = (count / Math.max(1, sortedMyRatings.length)) * 100;
                         return (
-                          <div key={`${node.type}_${node.id}_${idx}`} className="relative flex items-center gap-2 shrink-0 lg:shrink">
-                            <div className={`w-6 h-6 rounded font-black text-[10px] flex items-center justify-center shrink-0 border ${
-                              isTargetWon
-                                ? 'bg-emerald-400 text-[#050506] border-emerald-300'
-                                : node.type === 'movie'
-                                ? 'bg-white text-[#050506] border-white'
-                                : 'bg-zinc-900 text-zinc-300 border-zinc-700'
-                            }`}>
-                              {idx + 1}
+                          <div key={genre}>
+                            <div className="flex justify-between items-end mb-1.5">
+                              <span className="font-bold text-slate-200 text-sm">{genre}</span>
+                              <span className="font-black text-xs text-slate-400">{count} {t.voteCount}</span>
                             </div>
-
-                            <div className={`flex items-center gap-2 p-1.5 sm:p-2 rounded-xl border min-w-[125px] sm:min-w-0 lg:flex-1 ${
-                              isTargetWon
-                                ? 'bg-emerald-950/30 border-emerald-500/50'
-                                : 'bg-[#050506] border-zinc-800'
-                            }`}>
-                              {node.image ? (
-                                <img
-                                  src={node.image}
-                                  className={`object-cover shrink-0 border border-zinc-700 ${
-                                    node.type === 'actor' ? 'w-7 h-7 rounded-full' : 'w-6 h-8 rounded'
-                                  }`}
-                                  alt=""
-                                />
-                              ) : (
-                                <div className="w-7 h-7 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 shrink-0"><User size={12}/></div>
-                              )}
-                              <div className="min-w-0 flex-1">
-                                <span className={`text-[8px] font-black uppercase tracking-wider block truncate ${
-                                  isTargetWon ? 'text-emerald-400' : node.type === 'movie' ? 'text-zinc-400' : 'text-amber-400'
-                                }`}>
-                                  {isStart ? t.chainStartBadge : isTargetWon ? t.targetHereBadge : node.type === 'movie' ? `${Math.ceil(idx / 2)}. ${t.nodeMovieLabel}` : `${Math.ceil(idx / 2)}. ${t.nodeActorLabel}`}
-                                </span>
-                                <p className="text-[11px] font-black text-white truncate max-w-[95px] sm:max-w-none">{node.name}</p>
-                              </div>
+                            <div className="h-2.5 bg-[#04060C] rounded-full overflow-hidden border border-slate-800">
+                              <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${percentage}%`, backgroundColor: themeColor }}></div>
                             </div>
                           </div>
                         );
                       })}
                     </div>
+                  )}
+                </div>
+
+                {/* İzleme Listem + Sinema Ruleti */}
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-xl flex flex-col">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+                    <h3
+                      onClick={() => setActiveTab('profile_watchlist')}
+                      className="text-xl font-black text-white hover:text-theme cursor-pointer flex items-center gap-2.5 transition-colors"
+                    >
+                      <Bookmark className="text-theme" size={24}/> {t.watchlist} ({sortedWatchlist.length})
+                    </h3>
+                    <div className="flex items-center gap-2">
+                      {sortedWatchlist.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={startCinemaRoulette}
+                          className="px-3 py-1.5 rounded-xl bg-theme text-[#04060C] font-black text-xs flex items-center gap-1.5 shadow-theme hover:scale-105 transition-transform"
+                        >
+                          <Sparkles size={13}/> {t.rouletteBtn}
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setActiveTab('profile_watchlist')}
+                        className="text-xs font-black text-theme hover:text-white transition-colors"
+                      >
+                        {t.viewAll} &rarr;
+                      </button>
+                    </div>
+                  </div>
+
+                  {sortedWatchlist.length === 0 ? (
+                    <div className="flex-1 flex items-center justify-center">
+                      <p className="text-slate-500 text-sm font-bold text-center py-8">{t.emptyWatchlist}</p>
+                    </div>
+                  ) : (
+                    <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
+                      {sortedWatchlist.slice(0, 10).map((item) => (
+                        <div
+                          key={item.id}
+                          onClick={() => selectMovieToRate(item.id, item.title)}
+                          className="relative w-24 shrink-0 cursor-pointer hover:-translate-y-1 transition-transform"
+                        >
+                          <img src={item.poster} className="w-full aspect-[2/3] object-cover rounded-xl border border-slate-700 hover:border-theme transition-colors" alt=""/>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* 7. OYLADIĞIM FİLMLER VİTRİNİ */}
+              <div
+                onClick={() => setActiveTab('profile_ratings')}
+                className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-xl cursor-pointer group"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-black text-white group-hover:text-theme flex items-center gap-3 transition-colors">
+                    <Film className="text-theme" size={24}/> {t.myRatedMovies} ({sortedMyRatings.length})
+                  </h3>
+                  <span className="text-xs font-black text-theme group-hover:text-white transition-colors">
+                    {t.viewAll} &rarr;
+                  </span>
+                </div>
+
+                {sortedMyRatings.length === 0 ? (
+                  <p className="text-slate-500 text-sm font-bold text-center py-8">{t.noRating}</p>
+                ) : (
+                  <div className="flex gap-3.5 overflow-x-auto hide-scrollbar pb-2">
+                    {sortedMyRatings.slice(0, 12).map((item) => {
+                      const scColor = getScoreColorHex(item.finalScore);
+                      return (
+                        <div
+                          key={item.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            selectMovieToRate(item.id, item.title);
+                          }}
+                          className="relative w-24 sm:w-28 shrink-0 hover:-translate-y-1 transition-transform"
+                        >
+                          <img src={item.poster} className="w-full aspect-[2/3] object-cover rounded-xl border border-slate-700 hover:border-theme transition-all" alt=""/>
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-transparent to-transparent rounded-xl flex flex-col justify-end p-2">
+                            <span className="text-[9px] font-black text-slate-300 uppercase">{t.yourScoreLabel}</span>
+                            <span className="text-lg font-black leading-none mt-0.5" style={{ color: scColor }}>
+                              {Number(item.finalScore).toFixed(2)}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* 8. KAZANILAN ROZETLER KOLEKSİYONU */}
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-6 sm:p-8 border border-slate-800 shadow-xl">
+                <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3">
+                  <Award className="text-theme" size={24}/> {t.badges} ({allMyBadges.filter(b => b.earned).length}/{allMyBadges.length})
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                  {allMyBadges.map((b) => (
+                    <div
+                      key={b.id}
+                      onClick={() => b.earned && setUnlockedBadgeModal(b)}
+                      className={`p-4 rounded-3xl border transition-all flex flex-col items-center text-center relative overflow-hidden ${
+                        b.earned
+                          ? `cursor-pointer bg-gradient-to-br ${b.cardBg} hover:scale-[1.03]`
+                          : 'bg-[#04060C]/70 border-slate-800/80 opacity-45 grayscale'
+                      }`}
+                    >
+                      <span className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border mb-3 ${b.badgePill}`}>
+                        {b.tier}
+                      </span>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br ${b.orbBg} mb-3`}>
+                        {b.icon}
+                      </div>
+                      <h4 className="text-sm font-black text-white mb-1">{b.name}</h4>
+                      <p className="text-[11px] font-bold text-slate-300 leading-snug">{b.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          );
+        })()}
+
+        {/* YENİ: FİLM SAYFASINDA 3B DNA EŞLEŞME ORANI KUTUSU */}
+        {activeTab === 'rate' && selectedMovie && (() => {
+          const myDNA3D = analyzeComprehensiveDNA(sortedMyRatings, criteriaData);
+          const matchData = calculateMovieDNAMatch(myDNA3D, dbSelectedMovieData, criteriaData, myRatings);
+          if (!matchData) return null;
+
+          const matchColor = getScoreColorHex(matchData.score10);
+          const critScoreColor = getScoreColorHex(matchData.topCriterionMovieScore);
+          const isNeonMatch = matchData.score10 >= 9.0;
+
+          const titleStr = (t.dnaMovieMatchTitle || 'Senin Zevk DNA\'na %{pct} Uyuyor').replace('{pct}', matchData.matchPct);
+          const rawFocusTpl = matchData.status === 'strong'
+            ? (t.dnaMovieFocusStrong || 'Odak kriterin olan {crit} bu filmde çok güçlü')
+            : matchData.status === 'medium'
+            ? (t.dnaMovieFocusMedium || 'Odak kriterin olan {crit} bu filmde dengeli seviyede')
+            : (t.dnaMovieFocusWeak || 'Odak kriterin olan {crit} bu filmde zayıf kalmış');
+          const focusSubtitle = rawFocusTpl.replace('{crit}', matchData.topCriterionName);
+
+          return (
+            <div
+              className="mb-6 bg-slate-900/85 backdrop-blur-xl rounded-[2rem] p-4 sm:p-6 border shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-3 duration-500"
+              style={{
+                borderColor: `${matchColor}66`,
+                boxShadow: isNeonMatch ? `0 0 35px ${matchColor}33` : '0 20px 50px rgba(0,0,0,0.65)'
+              }}
+            >
+              <div
+                className="absolute -left-16 -top-16 w-56 h-56 rounded-full blur-[85px] opacity-25 pointer-events-none"
+                style={{ backgroundColor: matchColor }}
+              ></div>
+
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 relative z-10">
+                {/* Sol: Yüzde Rozeti ve Ana DNA Analiz Metni */}
+                <div className="flex items-center gap-3.5 sm:gap-5 min-w-0">
+                  <div
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#04060C] border-2 flex flex-col items-center justify-center shrink-0 shadow-xl"
+                    style={{
+                      borderColor: matchColor,
+                      boxShadow: `0 0 22px ${matchColor}40`
+                    }}
+                  >
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 leading-none mb-1">DNA</span>
+                    <span
+                      className="text-lg sm:text-2xl font-black leading-none"
+                      style={{ color: matchColor, textShadow: isNeonMatch ? `0 0 12px ${matchColor}` : 'none' }}
+                    >
+                      %{matchData.matchPct}
+                    </span>
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <span
+                      className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#04060C] border text-[9px] sm:text-[10px] font-black uppercase tracking-widest mb-1"
+                      style={{ borderColor: `${matchColor}55`, color: matchColor }}
+                    >
+                      🧬 {t.dnaMovieBadge || '3B DNA EŞLEŞME ALGORİTMASI'}
+                    </span>
+                    <h3 className="text-base sm:text-2xl font-black text-white leading-snug">
+                      🧬 {titleStr}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-bold text-slate-300 mt-1 leading-relaxed">
+                      {focusSubtitle}{' '}
+                      <span
+                        className="inline-block font-black px-2 py-0.5 rounded-lg bg-[#04060C] border ml-1"
+                        style={{ color: critScoreColor, borderColor: `${critScoreColor}55` }}
+                      >
+                        ({matchData.topCriterionMovieScore.toFixed(1)})
+                      </span>
+                    </p>
                   </div>
                 </div>
 
-                {/* SAĞ SÜTUN: ANA SEÇİM SAHNESİ (Mobilde 3'lü Kompakt Izgara) */}
-                <div id="game-selection-panel" className="lg:col-span-8">
-                  {gameWon ? (
-                    <div className="bg-[#0A0A0C] border-2 border-emerald-500/60 rounded-2xl p-6 sm:p-12 text-center">
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-400 text-[#050506] flex items-center justify-center mx-auto mb-4">
-                        <Trophy size={30}/>
+                {/* Sağ: 5 Kriterlik Mini DNA-Film Karşılaştırma Hapları */}
+                <div className="grid grid-cols-5 gap-1.5 sm:gap-2 w-full lg:w-auto shrink-0">
+                  {matchData.critDetails.map((cd) => {
+                    const cHex = getScoreColorHex(cd.movieScore);
+                    const isTopCrit = cd.name === matchData.topCriterionName;
+                    return (
+                      <div
+                        key={cd.id}
+                        className={`px-2 py-2 rounded-xl bg-[#04060C] border text-center min-w-0 ${
+                          isTopCrit ? 'scale-[1.03]' : 'border-slate-800/90 opacity-90'
+                        }`}
+                        style={isTopCrit ? { borderColor: cHex, boxShadow: `0 0 14px ${cHex}33` } : undefined}
+                      >
+                        <span className="text-[8px] sm:text-[9px] font-black text-slate-400 truncate block">
+                          {cd.name}
+                        </span>
+                        <span className="text-xs sm:text-sm font-black block mt-0.5" style={{ color: cHex }}>
+                          {cd.movieScore.toFixed(1)}
+                        </span>
                       </div>
-                      <span className="inline-block px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] sm:text-xs font-black uppercase tracking-widest mb-2">
-                        {Math.floor(gameChain.length / 2) <= 2 ? `🏆 ${t.winRank1}` : Math.floor(gameChain.length / 2) <= 4 ? `🌟 ${t.winRank2}` : `🎬 ${t.winRank3}`}
-                      </span>
-                      <h2 className="text-xl sm:text-4xl font-black text-white mb-2">{t.gameWonTitle}</h2>
-                      <p className="text-xs sm:text-sm font-bold text-zinc-400 mb-6 max-w-md mx-auto">
-                        {t.gameWonSubtitle} (<strong className="text-white">{Math.floor(gameChain.length / 2)} {t.linksCount}</strong>)
-                      </p>
-                      <div className="flex flex-wrap justify-center gap-2.5">
-                        <button
-                          onClick={() => startCineLinkGame(gameStartMovie, gameTargetMovie)}
-                          className="px-5 py-3 bg-zinc-900 hover:bg-zinc-800 text-white rounded-xl font-black text-xs border border-zinc-700 transition-colors"
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
+{/* --- YENİ: MİNİ OYUN: SİNEBAĞ (SİNEMATİK PRİZMA ARENA — RENKLİ BÖLÜMLER, KAYDIRMALI SWITCH & CANLI KRONOMETRE) --- */}
+        {activeTab === 'game' && (
+          <div className="rounded-[2rem] sm:rounded-[2.75rem] bg-[#060812] border border-indigo-500/25 p-4 sm:p-8 md:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.95)] relative overflow-hidden animate-in fade-in duration-500">
+            
+            {/* Arka Plan Bölümlendirme Işıkları (Sol Camgöbeği, Sağ Fuşya/Mor) */}
+            <div className="absolute -top-36 -left-24 w-96 h-96 bg-cyan-500/15 rounded-full blur-[130px] pointer-events-none"></div>
+            <div className="absolute -top-36 -right-24 w-96 h-96 bg-fuchsia-600/15 rounded-full blur-[130px] pointer-events-none"></div>
+            <div className="absolute -bottom-36 left-1/2 -translate-x-1/2 w-[34rem] h-80 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+            {/* ZAFER KARTI (PNG) ÖNİZLEME VE İNDİRME PENCERESİ */}
+            {winCardModal.show && (
+              <div className="fixed inset-0 z-[190] flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300">
+                <div className="bg-gradient-to-b from-[#0D1224] to-[#070A14] border border-indigo-500/40 rounded-3xl p-4 sm:p-6 w-full max-w-md text-center relative shadow-[0_0_70px_rgba(0,0,0,0.95)]">
+                  <button
+                    onClick={() => setWinCardModal({ show: false, generating: false, imageUrl: null })}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-slate-900 text-slate-400 hover:text-white border border-slate-700"
+                  >
+                    <X size={18}/>
+                  </button>
+                  <div className="text-left pb-3 mb-4 border-b border-white/10">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400 block">SİNEBAĞ // PAYLAŞIM KARTI</span>
+                    <h3 className="text-sm sm:text-base font-black text-white">
+                      {t.winCardModalTitle || 'SineBağ Zafer Kartı (Spoiler\'sız)'}
+                    </h3>
+                  </div>
+
+                  {winCardModal.generating ? (
+                    <div className="py-24 flex flex-col items-center justify-center gap-3">
+                      <Loader2 size={32} className="animate-spin text-cyan-400"/>
+                      <span className="text-xs font-bold text-slate-400">{t.storyGenerating || 'Kart hazırlanıyor...'}</span>
+                    </div>
+                  ) : winCardModal.imageUrl && (
+                    <div className="space-y-4">
+                      <img src={winCardModal.imageUrl} className="w-full max-h-[60vh] object-contain rounded-2xl border border-white/15 mx-auto shadow-2xl" alt="SineBag Victory Card"/>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <a
+                          href={winCardModal.imageUrl}
+                          download={`SineBag_${Date.now()}.png`}
+                          className="py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:opacity-95 text-[#05070F] font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg"
                         >
-                          {t.retrySameBtn}
-                        </button>
+                          📥 {t.downloadStory || 'Kartı İndir (PNG)'}
+                        </a>
                         <button
-                          onClick={() => { setGameActive(false); setGameWon(false); }}
-                          className="px-6 py-3 bg-white hover:bg-zinc-200 text-[#050506] rounded-xl font-black text-xs transition-colors"
+                          onClick={copySineBagChallengeLink}
+                          className="py-3.5 px-4 rounded-xl bg-[#11172B] hover:bg-[#19213D] text-cyan-300 border border-cyan-500/30 font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
                         >
-                          {t.playAgainBtn}
+                          🔗 {t.copyChallengeBtn || 'Linki Kopyala'}
                         </button>
                       </div>
                     </div>
-                  ) : (
-                    <div className="bg-[#0A0A0C] border border-zinc-800 rounded-2xl p-3.5 sm:p-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 mb-3.5 sm:mb-5 pb-3 border-b border-zinc-800">
-                        <div className="min-w-0">
-                          <span className={`inline-block text-[9px] sm:text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded mb-1 border ${
-                            gameStepType === 'actor' ? 'bg-zinc-900 text-amber-400 border-amber-500/30' : 'bg-zinc-900 text-white border-zinc-700'
-                          }`}>
-                            {gameStepType === 'actor' ? `🎭 ${t.nextMoveActorBadge}` : `🎬 ${t.nextMoveMovieBadge}`}
-                          </span>
-                          <h3 className="text-xs sm:text-lg font-black text-white leading-snug">
-                            <span className="text-amber-400">{gameChain[gameChain.length - 1]?.name}</span>{' '}
-                            <span className="text-zinc-300 font-bold">{gameStepType === 'actor' ? t.stepPickActor : t.stepPickMovie}</span>
-                          </h3>
-                        </div>
+                  )}
+                </div>
+              </div>
+            )}
 
-                        <div className="relative w-full sm:w-64 shrink-0">
-                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={14}/>
-                          <input
-                            type="text"
-                            value={gameFilterText}
-                            onChange={(e) => setGameFilterText(e.target.value)}
-                            placeholder={gameStepType === 'actor' ? t.filterActors : t.filterMovies}
-                            className="w-full bg-[#050506] border border-zinc-800 focus:border-white rounded-xl pl-8 pr-8 py-2 text-xs text-white font-bold outline-none transition-colors"
-                          />
-                          {gameFilterText && (
-                            <button onClick={() => setGameFilterText('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white">
-                              <X size={13}/>
-                            </button>
+            {/* ÜST BAŞLIK BAR */}
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-7 border-b border-white/10">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-fuchsia-500/20 border border-cyan-400/40 text-cyan-300 text-[10px] sm:text-[11px] font-black uppercase tracking-widest mb-2">
+                  <Sparkles size={13} className="text-fuchsia-400 animate-pulse"/> {t.miniGameNav}
+                </div>
+                <h1 className="text-2xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-fuchsia-200 tracking-tight">
+                  {t.gameTitle}
+                </h1>
+                <p className="text-xs sm:text-sm text-slate-400 font-medium mt-1 max-w-2xl">
+                  {t.gameSubtitle}
+                </p>
+              </div>
+
+              <button
+                onClick={() => setShowHowToPlay(!showHowToPlay)}
+                className={`self-start sm:self-auto px-4 py-2.5 rounded-2xl font-black text-xs flex items-center gap-2 shrink-0 transition-all border ${
+                  showHowToPlay
+                    ? 'bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#05070F] border-transparent shadow-[0_0_25px_rgba(6,182,212,0.4)]'
+                    : 'bg-[#0D1326] hover:bg-[#151E3A] text-cyan-300 border-cyan-500/30'
+                }`}
+              >
+                <HelpCircle size={16}/>
+                <span>{showHowToPlay ? t.hideGuideBtn : t.showGuideBtn}</span>
+              </button>
+            </div>
+
+            {/* NASIL OYNANIR REHBERİ (RENKLİ ADIM KARTLARI) */}
+            {showHowToPlay && (
+              <div className="relative z-10 mb-8 bg-[#0B1020]/90 border border-indigo-500/30 rounded-3xl p-4 sm:p-6 space-y-4 animate-in slide-in-from-top-3 duration-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                  {[
+                    { step: '01', title: t.howStep1Title, desc: t.howStep1Desc, badge: 'text-cyan-400 bg-cyan-500/15 border-cyan-500/30' },
+                    { step: '02', title: t.howStep2Title, desc: t.howStep2Desc, badge: 'text-fuchsia-400 bg-fuchsia-500/15 border-fuchsia-500/30' },
+                    { step: '03', title: t.howStep3Title, desc: t.howStep3Desc, badge: 'text-indigo-400 bg-indigo-500/15 border-indigo-500/30' },
+                    { step: '04', title: t.howStep4Title, desc: t.howStep4Desc, badge: 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30' }
+                  ].map((item, idx) => (
+                    <div key={idx} className="bg-[#060913] border border-white/10 rounded-2xl p-4 hover:border-white/25 transition-all">
+                      <span className={`inline-block text-[10px] font-black tracking-widest px-2.5 py-0.5 rounded-lg border mb-2 ${item.badge}`}>
+                        {t.stepLabel} {item.step}
+                      </span>
+                      <h4 className="text-sm font-black text-white mb-1">{item.title}</h4>
+                      <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-gradient-to-r from-cyan-950/40 via-[#080C1A] to-fuchsia-950/40 border border-white/10 rounded-2xl p-3.5 flex flex-wrap items-center justify-center gap-2 text-xs font-bold">
+                  <span className="text-cyan-300 font-black uppercase tracking-wider mr-1">{t.exampleShortestLabel}</span>
+                  <span className="px-3 py-1 rounded-xl bg-cyan-500/15 text-cyan-200 border border-cyan-500/30">🎬 {t.exampleM1}</span>
+                  <span className="text-slate-500">➔</span>
+                  <span className="px-3 py-1 rounded-xl bg-fuchsia-500/15 text-fuchsia-200 border border-fuchsia-500/30">🎭 Leonardo DiCaprio</span>
+                  <span className="text-slate-500">➔</span>
+                  <span className="px-3 py-1 rounded-xl bg-cyan-500/15 text-cyan-200 border border-cyan-500/30">🎬 {t.exampleM2}</span>
+                  <span className="text-slate-500">➔</span>
+                  <span className="px-3 py-1 rounded-xl bg-fuchsia-500/15 text-fuchsia-200 border border-fuchsia-500/30">🎭 Johnny Depp</span>
+                  <span className="text-slate-500">➔</span>
+                  <span className="px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-black">🎯 {t.exampleM3}</span>
+                </div>
+              </div>
+            )}
+
+{!gameActive ? (
+              /* AŞAMA 1: KURULUM EKRANI (RENKLİ VE NET AYRILMIŞ 3 FARKLI BÖLÜM) */
+              <div className="relative z-10 space-y-7">
+                
+                {/* BÖLÜM 1: GÜNÜN KÖPRÜSÜ (MOR / FUŞYA KOZMİK ETKİNLİK KARTI) */}
+                {dailyBridgeData.start && dailyBridgeData.target && (
+                  <div className="rounded-3xl bg-gradient-to-r from-purple-950/65 via-[#0E0B20] to-rose-950/65 border-2 border-fuchsia-500/40 p-4 sm:p-6 shadow-[0_15px_50px_rgba(192,38,211,0.18)] relative overflow-hidden">
+                    <div className="absolute -right-12 -top-12 w-48 h-48 bg-fuchsia-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
+                      <div className="space-y-2.5 max-w-xl">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="px-3 py-1 rounded-xl bg-gradient-to-r from-fuchsia-500 to-rose-500 text-white font-black text-[10px] sm:text-xs uppercase tracking-widest shadow-md flex items-center gap-1.5">
+                            <Flame size={13}/> {t.dailyBridgeTitle} #{dailyBridgeData.dayNum}
+                          </span>
+                          <span className="px-3 py-1 rounded-xl bg-[#070913]/90 border border-white/15 text-slate-300 font-bold text-[11px]">
+                            ⏳ {t.nextDailyIn} <strong className="text-white font-mono">{dailyBridgeData.countdown}</strong>
+                          </span>
+                          {/* Günün Köprüsü Rekoru (Köprü Sayısı + Süre) */}
+                          <span className="px-3 py-1 rounded-xl bg-indigo-950/80 border border-indigo-400/40 text-indigo-200 font-black text-[11px]">
+                            🏆 {dailyBridgeData.bestRecord?.bestLinks
+                              ? `${t.communityRecordLabel} ${formatRecordSummary(dailyBridgeData.bestRecord)}`
+                              : t.noRecordYet}
+                          </span>
+                          {dailyBridgeData.completedLinks && (
+                            <span className="px-3 py-1 rounded-xl bg-emerald-950/80 border border-emerald-400/50 text-emerald-300 font-black text-[11px]">
+                              ✅ {t.yourBestLabel || 'Senin Skorun:'} {dailyBridgeData.completedLinks} {t.linksCount}
+                              {dailyBridgeData.completedTime ? ` • ${formatGameSeconds(dailyBridgeData.completedTime)}` : ''}
+                            </span>
                           )}
                         </div>
+                        <p className="text-xs sm:text-sm text-purple-100/80 font-medium leading-relaxed">
+                          {t.dailyBridgeDesc}
+                        </p>
                       </div>
 
-                      {gameLoading ? (
-                        <div className="py-16 flex justify-center"><Loader2 className="w-7 h-7 animate-spin text-white"/></div>
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0">
+                        <div className="flex items-center justify-between sm:justify-center gap-3 bg-[#070913]/90 px-3.5 py-2.5 rounded-2xl border border-fuchsia-500/30">
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <img src={dailyBridgeData.start.poster} className="w-9 h-13 object-cover rounded-lg border border-cyan-400/60 shrink-0" alt=""/>
+                            <span className="text-xs font-black text-white truncate max-w-[95px] sm:max-w-[125px]">{dailyBridgeData.start.title}</span>
+                          </div>
+                          <span className="w-7 h-7 rounded-full bg-fuchsia-500/20 border border-fuchsia-400/40 flex items-center justify-center text-fuchsia-300 font-black text-xs shrink-0">➔</span>
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <img src={dailyBridgeData.target.poster} className="w-9 h-13 object-cover rounded-lg border border-rose-400/60 shrink-0" alt=""/>
+                            <span className="text-xs font-black text-rose-200 truncate max-w-[95px] sm:max-w-[125px]">{dailyBridgeData.target.title}</span>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => startCineLinkGame(dailyBridgeData.start, dailyBridgeData.target, true)}
+                          disabled={gameLoading}
+                          className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-fuchsia-500 via-pink-500 to-rose-500 hover:scale-[1.02] active:scale-95 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_25px_rgba(236,72,153,0.45)] shrink-0"
+                        >
+                          <Play size={16} fill="currentColor"/> {t.playDailyBtn}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* BÖLÜM 2: BAŞLANGIÇ (CAMGÖBEĞİ) VS HEDEF (KIZIL/PEMBE) FİLM ARENASI + ÜST RASTGELE FİLM SEÇİCİ */}
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 bg-[#0A0F1F]/90 border border-indigo-500/30 rounded-2xl px-4 py-3 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                      <span className="text-xs sm:text-sm font-black text-white tracking-wide">
+                        {t.howStep1Title} <span className="text-slate-400 font-bold hidden md:inline">— {t.howStep1Desc}</span>
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => loadPresetOrRandomPair('random')}
+                      disabled={gameLoading}
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500 hover:scale-[1.02] active:scale-95 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] shrink-0"
+                    >
+                      {gameLoading ? <Loader2 size={15} className="animate-spin"/> : <Sparkles size={15}/>}
+                      <span>🎲 {t.randomPairBtn}</span>
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-11 gap-4 sm:gap-5 items-stretch">
+                    
+                    {/* SOL KART: 1. BAŞLANGIÇ FİLMİ (CYAN / ELEKTRİK MAVİ TEMA) */}
+                    <div className="lg:col-span-5 rounded-3xl bg-gradient-to-br from-cyan-950/40 via-[#081022] to-[#060913] border-2 border-cyan-500/35 p-5 sm:p-6 flex flex-col justify-between shadow-[0_10px_35px_rgba(6,182,212,0.1)]">
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-cyan-500/20">
+                        <div className="flex items-center gap-2.5">
+                          <span className="w-7 h-7 rounded-xl bg-cyan-400 text-[#05070F] font-black text-xs flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.5)]">01</span>
+                          <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-cyan-300">{t.startMovieLabel}</span>
+                        </div>
+                        {gameStartMovie && (
+                          <button
+                            onClick={() => { setGameStartMovie(null); setGameStartQuery(''); setIsDailyModeActive(false); }}
+                            className="text-xs font-bold text-cyan-300 hover:text-white px-3 py-1 rounded-xl bg-cyan-500/10 border border-cyan-500/30 transition-colors"
+                          >
+                            {t.changeMovie}
+                          </button>
+                        )}
+                      </div>
+
+                      {gameStartMovie ? (
+                        <div className="flex items-center gap-4 bg-[#050811]/90 p-3.5 rounded-2xl border border-cyan-500/40">
+                          <img src={gameStartMovie.poster} className="w-16 sm:w-20 aspect-[2/3] object-cover rounded-xl border-2 border-cyan-400 shrink-0 shadow-lg" alt=""/>
+                          <div className="min-w-0 flex-1">
+                            <span className="inline-block text-[9px] font-black text-cyan-300 bg-cyan-500/15 px-2 py-0.5 rounded-md uppercase mb-1">{t.startPointBadge}</span>
+                            <h4 className="text-base sm:text-xl font-black text-white truncate">{gameStartMovie.title}</h4>
+                            <p className="text-xs font-bold text-slate-400 mt-1">{gameStartMovie.year}</p>
+                          </div>
+                        </div>
                       ) : (
-                        <div id="game-options-grid" className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto pr-1">
-                          {gameOptions
-                            .filter(opt => opt.name.toLowerCase().includes(gameFilterText.toLowerCase()))
-                            .map(opt => {
-                              const isTargetMatch = gameStepType === 'movie' && String(opt.id) === String(gameTargetMovie?.id);
-                              const isTargetActorMatch = gameStepType === 'actor' && gameTargetCast.some(tc => String(tc.id) === String(opt.id));
-                              return (
+                        <div className="my-auto">
+                          <div className="relative flex items-center">
+                            <Search className="absolute left-4 text-cyan-400" size={18}/>
+                            <input
+                              type="text"
+                              value={gameStartQuery}
+                              onChange={(e) => setGameStartQuery(e.target.value)}
+                              placeholder={t.searchMovieGame}
+                              className="w-full bg-[#050811] border border-cyan-500/30 focus:border-cyan-400 rounded-2xl pl-11 pr-10 py-3.5 text-xs sm:text-sm text-white font-bold outline-none transition-all"
+                            />
+                            {gameSearchingSide === 'start' && <Loader2 className="absolute right-4 animate-spin text-cyan-400" size={18}/>}
+                          </div>
+                          {gameStartResults.length > 0 && (
+                            <div className="mt-2 bg-[#050811] border border-cyan-500/40 rounded-2xl overflow-hidden max-h-52 overflow-y-auto divide-y divide-white/5 shadow-2xl">
+                              {gameStartResults.map(m => (
                                 <div
-                                  key={opt.id}
-                                  onClick={() => gameStepType === 'actor' ? handlePickGameActor(opt) : handlePickGameMovie(opt)}
-                                  className={`group cursor-pointer rounded-xl p-1.5 sm:p-2 bg-[#050506] border transition-colors ${
-                                    isTargetMatch
-                                      ? 'border-2 border-emerald-400'
-                                      : isTargetActorMatch
-                                      ? 'border-2 border-amber-400'
-                                      : 'border-zinc-800/90 hover:border-zinc-400 active:border-amber-400'
-                                  }`}
+                                  key={m.id}
+                                  onClick={() => {
+                                    setGameStartMovie({
+                                      id: String(m.id),
+                                      title: m.title,
+                                      year: m.release_date ? m.release_date.split('-')[0] : '',
+                                      poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
+                                    });
+                                    setIsDailyModeActive(false);
+                                    setGameStartResults([]);
+                                  }}
+                                  className="flex items-center gap-3 p-2.5 hover:bg-cyan-500/15 cursor-pointer transition-colors"
                                 >
-                                  <div className="aspect-[3/4] sm:aspect-[2/3] rounded-lg overflow-hidden bg-zinc-900 mb-1.5 relative">
-                                    {opt.image ? (
-                                      <img src={opt.image} loading="lazy" decoding="async" className="w-full h-full object-cover" alt=""/>
-                                    ) : (
-                                      <div className="w-full h-full flex items-center justify-center text-zinc-700"><User size={24}/></div>
-                                    )}
-                                    {isTargetMatch && (
-                                      <div className="absolute top-1 inset-x-1 bg-emerald-400 text-[#050506] text-[8px] sm:text-[9px] font-black py-0.5 px-1 rounded text-center truncate">
-                                        {t.targetHereBadge}
-                                      </div>
-                                    )}
-                                    {isTargetActorMatch && (
-                                      <div className="absolute top-1 inset-x-1 bg-amber-400 text-[#050506] text-[8px] sm:text-[9px] font-black py-0.5 px-1 rounded text-center truncate">
-                                        {t.targetActorHereBadge}
-                                      </div>
-                                    )}
+                                  <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-9 h-12 object-cover rounded-lg shrink-0" alt=""/>
+                                  <div className="min-w-0 flex-1">
+                                    <p className="text-xs font-black text-white truncate">{m.title}</p>
+                                    <span className="text-[10px] font-bold text-cyan-300/80">{m.release_date?.split('-')[0]}</span>
                                   </div>
-                                  <h4 className="text-[11px] sm:text-xs font-black text-white group-hover:text-amber-400 truncate px-0.5">{opt.name}</h4>
-                                  {opt.sub && <p className="text-[9px] sm:text-[10px] font-bold text-zinc-500 truncate px-0.5">{opt.sub}</p>}
                                 </div>
-                              );
-                            })}
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
+
+                    {/* ORTA ENERJİ KÖPRÜSÜ HALKASI */}
+                    <div className="lg:col-span-1 flex items-center justify-center py-1">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 via-indigo-500 to-rose-500 p-[2px] shadow-[0_0_25px_rgba(99,102,241,0.4)]">
+                        <div className="w-full h-full bg-[#060812] rounded-[14px] flex items-center justify-center text-white font-black text-base">
+                          ⇄
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* SAĞ KART: 2. HEDEF FİLM (ROSE / KIZIL-FUŞYA TEMA) */}
+                    <div className="lg:col-span-5 rounded-3xl bg-gradient-to-br from-rose-950/40 via-[#1A0919] to-[#060913] border-2 border-rose-500/35 p-5 sm:p-6 flex flex-col justify-between shadow-[0_10px_35px_rgba(244,63,94,0.1)]">
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-rose-500/20">
+                        <div className="flex items-center gap-2.5">
+                          <span className="w-7 h-7 rounded-xl bg-rose-500 text-white font-black text-xs flex items-center justify-center shadow-[0_0_15px_rgba(244,63,94,0.5)]">02</span>
+                          <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-rose-300">{t.targetMovieLabel}</span>
+                        </div>
+                        {gameTargetMovie && (
+                          <button
+                            onClick={() => { setGameTargetMovie(null); setGameTargetQuery(''); setIsDailyModeActive(false); }}
+                            className="text-xs font-bold text-rose-300 hover:text-white px-3 py-1 rounded-xl bg-rose-500/10 border border-rose-500/30 transition-colors"
+                          >
+                            {t.changeMovie}
+                          </button>
+                        )}
+                      </div>
+
+                      {gameTargetMovie ? (
+                        <div className="flex items-center gap-4 bg-[#050811]/90 p-3.5 rounded-2xl border border-rose-500/40">
+                          <img src={gameTargetMovie.poster} className="w-16 sm:w-20 aspect-[2/3] object-cover rounded-xl border-2 border-rose-400 shrink-0 shadow-lg" alt=""/>
+                          <div className="min-w-0 flex-1">
+                            <span className="inline-block text-[9px] font-black text-rose-300 bg-rose-500/15 px-2 py-0.5 rounded-md uppercase mb-1">{t.targetPointBadge}</span>
+                            <h4 className="text-base sm:text-xl font-black text-white truncate">{gameTargetMovie.title}</h4>
+                            <p className="text-xs font-bold text-slate-400 mt-1">{gameTargetMovie.year}</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="my-auto">
+                          <div className="relative flex items-center">
+                            <Search className="absolute left-4 text-rose-400" size={18}/>
+                            <input
+                              type="text"
+                              value={gameTargetQuery}
+                              onChange={(e) => setGameTargetQuery(e.target.value)}
+                              placeholder={t.searchMovieGame}
+                              className="w-full bg-[#050811] border border-rose-500/30 focus:border-rose-400 rounded-2xl pl-11 pr-10 py-3.5 text-xs sm:text-sm text-white font-bold outline-none transition-all"
+                            />
+                            {gameSearchingSide === 'target' && <Loader2 className="absolute right-4 animate-spin text-rose-400" size={18}/>}
+                          </div>
+                          {gameTargetResults.length > 0 && (
+                            <div className="mt-2 bg-[#050811] border border-rose-500/40 rounded-2xl overflow-hidden max-h-52 overflow-y-auto divide-y divide-white/5 shadow-2xl">
+                              {gameTargetResults.map(m => (
+                                <div
+                                  key={m.id}
+                                  onClick={() => {
+                                    setGameTargetMovie({
+                                      id: String(m.id),
+                                      title: m.title,
+                                      year: m.release_date ? m.release_date.split('-')[0] : '',
+                                      poster: `https://image.tmdb.org/t/p/w500${m.poster_path}`
+                                    });
+                                    setIsDailyModeActive(false);
+                                    setGameTargetResults([]);
+                                  }}
+                                  className="flex items-center gap-3 p-2.5 hover:bg-rose-500/15 cursor-pointer transition-colors"
+                                >
+                                  <img src={`https://image.tmdb.org/t/p/w200${m.poster_path}`} className="w-9 h-12 object-cover rounded-lg shrink-0" alt=""/>
+                                  <div className="min-w-0 flex-1">
+                                    <p className="text-xs font-black text-white truncate">{m.title}</p>
+                                    <span className="text-[10px] font-bold text-rose-300/80">{m.release_date?.split('-')[0]}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEÇİLİ İKİLİNİN BAĞLANTI DURUMU VE SÜRELİ REKOR BİLGİSİ */}
+                {gameStartMovie && gameTargetMovie && (
+                  <div className="rounded-2xl bg-[#0B1022] border border-indigo-500/30 p-4 shadow-lg">
+                    {bridgeStatus.checking ? (
+                      <div className="flex items-center justify-center gap-2.5 text-cyan-300 text-xs font-bold">
+                        <Loader2 size={16} className="animate-spin"/> {t.bridgeChecking}
+                      </div>
+                    ) : !bridgeStatus.possible ? (
+                      <div className="text-center space-y-1">
+                        <h4 className="text-xs sm:text-sm font-black text-rose-400">{t.bridgeImpossibleTitle}</h4>
+                        <p className="text-xs text-slate-300">{bridgeStatus.reason}</p>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                        <span className="font-bold text-emerald-300 flex items-center gap-2">
+                          {bridgeStatus.reason}
+                        </span>
+                        <span className="px-4 py-1.5 rounded-xl bg-indigo-500/20 border border-indigo-400/40 font-black text-indigo-200 shrink-0 flex items-center gap-2">
+                          <Trophy size={14} className="text-cyan-400"/>
+                          {communityRecord?.bestLinks
+                            ? `${t.communityRecordLabel} ${formatRecordSummary(communityRecord)}`
+                            : t.noRecordYet}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* BÖLÜM 3: KAYDIRMALI (SLIDING TOGGLE) ÖZEL KURALLAR & RENKLİ POPÜLER ROTALAR */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+                  
+                  {/* SOL KUTU: ÖZEL KURALLAR (KAYDIRMALI BUTON / SLIDING TOGGLE SWITCH) */}
+                  <div className="lg:col-span-6 rounded-3xl bg-[#0A0F1F] border border-indigo-500/25 p-5 sm:p-6 flex flex-col justify-between space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400 block">OYUN MODÜLLERİ</span>
+                        <h3 className="text-sm sm:text-base font-black text-white mt-0.5">
+                          {t.hardModesTitle || 'Zorlu Modlar (İsteğe Bağlı)'}
+                        </h3>
+                      </div>
+                      <Settings size={18} className="text-indigo-400"/>
+                    </div>
+
+                    <div className="space-y-3">
+                      {/* Kural 1: 15sn Blitz Modu (Kaydırmalı Toggle Switch) */}
+                      <div
+                        onClick={() => setBlitzMode(!blitzMode)}
+                        className={`cursor-pointer p-4 rounded-2xl border transition-all flex items-center justify-between gap-4 ${
+                          blitzMode
+                            ? 'bg-gradient-to-r from-cyan-950/60 to-indigo-950/60 border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.2)]'
+                            : 'bg-[#060913] border-white/10 hover:border-white/25'
+                        }`}
+                      >
+                        <div className="min-w-0">
+                          <span className={`text-xs sm:text-sm font-black block ${blitzMode ? 'text-cyan-300' : 'text-white'}`}>
+                            {t.blitzModeTitle}
+                          </span>
+                          <span className="text-[11px] text-slate-400 block mt-0.5 leading-snug">
+                            {t.blitzModeDesc}
+                          </span>
+                        </div>
+                        {/* Kaydırmalı Buton (Toggle Switch) */}
+                        <button
+                          type="button"
+                          role="switch"
+                          aria-checked={blitzMode}
+                          className={`relative inline-flex h-7 w-13 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none ${
+                            blitzMode ? 'bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)]' : 'bg-slate-800'
+                          }`}
+                          style={{ width: '52px' }}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-[#05070F] shadow-lg ring-0 transition duration-300 ease-in-out ${
+                              blitzMode ? 'translate-x-6' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      {/* Kural 2: Yasaklı Başrol Modu (Kaydırmalı Toggle Switch) */}
+                      <div
+                        onClick={() => setBannedActorMode(!bannedActorMode)}
+                        className={`cursor-pointer p-4 rounded-2xl border transition-all flex items-center justify-between gap-4 ${
+                          bannedActorMode
+                            ? 'bg-gradient-to-r from-rose-950/60 to-fuchsia-950/60 border-rose-400 shadow-[0_0_20px_rgba(244,63,94,0.2)]'
+                            : 'bg-[#060913] border-white/10 hover:border-white/25'
+                        }`}
+                      >
+                        <div className="min-w-0">
+                          <span className={`text-xs sm:text-sm font-black block ${bannedActorMode ? 'text-rose-300' : 'text-white'}`}>
+                            {t.bannedModeTitle}
+                          </span>
+                          <span className="text-[11px] text-slate-400 block mt-0.5 leading-snug">
+                            {t.bannedModeDesc}
+                          </span>
+                        </div>
+                        {/* Kaydırmalı Buton (Toggle Switch) */}
+                        <button
+                          type="button"
+                          role="switch"
+                          aria-checked={bannedActorMode}
+                          className={`relative inline-flex h-7 w-13 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none ${
+                            bannedActorMode ? 'bg-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.6)]' : 'bg-slate-800'
+                          }`}
+                          style={{ width: '52px' }}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow-lg ring-0 transition duration-300 ease-in-out ${
+                              bannedActorMode ? 'translate-x-6' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SAĞ KUTU: POPÜLER EŞLEŞMELER */}
+                  <div className="lg:col-span-6 rounded-3xl bg-[#0A0F1F] border border-indigo-500/25 p-5 sm:p-6 flex flex-col justify-between space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400 block">HIZLI BAŞLANGIÇ</span>
+                        <h3 className="text-sm sm:text-base font-black text-white mt-0.5">
+                          {t.popularRoutesHeading || 'Popüler Eşleşmeler'}
+                        </h3>
+                      </div>
+                      <Flame size={18} className="text-fuchsia-400"/>
+                    </div>
+
+                    <div className="space-y-2.5">
+                      {[
+                        { key: 'classic', code: '#1', label: t.popGame1 || 'Zindan Adası ➔ Karayip Korsanları', pill: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40' },
+                        { key: 'popular2', code: '#2', label: t.popGame2 || 'Başlangıç ➔ Yüzüklerin Efendisi', pill: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40' },
+                        { key: 'popular3', code: '#3', label: t.popGame3 || 'Ucuz Roman ➔ Kara Şövalye', pill: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' }
+                      ].map(pg => (
+                        <button
+                          key={pg.key}
+                          onClick={() => loadPresetOrRandomPair(pg.key)}
+                          disabled={gameLoading}
+                          className="w-full text-left p-3 rounded-2xl bg-[#060913] hover:bg-[#0F162B] border border-white/10 hover:border-cyan-400/50 transition-all flex items-center justify-between gap-3 group hover:translate-x-1"
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <span className={`text-[10px] font-black px-2.5 py-1 rounded-lg border shrink-0 ${pg.pill}`}>{pg.code}</span>
+                            <span className="text-xs sm:text-sm font-black text-slate-200 group-hover:text-white truncate">{pg.label}</span>
+                          </div>
+                          <ChevronRight size={16} className="text-slate-500 group-hover:text-cyan-400 shrink-0 transition-transform group-hover:translate-x-1"/>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* ANA KÖPRÜYÜ BAŞLATMA BUTONU */}
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5">
+                  <button
+                    onClick={() => startCineLinkGame()}
+                    disabled={!gameStartMovie || !gameTargetMovie || String(gameStartMovie.id) === String(gameTargetMovie.id) || gameLoading || bridgeStatus.checking || !bridgeStatus.possible}
+                    className="px-12 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500 hover:scale-[1.02] active:scale-95 disabled:opacity-25 disabled:pointer-events-none text-white font-black text-sm sm:text-base uppercase tracking-wider transition-all shadow-[0_0_35px_rgba(99,102,241,0.45)] inline-flex items-center justify-center gap-3"
+                  >
+                    {gameLoading ? <Loader2 className="animate-spin" size={20}/> : <Play size={18} fill="currentColor"/>}
+                    {t.startGameBtn}
+                  </button>
+
+                  {gameStartMovie && gameTargetMovie && bridgeStatus.possible && (
+                    <button
+                      onClick={copySineBagChallengeLink}
+                      className="px-6 py-4 rounded-2xl bg-[#0A0F1F] hover:bg-[#131C38] text-cyan-300 border border-cyan-500/35 font-black text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-all"
+                    >
+                      🔗 {t.copyChallengeBtn}
+                    </button>
                   )}
                 </div>
 
               </div>
-            )}
-          </div>
-        )}
-        
-        {/* YENİ: TOPLULUK ARAMA EKRANI (GİZLİLİK ODAKLI) */}
-        {activeTab === 'community' && (
-          <div className="animate-in fade-in duration-500 space-y-8 max-w-5xl mx-auto">
-             <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 sm:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 blur-[100px] rounded-full pointer-events-none" style={{backgroundColor: themeColor + '20'}}></div>
-                <h2 className="text-3xl sm:text-4xl font-black text-white flex items-center gap-3 drop-shadow-md mb-6 relative z-10"><Users className="text-theme" size={36}/> {t.community}</h2>
-                <div className="relative flex items-center z-10">
-                  <Search className="absolute left-6 text-slate-400" size={20}/>
-                  <input 
-                    type="text" value={communitySearch} onChange={(e) => setCommunitySearch(e.target.value)} placeholder={t.searchUsers} maxLength={7}
-                    className="w-full bg-[#04060C] border border-slate-800 rounded-2xl pl-14 pr-6 py-5 text-white outline-none focus:border-theme transition-colors shadow-inner font-bold text-lg uppercase"
-                  />
-                </div>
-             </div>
-
-             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {communitySearch.replace('@', '').length !== 6 ? (
-                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">
-                     <Lock size={48} className="mx-auto mb-4 opacity-50 text-theme"/>
-                     <p className="text-lg text-slate-300 mb-2">{t.communityPrivacyTitle}</p>
-                     <p className="text-sm max-w-sm mx-auto">{t.exactCodeRequired}</p>
-                  </div>
-                ) : filteredCommunityUsers.length > 0 ? (
-                  filteredCommunityUsers.map(u => (
-                    <div key={u.uid} onClick={() => loadPublicProfile(u.uid)} className="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center gap-4 cursor-pointer hover:border-theme hover:-translate-y-1 transition-all group">
-                       <img src={u.avatar || AVATAR_DEFAULT} className="w-16 h-16 rounded-full border-2 border-[#04060C] group-hover:border-theme transition-colors object-cover" alt=""/>
-                       <div>
-                         <h4 className="text-lg font-black text-white group-hover:text-theme transition-colors line-clamp-1">{u.displayName} <span className="text-slate-500 text-sm font-bold ml-1">@{u.userCode || (u.uid ? u.uid.substring(0,6).toUpperCase() : '')}</span></h4>
-                         <p className="text-xs font-bold text-slate-500 mt-1">{u.followers?.length || 0} {t.followers}</p>
-                       </div>
+            ) : (
+              /* AŞAMA 2: AKTİF OYUN SAHNESİ (ÜST CANLI KRONOMETRE PANELİ + SOL RENKLİ ZİNCİR + SAĞ DİNAMİK SEÇİM SAHNESİ) */
+              <div className="relative z-10 space-y-5">
+                
+                {/* ÜST CANLI TELEMETRİ & KRONOMETRE BAR */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 bg-[#0A0F1F]/95 border border-indigo-500/30 rounded-2xl p-3 sm:p-4 shadow-xl">
+                  {/* 1. Canlı Kronometre */}
+                  <div className="bg-[#050811] border border-cyan-500/30 rounded-xl p-2.5 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-cyan-500/15 border border-cyan-400/40 flex items-center justify-center text-cyan-300 font-black text-sm shrink-0">
+                      ⏱
                     </div>
-                  ))
-                ) : (
-                  <div className="col-span-full text-center py-20 text-slate-500 font-bold bg-slate-900/50 rounded-[2rem] border border-slate-800 border-dashed">{t.noData}</div>
-                )}
-             </div>
+                    <div className="min-w-0">
+                      <span className="text-[9px] font-black uppercase tracking-widest text-cyan-400 block">
+                        {t.stopwatchLabel || 'SÜRE'}
+                      </span>
+                      <span className="text-sm sm:text-lg font-mono font-black text-white">
+                        {(gameElapsedDeci / 10).toFixed(1)} {unitSec}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 2. Kurulan Bağ Sayısı */}
+                  <div className="bg-[#050811] border border-fuchsia-500/30 rounded-xl p-2.5 flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-fuchsia-500/15 border border-fuchsia-400/40 flex items-center justify-center text-fuchsia-300 font-black text-sm shrink-0">
+                      🔗
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[9px] font-black uppercase tracking-widest text-fuchsia-400 block">
+                        {t.linksCount}
+                      </span>
+                      <span className="text-sm sm:text-lg font-mono font-black text-white">
+                        {Math.floor(gameChain.length / 2)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 3. Etap Rekoru (Bağlantı + Süre) */}
+                  <div className="col-span-2 bg-[#050811] border border-indigo-500/30 rounded-xl p-2.5 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-400/40 flex items-center justify-center text-indigo-300 shrink-0">
+                        <Trophy size={16}/>
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[9px] font-black uppercase tracking-widest text-indigo-300 block">
+                          {t.communityRecordLabel}
+                        </span>
+                        <span className="text-xs sm:text-sm font-black text-white truncate block">
+                          {communityRecord?.bestLinks
+                            ? formatRecordSummary(communityRecord)
+                            : t.noRecordYet}
+                        </span>
+                      </div>
+                    </div>
+                    {isDailyModeActive && (
+                      <span className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-fuchsia-500 to-rose-500 text-white text-[10px] font-black shrink-0">
+                        #{dailyBridgeData.dayNum}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
+                  
+                  {/* SOL SÜTUN (4 BİRİM): KUMANDA VE RENKLİ BAĞLANTI AĞACI */}
+                  <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
+                    
+                    {/* 1. ROTA VE KONTROL KUTUSU */}
+                    <div className="bg-[#0A0F1F] border border-indigo-500/25 rounded-3xl p-4 space-y-3.5 shadow-xl">
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <div className="flex items-center gap-2 bg-[#050811] p-2.5 rounded-2xl border border-cyan-500/40 min-w-0">
+                          <img src={gameStartMovie?.poster} className="w-8 h-11 object-cover rounded-lg shrink-0 border border-cyan-400" alt=""/>
+                          <div className="min-w-0">
+                            <span className="text-[8px] font-black text-cyan-400 uppercase block">{t.chainStartBadge}</span>
+                            <p className="text-xs font-black text-white truncate">{gameStartMovie?.title}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 bg-[#050811] p-2.5 rounded-2xl border border-rose-500/40 min-w-0">
+                          <img src={gameTargetMovie?.poster} className="w-8 h-11 object-cover rounded-lg shrink-0 border border-rose-400" alt=""/>
+                          <div className="min-w-0">
+                            <span className="text-[8px] font-black text-rose-400 uppercase block">{t.targetMovieLabel}</span>
+                            <p className="text-xs font-black text-white truncate">{gameTargetMovie?.title}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {bannedActorObj && (
+                        <div className="bg-rose-950/40 border border-rose-500/40 rounded-xl px-3 py-2 flex items-center justify-between text-[10px] font-black text-rose-300">
+                          <span>🚫 YASAKLI:</span>
+                          <span className="text-white truncate ml-2">{bannedActorObj.name}</span>
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-3 gap-2">
+                        <button
+                          onClick={handleUndoGameStep}
+                          disabled={gameHistoryStack.length === 0 || gameLoading}
+                          className="py-2.5 px-2 rounded-xl bg-[#050811] hover:bg-slate-800 disabled:opacity-30 text-slate-200 border border-white/10 font-black text-[11px] flex items-center justify-center gap-1 transition-all"
+                        >
+                          <ChevronLeft size={14}/> {t.undoStep}
+                        </button>
+
+                        <button
+                          onClick={() => setShowTargetHint(!showTargetHint)}
+                          className={`py-2.5 px-2 rounded-xl font-black text-[11px] flex items-center justify-center gap-1 border transition-all ${
+                            showTargetHint
+                              ? 'bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#05070F] border-transparent shadow-md'
+                              : 'bg-[#050811] hover:bg-slate-800 text-cyan-300 border-cyan-500/30'
+                          }`}
+                        >
+                          🎯 {t.cast}
+                        </button>
+
+                        <button
+                          onClick={() => { setGameActive(false); setGameWon(false); setBlitzFailed(false); }}
+                          className="py-2.5 px-2 rounded-xl bg-rose-950/40 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/30 font-black text-[11px] flex items-center justify-center gap-1 transition-all"
+                        >
+                          <X size={13}/> {t.resetGame}
+                        </button>
+                      </div>
+
+                      {showTargetHint && (
+                        <div className="bg-[#050811] border border-cyan-500/35 rounded-2xl p-3.5 space-y-2 animate-in fade-in duration-200">
+                          <div className="border-b border-white/10 pb-2">
+                            <h5 className="text-[10px] font-black text-cyan-300 uppercase">
+                              💡 {t.targetCastExplainTitle}
+                            </h5>
+                            <p className="text-[10px] text-slate-400 leading-relaxed mt-0.5">
+                              {t.targetCastExplainDesc}
+                            </p>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1">
+                            {gameTargetCast.map(tc => (
+                              <span key={tc.id} className="px-2.5 py-1 rounded-lg bg-[#0A0F1F] border border-white/10 text-[10px] font-bold text-slate-200">
+                                {tc.name}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* 2. RENKLİ BAĞLANTI ZİNCİRİ (Filmler Camgöbeği, Oyuncular Mor/Fuşya) */}
+                    <div className="bg-[#0A0F1F] border border-indigo-500/25 rounded-3xl p-4 shadow-xl">
+                      <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-white/10">
+                        <h4 className="text-xs font-black text-cyan-300 uppercase tracking-widest">
+                          {t.chainMapTitle}
+                        </h4>
+                        <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 text-[10px] font-black">
+                          {Math.floor(gameChain.length / 2)} {t.linksCount}
+                        </span>
+                      </div>
+
+                      <div
+                        id="game-chain-list"
+                        className="flex lg:flex-col items-center lg:items-stretch gap-2.5 overflow-x-auto lg:overflow-x-visible lg:max-h-[420px] lg:overflow-y-auto pb-1 lg:pb-0 pr-1 hide-scrollbar"
+                      >
+                        {gameChain.map((node, idx) => {
+                          const isStart = idx === 0;
+                          const isTargetWon = gameWon && idx === gameChain.length - 1;
+
+                          return (
+                            <div key={`${node.type}_${node.id}_${idx}`} className="relative flex items-center gap-2.5 shrink-0 lg:shrink">
+                              <div className={`w-7 h-7 rounded-xl font-black text-[11px] flex items-center justify-center shrink-0 border ${
+                                isTargetWon
+                                  ? 'bg-emerald-400 text-[#05070F] border-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.7)]'
+                                  : node.type === 'movie'
+                                  ? 'bg-cyan-400 text-[#05070F] border-cyan-300'
+                                  : 'bg-fuchsia-500 text-white border-fuchsia-300'
+                              }`}>
+                                {idx + 1}
+                              </div>
+
+                              <div className={`flex items-center gap-2.5 p-2 rounded-2xl border min-w-[140px] sm:min-w-0 lg:flex-1 ${
+                                isTargetWon
+                                  ? 'bg-emerald-950/40 border-emerald-400/60'
+                                  : node.type === 'movie'
+                                  ? 'bg-cyan-950/25 border-cyan-500/35'
+                                  : 'bg-fuchsia-950/25 border-fuchsia-500/35'
+                              }`}>
+                                {node.image ? (
+                                  <img
+                                    src={node.image}
+                                    className={`object-cover shrink-0 border ${
+                                      node.type === 'actor' ? 'w-8 h-8 rounded-full border-fuchsia-400' : 'w-7 h-10 rounded-lg border-cyan-400'
+                                    }`}
+                                    alt=""
+                                  />
+                                ) : (
+                                  <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 shrink-0"><User size={13}/></div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <span className={`text-[8px] font-black uppercase tracking-wider block truncate ${
+                                    isTargetWon ? 'text-emerald-400' : node.type === 'movie' ? 'text-cyan-300' : 'text-fuchsia-300'
+                                  }`}>
+                                    {isStart ? t.chainStartBadge : isTargetWon ? t.targetHereBadge : node.type === 'movie' ? `🎬 ${Math.ceil(idx / 2)}. ${t.nodeMovieLabel}` : `🎭 ${Math.ceil(idx / 2)}. ${t.nodeActorLabel}`}
+                                  </span>
+                                  <p className="text-xs font-black text-white truncate max-w-[100px] sm:max-w-none">{node.name}</p>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SAĞ SÜTUN (8 BİRİM): DİNAMİK RENKLİ SEÇİM SAHNESİ */}
+                  <div id="game-selection-panel" className="lg:col-span-8">
+                    {blitzFailed && !gameWon ? (
+                      <div className="bg-gradient-to-b from-rose-950/50 to-[#080B16] border-2 border-rose-500 rounded-3xl p-8 sm:p-12 text-center space-y-4 shadow-2xl">
+                        <div className="w-16 h-16 rounded-2xl bg-rose-500/20 border border-rose-400 text-rose-300 flex items-center justify-center mx-auto text-3xl animate-bounce">
+                          ⏱
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl font-black text-white">{t.blitzTimeOutTitle}</h2>
+                        <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">{t.blitzTimeOutDesc}</p>
+                        <div className="flex flex-wrap justify-center gap-3 pt-3">
+                          <button
+                            onClick={() => startCineLinkGame(gameStartMovie, gameTargetMovie, isDailyModeActive)}
+                            className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#05070F] font-black text-xs sm:text-sm transition-transform hover:scale-105"
+                          >
+                            {t.tryAgainBtn}
+                          </button>
+                          <button
+                            onClick={() => { setGameActive(false); setBlitzFailed(false); }}
+                            className="px-7 py-3.5 rounded-2xl bg-[#0A0F1F] hover:bg-slate-800 text-slate-200 border border-white/15 font-black text-xs sm:text-sm transition-colors"
+                          >
+                            {t.resetGame}
+                          </button>
+                        </div>
+                      </div>
+                    ) : gameWon ? (
+                      <div className="bg-gradient-to-b from-emerald-950/55 via-[#0A1022] to-[#060913] border-2 border-emerald-400 rounded-3xl p-6 sm:p-10 text-center shadow-[0_0_60px_rgba(16,185,129,0.2)] animate-in zoom-in-95 duration-300">
+                        <div className="w-16 h-16 rounded-2xl bg-emerald-400 text-[#05070F] flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(52,211,153,0.6)]">
+                          <Trophy size={32}/>
+                        </div>
+
+                        <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+                          {recordBannerStatus && (
+                            <span className="px-3.5 py-1 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 text-[#05070F] text-[10px] sm:text-xs font-black uppercase tracking-widest shadow-md">
+                              {recordBannerStatus === 'new'
+                                ? t.newRecordBanner
+                                : recordBannerStatus === 'faster'
+                                ? (t.fasterRecordBanner || '⚡ YENİ SÜRE REKORU!')
+                                : t.recordTiedBanner}
+                            </span>
+                          )}
+                          <span className="px-3.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] sm:text-xs font-black uppercase tracking-widest">
+                            {Math.floor(gameChain.length / 2) <= 2 ? `🏆 ${t.winRank1}` : Math.floor(gameChain.length / 2) <= 4 ? `🌟 ${t.winRank2}` : `🎬 ${t.winRank3}`}
+                          </span>
+                        </div>
+
+                        <h2 className="text-2xl sm:text-4xl font-black text-white mb-2">{t.gameWonTitle}</h2>
+                        <p className="text-xs sm:text-sm font-bold text-slate-300 mb-6 max-w-md mx-auto">
+                          {t.gameWonSubtitle} (<strong className="text-cyan-300">{Math.floor(gameChain.length / 2)} {t.linksCount}</strong> • <strong className="text-emerald-300">⏱ {(gameElapsedDeci / 10).toFixed(1)} {unitSec}</strong>)
+                        </p>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto mb-5">
+                          <button
+                            onClick={generateSineBagVictoryCard}
+                            className="py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:opacity-95 text-[#05070F] font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-lg"
+                          >
+                            🎟️ {t.createWinCardBtn}
+                          </button>
+                          <button
+                            onClick={copySineBagChallengeLink}
+                            className="py-3.5 px-4 rounded-2xl bg-[#0A0F1F] hover:bg-[#131C38] text-cyan-300 border border-cyan-500/40 font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all"
+                          >
+                            🔗 {t.copyChallengeBtn}
+                          </button>
+                        </div>
+
+                        <div className="flex flex-wrap justify-center gap-3 pt-4 border-t border-white/10 max-w-lg mx-auto">
+                          <button
+                            onClick={() => startCineLinkGame(gameStartMovie, gameTargetMovie, isDailyModeActive)}
+                            className="px-5 py-2.5 rounded-xl bg-[#0A0F1F] hover:bg-slate-800 text-slate-200 border border-white/15 font-black text-xs transition-colors"
+                          >
+                            {t.retrySameBtn}
+                          </button>
+                          <button
+                            onClick={() => { setGameActive(false); setGameWon(false); }}
+                            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-fuchsia-500 to-rose-500 hover:opacity-95 text-white font-black text-xs transition-all"
+                          >
+                            {t.playAgainBtn}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      /* OYUNCU SEÇİMİNDE MOR/FUŞYA, FİLM SEÇİMİNDE CAMGÖBEĞİ/MAVİ RENKLİ DİNAMİK SAHNE */
+                      <div className={`rounded-3xl p-4 sm:p-6 border-2 transition-colors duration-500 shadow-2xl ${
+                        gameStepType === 'actor'
+                          ? 'bg-gradient-to-b from-fuchsia-950/25 via-[#0A0F1F] to-[#060913] border-fuchsia-500/35'
+                          : 'bg-gradient-to-b from-cyan-950/25 via-[#0A0F1F] to-[#060913] border-cyan-500/35'
+                      }`}>
+                        
+                        {/* BLITZ 15SN BARI */}
+                        {blitzMode && (
+                          <div className="mb-4 bg-[#050811] border border-white/10 rounded-2xl p-3">
+                            <div className="flex items-center justify-between text-xs font-black mb-1.5">
+                              <span className={blitzTimeLeft <= 5 ? 'text-rose-400 animate-pulse' : 'text-cyan-300'}>
+                                ⚡ BLITZ HAMLE SÜRESİ
+                              </span>
+                              <span className={`px-2.5 py-0.5 rounded-lg font-mono ${blitzTimeLeft <= 5 ? 'bg-rose-600 text-white' : 'bg-cyan-500/20 text-cyan-300'}`}>
+                                {blitzTimeLeft} {unitSec}
+                              </span>
+                            </div>
+                            <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+                              <div
+                                className={`h-full transition-all duration-300 ${blitzTimeLeft <= 5 ? 'bg-rose-500' : 'bg-gradient-to-r from-cyan-400 to-fuchsia-500'}`}
+                                style={{ width: `${(blitzTimeLeft / 15) * 100}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* SEÇİM BAŞLIĞI VE ARAMA FİLTRESİ */}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-white/10">
+                          <div className="min-w-0">
+                            <span className={`inline-block text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-xl mb-1.5 border ${
+                              gameStepType === 'actor'
+                                ? 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-400/40'
+                                : 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40'
+                            }`}>
+                              {gameStepType === 'actor' ? `🎭 ${t.nextMoveActorBadge}` : `🎬 ${t.nextMoveMovieBadge}`}
+                            </span>
+                            <h3 className="text-sm sm:text-lg font-black text-white leading-snug">
+                              <span className={gameStepType === 'actor' ? 'text-fuchsia-300' : 'text-cyan-300'}>
+                                {gameChain[gameChain.length - 1]?.name}
+                              </span>{' '}
+                              <span className="text-slate-300 font-bold">{gameStepType === 'actor' ? t.stepPickActor : t.stepPickMovie}</span>
+                            </h3>
+                          </div>
+
+                          <div className="relative w-full sm:w-64 shrink-0">
+                            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={15}/>
+                            <input
+                              type="text"
+                              value={gameFilterText}
+                              onChange={(e) => setGameFilterText(e.target.value)}
+                              placeholder={gameStepType === 'actor' ? t.filterActors : t.filterMovies}
+                              className="w-full bg-[#050811] border border-white/15 focus:border-cyan-400 rounded-xl pl-9 pr-8 py-2.5 text-xs text-white font-bold outline-none transition-colors"
+                            />
+                            {gameFilterText && (
+                              <button onClick={() => setGameFilterText('')} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+                                <X size={14}/>
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* OYUNCU / FİLM IZGARASI */}
+                        {gameLoading ? (
+                          <div className="py-20 flex justify-center"><Loader2 className="w-8 h-8 animate-spin text-cyan-400"/></div>
+                        ) : (
+                          <div id="game-options-grid" className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-5 gap-2.5 sm:gap-3.5 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto pr-1">
+                            {gameOptions
+                              .filter(opt => opt.name.toLowerCase().includes(gameFilterText.toLowerCase()))
+                              .map(opt => {
+                                const isTargetMatch = gameStepType === 'movie' && String(opt.id) === String(gameTargetMovie?.id);
+                                const isTargetActorMatch = gameStepType === 'actor' && gameTargetCast.some(tc => String(tc.id) === String(opt.id));
+                                const isBannedActor = gameStepType === 'actor' && bannedActorObj && String(opt.id) === String(bannedActorObj.id);
+
+                                return (
+                                  <div
+                                    key={opt.id}
+                                    onClick={() => gameStepType === 'actor' ? handlePickGameActor(opt) : handlePickGameMovie(opt)}
+                                    className={`group rounded-2xl p-1.5 sm:p-2.5 bg-[#050811] border transition-all duration-200 ${
+                                      isBannedActor
+                                        ? 'border-rose-900/50 opacity-45 cursor-not-allowed'
+                                        : isTargetMatch
+                                        ? 'cursor-pointer border-2 border-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.35)] hover:-translate-y-1'
+                                        : isTargetActorMatch
+                                        ? 'cursor-pointer border-2 border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.35)] hover:-translate-y-1'
+                                        : gameStepType === 'actor'
+                                        ? 'cursor-pointer border-white/10 hover:border-fuchsia-400 hover:-translate-y-1'
+                                        : 'cursor-pointer border-white/10 hover:border-cyan-400 hover:-translate-y-1'
+                                    }`}
+                                  >
+                                    <div className="aspect-[3/4] sm:aspect-[2/3] rounded-xl overflow-hidden bg-slate-900 mb-2 relative">
+                                      {opt.image ? (
+                                        <img src={opt.image} loading="lazy" decoding="async" className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${isBannedActor ? 'grayscale' : ''}`} alt=""/>
+                                      ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-slate-700"><User size={24}/></div>
+                                      )}
+                                      {isBannedActor && (
+                                        <div className="absolute inset-0 bg-black/80 flex items-center justify-center p-1 text-center">
+                                          <span className="bg-rose-600 text-white text-[8px] sm:text-[9px] font-black py-1 px-2 rounded-lg uppercase">
+                                            🚫 YASAKLI
+                                          </span>
+                                        </div>
+                                      )}
+                                      {!isBannedActor && isTargetMatch && (
+                                        <div className="absolute top-1.5 inset-x-1.5 bg-emerald-400 text-[#05070F] text-[8px] sm:text-[9px] font-black py-0.5 px-1.5 rounded-md text-center truncate">
+                                          {t.targetHereBadge}
+                                        </div>
+                                      )}
+                                      {!isBannedActor && isTargetActorMatch && (
+                                        <div className="absolute top-1.5 inset-x-1.5 bg-cyan-400 text-[#05070F] text-[8px] sm:text-[9px] font-black py-0.5 px-1.5 rounded-md text-center truncate">
+                                          ⚡ HEDEF KADRODA
+                                        </div>
+                                      )}
+                                    </div>
+                                    <h4 className={`text-[11px] sm:text-xs font-black text-white truncate px-0.5 transition-colors ${
+                                      gameStepType === 'actor' ? 'group-hover:text-fuchsia-300' : 'group-hover:text-cyan-300'
+                                    }`}>
+                                      {opt.name}
+                                    </h4>
+                                    {opt.sub && <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 truncate px-0.5 mt-0.5">{opt.sub}</p>}
+                                  </div>
+                                );
+                              })}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -4761,7 +7796,7 @@ function CineScoreMain() {
                  </div>
                  
                  {/* YENİ: SİNEMATİK DNA RADAR ÇİZELGESİ (SVG) */}
-                 {userProfile && viewingUserRatings.length >= 20 && sortedMyRatings.length >= 20 && (
+                 {userProfile && viewingUserRatings.length >= 10 && sortedMyRatings.length >= 10 && (
                    <div className="w-full max-w-[95vw] sm:max-w-md bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-[0_0_40px_rgba(0,0,0,0.5)] mt-4">
                      <div className="flex items-center justify-center gap-3 mb-6 relative">
                         <div className="absolute inset-0 bg-theme opacity-5 blur-[30px] rounded-full"></div>
@@ -4808,6 +7843,17 @@ function CineScoreMain() {
                      </div>
                    </div>
                  )}
+
+                 {/* YENİ: ZİYARET EDİLEN KULLANICININ TEK PARÇA RADAR & HALKA KRİTER GRAFİĞİ */}
+                 <div className="w-full mt-2">
+                   <CriteriaFocusDashboard
+                     ratingsList={sortedViewingUserRatings}
+                     criteriaData={criteriaData}
+                     t={t}
+                     isPublic={true}
+                     themeColor={themeColor}
+                   />
+                 </div>
 
                  {/* YENİ: ARKADAŞLA KAFA KAFAYA (VS) KARŞILAŞTIRMA MODU */}
                  {(() => {
@@ -4903,37 +7949,13 @@ function CineScoreMain() {
               </div>
             )}
 
-            <div className="bg-gradient-to-br from-slate-800/40 via-slate-900/90 to-slate-800/20 backdrop-blur-xl rounded-[2.5rem] p-8 sm:p-12 border border-slate-700/30 shadow-[0_0_50px_rgba(0,0,0,0.3)] relative overflow-hidden" style={{boxShadow: `0 0 50px ${themeColor}1a`, borderColor: themeColor+'33'}}>
-               <div className="absolute top-0 right-0 w-64 h-64 blur-[100px] rounded-full pointer-events-none" style={{backgroundColor: themeColor+'1a'}}></div>
-               <div className="text-center mb-8 relative z-10">
-                 <h3 className="text-3xl sm:text-4xl font-black text-white flex items-center justify-center gap-3 drop-shadow-md mb-2"><Trophy className="text-theme" size={36}/> {t.top3Title}</h3>
-               </div>
-               
-               <div className="flex justify-center items-center gap-2 sm:gap-6 mt-6 sm:mt-10 relative z-10 px-2">
-                  {[0, 1, 2].map(slot => {
-                    const movie = viewingUser.top3?.[slot];
-                    const isCenter = slot === 1;
-                    return (
-                      <div key={slot} className={`tilt-card relative aspect-[2/3] rounded-2xl sm:rounded-[2rem] border-[3px] flex flex-col items-center justify-center group overflow-hidden shadow-2xl shrink-0 ${isCenter ? 'w-[32%] sm:w-56 z-20 scale-110' : 'w-[26%] sm:w-44 border-slate-700 bg-[#04060C] z-10'}`} style={isCenter ? {borderColor: themeColor, boxShadow: `0 0 40px ${themeColor}66`} : {}}>
-                        {movie ? (
-                          <>
-                            <img src={movie.poster} className="w-full h-full object-cover cursor-pointer" onClick={() => selectMovieToRate(movie.id, movie.title)} alt=""/>
-                            {isCenter && (
-                              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-10 h-10 flex items-center justify-center z-30 pointer-events-none" style={{filter: `drop-shadow(0 0 15px ${themeColor})`}}>
-                                 <Crown size={28} className="animate-pulse" style={{color: themeColor, fill: themeColor}}/>
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <div className="w-full h-full bg-[#04060C] flex items-center justify-center">
-                            <Film size={36} className="text-slate-800"/>
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })}
-               </div>
-            </div>
+            <RoyalTrinityShowcase
+              top3List={viewingUser.top3 || [null, null, null]}
+              t={t}
+              isEditable={false}
+              selectMovieToRate={selectMovieToRate}
+              localizedData={localizedData}
+            />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col group cursor-pointer" onClick={() => setActiveTab('public_profile_ratings')}>
@@ -4957,6 +7979,15 @@ function CineScoreMain() {
                     </div>
                  )}
                </div>
+
+               <FavoriteDirectorShowcase
+                 favDirector={viewingFavoriteDirector}
+                 t={t}
+                 openPersonCareer={openPersonCareer}
+                 selectMovieToRate={selectMovieToRate}
+                 localizedData={localizedData}
+                 isPublic={true}
+               />
 
                <div className="bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col">
                  <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><PieChart className="text-theme" size={24}/> {t.topGenres}</h3>
@@ -5316,7 +8347,7 @@ function CineScoreMain() {
                             <span className="text-7xl font-black text-white drop-shadow-2xl" style={{color: getScoreColorHex(sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore)}}>{sortedMyRatings.find(r=>r.id===selectedMovie?.id).finalScore}</span>
                          </div>
                          <div className="flex flex-col sm:flex-row items-center gap-4">
-                           <button onClick={() => { setIsRatingMode(true); setTimeout(() => document.getElementById('rating-slider-box')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="px-8 py-4 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-lg transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
+                           <button onClick={() => { setIsRatingMode(true); scrollToRatingView(); }} className="px-8 py-4 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-black text-lg transition-all shadow-xl flex items-center gap-3 border border-slate-700 magnetic-btn">
                              <Edit3 size={22}/> {t.updateRating}
                            </button>
                            
@@ -5439,17 +8470,19 @@ function CineScoreMain() {
                    <p className="text-slate-400 mt-3 font-bold text-lg">{t.globalDesc}</p>
                 </div>
                 <div className="flex flex-col sm:flex-row items-end sm:items-center gap-4">
-                   <div className="flex items-center gap-3 bg-[#04060C] p-2 rounded-2xl border border-slate-800 shadow-inner h-full">
-                      <ListFilter size={18} className="text-slate-400 ml-2" />
-                      <select 
-                        value={globalSortType} 
-                        onChange={(e) => setGlobalSortType(e.target.value)}
-                        className="bg-transparent text-sm font-bold text-white outline-none cursor-pointer pr-2"
-                      >
-                         <option value="vote_desc" className="bg-slate-900">{t.mostVoted || (lang === 'tr' ? 'En Çok Oylananlar' : 'Most Voted')}</option>
-                         <option value="score_desc" className="bg-slate-900">{t.sortGlobalScore || (lang === 'tr' ? 'Dünya Geneli Puan' : 'Global Score')}</option>
-                      </select>
-                   </div>
+                   {globalCriterionFilter === 'all' && (
+                     <div className="flex items-center gap-3 bg-[#04060C] p-2 rounded-2xl border border-slate-800 shadow-inner h-full">
+                        <ListFilter size={18} className="text-slate-400 ml-2" />
+                        <select 
+                          value={globalSortType} 
+                          onChange={(e) => setGlobalSortType(e.target.value)}
+                          className="bg-transparent text-sm font-bold text-white outline-none cursor-pointer pr-2"
+                        >
+                           <option value="vote_desc" className="bg-slate-900">{t.mostVoted || (lang === 'tr' ? 'En Çok Oylananlar' : 'Most Voted')}</option>
+                           <option value="score_desc" className="bg-slate-900">{t.sortGlobalScore || (lang === 'tr' ? 'Dünya Geneli Puan' : 'Global Score')}</option>
+                        </select>
+                     </div>
+                   )}
                    <div className="bg-[#04060C] border border-slate-800 px-8 py-5 rounded-3xl flex items-center gap-5 shadow-inner">
                       <span className="text-6xl font-black text-theme drop-shadow-md">{safeGlobalMovies.length}</span>
                       <span className="text-sm text-slate-500 uppercase font-black tracking-widest leading-tight">{t.registeredMovies}</span>
@@ -5457,12 +8490,133 @@ function CineScoreMain() {
                 </div>
              </div>
              
+             {/* YENİ: 5 KRİTER BAZLI DÜNYA SIRALAMASI FİLTRE ÇUBUĞU */}
+             <div className="mb-8 bg-slate-900/80 border border-slate-800 rounded-3xl p-4 sm:p-5 shadow-xl">
+               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                 <span className="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-2 shrink-0">
+                   <Sparkles size={15} className="text-theme"/> {t.rankByCriteriaLabel || 'Kriter Liderliğine Göre Sırala:'}
+                 </span>
+                 <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 hide-scrollbar">
+                   <button
+                     onClick={() => setGlobalCriterionFilter('all')}
+                     className={`px-3.5 py-2 rounded-xl text-xs font-black shrink-0 transition-all border ${
+                       globalCriterionFilter === 'all'
+                         ? 'bg-theme text-[#04060C] border-theme shadow-theme scale-105'
+                         : 'bg-[#04060C] text-slate-300 border-slate-800 hover:border-slate-600'
+                     }`}
+                   >
+                     🌐 {t.allCriteriaRank || 'Genel Sıralama'}
+                   </button>
+                   {criteriaData.map((crit, cIdx) => {
+                     const critIcons = ['📝', '🎭', '🎥', '🎵', '✂️'];
+                     const isSelected = globalCriterionFilter === crit.id;
+                     return (
+                       <button
+                         key={crit.id}
+                         onClick={() => setGlobalCriterionFilter(crit.id)}
+                         className={`px-3.5 py-2 rounded-xl text-xs font-black shrink-0 transition-all border flex items-center gap-1.5 ${
+                           isSelected
+                             ? 'bg-theme text-[#04060C] border-theme shadow-theme scale-105'
+                             : 'bg-[#04060C] text-slate-300 border-slate-800 hover:border-theme/50'
+                         }`}
+                       >
+                         <span>{critIcons[cIdx] || '⭐'}</span>
+                         <span>{crit.name}</span>
+                       </button>
+                     );
+                   })}
+                 </div>
+               </div>
+             </div>
+
              {safeGlobalMovies.length === 0 ? (
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                  {[1,2,3,4,5,6].map(n => (
                    <div key={n} className="h-44 rounded-3xl skeleton-shimmer border border-slate-800"></div>
                  ))}
                </div>
+             ) : globalCriterionFilter !== 'all' ? (
+               /* SEÇİLEN KRİTERE GÖRE SIRALANMIŞ FİLMLER VİTRİNİ */
+               (() => {
+                 const activeCritObj = criteriaData.find(c => c.id === globalCriterionFilter) || criteriaData[0];
+                 const sortedByCrit = [...safeGlobalMovies]
+                   .map(m => ({
+                     ...m,
+                     activeCritScore: getMovieCriterionScore(m, globalCriterionFilter, myRatings)
+                   }))
+                   .sort((a, b) => b.activeCritScore - a.activeCritScore || (Number(b.voteCount) || 0) - (Number(a.voteCount) || 0));
+
+                 return (
+                   <div className="space-y-5">
+                     <div className="bg-[#04060C] border border-theme/40 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                       <div>
+                         <span className="text-[10px] font-black uppercase tracking-widest text-theme block">KRİTER LİDERLİK TABLOSU</span>
+                         <h3 className="text-base sm:text-lg font-black text-white">{activeCritObj?.name} — En Yüksek Puanlı Filmler</h3>
+                       </div>
+                       <span className="text-xs font-bold text-slate-400">{ activeCritObj?.desc }</span>
+                     </div>
+
+                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                       {sortedByCrit.map((movie, idx) => {
+                         const critScore = Number(movie.activeCritScore || 0);
+                         const critHex = getScoreColorHex(critScore);
+                         const dispTitle = localizedData?.[movie.id]?.title || movie.title;
+                         const safePoster = typeof movie.poster === 'string' && movie.poster.startsWith('http') ? movie.poster : 'https://via.placeholder.com/200x300?text=Poster';
+
+                         return (
+                           <div
+                             key={movie.id}
+                             onClick={() => selectMovieToRate(movie.id, movie.title)}
+                             className="bg-slate-900/80 border border-slate-800 hover:border-theme rounded-3xl p-4 flex gap-4 cursor-pointer transition-all hover:-translate-y-1 group relative overflow-hidden"
+                           >
+                             {/* Sıra Rozeti */}
+                             <div className={`absolute top-3 left-3 z-20 w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center shadow-lg ${
+                               idx === 0 ? 'bg-amber-400 text-[#04060C]' : idx === 1 ? 'bg-slate-300 text-[#04060C]' : idx === 2 ? 'bg-amber-700 text-white' : 'bg-[#04060C]/90 text-white border border-slate-700'
+                             }`}>
+                               #{idx + 1}
+                             </div>
+
+                             <img src={safePoster} className="w-24 sm:w-28 aspect-[2/3] object-cover rounded-2xl border border-slate-700 shrink-0 group-hover:scale-105 transition-transform" alt=""/>
+
+                             <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+                               <div>
+                                 <h4 className="text-sm sm:text-base font-black text-white group-hover:text-theme truncate">{dispTitle}</h4>
+                                 <p className="text-[11px] font-bold text-slate-400 mt-0.5">
+                                   {t.globalScoreLabel}: <strong className="text-slate-200">{Number(movie.avgScore || 0).toFixed(2)}</strong> • {movie.voteCount || 1} {t.voteCount}
+                                 </p>
+
+                                 {/* Seçili Kriterin Vurgulu Puan Kutusu */}
+                                 <div className="mt-2.5 bg-[#04060C] border border-slate-800 rounded-2xl p-2.5 flex items-center justify-between">
+                                   <span className="text-[10px] font-black text-slate-300 uppercase truncate pr-2">
+                                     {activeCritObj?.name}
+                                   </span>
+                                   <span className="text-base sm:text-lg font-black shrink-0" style={{ color: critHex }}>
+                                     {critScore.toFixed(2)}
+                                   </span>
+                                 </div>
+                               </div>
+
+                               {/* 5 Kriterin Mini Karşılaştırma Çubukları */}
+                               <div className="grid grid-cols-5 gap-1.5 mt-3 pt-2 border-t border-slate-800/80">
+                                 {criteriaData.map(c => {
+                                   const cVal = getMovieCriterionScore(movie, c.id, myRatings);
+                                   const isCurrent = c.id === globalCriterionFilter;
+                                   return (
+                                     <div key={c.id} className={`text-center p-1 rounded-lg ${isCurrent ? 'bg-theme/15 border border-theme/40' : 'bg-[#04060C]/60'}`}>
+                                       <span className="text-[8px] font-black text-slate-400 block truncate">{c.name.substring(0, 4)}.</span>
+                                       <span className="text-[10px] font-black block" style={{ color: getScoreColorHex(cVal) }}>{cVal.toFixed(1)}</span>
+                                     </div>
+                                   );
+                                 })}
+                               </div>
+                             </div>
+                           </div>
+                         );
+                       })}
+                     </div>
+                   </div>
+                 );
+               })()
              ) : (
                <>
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -5660,7 +8814,7 @@ function CineScoreMain() {
                    <div className="lg:col-span-2 bg-slate-900/80 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-800 shadow-xl flex flex-col justify-center">
                       <h3 className="text-2xl font-black text-white mb-2 flex items-center gap-3 drop-shadow-md"><Sparkles className="text-theme" size={28}/> {t.cinematicDNA}</h3>
                       
-                      {sortedMyRatings.length >= 20 ? (
+                      {sortedMyRatings.length >= 10 ? (
                         <>
                           <p className="text-slate-400 font-bold mb-8 text-sm">{t.dnaDesc}</p>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
@@ -5687,7 +8841,7 @@ function CineScoreMain() {
                         <div className="flex flex-col items-center justify-center py-6 text-center">
                            <Lock size={36} className="text-slate-600 mb-3"/>
                            <h4 className="text-lg font-black text-white">{t.dnaLockedTitle}</h4>
-                           <p className="text-sm text-slate-400 font-bold mt-1 max-w-sm"><strong className="text-theme">{20 - sortedMyRatings.length}</strong> {t.dnaLockedDesc}</p>
+                           <p className="text-sm text-slate-400 font-bold mt-1 max-w-sm"><strong className="text-theme">{10 - sortedMyRatings.length}</strong> {t.dnaLockedDesc}</p>
                         </div>
                       )}
                    </div>
@@ -5697,7 +8851,7 @@ function CineScoreMain() {
                          <Smile className="text-fuchsia-500" size={36}/>
                       </div>
                       <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">{t.cineZodiac}</h4>
-                      {sortedMyRatings.length >= 20 ? (
+                      {sortedMyRatings.length >= 10 ? (
                         <>
                           <h2 className="text-2xl font-black text-white drop-shadow-md mb-2">{zodiacTitle}</h2>
                           <p className="text-xs font-bold text-slate-500">{zodiacDesc}</p>
@@ -5758,6 +8912,129 @@ function CineScoreMain() {
                 </div>
 
                 <div>
+                  {/* YENİ: EN ÇOK DİKKAT ETTİĞİN KRİTER & 3 BOYUTLU DNA ANALİZİ VİTRİNİ (10 FİLM BARAJLI) */}
+                  {(() => {
+                    const dnaReport = analyzeComprehensiveDNA(sortedMyRatings, criteriaData);
+                    return (
+                      <div className="mb-10 bg-slate-900/80 border border-slate-700/80 rounded-[2.5rem] p-5 sm:p-8 relative overflow-hidden shadow-2xl">
+                        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-[100px] opacity-20 pointer-events-none" style={{ backgroundColor: themeColor }}></div>
+
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-800">
+                          <div>
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-theme/15 border border-theme/40 text-theme text-[10px] font-black uppercase tracking-widest mb-2">
+                              🧬 {t.topFocusSubtitle || '3 Boyutlu DNA Algoritması'}
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-black text-white">{t.topFocusMyTitle || 'En Çok Dikkat Ettiğin Kriter'}</h3>
+                          </div>
+                          <span className="px-3.5 py-1.5 rounded-xl bg-[#04060C] border border-slate-800 text-xs font-black text-slate-300">
+                            {dnaReport.count} / {dnaReport.minRequired} Film Analiz Edildi
+                          </span>
+                        </div>
+
+                        {!dnaReport.unlocked ? (
+                          /* 10 FİLM ALTINDA İKEN CANLI KALİBRASYON İLERLEME ÇUBUĞU */
+                          <div className="bg-[#04060C] border border-slate-800 rounded-3xl p-6 text-center max-w-xl mx-auto">
+                            <div className="w-14 h-14 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center mx-auto mb-3 text-theme">
+                              <Sparkles size={26}/>
+                            </div>
+                            <h4 className="text-lg font-black text-white mb-1">{t.dnaLockedTitle}</h4>
+                            <p className="text-xs sm:text-sm font-bold text-slate-400 mb-4">
+                              <strong className="text-theme">{dnaReport.remaining}</strong> {t.dnaLockedDesc}
+                            </p>
+                            <div className="w-full bg-slate-900 h-3.5 rounded-full overflow-hidden border border-slate-800 p-0.5">
+                              <div
+                                className="h-full rounded-full transition-all duration-500"
+                                style={{ width: `${dnaReport.progressPct}%`, backgroundColor: themeColor }}
+                              ></div>
+                            </div>
+                            <span className="text-[11px] font-black text-slate-400 mt-2 block">
+                              {t.dnaCalibrationLabel || 'DNA Kalibrasyon İlerlemesi'}: %{dnaReport.progressPct}
+                            </span>
+                          </div>
+                        ) : dnaReport.topCriterion && (
+                          /* 10+ FİLMDE AÇILAN EN ÇOK DİKKAT EDİLEN KRİTER VE 3 BOYUTLU KIRILIM */
+                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                            {/* SOL KART: 1 NUMARALI KRİTİK ODAK NOKTASI */}
+                            <div className="lg:col-span-5 bg-[#04060C] border-2 rounded-3xl p-5 sm:p-6 flex flex-col justify-between relative overflow-hidden" style={{ borderColor: `${themeColor}88` }}>
+                              <div>
+                                <div className="flex items-center justify-between gap-2 mb-4">
+                                  <span className="px-3 py-1 rounded-lg bg-theme text-[#04060C] font-black text-[10px] uppercase tracking-widest shadow">
+                                    #1 KRİTİK ODAK NOKTAN
+                                  </span>
+                                  <span className="text-2xl font-black text-theme">%{dnaReport.topCriterion.focusIndex}</span>
+                                </div>
+
+                                <h4 className="text-2xl sm:text-3xl font-black text-white mb-2 leading-tight">
+                                  {dnaReport.topCriterion.name}
+                                </h4>
+                                <p className="text-xs text-slate-300 font-medium leading-relaxed mb-5">
+                                  {t.focusAnalysisExplain}
+                                </p>
+
+                                {/* 3 Alt Boyut Metrik Kutuları */}
+                                <div className="grid grid-cols-3 gap-2 mb-4">
+                                  <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 text-center">
+                                    <span className="text-[9px] font-black text-cyan-400 uppercase block">{t.selectivityLabel || 'Seçicilik'}</span>
+                                    <span className="text-sm sm:text-base font-black text-white">%{dnaReport.topCriterion.selectivity}</span>
+                                  </div>
+                                  <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 text-center">
+                                    <span className="text-[9px] font-black text-rose-400 uppercase block">{t.strictnessLabel || 'Sertlik'}</span>
+                                    <span className="text-sm sm:text-base font-black text-white">%{dnaReport.topCriterion.strictness}</span>
+                                  </div>
+                                  <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 text-center">
+                                    <span className="text-[9px] font-black text-amber-400 uppercase block">{t.impactLabel || 'Karar Etkisi'}</span>
+                                    <span className="text-sm sm:text-base font-black text-white">%{dnaReport.topCriterion.impact}</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {dnaReport.secondCriterion && (
+                                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                                  <span className="font-bold text-slate-400">{t.secondFocusLabel || 'İkincil Odak Noktası:'}</span>
+                                  <span className="font-black text-white">{dnaReport.secondCriterion.name} (%{dnaReport.secondCriterion.focusIndex})</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* SAĞ KART: TÜM KRİTERLERİN 3 BOYUTLU DNA SIRALAMASI */}
+                            <div className="lg:col-span-7 bg-[#04060C] border border-slate-800 rounded-3xl p-5 sm:p-6 flex flex-col justify-between space-y-3.5">
+                              {dnaReport.rankedBreakdown.map((item, rIdx) => (
+                                <div key={item.id} className="space-y-1.5">
+                                  <div className="flex items-center justify-between text-xs">
+                                    <div className="flex items-center gap-2 min-w-0">
+                                      <span className={`w-5 h-5 rounded-md font-black text-[10px] flex items-center justify-center shrink-0 ${rIdx === 0 ? 'bg-theme text-[#04060C]' : 'bg-slate-800 text-slate-300'}`}>
+                                        {rIdx + 1}
+                                      </span>
+                                      <span className={`font-black truncate ${rIdx === 0 ? 'text-white' : 'text-slate-300'}`}>{item.name}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 shrink-0">
+                                      <span className="text-[10px] font-bold text-slate-500 hidden sm:inline">
+                                        {t.selectivityLabel}: %{item.selectivity} • {t.strictnessLabel}: %{item.strictness} • {t.impactLabel}: %{item.impact}
+                                      </span>
+                                      <span className="font-black text-xs sm:text-sm" style={{ color: rIdx === 0 ? themeColor : '#e2e8f0' }}>
+                                        %{item.focusIndex}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800/80">
+                                    <div
+                                      className="h-full rounded-full transition-all duration-700"
+                                      style={{
+                                        width: `${item.focusIndex}%`,
+                                        backgroundColor: rIdx === 0 ? themeColor : rIdx === 1 ? '#38bdf8' : '#64748b'
+                                      }}
+                                    ></div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+
                   <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 drop-shadow-md"><Medal className="text-amber-400" size={28}/> {t.badges}</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
                      {getAllBadges(sortedMyRatings, t, safeGlobalMovies).map(badge => (
@@ -5981,7 +9258,7 @@ function CineScoreMain() {
                              <div className="absolute inset-0 bg-gradient-to-t from-[#04060C] via-[#04060C]/20 to-transparent rounded-3xl opacity-90 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity">
                                 {globalData && globalData.avgScore > 0 && (
                                   <div className="mb-1">
-                                    <span className={`text-xs font-black px-2 py-1 rounded-lg ${isNeon ? 'bg-[#04060C] border shadow-theme' : 'bg-[#04060C]/80 border border-slate-700'}`} style={isNeon ? {borderColor: themeColor, color: themeColor} : {color: getScoreColorHex(globalData.avgScore)}}>{Number(globalData.avgScore).toFixed(2)}</span>
+                                    <span className={`text-xs font-black px-2 py-1 rounded-lg ${isNeon ? 'bg-[#04060C] border shadow-theme' : 'bg-[#04060C]/80 border border-slate-700'}`} style={isNeon ? {borderColor: '#39ff14', color: '#39ff14', boxShadow: '0 0 16px rgba(57, 255, 20, 0.55)', textShadow: '0 0 8px rgba(57, 255, 20, 0.45)'} : {color: getScoreColorHex(globalData.avgScore)}}>{Number(globalData.avgScore).toFixed(2)}</span>
                                   </div>
                                 )}
                                 <h4 className="font-bold text-white text-sm leading-tight line-clamp-2 drop-shadow-md">{displayTitle}</h4>
@@ -6123,7 +9400,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v4.1</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v5</span></p>
         </div>
       </footer>
 
