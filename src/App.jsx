@@ -907,13 +907,17 @@ const CustomAnimations = () => (
       max-width: 100vw;
       overflow-x: hidden;
     }
+    @media (max-width: 767px) {
+      header nav {
+        display: none !important;
+      }
+    }
     @media (max-width: 640px) {
       header > div {
         padding-left: 0.5rem !important;
         padding-right: 0.5rem !important;
         gap: 0.35rem !important;
       }
-      header nav,
       header .overflow-x-auto,
       .mobile-nav-tabs {
         display: flex !important;
@@ -923,9 +927,6 @@ const CustomAnimations = () => (
         scrollbar-width: none;
         gap: 0.25rem !important;
         max-width: 100vw !important;
-      }
-      header nav::-webkit-scrollbar {
-        display: none;
       }
       header button,
       nav button {
@@ -1493,14 +1494,6 @@ const RoyalTrinityShowcase = ({
 
       {/* Üst Kraliyet Başlığı (Açıklamasız, Saf Altın Varak) */}
       <div className="relative z-10 text-center mb-10 sm:mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-950/90 via-yellow-900/60 to-amber-950/90 border border-amber-400/50 shadow-[0_0_20px_rgba(251,191,36,0.25)] mb-2.5">
-          <Sparkles size={12} className="text-yellow-300 animate-spin" style={{ animationDuration: '6s' }} />
-          <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.25em] text-amber-200">
-            ROYAL HALL OF FAME
-          </span>
-          <Sparkles size={12} className="text-yellow-300 animate-spin" style={{ animationDuration: '6s' }} />
-        </div>
-
         <h3 className="text-2xl sm:text-4xl font-black tracking-tight flex items-center justify-center gap-2.5 sm:gap-3.5 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
           <Trophy className="text-amber-400 shrink-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" size={32} />
           <span className="royal-gold-text">{t.top3Title}</span>
