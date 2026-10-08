@@ -767,86 +767,100 @@ const CustomAnimations = () => (
       display: none !important;
     }
     @keyframes royalCenterFloat {
-      0%, 100% { transform: translateY(0px) scale(1.08); }
-      50% { transform: translateY(-8px) scale(1.10); }
+      0%, 100% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translateY(0px) scale(1.08); filter: drop-shadow(0 20px 25px rgba(0,0,0,0.8)); }
+      50% { transform: perspective(1200px) rotateY(0deg) rotateX(0deg) translateY(-12px) scale(1.11); filter: drop-shadow(0 30px 40px rgba(245,158,11,0.25)); }
     }
     @keyframes royalLeftFloat {
-      0%, 100% { transform: perspective(900px) rotateY(10deg) rotateZ(-1.5deg) translateY(0px); }
-      50% { transform: perspective(900px) rotateY(7deg) rotateZ(-0.5deg) translateY(-6px); }
+      0%, 100% { transform: perspective(1200px) rotateY(18deg) rotateX(4deg) rotateZ(-2deg) translateY(0px) scale(0.95); filter: drop-shadow(-15px 15px 20px rgba(0,0,0,0.9)); }
+      50% { transform: perspective(1200px) rotateY(14deg) rotateX(2deg) rotateZ(-1deg) translateY(-8px) scale(0.98); filter: drop-shadow(-20px 25px 30px rgba(245,158,11,0.15)); }
     }
     @keyframes royalRightFloat {
-      0%, 100% { transform: perspective(900px) rotateY(-10deg) rotateZ(1.5deg) translateY(0px); }
-      50% { transform: perspective(900px) rotateY(-7deg) rotateZ(0.5deg) translateY(-6px); }
+      0%, 100% { transform: perspective(1200px) rotateY(-18deg) rotateX(4deg) rotateZ(2deg) translateY(0px) scale(0.95); filter: drop-shadow(15px 15px 20px rgba(0,0,0,0.9)); }
+      50% { transform: perspective(1200px) rotateY(-14deg) rotateX(2deg) rotateZ(1deg) translateY(-8px) scale(0.98); filter: drop-shadow(20px 25px 30px rgba(245,158,11,0.15)); }
     }
     @keyframes goldFoilSweep {
-      0% { transform: translateX(-180%) skewX(-25deg); opacity: 0; }
-      15% { opacity: 1; }
-      45% { transform: translateX(240%) skewX(-25deg); opacity: 0; }
-      100% { transform: translateX(240%) skewX(-25deg); opacity: 0; }
+      0% { transform: translateX(-150%) skewX(-30deg); opacity: 0; }
+      20% { opacity: 1; }
+      80% { transform: translateX(250%) skewX(-30deg); opacity: 0; }
+      100% { transform: translateX(250%) skewX(-30deg); opacity: 0; }
     }
     @keyframes royalCrownHover {
-      0%, 100% { transform: translate(-50%, 0px) rotate(-2deg) scale(1); }
-      50% { transform: translate(-50%, -5px) rotate(2deg) scale(1.06); }
+      0%, 100% { transform: translate(-50%, 0px) rotate(-2deg) scale(1); filter: drop-shadow(0 0 10px rgba(251,191,36,0.6)); }
+      50% { transform: translate(-50%, -8px) rotate(2deg) scale(1.1); filter: drop-shadow(0 0 20px rgba(251,191,36,0.9)); }
     }
     @keyframes goldAuraPulse {
-      0%, 100% { opacity: 0.45; transform: scale(1); }
-      50% { opacity: 0.80; transform: scale(1.05); }
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
     }
 
     .royal-poster-center {
       animation: royalCenterFloat 6s ease-in-out infinite;
-      will-change: transform;
+      will-change: transform, filter;
+      transform-style: preserve-3d;
     }
     .royal-poster-left {
-      animation: royalLeftFloat 6.5s ease-in-out infinite;
-      animation-delay: 0.6s;
-      will-change: transform;
+      animation: royalLeftFloat 6.5s ease-in-out infinite -2.5s;
+      will-change: transform, filter;
+      transform-style: preserve-3d;
     }
     .royal-poster-right {
-      animation: royalRightFloat 6.5s ease-in-out infinite;
-      animation-delay: 1.4s;
-      will-change: transform;
+      animation: royalRightFloat 6.5s ease-in-out infinite -5s;
+      will-change: transform, filter;
+      transform-style: preserve-3d;
     }
     .royal-poster-center:hover,
     .royal-poster-left:hover,
     .royal-poster-right:hover {
       animation-play-state: paused;
-      transform: perspective(900px) rotateY(0deg) rotateZ(0deg) translateY(-8px) scale(1.12) !important;
-      z-index: 30 !important;
+      transform: perspective(1200px) rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateY(-15px) scale(1.15) !important;
+      z-index: 40 !important;
+      filter: drop-shadow(0 25px 45px rgba(245,158,11,0.5)) !important;
     }
     .gold-foil-sheen::after {
       content: '';
       position: absolute;
-      inset: 0;
-      width: 55%;
-      height: 100%;
+      inset: -20%;
+      width: 140%;
+      height: 140%;
       background: linear-gradient(
         to right,
         transparent 0%,
-        rgba(255, 248, 200, 0.08) 25%,
-        rgba(253, 224, 71, 0.48) 50%,
-        rgba(255, 248, 200, 0.08) 75%,
+        rgba(255, 255, 255, 0.05) 40%,
+        rgba(253, 224, 71, 0.5) 50%,
+        rgba(255, 255, 255, 0.05) 60%,
         transparent 100%
       );
-      animation: goldFoilSweep 4.5s ease-in-out infinite;
+      animation: goldFoilSweep 6s ease-in-out infinite;
       pointer-events: none;
       z-index: 20;
+      mix-blend-mode: overlay;
     }
     .royal-crown-anim {
-      animation: royalCrownHover 3s ease-in-out infinite;
+      animation: royalCrownHover 4s ease-in-out infinite;
     }
     .royal-gold-text {
-      background: linear-gradient(180deg, #FFFDF0 0%, #FDE047 35%, #F59E0B 70%, #B45309 100%);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FDE047 30%, #D97706 75%, #78350F 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .royal-gold-border {
       border-color: #F59E0B;
       box-shadow:
-        0 0 0 1px rgba(254, 240, 138, 0.45),
+        0 0 0 1px rgba(253, 224, 71, 0.4),
         0 15px 40px -5px rgba(0, 0, 0, 0.9),
-        0 0 35px rgba(245, 158, 11, 0.45),
-        inset 0 0 18px rgba(251, 191, 36, 0.35);
+        0 0 35px rgba(217, 119, 6, 0.4),
+        inset 0 0 20px rgba(251, 191, 36, 0.3);
+    }
+    .royal-pedestal {
+      position: absolute;
+      bottom: -15%;
+      left: 10%;
+      right: 10%;
+      height: 60px;
+      background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+      transform: rotateX(60deg);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* YENİ: PUAN SLIDERLARI İÇİN DOĞAL RENK SPEKTRUMU VE YUMUŞAK GEÇİŞ */
@@ -1472,77 +1486,74 @@ const RoyalTrinityShowcase = ({
 
   return (
     <div
-      className="relative rounded-[2.5rem] p-6 sm:p-12 overflow-hidden border-2 border-amber-500/50 shadow-[0_25px_70px_rgba(0,0,0,0.95),0_0_50px_rgba(245,158,11,0.18)]"
+      className="relative rounded-[2.5rem] p-6 sm:p-12 overflow-hidden border-2 shadow-[0_30px_80px_rgba(0,0,0,0.95),0_0_60px_rgba(245,158,11,0.15)] group"
       style={{
-        background: 'radial-gradient(circle at 50% 0%, rgba(180, 83, 9, 0.32) 0%, rgba(20, 14, 5, 0.96) 52%, #070502 100%)'
+        borderColor: '#92400E',
+        background: 'radial-gradient(circle at 50% 10%, rgba(120, 53, 15, 0.6) 0%, rgba(20, 14, 5, 0.98) 50%, #030201 100%)'
       }}
     >
-      {/* Altın Varak Köşe İşlemeleri (Kraliyet Çerçevesi) */}
-      <div className="absolute top-3 left-3 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-l-2 border-amber-400/70 rounded-tl-2xl pointer-events-none"></div>
-      <div className="absolute top-3 right-3 w-8 h-8 sm:w-12 sm:h-12 border-t-2 border-r-2 border-amber-400/70 rounded-tr-2xl pointer-events-none"></div>
-      <div className="absolute bottom-3 left-3 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-l-2 border-amber-400/70 rounded-bl-2xl pointer-events-none"></div>
-      <div className="absolute bottom-3 right-3 w-8 h-8 sm:w-12 sm:h-12 border-b-2 border-r-2 border-amber-400/70 rounded-br-2xl pointer-events-none"></div>
+      {/* Işıltılı Arka Plan Efektleri */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none mix-blend-overlay"></div>
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[40rem] h-80 rounded-full blur-[100px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.25) 0%, transparent 60%)', animation: 'goldAuraPulse 6s ease-in-out infinite' }}></div>
+      
+      {/* Altın Varak Köşe İşlemeleri */}
+      <div className="absolute top-4 left-4 w-12 h-12 sm:w-16 sm:h-16 border-t-[3px] border-l-[3px] border-amber-500/80 rounded-tl-3xl pointer-events-none shadow-[inset_2px_2px_10px_rgba(245,158,11,0.2)]"></div>
+      <div className="absolute top-4 right-4 w-12 h-12 sm:w-16 sm:h-16 border-t-[3px] border-r-[3px] border-amber-500/80 rounded-tr-3xl pointer-events-none shadow-[inset_-2px_2px_10px_rgba(245,158,11,0.2)]"></div>
+      <div className="absolute bottom-4 left-4 w-12 h-12 sm:w-16 sm:h-16 border-b-[3px] border-l-[3px] border-amber-500/80 rounded-bl-3xl pointer-events-none shadow-[inset_2px_-2px_10px_rgba(245,158,11,0.2)]"></div>
+      <div className="absolute bottom-4 right-4 w-12 h-12 sm:w-16 sm:h-16 border-b-[3px] border-r-[3px] border-amber-500/80 rounded-br-3xl pointer-events-none shadow-[inset_-2px_-2px_10px_rgba(245,158,11,0.2)]"></div>
 
-      {/* İç İnce Altın Çizgi */}
-      <div className="absolute inset-2.5 sm:inset-4 rounded-[2rem] border border-yellow-500/20 pointer-events-none"></div>
-
-      {/* Arka Plan Kraliyet Altın Işık Huzmeleri */}
-      <div
-        className="absolute -top-24 left-1/2 -translate-x-1/2 w-80 sm:w-[28rem] h-56 rounded-full blur-[90px] pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.35) 0%, transparent 70%)', animation: 'goldAuraPulse 5s ease-in-out infinite' }}
-      ></div>
-
-      {/* Üst Kraliyet Başlığı (Açıklamasız, Saf Altın Varak) */}
-      <div className="relative z-10 text-center mb-10 sm:mb-14">
-        <h3 className="text-2xl sm:text-4xl font-black tracking-tight flex items-center justify-center gap-2.5 sm:gap-3.5 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-          <Trophy className="text-amber-400 shrink-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" size={32} />
-          <span className="royal-gold-text">{t.top3Title}</span>
-          <Trophy className="text-amber-400 shrink-0 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" size={32} />
+      {/* Üst Kraliyet Başlığı */}
+      <div className="relative z-10 text-center mb-12 sm:mb-16">
+        <h3 className="text-3xl sm:text-5xl font-black tracking-tight flex items-center justify-center gap-3 sm:gap-5 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
+          <Sparkles className="text-amber-500 shrink-0 opacity-70" size={28} />
+          <span className="royal-gold-text uppercase tracking-widest">{t.top3Title}</span>
+          <Sparkles className="text-amber-500 shrink-0 opacity-70" size={28} />
         </h3>
-
         {/* Altın Varak Ayırıcı Çizgi */}
-        <div className="flex items-center justify-center gap-2 mt-2.5">
-          <div className="w-12 sm:w-24 h-[1.5px] bg-gradient-to-r from-transparent to-amber-400/80"></div>
-          <div className="w-2 h-2 rotate-45 bg-amber-300 shadow-[0_0_10px_#fbbf24]"></div>
-          <div className="w-12 sm:w-24 h-[1.5px] bg-gradient-to-l from-transparent to-amber-400/80"></div>
+        <div className="flex items-center justify-center gap-2 mt-4 opacity-80">
+          <div className="w-16 sm:w-32 h-[2px] bg-gradient-to-r from-transparent to-amber-500"></div>
+          <div className="w-3 h-3 rotate-45 bg-yellow-400 shadow-[0_0_15px_#fde047]"></div>
+          <div className="w-16 sm:w-32 h-[2px] bg-gradient-to-l from-transparent to-amber-500"></div>
         </div>
       </div>
 
       {/* 3'LÜ HAREKETLİ KRALİYET AFİŞ SAHNESİ */}
-      <div className="relative z-10 flex justify-center items-center gap-3 sm:gap-8 md:gap-10 px-1 sm:px-4 pt-4 pb-4">
+      <div className="relative z-10 flex justify-center items-center gap-2 sm:gap-6 md:gap-10 px-0 sm:px-4 pt-4 pb-8 sm:pb-12">
+        
+        {/* 3D Gölgelik/Platform (Zemindeki Işık) */}
+        <div className="royal-pedestal"></div>
+
         {slots.map((slot) => {
           const movie = top3List?.[slot];
           const isCenter = slot === 1;
           const rankLabel = isCenter ? 'I' : slot === 0 ? 'II' : 'III';
           const floatClass = isCenter
-            ? 'royal-poster-center w-[34%] sm:w-56 z-20'
+            ? 'royal-poster-center w-[36%] sm:w-60 z-30'
             : slot === 0
-            ? 'royal-poster-left w-[28%] sm:w-44 z-10'
-            : 'royal-poster-right w-[28%] sm:w-44 z-10';
+            ? 'royal-poster-left w-[30%] sm:w-48 z-10'
+            : 'royal-poster-right w-[30%] sm:w-48 z-10';
 
           const dispTitle = movie ? (localizedData?.[movie.id]?.title || movie.title) : '';
 
           return (
-            <div key={slot} className={`relative flex flex-col items-center shrink-0 transition-all duration-500 ${floatClass}`}>
+            <div key={slot} className={`relative flex flex-col items-center shrink-0 ${floatClass}`}>
               
               {/* Merkez Afişin Üstündeki Hareketli Kraliyet Tacı */}
               {isCenter && (
-                <div className="absolute -top-8 sm:-top-11 left-1/2 z-30 pointer-events-none royal-crown-anim">
+                <div className="absolute -top-10 sm:-top-14 left-1/2 z-40 royal-crown-anim">
                   <div className="relative flex items-center justify-center">
-                    <div className="absolute w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-amber-400/40 blur-md animate-pulse"></div>
-                    <Crown
-                      className="w-8 h-8 sm:w-11 sm:h-11 text-yellow-300 fill-amber-400 drop-shadow-[0_0_15px_rgba(251,191,36,1)]"
-                    />
+                    <div className="absolute w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-yellow-400/30 blur-xl"></div>
+                    <Crown className="w-10 h-10 sm:w-14 sm:h-14 text-yellow-200 fill-amber-500" />
                   </div>
                 </div>
               )}
 
               {/* Afiş Çerçevesi (Altın Varak & Kayan Işık Yansımalı) */}
               <div
-                className={`relative w-full aspect-[2/3] rounded-2xl sm:rounded-[1.75rem] overflow-hidden group transition-all duration-500 gold-foil-sheen ${
+                className={`relative w-full aspect-[2/3] rounded-2xl sm:rounded-[2rem] overflow-hidden transition-all duration-300 gold-foil-sheen ${
                   isCenter
-                    ? 'border-[3px] royal-gold-border bg-[#0D0903]'
-                    : 'border-2 border-amber-500/60 bg-[#0B0803] shadow-[0_12px_30px_rgba(0,0,0,0.85),0_0_20px_rgba(217,119,6,0.2)] hover:border-yellow-300'
+                    ? 'border-[4px] royal-gold-border bg-[#0D0903]'
+                    : 'border-[3px] border-amber-600/60 bg-[#0B0803] shadow-[0_15px_35px_rgba(0,0,0,0.9),0_0_25px_rgba(217,119,6,0.3)]'
                 }`}
               >
                 {movie ? (
@@ -1550,53 +1561,47 @@ const RoyalTrinityShowcase = ({
                     <img
                       src={movie.poster}
                       onClick={() => selectMovieToRate(movie.id, dispTitle)}
-                      className="w-full h-full object-cover cursor-pointer transition-transform duration-700 group-hover:scale-110 saturate-[1.15]"
+                      className="w-full h-full object-cover cursor-pointer transition-transform duration-700 hover:scale-110 saturate-[1.1] contrast-[1.05]"
                       alt={dispTitle}
                     />
 
                     {/* Altın Varak Köşe Romen Rakamı Rozeti */}
                     <div
-                      className={`absolute top-2 left-2 z-20 w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center font-serif font-black text-[10px] sm:text-xs border shadow-lg pointer-events-none ${
+                      className={`absolute top-2.5 left-2.5 z-20 w-7 h-7 sm:w-10 sm:h-10 rounded-[0.4rem] sm:rounded-xl flex items-center justify-center font-serif font-black text-[11px] sm:text-sm border shadow-[0_4px_10px_rgba(0,0,0,0.8)] pointer-events-none ${
                         isCenter
-                          ? 'bg-gradient-to-br from-yellow-200 via-amber-400 to-amber-600 text-[#1A0F00] border-yellow-100'
-                          : 'bg-[#120C04]/90 text-amber-300 border-amber-400/60'
+                          ? 'bg-gradient-to-br from-yellow-100 via-amber-400 to-amber-600 text-[#1A0F00] border-yellow-200'
+                          : 'bg-[#120C04]/95 text-amber-400 border-amber-500/60'
                       }`}
                     >
                       {rankLabel}
                     </div>
 
                     {/* Alt Karartma ve Film Adı */}
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/80 to-transparent p-2 sm:p-3.5 pt-8 pointer-events-none z-20">
-                      <p className="text-[10px] sm:text-xs font-black text-amber-100 text-center truncate drop-shadow">
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/80 to-transparent p-2.5 sm:p-4 pt-10 pointer-events-none z-20">
+                      <p className="text-[10px] sm:text-sm font-black text-yellow-100 text-center truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                         {dispTitle}
                       </p>
                     </div>
 
                     {/* Kendi Profilinde Düzenleme ve Taçlandırma Butonları */}
                     {isEditable && (
-                      <div className="absolute top-2 right-2 z-30 flex flex-col gap-1.5 opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                      <div className="absolute top-2.5 right-2.5 z-30 flex flex-col gap-2 opacity-90 sm:opacity-0 hover:opacity-100 transition-opacity">
                         <button
                           type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onOpenSlotSearch(slot);
-                          }}
+                          onClick={(e) => { e.stopPropagation(); onOpenSlotSearch(slot); }}
                           title="Filmi Değiştir"
-                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/85 hover:bg-amber-400 text-amber-300 hover:text-black border border-amber-400/60 flex items-center justify-center shadow-lg transition-colors"
+                          className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-black/80 hover:bg-gradient-to-br hover:from-yellow-300 hover:to-amber-500 text-amber-400 hover:text-black border border-amber-400/50 flex items-center justify-center shadow-xl transition-all"
                         >
-                          <Edit3 size={13} />
+                          <Edit3 size={15} />
                         </button>
                         {!isCenter && (
                           <button
                             type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onSetCrown(slot);
-                            }}
+                            onClick={(e) => { e.stopPropagation(); onSetCrown(slot); }}
                             title="Tahta Çıkar (#1 Yap)"
-                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/85 hover:bg-amber-400 text-yellow-300 hover:text-black border border-amber-400/60 flex items-center justify-center shadow-lg transition-colors"
+                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-black/80 hover:bg-gradient-to-br hover:from-yellow-300 hover:to-amber-500 text-yellow-400 hover:text-black border border-amber-400/50 flex items-center justify-center shadow-xl transition-all"
                           >
-                            <Crown size={13} />
+                            <Crown size={15} />
                           </button>
                         )}
                       </div>
@@ -1607,25 +1612,18 @@ const RoyalTrinityShowcase = ({
                   <div
                     onClick={() => isEditable && onOpenSlotSearch && onOpenSlotSearch(slot)}
                     className={`w-full h-full flex flex-col items-center justify-center p-3 text-center bg-gradient-to-b from-[#140E04] to-[#080602] ${
-                      isEditable ? 'cursor-pointer hover:bg-amber-950/30' : ''
+                      isEditable ? 'cursor-pointer hover:bg-amber-900/40 transition-colors' : ''
                     }`}
                   >
-                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-amber-500/10 border border-amber-400/40 flex items-center justify-center text-amber-400 mb-2 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                      {isEditable ? <Plus size={22} /> : <Film size={22} className="opacity-50" />}
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-500/80 mb-3 shadow-[inset_0_0_20px_rgba(245,158,11,0.1)]">
+                      {isEditable ? <Plus size={24} /> : <Film size={24} />}
                     </div>
-                    <span className="text-[10px] sm:text-xs font-black text-amber-200/80 uppercase tracking-wider">
+                    <span className="text-[11px] sm:text-xs font-black text-amber-500/50 uppercase tracking-[0.2em]">
                       {rankLabel}
                     </span>
                   </div>
                 )}
               </div>
-
-              {/* Afiş Altı Altın Kaide Parıltısı */}
-              <div
-                className={`mt-3 rounded-full blur-md pointer-events-none ${
-                  isCenter ? 'w-3/4 h-2.5 bg-amber-400/50' : 'w-2/3 h-1.5 bg-amber-500/30'
-                }`}
-              ></div>
             </div>
           );
         })}
@@ -9393,7 +9391,7 @@ function CineScoreMain() {
                m.enesinalcik@gmail.com
              </span>
           </a>
-          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v5</span></p>
+          <p className="text-slate-600 text-xs mt-8 font-bold flex items-center justify-center gap-2">© 2026 {t.rights} <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] tracking-wider text-slate-400 border border-slate-700">v5.1</span></p>
         </div>
       </footer>
 
