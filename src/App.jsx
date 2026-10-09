@@ -177,9 +177,9 @@ const TRANSLATIONS = {
     fileSizeLimitError: 'Dosya boyutu çok büyük! Lütfen maksimum 2 MB boyutunda bir görsel seçin.',
     imageUploadSuccess: 'Görsel başarıyla yüklendi!',
     horrorProfile: 'KORKU PROFİLİ',
-    scaryLabel: 'Korkunçluk', scaryDesc: 'Filmin atmosferi, psikolojik gerilimi ve rahatsız edicilik dozu ne kadardı? Pür dehşet oranını belirle.',
-    jumpscareLabel: 'Jumpscare Oranı', jumpscareDesc: 'Ucuz, aniden bağırarak korkutma hileleri ne kadar çoktu? 5\'e kadar kan kırmızı, fazlası mor (ucuz/iğrenç) seviyesindedir.',
-    goreLabel: 'Vahşet & Kan', goreDesc: 'Görsel şiddet, kan ve parçalanma detayları ne düzeydeydi? Puan arttıkça ekran kızıla boyanır.',
+    scaryLabel: 'Korkunçluk', scaryDesc: 'Filmin yarattığı atmosfer ve psikolojik gerilim seviyesi.',
+    jumpscareLabel: 'Jumpscare Oranı', jumpscareDesc: 'Anlık sıçratma (jumpscare) taktiklerinin kullanım yoğunluğu.',
+    goreLabel: 'Vahşet & Kan', goreDesc: 'Görsel şiddet, kan ve parçalanma detaylarının seviyesi.',
     horrorEmpty: 'Henüz oylanmış bir korku filmi bulunmuyor.'
   },
   en: {
@@ -288,9 +288,9 @@ const TRANSLATIONS = {
     fileSizeLimitError: 'File is too large! Please select an image under 2 MB.',
     imageUploadSuccess: 'Image uploaded successfully!',
     horrorProfile: 'HORROR PROFILE',
-    scaryLabel: 'Scary / Creepy', scaryDesc: 'How terrifying was the atmosphere and psychological tension?',
-    jumpscareLabel: 'Jumpscare Ratio', jumpscareDesc: 'How many cheap jump scares were used? Over 5 goes into the purple (annoying) zone.',
-    goreLabel: 'Gore & Blood', goreDesc: 'Level of visual violence, blood, and dismemberment.',
+    scaryLabel: 'Scary / Creepy', scaryDesc: 'Atmosphere and psychological tension.',
+    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensity of cheap jump scares.',
+    goreLabel: 'Gore & Blood', goreDesc: 'Level of visual violence and blood.',
     horrorEmpty: 'No horror movies rated yet.'
   },
   de: { 
@@ -381,8 +381,8 @@ const TRANSLATIONS = {
     imageUploadSuccess: 'Bild erfolgreich hochgeladen!',
     horrorProfile: 'HORROR-PROFIL',
     scaryLabel: 'Gruselfaktor', scaryDesc: 'Atmosphäre und psychologische Spannung.',
-    jumpscareLabel: 'Jumpscare-Rate', jumpscareDesc: 'Übermäßig viele billige Schockmomente?',
-    goreLabel: 'Blut & Gewalt', goreDesc: 'Visuelle Gewalt und Zerstückelung. Wird bei hohen Werten rot.',
+    jumpscareLabel: 'Jumpscare-Rate', jumpscareDesc: 'Intensität von billigen Schockmomenten.',
+    goreLabel: 'Blut & Gewalt', goreDesc: 'Visuelle Gewalt und Zerstückelung.',
     horrorEmpty: 'Keine Horrorfilme bewertet.'
   },
   it: { 
@@ -430,7 +430,7 @@ const TRANSLATIONS = {
     dnaLockedDesc: 'film necessari. (Minimo 10)',
     rankByCriteriaLabel: 'Ordina per Criterio:', allCriteriaRank: 'Classifica Generale',
     topFocusMyTitle: 'Il Tuo Criterio Principale', topFocusUserTitle: 'Criterio Principale',
-    topFocusSubtitle: 'Algoritmo DNA 3D (Selettività + Severità + Impatto)',
+    topFocusSubtitle: 'Algorithme DNA 3D (Selettività + Severità + Impatto)',
     focusPowerLabel: 'Forza di Focus', selectivityLabel: 'Selettività', strictnessLabel: 'Severità', impactLabel: 'Impatto',
     secondFocusLabel: 'Focus Secondario:', dnaCalibrationLabel: 'Calibrazione DNA',
     focusAnalysisExplain: 'Questo è il criterio che analizzi con più attenzione, dove separi nettamente i capolavori dai film mediocri.',
@@ -473,8 +473,8 @@ const TRANSLATIONS = {
     imageUploadSuccess: 'Immagine caricata con successo!',
     horrorProfile: 'PROFILO HORROR',
     scaryLabel: 'Spaventoso', scaryDesc: 'Tensione psicologica e atmosfera.',
-    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Quanti spaventi improvvisi?',
-    goreLabel: 'Sangue e Violenza', goreDesc: 'Livello di violenza visiva. Diventa rosso vivo.',
+    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensità degli spaventi improvvisi.',
+    goreLabel: 'Sangue e Violenza', goreDesc: 'Livello di violenza visiva e sangue.',
     horrorEmpty: 'Nessun film horror valutato.'
   },
   fr: { 
@@ -566,32 +566,41 @@ const TRANSLATIONS = {
     horrorProfile: 'PROFIL HORREUR',
     scaryLabel: 'Effrayant', scaryDesc: 'Tension psychologique et atmosphère.',
     jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Combien de sursauts bon marché ?',
-    goreLabel: 'Gore et Sang', goreDesc: 'Niveau de violence visuelle. Devient rouge vif.',
+    goreLabel: 'Gore et Sang', goreDesc: 'Niveau de violence visuelle et de sang.',
     horrorEmpty: 'Aucun film d\'horreur n\'a encore été évalué.'
   }
 };
 
 const AURA_COLORS = ["#39ff14", "#0ea5e9", "#f43f5e", "#eab308", "#a855f7", "#ec4899", "#14b8a6", "#f97316"];
 
-// YENİ: KORKU RENK GEÇİŞ FONKSİYONLARI (Beyazdan Siyaha, Kırmızıdan Mora vb.)
+// YENİ: KORKU RENK GEÇİŞ FONKSİYONLARI (Karanlık Titreme, Kan Damarı, Mor Glitch)
 const getScaryColor = (v) => {
-  const ratio = v / 10;
-  const c = Math.round(255 - (255 - 40) * ratio); 
+  let c = 255;
+  if (v <= 7) c = Math.round(255 - (215 * (v / 7))); 
+  else c = Math.round(40 - (40 * ((v - 7) / 3)));
   return `rgb(${c},${c},${c})`;
 };
 const getJumpscareColor = (v) => {
-  if (v <= 5) return '#dc2626'; // tailwind red-600
-  const ratio = (v - 5) / 5;
-  const r = Math.round(220 - (220 - 126) * ratio);
-  const g = Math.round(38 - (38 - 34) * ratio);
-  const b = Math.round(38 - (38 - 206) * ratio);
+  if (v <= 5) return '#dc2626';
+  const ratio = Math.pow((v - 5) / 5, 0.7); 
+  const r = Math.round(220 - (94 * ratio));
+  const g = Math.round(38 - (4 * ratio));
+  const b = Math.round(38 + (168 * ratio));
   return `rgb(${r},${g},${b})`;
 };
 const getGoreColor = (v) => {
-  const ratio = v / 10;
-  const r = 255;
-  const g = Math.round(255 - (255 - 0) * ratio);
-  const b = Math.round(255 - (255 - 0) * ratio);
+  let r, g, b;
+  if (v <= 7) {
+    const ratio = v / 7;
+    r = Math.round(255 - (80 * ratio));
+    g = Math.round(255 - (228 * ratio));
+    b = Math.round(255 - (228 * ratio));
+  } else {
+    const ratio = (v - 7) / 3;
+    r = Math.round(175 - (50 * ratio));
+    g = Math.round(27 - (27 * ratio));
+    b = Math.round(27 - (27 * ratio));
+  }
   return `rgb(${r},${g},${b})`; 
 };
 
@@ -896,6 +905,38 @@ const CustomAnimations = () => (
       header .overflow-x-auto, .mobile-nav-tabs { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0.25rem !important; max-width: 100vw !important; }
       header button, nav button { font-size: clamp(10px, 2.65vw, 12px) !important; padding-left: clamp(6px, 2vw, 11px) !important; padding-right: clamp(6px, 2vw, 11px) !important; white-space: nowrap !important; flex-shrink: 0 !important; }
     }
+
+    /* YENİ: KORKU EFEKTLERİ */
+    @keyframes scaryShake {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 1px) rotate(-1deg); }
+      40% { transform: translate(2px, -1px) rotate(1deg); }
+      60% { transform: translate(-1px, 2px) rotate(0deg); }
+      80% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+    .scary-shake-mild { animation: scaryShake 0.3s infinite; }
+    .scary-shake-hard { animation: scaryShake 0.1s infinite; }
+    
+    .crack-bg {
+      background-image: 
+        linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.7) 41%, rgba(255,255,255,0.7) 42%, transparent 43%),
+        linear-gradient(75deg, transparent 60%, rgba(255,255,255,0.5) 61%, rgba(255,255,255,0.5) 62%, transparent 63%),
+        linear-gradient(-30deg, transparent 20%, rgba(255,255,255,0.9) 21%, transparent 22%);
+    }
+    .vein-bg {
+      background-image: 
+        radial-gradient(circle at 30% 50%, rgba(100, 10, 10, 0.6) 0%, transparent 40%),
+        repeating-linear-gradient(35deg, transparent, transparent 8px, rgba(153, 27, 27, 0.4) 8px, rgba(153, 27, 27, 0.4) 12px);
+    }
+    
+    @keyframes cheapGlitch {
+      0% { transform: translate(0); filter: drop-shadow(0 0 0 transparent); }
+      20% { transform: translate(-3px, 2px); filter: drop-shadow(-4px 0 0 #a855f7) drop-shadow(4px 0 0 #22c55e); }
+      40% { transform: translate(3px, -2px); filter: drop-shadow(4px 0 0 #ef4444); }
+      60% { transform: translate(0); }
+      100% { transform: translate(0); }
+    }
+    .cheap-glitch { animation: cheapGlitch 0.25s infinite; }
   `}}/>
 );
 
