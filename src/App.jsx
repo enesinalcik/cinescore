@@ -177,9 +177,9 @@ const TRANSLATIONS = {
     fileSizeLimitError: 'Dosya boyutu çok büyük! Lütfen maksimum 2 MB boyutunda bir görsel seçin.',
     imageUploadSuccess: 'Görsel başarıyla yüklendi!',
     horrorProfile: 'KORKU PROFİLİ',
-    scaryLabel: 'Korkunçluk', scaryDesc: 'Filmin yarattığı atmosfer ve psikolojik gerilim seviyesi.',
-    jumpscareLabel: 'Jumpscare Oranı', jumpscareDesc: 'Anlık sıçratma (jumpscare) taktiklerinin kullanım yoğunluğu.',
-    goreLabel: 'Vahşet & Kan', goreDesc: 'Görsel şiddet, kan ve parçalanma detaylarının seviyesi.',
+    scaryLabel: 'Korkunçluk', scaryDesc: 'Filmin atmosferi, psikolojik gerilimi ve rahatsız edicilik dozu ne kadardı?',
+    jumpscareLabel: 'Jumpscare Oranı', jumpscareDesc: 'Aniden bağırarak korkutma (ucuz numara) oranı. 5\'ten sonra mor renge dönerek ucuzlaşır.',
+    goreLabel: 'Vahşet & Kan', goreDesc: 'Görsel şiddet ve kan. Puan arttıkça damarlar belirginleşir.',
     horrorEmpty: 'Henüz oylanmış bir korku filmi bulunmuyor.'
   },
   en: {
@@ -289,7 +289,7 @@ const TRANSLATIONS = {
     imageUploadSuccess: 'Image uploaded successfully!',
     horrorProfile: 'HORROR PROFILE',
     scaryLabel: 'Scary / Creepy', scaryDesc: 'Atmosphere and psychological tension.',
-    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensity of cheap jump scares.',
+    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensity of cheap jump scares. Purples means annoying.',
     goreLabel: 'Gore & Blood', goreDesc: 'Level of visual violence and blood.',
     horrorEmpty: 'No horror movies rated yet.'
   },
@@ -381,7 +381,7 @@ const TRANSLATIONS = {
     imageUploadSuccess: 'Bild erfolgreich hochgeladen!',
     horrorProfile: 'HORROR-PROFIL',
     scaryLabel: 'Gruselfaktor', scaryDesc: 'Atmosphäre und psychologische Spannung.',
-    jumpscareLabel: 'Jumpscare-Rate', jumpscareDesc: 'Intensität von billigen Schockmomenten.',
+    jumpscareLabel: 'Jumpscare-Rate', jumpscareDesc: 'Übermäßig viele billige Schockmomente?',
     goreLabel: 'Blut & Gewalt', goreDesc: 'Visuelle Gewalt und Zerstückelung.',
     horrorEmpty: 'Keine Horrorfilme bewertet.'
   },
@@ -396,7 +396,7 @@ const TRANSLATIONS = {
     howStep1Title: 'Scegli Due Film', howStep1Desc: 'Scegli un film di partenza e il film obiettivo da raggiungere.',
     howStep2Title: 'Scegli un Attore', howStep2Desc: 'Clicca su un attore del cast del film di partenza.',
     howStep3Title: 'Salta a un Film', howStep3Desc: 'Seleziona un altro film in cui ha recitato quell\'attore.',
-    howStep4Title: 'Raggiungi l\'Obiettivo', howStep4Desc: 'Raggiungi un attore del film obiettivo e seleziona il film finale!',
+    howStep4Title: 'Relier la Cible', howStep4Desc: 'Raggiungi un attore del film obiettivo e seleziona il film final !',
     exampleShortestLabel: 'Esempio Ponte Breve:', exampleM1: 'Shutter Island', exampleM2: 'Buon compleanno Mr. Grape', exampleM3: 'Pirati dei Caraibi',
     startMovieLabel: '1. Film di Partenza', targetMovieLabel: '2. Film Obiettivo',
     startPointBadge: 'PUNTO DI PARTENZA', targetPointBadge: 'OBIETTIVO FINALE',
@@ -430,7 +430,7 @@ const TRANSLATIONS = {
     dnaLockedDesc: 'film necessari. (Minimo 10)',
     rankByCriteriaLabel: 'Ordina per Criterio:', allCriteriaRank: 'Classifica Generale',
     topFocusMyTitle: 'Il Tuo Criterio Principale', topFocusUserTitle: 'Criterio Principale',
-    topFocusSubtitle: 'Algorithme DNA 3D (Selettività + Severità + Impatto)',
+    topFocusSubtitle: 'Algoritmo DNA 3D (Selettività + Severità + Impatto)',
     focusPowerLabel: 'Forza di Focus', selectivityLabel: 'Selettività', strictnessLabel: 'Severità', impactLabel: 'Impatto',
     secondFocusLabel: 'Focus Secondario:', dnaCalibrationLabel: 'Calibrazione DNA',
     focusAnalysisExplain: 'Questo è il criterio che analizzi con più attenzione, dove separi nettamente i capolavori dai film mediocri.',
@@ -473,12 +473,12 @@ const TRANSLATIONS = {
     imageUploadSuccess: 'Immagine caricata con successo!',
     horrorProfile: 'PROFILO HORROR',
     scaryLabel: 'Spaventoso', scaryDesc: 'Tensione psicologica e atmosfera.',
-    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensità degli spaventi improvvisi.',
-    goreLabel: 'Sangue e Violenza', goreDesc: 'Livello di violenza visiva e sangue.',
+    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Quanti spaventi improvvisi?',
+    goreLabel: 'Sangue e Violenza', goreDesc: 'Livello di violenza visiva.',
     horrorEmpty: 'Nessun film horror valutato.'
   },
   fr: { 
-    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaque du Cinéma', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
+    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
     criticLabel: 'Critique', ticketHeader: '★ BILLET D\'ARCHIVE CRITIQUE OFFICIEL ★', magazineHeader: 'ÉDITION SPÉCIALE CRITIQUE', radarHeader: 'ANALYSE RADAR CRITIQUE',
     storyStyle1: 'Neon Aura', storyStyle2: 'Affiche Cinéma', storyStyle3: 'Billet Rétro', storyStyle4: 'Magazine', storyStyle5: 'Prisme Radar',
     rouletteBtn: 'Roulette Cinéma', rouletteTitle: 'Que regarder ce soir ?', rouletteDesc: 'Tous les films de votre liste sont mélangés pour choisir votre film de ce soir.', roulettePicked: 'Choisi par le Destin !', spinAgain: 'Relancer', goToMovie: 'Voir le Film', createStory: 'Créer Carte Story', downloadStory: 'Télécharger (PNG)',
@@ -517,8 +517,8 @@ const TRANSLATIONS = {
     popularGamesTitle: '🔥 Jeux les Plus Populaires (Choix Rapide)',
     popGame1: 'Shutter Island ➔ Pirates des Caraïbes', popGame2: 'Inception ➔ Le Seigneur des Anneaux', popGame3: 'Pulp Fiction ➔ The Dark Knight',
     b11Name: 'Architecte de Ponts', b11Desc: 'Premier pont complété dans CineLink !',
-    b12Name: 'Génie du Raccourci', b12Desc: 'Secret : Deux films reliés en 2 étapes ou moins !',
-    b13Name: 'Maître CineLink', b13Desc: '5 ponts complétés dans CineLink !',
+    b12Name: 'Génie du Raccourci', b12Desc: 'Segreto: Due film collegati in 2 o meno passi!',
+    b13Name: 'Maestro CineLink', b13Desc: '5 ponts complétés dans CineLink !',
     dnaLockedDesc: 'films nécessaires. (10 Minimum)',
     rankByCriteriaLabel: 'Trier par Critère :', allCriteriaRank: 'Classement Général',
     topFocusMyTitle: 'Votre Critère Principal', topFocusUserTitle: 'Critère Principal',
@@ -573,35 +573,169 @@ const TRANSLATIONS = {
 
 const AURA_COLORS = ["#39ff14", "#0ea5e9", "#f43f5e", "#eab308", "#a855f7", "#ec4899", "#14b8a6", "#f97316"];
 
-// YENİ: KORKU RENK GEÇİŞ FONKSİYONLARI (Karanlık Titreme, Kan Damarı, Mor Glitch)
+// YENİ: KORKU RENK GEÇİŞ FONKSİYONLARI (Optimize Edilmiş Gelişmiş Matematik)
 const getScaryColor = (v) => {
-  let c = 255;
-  if (v <= 7) c = Math.round(255 - (215 * (v / 7))); 
-  else c = Math.round(40 - (40 * ((v - 7) / 3)));
+  let c = Math.max(15, 255 - (v * 32)); // 7 civarı beyazlık yok olur (kapkara)
   return `rgb(${c},${c},${c})`;
 };
 const getJumpscareColor = (v) => {
-  if (v <= 5) return '#dc2626';
-  const ratio = Math.pow((v - 5) / 5, 0.7); 
-  const r = Math.round(220 - (94 * ratio));
-  const g = Math.round(38 - (4 * ratio));
-  const b = Math.round(38 + (168 * ratio));
+  if (v <= 5) return 'rgb(220, 38, 38)'; // 5'e kadar saf kan kırmızı
+  const ratio = (v - 5) / 5; // 5 sonrası hızla mora çalar
+  const r = Math.round(220 - (73 * ratio));  
+  const g = Math.round(38 + (13 * ratio));   
+  const b = Math.round(38 + (196 * ratio));  
   return `rgb(${r},${g},${b})`;
 };
 const getGoreColor = (v) => {
-  let r, g, b;
+  let r = 255, g = 255, b = 255;
   if (v <= 7) {
     const ratio = v / 7;
-    r = Math.round(255 - (80 * ratio));
-    g = Math.round(255 - (228 * ratio));
-    b = Math.round(255 - (228 * ratio));
+    g = Math.round(255 - (235 * ratio)); // 7'de beyazlık sıfıra yaklaşır
+    b = Math.round(255 - (235 * ratio));
   } else {
     const ratio = (v - 7) / 3;
-    r = Math.round(175 - (50 * ratio));
-    g = Math.round(27 - (27 * ratio));
-    b = Math.round(27 - (27 * ratio));
+    r = Math.round(255 - (155 * ratio)); // 10'da kopkoyu kan pıhtısı rengi
+    g = 20 - Math.round(20 * ratio);
+    b = 20 - Math.round(20 * ratio);
   }
   return `rgb(${r},${g},${b})`; 
+};
+
+// KASMA (LAG) SORUNUNU KÖKTEN ÇÖZEN AKICI (SMOOTH) VE YÜKSEK İSABETLİ (HITBOX) SLIDER BİLEŞENLERİ
+const SmoothStandardSlider = ({ c, value, onChange }) => {
+  const [localVal, setLocalVal] = useState(value || 5);
+  useEffect(() => { setLocalVal(value || 5); }, [value]);
+  
+  const sliderColor = getScoreColorHex(localVal);
+  const commitChange = () => onChange(localVal);
+  
+  return (
+    <div className="relative">
+      <div className="flex justify-between items-end mb-3">
+        <div className="flex items-center gap-2 relative group">
+          <span className="font-black text-white text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">{c.name}</span>
+          <HelpCircle size={16} className="text-slate-500 cursor-help hover:text-theme transition-colors" />
+          <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-slate-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(0,0,0,1)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2 border-slate-700">
+            {c.desc}<div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2 border-slate-700"></div>
+          </div>
+        </div>
+        <div className="text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-75" style={{color: sliderColor}}>
+          {localVal.toFixed(1)}
+        </div>
+      </div>
+      <div className="relative h-8 sm:h-10 flex items-center rounded-sm bg-[#03050A] border-2 border-slate-800 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer">
+        <div className="absolute h-full pointer-events-none rounded-l-sm transition-colors duration-75" style={{width: `${localVal * 10}%`, backgroundColor: sliderColor}}></div>
+        
+        {/* slider-hitbox SINIFI EKLENDİ - ALTTAN VE ÜSTTEN TIKLAMAYA KESİN TEPKİ VERİR */}
+        <input type="range" min="0" max="10" step="0.1" value={localVal} 
+          onChange={(e) => setLocalVal(parseFloat(e.target.value))} 
+          onMouseUp={commitChange} onTouchEnd={commitChange} onKeyUp={commitChange}
+          className="slider-hitbox"
+        />
+        
+        <div className="absolute h-12 w-6 sm:h-14 sm:w-8 bg-white border-2 border-black rounded-sm shadow-[3px_3px_0px_rgba(0,0,0,1)] pointer-events-none z-10 flex items-center justify-center group-active/slider:scale-110 transition-transform" style={{left: `calc(${localVal * 10}% - 12px)`}}>
+          <div className="w-1.5 h-4 sm:h-5 rounded-sm transition-colors duration-75" style={{backgroundColor: sliderColor}}></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SmoothHorrorSlider = ({ type, label, desc, value, onChange }) => {
+  const [localVal, setLocalVal] = useState(value || 0);
+  useEffect(() => { setLocalVal(value || 0); }, [value]);
+  const commitChange = () => onChange(localVal);
+  
+  let trackColor, textColor, thumbBorderColor, trackClasses = '', thumbClasses = '', icon = '';
+  let containerClasses = 'relative h-8 sm:h-10 flex items-center rounded-sm bg-[#03050A] border-2 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer overflow-visible transition-all duration-200';
+  let trackStyles = {};
+  let hasVeins = false;
+  let isGlitching = false;
+  
+  if (type === 'scary') {
+    trackColor = getScaryColor(localVal);
+    textColor = localVal >= 6 ? '#ffffff' : trackColor; 
+    thumbBorderColor = localVal >= 7 ? '#64748b' : trackColor; 
+    
+    if (localVal >= 8) { 
+       thumbClasses = 'scary-shake-hard'; 
+       containerClasses += ' border-slate-500 shadow-[0_0_15px_rgba(255,255,255,0.2)]'; 
+       trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #ffffff' };
+    }
+    else if (localVal >= 6) { 
+       thumbClasses = 'scary-shake-mild'; 
+       containerClasses += ' border-slate-600';
+       trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #94a3b8' };
+    } else {
+       containerClasses += ' border-slate-800';
+       trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #000' };
+    }
+    icon = '💀';
+  } else if (type === 'jumpscare') {
+    trackColor = getJumpscareColor(localVal);
+    textColor = trackColor;
+    thumbBorderColor = trackColor;
+    trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #000' };
+    containerClasses += ' border-slate-800';
+    if (localVal >= 6) { 
+      isGlitching = true; // Sadece barın içini glitch yapacağız
+    }
+    icon = '👻';
+  } else if (type === 'gore') {
+    trackColor = getGoreColor(localVal);
+    textColor = trackColor;
+    thumbBorderColor = trackColor;
+    trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #000' };
+    containerClasses += ' border-slate-800';
+    if (localVal >= 4) {
+      trackClasses = 'gore-base';
+      hasVeins = true; 
+    }
+    icon = '🩸';
+  }
+
+  return (
+    <div className="relative mb-8">
+      <div className="flex justify-between items-end mb-3">
+        <div className="flex items-center gap-2 relative group">
+          <span className="font-black text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] uppercase tracking-wider transition-colors duration-200" style={{color: textColor}}>{label}</span>
+          <HelpCircle size={16} className="opacity-60 cursor-help hover:opacity-100 transition-opacity" style={{color: textColor}} />
+          <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-slate-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(0,0,0,1)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2" style={{borderColor: textColor}}>
+            {desc}
+            <div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2" style={{borderColor: textColor}}></div>
+          </div>
+        </div>
+        <div className={`text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200 ${thumbClasses}`} style={{color: textColor}}>
+          {localVal.toFixed(1)}
+        </div>
+      </div>
+      
+      <div className={containerClasses}>
+        
+        {/* Renkli dolgu barı (Gore, Veins ve Glitch burada uygulanır) */}
+        <div className={`absolute h-full pointer-events-none rounded-l-sm transition-colors duration-200 ${trackClasses}`} style={{width: `${localVal * 10}%`, ...trackStyles}}>
+           {hasVeins && <div className="gore-veins" style={{ opacity: localVal / 10 }}></div>}
+           {isGlitching && (
+             <>
+               <div className="glitch-layer glitch-layer-1" style={{ backgroundColor: trackColor }}></div>
+               <div className="glitch-layer glitch-layer-2" style={{ backgroundColor: trackColor }}></div>
+             </>
+           )}
+        </div>
+        
+        {/* SENİN ÇALIŞAN HITBOX'IN (HİÇ DOKUNULMADI) */}
+        <input type="range" min="0" max="10" step="0.1" value={localVal} 
+          onChange={(e) => setLocalVal(parseFloat(e.target.value))} 
+          onMouseUp={commitChange} onTouchEnd={commitChange} onKeyUp={commitChange}
+          className="slider-hitbox"
+        />
+        
+        <div className={`absolute h-12 w-8 sm:h-14 sm:w-10 bg-[#03050A] border-2 rounded-sm shadow-[3px_3px_0px_rgba(0,0,0,1)] pointer-events-none z-10 flex items-center justify-center transition-all duration-200 group-active/slider:scale-110 ${thumbClasses}`} style={{left: `calc(${localVal * 10}% - 16px)`, borderColor: thumbBorderColor}}>
+          <span className="text-lg sm:text-2xl drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">{icon}</span>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const AVATAR_PRESETS = [
@@ -906,7 +1040,51 @@ const CustomAnimations = () => (
       header button, nav button { font-size: clamp(10px, 2.65vw, 12px) !important; padding-left: clamp(6px, 2vw, 11px) !important; padding-right: clamp(6px, 2vw, 11px) !important; white-space: nowrap !important; flex-shrink: 0 !important; }
     }
 
-    /* YENİ: KORKU EFEKTLERİ */
+    /* --- %100 KUSURSUZ İSABETLİ HITBOX ÇÖZÜMÜ --- */
+    .slider-hitbox {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      background: transparent !important;
+      width: 100% !important;
+      height: 100% !important;
+      position: absolute !important;
+      inset: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      outline: none !important;
+      z-index: 50 !important;
+      opacity: 0 !important;
+      cursor: pointer !important;
+    }
+    .slider-hitbox::-webkit-slider-runnable-track {
+      width: 100% !important;
+      height: 100% !important; /* İŞTE BU KOD SAYESİNDE BARIN EN ALTINDAN BİLE TIKLANIR */
+      background: transparent !important;
+      border: none !important;
+      margin: 0 !important;
+    }
+    .slider-hitbox::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 40px !important;
+      height: 100% !important; /* YÜKSEKLİĞİ BAR İLE BİREBİR AYNI YAPTIK */
+      background: transparent !important;
+      border: none !important;
+    }
+    .slider-hitbox::-moz-range-track {
+      width: 100% !important;
+      height: 100% !important;
+      background: transparent !important;
+      border: none !important;
+    }
+    .slider-hitbox::-moz-range-thumb {
+      width: 40px !important;
+      height: 100% !important;
+      background: transparent !important;
+      border: none !important;
+    }
+
+    /* --- YENİ KORKU EFEKTLERİ --- */
     @keyframes scaryShake {
       0%, 100% { transform: translate(0, 0); }
       20% { transform: translate(-2px, 1px) rotate(-1deg); }
@@ -914,29 +1092,65 @@ const CustomAnimations = () => (
       60% { transform: translate(-1px, 2px) rotate(0deg); }
       80% { transform: translate(1px, -2px) rotate(-1deg); }
     }
-    .scary-shake-mild { animation: scaryShake 0.3s infinite; }
-    .scary-shake-hard { animation: scaryShake 0.1s infinite; }
+    .scary-shake-mild { animation: scaryShake 0.35s infinite; }
+    .scary-shake-hard { animation: scaryShake 0.15s infinite; }
     
-    .crack-bg {
+    /* Vahşet & Kan (Gore) - Damar ve Nabız (Kalp Atışı) Efekti */
+    .gore-base {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, #7f1d1d, #dc2626, #7f1d1d);
+      background-size: 200% 100%;
+      animation: bloodFlow 2.5s infinite linear;
+    }
+    @keyframes bloodFlow {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+    .gore-veins {
+      position: absolute;
+      inset: 0;
       background-image: 
-        linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.7) 41%, rgba(255,255,255,0.7) 42%, transparent 43%),
-        linear-gradient(75deg, transparent 60%, rgba(255,255,255,0.5) 61%, rgba(255,255,255,0.5) 62%, transparent 63%),
-        linear-gradient(-30deg, transparent 20%, rgba(255,255,255,0.9) 21%, transparent 22%);
+        radial-gradient(ellipse at 50% 50%, rgba(69, 10, 10, 0.9) 10%, transparent 60%),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.4) 10px, rgba(0,0,0,0.4) 14px);
+      mix-blend-mode: color-burn;
+      pointer-events: none;
+      animation: heartbeat 1.2s infinite ease-in-out;
     }
-    .vein-bg {
-      background-image: 
-        radial-gradient(circle at 30% 50%, rgba(100, 10, 10, 0.6) 0%, transparent 40%),
-        repeating-linear-gradient(35deg, transparent, transparent 8px, rgba(153, 27, 27, 0.4) 8px, rgba(153, 27, 27, 0.4) 12px);
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      15% { transform: scale(1.03); opacity: 1; }
+      30% { transform: scale(1); opacity: 0.6; }
+      45% { transform: scale(1.03); opacity: 1; }
     }
-    
-    @keyframes cheapGlitch {
-      0% { transform: translate(0); filter: drop-shadow(0 0 0 transparent); }
-      20% { transform: translate(-3px, 2px); filter: drop-shadow(-4px 0 0 #a855f7) drop-shadow(4px 0 0 #22c55e); }
-      40% { transform: translate(3px, -2px); filter: drop-shadow(4px 0 0 #ef4444); }
-      60% { transform: translate(0); }
-      100% { transform: translate(0); }
+
+    /* Jumpscare Glitch Efekti (Titremesiz, Salt Renk Ayrışması) */
+    .glitch-layer {
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      pointer-events: none;
+      opacity: 0.7;
+      mix-blend-mode: screen;
     }
-    .cheap-glitch { animation: cheapGlitch 0.25s infinite; }
+    .glitch-layer-1 {
+      animation: glitchLayer1 0.4s infinite linear alternate-reverse;
+      filter: drop-shadow(-4px 0 0 rgba(168,85,247,0.9)); /* Mor Glitch */
+    }
+    .glitch-layer-2 {
+      animation: glitchLayer2 0.3s infinite linear alternate-reverse;
+      filter: drop-shadow(4px 0 0 rgba(34,197,94,0.7)); /* Yeşil Glitch */
+    }
+    @keyframes glitchLayer1 {
+      0% { clip-path: inset(10% 0 80% 0); transform: translateX(-2px); }
+      50% { clip-path: inset(50% 0 30% 0); transform: translateX(2px); }
+      100% { clip-path: inset(80% 0 10% 0); transform: translateX(-1px); }
+    }
+    @keyframes glitchLayer2 {
+      0% { clip-path: inset(20% 0 60% 0); transform: translateX(2px); }
+      50% { clip-path: inset(60% 0 20% 0); transform: translateX(-2px); }
+      100% { clip-path: inset(30% 0 50% 0); transform: translateX(1px); }
+    }
   `}}/>
 );
 
@@ -8399,33 +8613,15 @@ const criteriaData = useMemo(() => [
                      </div>
                      
                      <div className="space-y-6 sm:space-y-8 mt-4">
-                       {criteriaData.map((c) => {
-                     const currentValue = scores[c.id] ?? 5; 
-                     const sliderColor = getScoreColorHex(currentValue);
-                     return (
-                     <div key={c.id} className="relative">
-                       <div className="flex justify-between items-end mb-3">
-                          <div className="flex items-center gap-2 relative group">
-                             <span className="font-black text-white text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)]">{c.name}</span>
-                             <HelpCircle size={16} className="text-slate-500 cursor-help hover:text-theme transition-colors" />
-                             <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-slate-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(0,0,0,1)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2 border-slate-700">
-                               {c.desc}<div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2 border-slate-700"></div>
-                             </div>
-                          </div>
-                          <div className="text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200 ease-out" style={{color: sliderColor}}>
-                            {currentValue}
-                          </div>
-                       </div>
-                       
-                       <div className="relative h-8 flex items-center rounded-sm bg-[#03050A] border-2 border-slate-800 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer">
-                         <div className="absolute h-full pointer-events-none rounded-l-sm" style={{width: `${currentValue * 10}%`, backgroundColor: sliderColor}}></div>
-                         <input type="range" min="0" max="10" step="0.1" value={currentValue} onChange={(e) => setScores({...scores, [c.id]: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-20"/>
-                         <div className="absolute h-14 w-6 bg-white border-2 border-black rounded-sm shadow-[3px_3px_0px_rgba(0,0,0,1)] pointer-events-none z-10 flex items-center justify-center group-active/slider:scale-110 transition-transform duration-100" style={{left: `calc(${currentValue * 10}% - 12px)`}}>
-                            <div className="w-1.5 h-5 rounded-sm" style={{backgroundColor: sliderColor}}></div>
-                         </div>
-                       </div>
-                     </div>
-                   )})}
+                       {/* KASMA SORUNUNU ÇÖZEN AKICI NORMAL SLIDERLAR */}
+                       {criteriaData.map((c) => (
+                         <SmoothStandardSlider 
+                           key={c.id} 
+                           c={c} 
+                           value={scores[c.id]} 
+                           onChange={(val) => setScores(prev => ({...prev, [c.id]: val}))} 
+                         />
+                       ))}
                    
                    {/* YENİ: SADECE KORKU FİLMLERİNDE ÇIKAN KANLI BRUTALIST KORKUNÇLUK BARLARI */}
                    {(() => {
@@ -8440,78 +8636,30 @@ const criteriaData = useMemo(() => [
                            </span>
                          </div>
                          
-                         <div className="space-y-8">
-                           {/* 1. Korkunçluk Seviyesi (Scary) */}
-                           <div className="relative">
-                             <div className="flex justify-between items-end mb-3">
-                                <div className="flex items-center gap-2 relative group">
-                                   <span className="font-black text-slate-300 text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] uppercase tracking-wider">{t.scaryLabel}</span>
-                                   <HelpCircle size={16} className="text-slate-600 cursor-help hover:text-slate-300 transition-colors" />
-                                   <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-slate-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(255,255,255,0.2)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2 border-slate-700">
-                                     {t.scaryDesc}
-                                     <div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2 border-slate-700"></div>
-                                   </div>
-                                </div>
-                                <div className="text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200" style={{color: getScaryColor(horrorScores.scary)}}>
-                                  {horrorScores.scary.toFixed(1)}
-                                </div>
-                             </div>
-                             <div className="relative h-8 flex items-center rounded-sm bg-[#03050A] border-2 border-slate-700 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer overflow-visible">
-                               <div className="absolute h-full pointer-events-none rounded-l-sm transition-all duration-100" style={{width: `${horrorScores.scary * 10}%`, background: `linear-gradient(to right, #fff, ${getScaryColor(horrorScores.scary)})`}}></div>
-                               <input type="range" min="0" max="10" step="0.1" value={horrorScores.scary} onChange={(e) => setHorrorScores({...horrorScores, scary: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-20"/>
-                               <div className="absolute h-14 w-10 bg-[#03050A] border-2 border-slate-400 rounded-sm shadow-[3px_3px_0px_rgba(255,255,255,0.3)] pointer-events-none z-10 flex items-center justify-center group-active/slider:scale-110 transition-transform duration-100" style={{left: `calc(${horrorScores.scary * 10}% - 20px)`}}>
-                                  <span className="text-lg drop-shadow-[1px_1px_0px_rgba(255,255,255,0.5)]">💀</span>
-                               </div>
-                             </div>
-                           </div>
+                         <div className="space-y-10 mt-6">
+                           <SmoothHorrorSlider 
+                             type="scary" 
+                             label={t.scaryLabel} 
+                             desc={t.scaryDesc} 
+                             value={horrorScores.scary} 
+                             onChange={(val) => setHorrorScores(prev => ({...prev, scary: val}))} 
+                           />
                            
-                           {/* 2. Jumpscare Yoğunluğu */}
-                           <div className="relative">
-                             <div className="flex justify-between items-end mb-3">
-                                <div className="flex items-center gap-2 relative group">
-                                   <span className="font-black text-orange-500 text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] uppercase tracking-wider">{t.jumpscareLabel}</span>
-                                   <HelpCircle size={16} className="text-orange-900/60 cursor-help hover:text-orange-500 transition-colors" />
-                                   <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-orange-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(249,115,22,0.5)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2 border-orange-900/60">
-                                     {t.jumpscareDesc}
-                                     <div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2 border-orange-900/60"></div>
-                                   </div>
-                                </div>
-                                <div className="text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200" style={{color: getJumpscareColor(horrorScores.jumpscare)}}>
-                                  {horrorScores.jumpscare.toFixed(1)}
-                                </div>
-                             </div>
-                             <div className="relative h-8 flex items-center rounded-sm bg-[#03050A] border-2 border-orange-900/50 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer overflow-visible">
-                               <div className="absolute h-full pointer-events-none rounded-l-sm transition-all duration-100" style={{width: `${horrorScores.jumpscare * 10}%`, background: `linear-gradient(to right, #dc2626, ${getJumpscareColor(horrorScores.jumpscare)})`}}></div>
-                               <input type="range" min="0" max="10" step="0.1" value={horrorScores.jumpscare} onChange={(e) => setHorrorScores({...horrorScores, jumpscare: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-20"/>
-                               <div className="absolute h-14 w-10 bg-[#03050A] border-2 border-orange-500 rounded-sm shadow-[3px_3px_0px_rgba(249,115,22,0.7)] pointer-events-none z-10 flex items-center justify-center group-active/slider:scale-110 transition-transform duration-100" style={{left: `calc(${horrorScores.jumpscare * 10}% - 20px)`}}>
-                                  <span className="text-lg drop-shadow-[1px_1px_0px_rgba(249,115,22,0.5)]">👻</span>
-                               </div>
-                             </div>
-                           </div>
+                           <SmoothHorrorSlider 
+                             type="jumpscare" 
+                             label={t.jumpscareLabel} 
+                             desc={t.jumpscareDesc} 
+                             value={horrorScores.jumpscare} 
+                             onChange={(val) => setHorrorScores(prev => ({...prev, jumpscare: val}))} 
+                           />
 
-                           {/* 3. Vahşet & Kan (Gore) Yoğunluğu */}
-                           <div className="relative">
-                             <div className="flex justify-between items-end mb-3">
-                                <div className="flex items-center gap-2 relative group">
-                                   <span className="font-black text-red-600 text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] uppercase tracking-wider">{t.goreLabel}</span>
-                                   <HelpCircle size={16} className="text-red-900/60 cursor-help hover:text-red-600 transition-colors" />
-                                   <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-red-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(220,38,38,0.5)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2 border-red-900/60">
-                                     {t.goreDesc}
-                                     <div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2 border-red-900/60"></div>
-                                   </div>
-                                </div>
-                                <div className="text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200" style={{color: getGoreColor(horrorScores.gore)}}>
-                                  {horrorScores.gore.toFixed(1)}
-                                </div>
-                             </div>
-                             <div className="relative h-8 flex items-center rounded-sm bg-[#03050A] border-2 border-red-900/50 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer overflow-visible">
-                               <div className="absolute h-full pointer-events-none rounded-l-sm transition-all duration-100" style={{width: `${horrorScores.gore * 10}%`, background: `linear-gradient(to right, #ffffff, ${getGoreColor(horrorScores.gore)})`}}></div>
-                               <input type="range" min="0" max="10" step="0.1" value={horrorScores.gore} onChange={(e) => setHorrorScores({...horrorScores, gore: parseFloat(e.target.value)})} className="absolute w-full h-full opacity-0 cursor-pointer z-20"/>
-                               <div className="absolute h-14 w-10 bg-black border-2 border-red-600 rounded-sm shadow-[3px_3px_0px_rgba(220,38,38,0.7)] pointer-events-none z-10 flex items-center justify-center group-active/slider:scale-110 transition-transform duration-100" style={{left: `calc(${horrorScores.gore * 10}% - 20px)`}}>
-                                  <span className="text-lg drop-shadow-[1px_1px_0px_rgba(220,38,38,0.5)]">🩸</span>
-                               </div>
-                             </div>
-                           </div>
+                           <SmoothHorrorSlider 
+                             type="gore" 
+                             label={t.goreLabel} 
+                             desc={t.goreDesc} 
+                             value={horrorScores.gore} 
+                             onChange={(val) => setHorrorScores(prev => ({...prev, gore: val}))} 
+                           />
                          </div>
 
                        </div>
@@ -9576,7 +9724,7 @@ const criteriaData = useMemo(() => [
           
           <p className="text-slate-500 text-xs mt-10 font-bold flex items-center justify-center gap-2">
              © 2026 {t.rights} 
-             <span className="px-2 py-0.5 bg-[#03050A] rounded-sm text-[10px] tracking-wider text-slate-300 border-2 border-slate-700 shadow-[2px_2px_0px_rgba(0,0,0,1)]">v6</span>
+             <span className="px-2 py-0.5 bg-[#03050A] rounded-sm text-[10px] tracking-wider text-slate-300 border-2 border-slate-700 shadow-[2px_2px_0px_rgba(0,0,0,1)]">v6.2</span>
           </p>
         </div>
       </footer>
