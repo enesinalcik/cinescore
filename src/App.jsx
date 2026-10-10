@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Star, Film, Save, Award, Clapperboard, Search, Loader2, Globe, User, LogIn, LogOut, X, TrendingUp, Edit3, HelpCircle, Users, Info, Settings, Flame, Play, Crown, Ticket, Medal, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock, Rocket, Smile, Bookmark, BookmarkCheck, ListFilter, Plus, Share2, ListPlus, CheckCircle2, Quote, Sparkles, PieChart, Trophy, UserPlus, UserMinus, Link, Bell, Palette, Volume2, VolumeX } from 'lucide-react';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
+import { Skull } from 'lucide-react';
 import { getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, runTransaction, query, orderBy, deleteDoc, limit } from 'firebase/firestore';
 
 // --------------------------------------------------------
@@ -65,7 +66,8 @@ const TRANSLATIONS = {
     cineZodiac: 'Sinema Burcu', cineZodiacDesc: 'Eleştirel yapıya göre profillendirme.', topGenres: 'Favori Türler', viewAll: 'Tümünü Gör',
     zodiacC1: 'Acımasız Hikaye Avcısı', zodiacC2: 'Karakter Analisti', zodiacC3: 'Görsel Estet', zodiacC4: 'Odyofil', zodiacC5: 'Ritim Ustası', zodiacDefault: 'Yeni Başlayan',
     zC1Desc: 'Senaryo açıklarına tahammülün yok. Hikaye zayıfsa, film biter.', zC2Desc: 'Oyunculuklardaki yapmacıklığı affetmiyorsun.', zC3Desc: 'Kötü çekilmiş, ışıksız bir filme katlanamazsın.', zC4Desc: 'Atmosferi ve müzikleri iliklerine kadar hissetmelisin.', zC5Desc: 'Sahneler arası geçişler ve kurgu hileleri senin için en kritik detay.',
-    top3Title: 'Kutsal Üçlü', top3Desc: 'Hayatına dokunan ve başyapıt olarak görülen en iyi 3 film.', selectTop3Search: 'Vitrinin İçin Film Ara...',
+    top3Title: 'Üç Büyükler', top3Desc: 'Hayatına dokunan ve başyapıt olarak gördüğün en iyi 3 film.', selectTop3Search: 'Vitrinin İçin Film Ara...',
+    horrorTop3Title: 'Dehşet Üçlüsü', horrorTop3Desc: 'Kanını donduran, uykularını kaçıran en karanlık 3 başyapıt.',
     verifyEmailSent: 'Kayıt başarılı! Lütfen e-posta adresinize gönderilen doğrulama linkine tıklayın.', emailNotVerifiedError: 'E-posta adresiniz henüz doğrulanmamış. Lütfen gelen kutunuzu kontrol edin.',
     followers: 'Takipçi', following: 'Takip Edilen', follow: 'Takip Et', unfollow: 'Takipten Çık', shareProfile: 'Profili Paylaş', userCodeCopied: 'Kullanıcı kodu kopyalandı!',
     communityPrivacyTitle: 'Gizli Topluluk', communityPrivacyDesc: 'Gizlilik gereği kullanıcılar açıkça listelenmez. Arkadaşınızı bulmak için 6 haneli @kodunu tam olarak yazın.',
@@ -155,11 +157,10 @@ const TRANSLATIONS = {
     fasterRecordBanner: '⚡ DAHA HIZLI SÜRE REKORU KIRDIN!', popularRoutesHeading: 'Popüler Eşleşmeler',
     dnaMovieMatchTitle: 'Senin Zevk DNA\'na %{pct} Uyuyor',
     dnaMovieFocusStrong: 'Odak kriterin olan {crit} bu filmde çok güçlü',
-    dnaMovieFocusMedium: 'Odak kriterin olan {crit} bu filmde dengeli seviyede',
+    dnaMovieFocusMedium: 'Odak kriterin olan {crit} bu filmde dengeli sevide',
     dnaMovieFocusWeak: 'Odak kriterin olan {crit} bu filmde zayıf kalmış',
     dnaMovieBadge: '3B DNA EŞLEŞME ALGORİTMASI',
     soundOn: 'Ses Efektleri Açık', soundOff: 'Ses Efektleri Kapalı',
-    top3Desc: '',
     favDirectorTitle: 'En Çok İzlediğin Yönetmen', favDirectorPublicTitle: 'En Çok İzlediği Yönetmen',
     favDirectorFilmsRated: 'İzlenen Filmi', favDirectorAvgGiven: 'Verdiğin Ort. Puan',
     openCareerCardBtn: 'Tüm Filmlerini Gör',
@@ -176,14 +177,14 @@ const TRANSLATIONS = {
     uploadFromDevice: 'Cihazdan Yükle (Maks 2MB)',
     fileSizeLimitError: 'Dosya boyutu çok büyük! Lütfen maksimum 2 MB boyutunda bir görsel seçin.',
     imageUploadSuccess: 'Görsel başarıyla yüklendi!',
-    horrorProfile: 'KORKU PROFİLİ',
-    scaryLabel: 'Korkunçluk', scaryDesc: 'Filmin atmosferi, psikolojik gerilimi ve rahatsız edicilik dozu ne kadardı?',
-    jumpscareLabel: 'Jumpscare Oranı', jumpscareDesc: 'Aniden bağırarak korkutma (ucuz numara) oranı. 5\'ten sonra mor renge dönerek ucuzlaşır.',
-    goreLabel: 'Vahşet & Kan', goreDesc: 'Görsel şiddet ve kan. Puan arttıkça damarlar belirginleşir.',
+    horrorProfile: 'DEHŞET ENDEKSİ',
+    scaryLabel: 'Korkunçluk Puanı', scaryDesc: 'Filmin yarattığı genel psikolojik gerilim ve atmosfer yoğunluğu.',
+    jumpscareLabel: 'Jumpscare Miktarı', jumpscareDesc: 'Anlık, ani ses ve görüntülerle yapılan ucuz korkutma hilelerinin oranı.',
+    goreLabel: 'Vahşet & Kan Seviyesi', goreDesc: 'Görsel şiddet, parçalanma ve kan kullanım seviyesi.',
     horrorEmpty: 'Henüz oylanmış bir korku filmi bulunmuyor.'
   },
   en: {
-    home: 'Home', ranking: 'Global Ranking', community: 'Community', login: 'Sign In', logout: 'Log Out', trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Editor\'s Pick', searchPlaceholder: 'Search movies to rate...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot Summary', watchTrailer: 'Watch Trailer', saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', noRating: 'Haven\'t rated any movies yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Your Average', nextLevel: 'Next Badge', globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'My Ratings', editProfile: 'Edit Profile', rateNow: 'Rate Movie', voteCount: 'Votes', average: 'Avg', badges: 'Achievement Badges', communityAvg: 'Community Average', actionPacked: 'Action Packed', emotionalDramas: 'Emotional Dramas', turkishCinema: 'Turkish Masterpieces', sciFi: 'Sci-Fi Worlds', comedy: 'Guaranteed Laughs', c1: 'Screenplay & Depth', c1Desc: 'Plot flow, logic, character development, and originality.', c2: 'Acting Performance', c2Desc: 'Cast harmony, emotional delivery, and believability.', c3: 'Cinematography & Visuals', c3Desc: 'Camera angles, lighting, color palette, and visual atmosphere.', c4: 'Sound, Score & Design', c4Desc: 'Soundtrack, sound effects, and contribution to atmosphere.', c5: 'Editing, Pacing & Directing', c5Desc: 'Scene transitions, tempo, and keeping the audience engaged.', globalDesc: 'The massive cinema archive shaped by the community\'s toughest critics.', registeredMovies: 'Rated Movies', username: 'Username', selectAvatar: 'Choose Avatar', saveChanges: 'Save Changes', noBadges: 'Rate movies to earn badges!', b1Name: 'Popcorn Eater', b1Desc: 'Rated your first movie!', b2Name: 'Movie Buff', b2Desc: 'Passed the 10-movie mark.', b3Name: 'Festival Critic', b3Desc: '50 Movies! Getting serious.', b4Name: 'Golden Ticket', b4Desc: '100 Movies Club member.', b5Name: 'Master Director', b5Desc: '250 Movies! A living archive.', b6Name: 'God of Cinema', b6Desc: '500+ Movies! You wrote the book.', loginOr: 'OR', registerBtn: 'Create Account', namePlaceholder: 'Your Name', emailPlaceholder: 'Email Address', passPlaceholder: 'Password', navShowcase: 'HOME', navList: 'RANKING', navProfile: 'PROFILE', noData: 'No data.', watchlist: 'My Watchlist', addToWatchlist: 'Add to Watchlist', removeFromWatchlist: 'In Watchlist (Remove)', profileGeneral: 'Overview & Stats', sortBy: 'Sort by:', sortDate: 'Date Added', sortMyScore: 'My Score', sortGlobalScore: 'Global Score', emptyWatchlist: 'Your watchlist is empty.', cinematicDNA: 'Critical Focus Analysis (DNA)', dnaDesc: 'Shows which criteria you have the highest expectations for based on your ratings (Inverse proportion: Lower average means tougher standards).', customLists: 'My Custom Lists', createNewList: 'Create New List', listNamePlaceholder: 'E.g., Mind-Bending Movies...', add: 'Create', share: 'Share', copied: 'Link Copied!', selectList: 'Add to Custom List', addedToList: 'Added to list!', addCustomListHover: 'Add to Custom List', addWatchlistHover: 'Add to Watchlist', removeWatchlistHover: 'Remove from Watchlist', autoRemoveSetting: 'Auto-remove rated movies from Watchlist', autoRemoveDesc: 'When enabled, movies you rate are automatically removed from your Watchlist.', listCreated: 'List created!', errorOccurred: 'An error occurred!', bioLabel: 'Cinema Motto (Bio)', bioPlaceholder: 'Write a quote or your cinema view...', selectBanner: 'Select Profile Banner', cineZodiac: 'Cinema Zodiac', cineZodiacDesc: 'Your critic persona based on your toughest criterion.', topGenres: 'Favorite Genres', viewAll: 'View All', zodiacC1: 'Plot Hunter', zodiacC2: 'Emotion Analyst', zodiacC3: 'Visual Esthete', zodiacC4: 'Audiophile Critic', zodiacC5: 'Pacing Master', zodiacDefault: 'Novice Viewer', zC1Desc: 'You never forgive plot holes. A weak story stands no chance.', zC2Desc: 'Fake acting ruins the movie for you. You seek raw emotion.', zC3Desc: 'Your eyes work like a camera lens. Lighting and framing are everything.', zC4Desc: 'You close your eyes and listen. Weak music means a weak movie.', zC5Desc: 'You hate boring moments. Editing and rhythm are your top priorities.', top3Title: 'Holy Trinity (Top 3)', top3Desc: 'The 3 greatest movies of your life.', selectTop3Search: 'Search a movie for this slot...', verifyEmailSent: 'Verification link sent! Please check your email inbox (and Spam folder).', emailNotVerifiedError: 'Your email is not verified yet! Please click the link sent to your email.', followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Following', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!', communityPrivacyTitle: 'Private Code Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter your friend\'s exact 6-digit @code to find them.', mostVoted: 'Most Voted', exactCodeRequired: 'Type exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies', tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed to unlock your critical DNA! (20 Minimum)', dnaLockedDescPublic: 'This user hasn\'t rated enough movies to generate a DNA profile.', notifications: 'Notifications', noNotifications: 'No notifications yet.', startedFollowing: 'started following you.', auraColor: 'Profile Aura (Theme Color)', friendsWatched: 'Friends Who Watched This',
+    home: 'Home', ranking: 'Global Ranking', community: 'Community', login: 'Sign In', logout: 'Log Out', trending: 'Trending Now', topRated: 'Cult Classics', featured: 'Editor\'s Pick', searchPlaceholder: 'Search movies to rate...', searchUsers: 'Search only by @code...', director: 'Director', cast: 'Cast', summary: 'Plot Summary', watchTrailer: 'Watch Trailer', saveRating: 'Save Rating', updateRating: 'Update Rating', criteria: 'Review Criteria', yourScore: 'Your Score', globalRanking: 'Global Ranking', noRating: 'Haven\'t rated any movies yet.', ratedFilmsLabel: 'Rated Movies', yourAvg: 'Your Average', nextLevel: 'Next Badge', globalScoreLabel: 'Global', yourScoreLabel: 'Your Score', myRatings: 'My Ratings', editProfile: 'Edit Profile', rateNow: 'Rate Movie', voteCount: 'Votes', average: 'Avg', badges: 'Achievement Badges', communityAvg: 'Community Average', actionPacked: 'Action Packed', emotionalDramas: 'Emotional Dramas', turkishCinema: 'Turkish Masterpieces', sciFi: 'Sci-Fi Worlds', comedy: 'Guaranteed Laughs', c1: 'Screenplay & Depth', c1Desc: 'Plot flow, logic, character development, and originality.', c2: 'Acting Performance', c2Desc: 'Cast harmony, emotional delivery, and believability.', c3: 'Cinematography & Visuals', c3Desc: 'Camera angles, lighting, color palette, and visual atmosphere.', c4: 'Sound, Score & Design', c4Desc: 'Soundtrack, sound effects, and contribution to atmosphere.', c5: 'Editing, Pacing & Directing', c5Desc: 'Scene transitions, tempo, and keeping the audience engaged.', globalDesc: 'The massive cinema archive shaped by the community\'s toughest critics.', registeredMovies: 'Rated Movies', username: 'Username', selectAvatar: 'Choose Avatar', saveChanges: 'Save Changes', noBadges: 'Rate movies to earn badges!', b1Name: 'Popcorn Eater', b1Desc: 'Rated your first movie!', b2Name: 'Movie Buff', b2Desc: 'Passed the 10-movie mark.', b3Name: 'Festival Critic', b3Desc: '50 Movies! Getting serious.', b4Name: 'Golden Ticket', b4Desc: '100 Movies Club member.', b5Name: 'Master Director', b5Desc: '250 Movies! A living archive.', b6Name: 'God of Cinema', b6Desc: '500+ Movies! You wrote the book.', loginOr: 'OR', registerBtn: 'Create Account', namePlaceholder: 'Your Name', emailPlaceholder: 'Email Address', passPlaceholder: 'Password', navShowcase: 'HOME', navList: 'RANKING', navProfile: 'PROFILE', noData: 'No data.', watchlist: 'My Watchlist', addToWatchlist: 'Add to Watchlist', removeFromWatchlist: 'In Watchlist (Remove)', profileGeneral: 'Overview & Stats', sortBy: 'Sort by:', sortDate: 'Date Added', sortMyScore: 'My Score', sortGlobalScore: 'Global Score', emptyWatchlist: 'Your watchlist is empty.', cinematicDNA: 'Critical Focus Analysis (DNA)', dnaDesc: 'Shows which criteria you have the highest expectations for based on your ratings (Inverse proportion: Lower average means tougher standards).', customLists: 'My Custom Lists', createNewList: 'Create New List', listNamePlaceholder: 'E.g., Mind-Bending Movies...', add: 'Create', share: 'Share', copied: 'Link Copied!', selectList: 'Add to Custom List', addedToList: 'Added to list!', addCustomListHover: 'Add to Custom List', addWatchlistHover: 'Add to Watchlist', removeWatchlistHover: 'Remove from Watchlist', autoRemoveSetting: 'Auto-remove rated movies from Watchlist', autoRemoveDesc: 'When enabled, movies you rate are automatically removed from your Watchlist.', listCreated: 'List created!', errorOccurred: 'An error occurred!', bioLabel: 'Cinema Motto (Bio)', bioPlaceholder: 'Write a quote or your cinema view...', selectBanner: 'Select Profile Banner', cineZodiac: 'Cinema Zodiac', cineZodiacDesc: 'Your critic persona based on your toughest criterion.', topGenres: 'Favorite Genres', viewAll: 'View All', zodiacC1: 'Plot Hunter', zodiacC2: 'Emotion Analyst', zodiacC3: 'Visual Esthete', zodiacC4: 'Audiophile Critic', zodiacC5: 'Pacing Master', zodiacDefault: 'Novice Viewer', zC1Desc: 'You never forgive plot holes. A weak story stands no chance.', zC2Desc: 'Fake acting ruins the movie for you. You seek raw emotion.', zC3Desc: 'Your eyes work like a camera lens. Lighting and framing are everything.', zC4Desc: 'You close your eyes and listen. Weak music means a weak movie.', zC5Desc: 'You hate boring moments. Editing and rhythm are your top priorities.', top3Title: 'The Big Three', top3Desc: 'The 3 greatest movies of your life.', selectTop3Search: 'Search a movie for this slot...', horrorTop3Title: 'Trinity of Terror', horrorTop3Desc: 'The 3 darkest, blood-chilling masterpieces that haunt your sleep.', verifyEmailSent: 'Verification link sent! Please check your email inbox (and Spam folder).', emailNotVerifiedError: 'Your email is not verified yet! Please click the link sent to your email.', followers: 'Followers', following: 'Following', follow: 'Follow', unfollow: 'Following', shareProfile: 'Share Profile', userCodeCopied: 'User code copied!', communityPrivacyTitle: 'Private Code Community', communityPrivacyDesc: 'For privacy reasons, users are not listed publicly. Enter your friend\'s exact 6-digit @code to find them.', mostVoted: 'Most Voted', exactCodeRequired: 'Type exact @code to search...', followingTab: 'Following', followersTab: 'Followers', theirScore: 'Their Score', theirRatedMovies: 'Rated Movies', tasteMatch: 'Taste Match', matchCalculating: 'Calculating...', dnaLockedTitle: 'DNA Analysis Locked', dnaLockedDesc: 'more movies needed to unlock your critical DNA! (20 Minimum)', dnaLockedDescPublic: 'This user hasn\'t rated enough movies to generate a DNA profile.', notifications: 'Notifications', noNotifications: 'No notifications yet.', startedFollowing: 'started following you.', auraColor: 'Profile Aura (Theme Color)', friendsWatched: 'Friends Who Watched This',
     deleteRatingTitle: 'Delete Rating', deleteRatingDesc: 'Are you sure you want to delete your rating for this movie? (It will be removed from the global average.)', cancel: 'Cancel', delete: 'Yes, Delete', ratingDeleted: 'Rating successfully deleted!',
     b7Name: 'Trash Hunter', b7Desc: 'Secret: Rated 3 terrible movies under 3.0 score!',
     b8Name: 'Time Traveler', b8Desc: 'Secret: Rated movies from 4 different decades!',
@@ -270,7 +271,6 @@ const TRANSLATIONS = {
     dnaMovieFocusWeak: 'Your focus criterion ({crit}) falls weak in this movie',
     dnaMovieBadge: '3D DNA MATCH ALGORITHM',
     soundOn: 'Sound Effects On', soundOff: 'Sound Effects Off',
-    top3Desc: '',
     favDirectorTitle: 'Most Watched Director', favDirectorPublicTitle: 'Most Watched Director',
     favDirectorFilmsRated: 'Watched Movies', favDirectorAvgGiven: 'Avg Score Given',
     openCareerCardBtn: 'View All Movies',
@@ -287,14 +287,14 @@ const TRANSLATIONS = {
     uploadFromDevice: 'Upload Image (Max 2MB)',
     fileSizeLimitError: 'File is too large! Please select an image under 2 MB.',
     imageUploadSuccess: 'Image uploaded successfully!',
-    horrorProfile: 'HORROR PROFILE',
-    scaryLabel: 'Scary / Creepy', scaryDesc: 'Atmosphere and psychological tension.',
-    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensity of cheap jump scares. Purples means annoying.',
-    goreLabel: 'Gore & Blood', goreDesc: 'Level of visual violence and blood.',
+    horrorProfile: 'TERROR INDEX',
+    scaryLabel: 'Creepiness Score', scaryDesc: 'Psychological tension and atmosphere of the movie.',
+    jumpscareLabel: 'Jumpscare Amount', jumpscareDesc: 'Intensity of sudden and cheap jump scares.',
+    goreLabel: 'Gore & Blood Level', goreDesc: 'Level of visual violence and blood.',
     horrorEmpty: 'No horror movies rated yet.'
   },
   de: { 
-    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Heilige Dreifaltigkeit', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben',
+    home: 'Startseite', ranking: 'Weltrangliste', community: 'Community', login: 'Anmelden', logout: 'Abmelden', trending: 'Aktuelle Trends', topRated: 'Kultklassiker', featured: 'Empfehlung', searchPlaceholder: 'Filme suchen...', searchUsers: 'Nur mit @Code suchen...', director: 'Regisseur', cast: 'Besetzung', summary: 'Handlung', watchTrailer: 'Trailer ansehen', saveRating: 'Speichern', updateRating: 'Aktualisieren', criteria: 'Kriterien', yourScore: 'Deine Punktzahl', globalRanking: 'Weltrangliste', noRating: 'Keine Filme bewertet.', ratedFilmsLabel: 'Bewertete Filme', yourAvg: 'Durchschnitt', nextLevel: 'Nächstes Level', globalScoreLabel: 'Global', yourScoreLabel: 'Deine Note', myRatings: 'Bewertungen', editProfile: 'Profil bearbeiten', rateNow: 'Bewerten', voteCount: 'Stimmen', average: 'Dursch.', badges: 'Abzeichen', communityAvg: 'Community-Durchschnitt', actionPacked: 'Actiongeladen', emotionalDramas: 'Emotionale Dramen', turkishCinema: 'Türkische Meisterwerke', sciFi: 'Science-Fiction', comedy: 'Komödie', c1: 'Drehbuch', c1Desc: 'Handlungsstrang und Originalität.', c2: 'Schauspiel', c2Desc: 'Wie glaubwürdig die Schauspieler sind.', c3: 'Kamera', c3Desc: 'Kamerawinkel und Beleuchtung.', c4: 'Ton & Musik', c4Desc: 'Soundeffekte und Atmosphäre.', c5: 'Schnitt', c5Desc: 'Szenenübergänge und Tempo.', globalDesc: 'Das riesige Kinoarchiv der Community.', registeredMovies: 'Bewertete Filme', username: 'Benutzername', selectAvatar: 'Avatar wählen', saveChanges: 'Speichern', noBadges: 'Bewerte Filme für Abzeichen!', b1Name: 'Popcorn-Esser', b1Desc: 'Ersten Film bewertet!', b2Name: 'Kino-Fan', b2Desc: '10 Filme erreicht.', b3Name: 'Cineast', b3Desc: '50 Filme!', b4Name: 'Goldenes Ticket', b4Desc: '100 Filme erreicht.', b5Name: 'Meister-Regisseur', b5Desc: '250 Filme.', b6Name: 'Kino-Gott', b6Desc: '500+ Filme!', loginOr: 'ODER', registerBtn: 'Registrieren', namePlaceholder: 'Name', emailPlaceholder: 'E-Mail', passPlaceholder: 'Passwort', navShowcase: 'START', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Keine Daten.', watchlist: 'Merkliste', addToWatchlist: 'Zur Merkliste', removeFromWatchlist: 'Von Merkliste entfernen', profileGeneral: 'Übersicht', sortBy: 'Sortieren:', sortDate: 'Neueste', sortMyScore: 'Meine Note', sortGlobalScore: 'Globale Note', emptyWatchlist: 'Merkliste ist leer.', cinematicDNA: 'Kritische DNA-Analyse', dnaDesc: 'Deine Erwartungen basierend auf umgekehrten Bewertungen.', customLists: 'Meine Listen', createNewList: 'Neue Liste', listNamePlaceholder: 'z.B., Meisterwerke...', add: 'Hinzufügen', share: 'Teilen', copied: 'Link kopiert!', selectList: 'Zur Liste hinzufügen', addedToList: 'Zur Liste hinzugefügt!', addCustomListHover: 'Zur eigenen Liste', addWatchlistHover: 'Zur Merkliste', removeWatchlistHover: 'Aus Merkliste entfernen', autoRemoveSetting: 'Automatisch entfernen', autoRemoveDesc: 'Wenn du bewertest, wird der Film aus der Merkliste entfernt.', listCreated: 'Liste erstellt!', errorOccurred: 'Ein Fehler ist aufgetreten!', bioLabel: 'Kino Motto (Bio)', bioPlaceholder: 'z.B., May the force be with you...', selectBanner: 'Profilbanner', cineZodiac: 'Kino-Sternzeichen', cineZodiacDesc: 'Profil basierend auf deiner Kritik.', topGenres: 'Lieblingsgenres', viewAll: 'Alle ansehen', zodiacC1: 'Story-Jäger', zodiacC2: 'Charakter-Analyst', zodiacC3: 'Visueller Ästhet', zodiacC4: 'Audiophiler', zodiacC5: 'Rhythmus-Meister', zodiacDefault: 'Anfänger', zC1Desc: 'Schwache Geschichten haben keine Chance.', zC2Desc: 'Falsches Schauspiel erkennst du sofort.', zC3Desc: 'Deine Augen arbeiten wie eine Kamera.', zC4Desc: 'Atmosphäre und Musik sind alles.', zC5Desc: 'Schnitt und Tempo sind am wichtigsten.', top3Title: 'Die großen Drei', top3Desc: 'Die besten 3 Filme deines Lebens.', selectTop3Search: 'Film suchen...', horrorTop3Title: 'Dreifaltigkeit des Schreckens', horrorTop3Desc: 'Die 3 dunkelsten Meisterwerke, die dir den Schlaf rauben.', verifyEmailSent: 'Bitte bestätige deine E-Mail-Adresse!', emailNotVerifiedError: 'E-Mail nicht verifiziert.', followers: 'Follower', following: 'Folge ich', follow: 'Folgen', unfollow: 'Entfolgen', shareProfile: 'Profil teilen', userCodeCopied: 'Benutzercode kopiert!', communityPrivacyTitle: 'Private Community', communityPrivacyDesc: 'Geben Sie den genauen 6-stelligen @Code ein.', mostVoted: 'Meistbewertet', exactCodeRequired: 'Geben Sie den genauen @code ein...', followingTab: 'Folge ich', followersTab: 'Follower', theirScore: 'Seine Note', theirRatedMovies: 'Bewertete Filme', tasteMatch: 'Geschmacksübereinstimmung', matchCalculating: 'Berechnung...', dnaLockedTitle: 'DNA gesperrt', dnaLockedDesc: 'weitere Filme nötig. (20 Minimum)', dnaLockedDescPublic: 'Nicht genug Daten für eine Analyse.', notifications: 'Benachrichtigungen', noNotifications: 'Keine Benachrichtigungen.', startedFollowing: 'folgt dir jetzt.', auraColor: 'Aura Farbe (Thema)', friendsWatched: 'Freunde, die dies gesehen haben',
     criticLabel: 'Kritiker', ticketHeader: '★ OFFIZIELLES KRITIKER-ARCHIVTICKET ★', magazineHeader: 'KRITIKER-SONDERAUSGABE', radarHeader: 'RADAR-ANALYSE',
     storyStyle1: 'Neon Aura', storyStyle2: 'Kinoposter', storyStyle3: 'Retro-Ticket', storyStyle4: 'Magazin', storyStyle5: 'Prisma-Radar',
     rouletteBtn: 'Kino-Roulette', rouletteTitle: 'Was schauen wir heute?', rouletteDesc: 'Alle Filme deiner Merkliste werden gemischt, um deinen Film für heute Abend auszuwählen.', roulettePicked: 'Ausgewählt!', spinAgain: 'Nochmal drehen', goToMovie: 'Zum Film', createStory: 'Story-Karte', downloadStory: 'Karte herunterladen (PNG)',
@@ -354,15 +354,14 @@ const TRANSLATIONS = {
     createWinCardBtn: 'Spoilerfreie Siegkarte (PNG)', copyChallengeBtn: 'Challenge-Link kopieren',
     challengeCopiedToast: '🔗 Challenge-Link kopiert!',
     winCardModalTitle: 'CineLink Siegkarte', winCardChallengeText: 'SCHAFFST DU ES KÜRZER?',
-    hiddenStepLabel: 'VERBORGEN', recordBrokenNotif: 'hat deinen CineLink-Rekord gebrochen:'
-    , stopwatchLabel: 'Zeit', secShort: 's', yourBestLabel: 'Dein Score:', fasterRecordBanner: '⚡ NEUER ZEITREKORD!', popularRoutesHeading: 'Beliebte Duelle',
+    hiddenStepLabel: 'VERBORGEN', recordBrokenNotif: 'hat deinen CineLink-Rekord gebrochen:',
+    stopwatchLabel: 'Zeit', secShort: 's', yourBestLabel: 'Dein Score:', fasterRecordBanner: '⚡ NEUER ZEITREKORD!', popularRoutesHeading: 'Beliebte Duelle',
     dnaMovieMatchTitle: 'Passt zu {pct}% zu deiner Geschmacks-DNA',
     dnaMovieFocusStrong: 'Dein Fokus-Kriterium ({crit}) ist in diesem Film sehr stark',
     dnaMovieFocusMedium: 'Dein Fokus-Kriterium ({crit}) ist in diesem Film solide',
     dnaMovieFocusWeak: 'Dein Fokus-Kriterium ({crit}) ist in diesem Film eher schwach',
     dnaMovieBadge: '3D-DNA-MATCH-ALGORITHMUS',
     soundOn: 'Soundeffekte An', soundOff: 'Soundeffekte Aus',
-    top3Desc: '',
     favDirectorTitle: 'Meistgesehener Regisseur', favDirectorPublicTitle: 'Meistgesehener Regisseur',
     favDirectorFilmsRated: 'Gesehene Filme', favDirectorAvgGiven: 'Vergebene Ø-Note',
     openCareerCardBtn: 'Alle Filme ansehen',
@@ -379,14 +378,14 @@ const TRANSLATIONS = {
     uploadFromDevice: 'Hochladen (Max 2MB)',
     fileSizeLimitError: 'Datei zu groß! Bitte maximal 2 MB auswählen.',
     imageUploadSuccess: 'Bild erfolgreich hochgeladen!',
-    horrorProfile: 'HORROR-PROFIL',
+    horrorProfile: 'TERROR INDEX',
     scaryLabel: 'Gruselfaktor', scaryDesc: 'Atmosphäre und psychologische Spannung.',
-    jumpscareLabel: 'Jumpscare-Rate', jumpscareDesc: 'Übermäßig viele billige Schockmomente?',
+    jumpscareLabel: 'Jumpscare-Rate', jumpscareDesc: 'Intensität von billigen Schockmomenten.',
     goreLabel: 'Blut & Gewalt', goreDesc: 'Visuelle Gewalt und Zerstückelung.',
     horrorEmpty: 'Keine Horrorfilme bewertet.'
   },
   it: { 
-    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTE', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti.', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'Sacra Trinità', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato',
+    home: 'Home', ranking: 'Classifica Globale', community: 'Community', login: 'Accedi', logout: 'Esci', trending: 'In Tendenza', topRated: 'Classici Cult', featured: 'In Primo Piano', searchPlaceholder: 'Cerca film...', searchUsers: 'Cerca solo per @codice...', director: 'Regista', cast: 'Cast', summary: 'Trama', watchTrailer: 'Trailer', saveRating: 'Salva', updateRating: 'Aggiorna', criteria: 'Criteri di Recensione', yourScore: 'Tuo Punteggio', globalRanking: 'Classifica Globale', noRating: 'Nessun film valutato.', ratedFilmsLabel: 'Film Valutati', yourAvg: 'Tua Media', nextLevel: 'Prossimo Livello', globalScoreLabel: 'Globale', yourScoreLabel: 'Tuo Voto', myRatings: 'Valutazioni', editProfile: 'Modifica Profilo', rateNow: 'Valuta', voteCount: 'Voti', average: 'Media', badges: 'Distintivi', communityAvg: 'Media della Community', actionPacked: 'Azione', emotionalDramas: 'Drammi Emozionali', turkishCinema: 'Capolavori Turchi', sciFi: 'Fantascienza', comedy: 'Commedia', c1: 'Sceneggiatura', c1Desc: 'Trama e originalità.', c2: 'Recitazione', c2Desc: 'Credibilità degli attori.', c3: 'Fotografia', c3Desc: 'Inquadrature e luce.', c4: 'Suono', c4Desc: 'Musica e atmosfera.', c5: 'Montaggio', c5Desc: 'Ritmo del film.', globalDesc: 'L\'enorme archivio della community.', registeredMovies: 'Film Votati', username: 'Nome Utente', selectAvatar: 'Scegli Avatar', saveChanges: 'Salva', noBadges: 'Valuta per distintivi!', b1Name: 'Mangia Popcorn', b1Desc: 'Primo film!', b2Name: 'Cinefilo', b2Desc: 'Superati i 10 film.', b3Name: 'Critico', b3Desc: '50 Film!', b4Name: 'Biglietto D\'oro', b4Desc: 'Club dei 100 Film.', b5Name: 'Maestro', b5Desc: '250 Film.', b6Name: 'Dio del Cinema', b6Desc: '500+ Film!', loginOr: 'OPPURE', registerBtn: 'Registrati', namePlaceholder: 'Nome', emailPlaceholder: 'Email', passPlaceholder: 'Password', navShowcase: 'VETRINA', navList: 'LISTE', navProfile: 'PROFILO', noData: 'Nessun dato.', watchlist: 'La mia Lista', addToWatchlist: 'Aggiungi alla Lista', removeFromWatchlist: 'Rimuovi dalla Lista', profileGeneral: 'Panoramica', sortBy: 'Ordina per:', sortDate: 'Più Recenti', sortMyScore: 'Mio Voto', sortGlobalScore: 'Voto Globale', emptyWatchlist: 'La lista è vuota.', cinematicDNA: 'DNA Critico', dnaDesc: 'Le tue aspettative in base ai voti.', customLists: 'Le Mie Liste', createNewList: 'Crea Nuova Lista', listNamePlaceholder: 'Es. Capolavori...', add: 'Aggiungi', share: 'Condividi', copied: 'Link copiato!', selectList: 'Aggiungi alla lista', addedToList: 'Aggiunto!', addCustomListHover: 'Aggiungi a lista personalizzata', addWatchlistHover: 'Aggiungi alla lista', removeWatchlistHover: 'Rimuovi dalla lista', autoRemoveSetting: 'Rimuovi automaticamente', autoRemoveDesc: 'Rimuovi automaticamente dopo il voto.', listCreated: 'Lista creata!', errorOccurred: 'Si è verificato un errore!', bioLabel: 'Motto Cinematografico', bioPlaceholder: 'Es: May the force be with you...', selectBanner: 'Banner del profilo', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Il tuo profilo critico.', topGenres: 'Generi Preferiti', viewAll: 'Vedi Tutti', zodiacC1: 'Cacciatore di Storie', zodiacC2: 'Analista', zodiacC3: 'Esteta Visivo', zodiacC4: 'Audiofilo', zodiacC5: 'Maestro del Ritmo', zodiacDefault: 'Principiante', zC1Desc: 'Non perdoni i buchi di trama.', zC2Desc: 'Cerchi solo emozioni reali.', zC3Desc: 'I tuoi occhi sono come una cinepresa.', zC4Desc: 'Vivi per l\'atmosfera.', zC5Desc: 'Il ritmo è fondamentale.', top3Title: 'I Tre Grandi', top3Desc: 'I 3 migliori film della tua vita.', selectTop3Search: 'Cerca film...', horrorTop3Title: 'Trinità del Terrore', horrorTop3Desc: 'I 3 capolavori più oscuri che ti perseguitano nel sonno.', verifyEmailSent: 'Verifica la tua email!', emailNotVerifiedError: 'Email non verificata.', followers: 'Follower', following: 'Seguiti', follow: 'Segui', unfollow: 'Smetti di seguire', shareProfile: 'Condividi Profilo', userCodeCopied: 'Codice utente copiato!', communityPrivacyTitle: 'Community Privata', communityPrivacyDesc: 'Inserisci il @codice esatto.', mostVoted: 'Più Votati', exactCodeRequired: 'Inserisci il @codice esatto...', followingTab: 'Seguiti', followersTab: 'Follower', theirScore: 'Suo Voto', theirRatedMovies: 'Film Valutati', tasteMatch: 'Affinità', matchCalculating: 'Calcolo...', dnaLockedTitle: 'DNA Bloccato', dnaLockedDesc: 'film necessari. (Minimo 20)', dnaLockedDescPublic: 'Non ci sono dati sufficienti.', notifications: 'Notifiche', noNotifications: 'Nessuna notifica.', startedFollowing: 'ha iniziato a seguirti.', auraColor: 'Colore Aura (Tema)', friendsWatched: 'Amici che hanno guardato',
     criticLabel: 'Critico', ticketHeader: '★ BIGLIETTO D\'ARCHIVIO CRITICO ★', magazineHeader: 'EDIZIONE SPECIALE CRITICA', radarHeader: 'ANALISI RADAR CRITICA',
     storyStyle1: 'Neon Aura', storyStyle2: 'Poster Cinema', storyStyle3: 'Biglietto Retro', storyStyle4: 'Rivista', storyStyle5: 'Prisma Radar',
     rouletteBtn: 'Roulette Cinema', rouletteTitle: 'Cosa guardare stasera?', rouletteDesc: 'Tutti i film nella tua lista vengono mescolati per scegliere il film di stasera.', roulettePicked: 'Scelto dal Destino!', spinAgain: 'Gira Ancora', goToMovie: 'Vai al Film', createStory: 'Crea Story Card', downloadStory: 'Scarica Card (PNG)',
@@ -396,7 +395,7 @@ const TRANSLATIONS = {
     howStep1Title: 'Scegli Due Film', howStep1Desc: 'Scegli un film di partenza e il film obiettivo da raggiungere.',
     howStep2Title: 'Scegli un Attore', howStep2Desc: 'Clicca su un attore del cast del film di partenza.',
     howStep3Title: 'Salta a un Film', howStep3Desc: 'Seleziona un altro film in cui ha recitato quell\'attore.',
-    howStep4Title: 'Relier la Cible', howStep4Desc: 'Raggiungi un attore del film obiettivo e seleziona il film final !',
+    howStep4Title: 'Raggiungi l\'Obiettivo', howStep4Desc: 'Raggiungi un attore del film obiettivo e seleziona il film finale!',
     exampleShortestLabel: 'Esempio Ponte Breve:', exampleM1: 'Shutter Island', exampleM2: 'Buon compleanno Mr. Grape', exampleM3: 'Pirati dei Caraibi',
     startMovieLabel: '1. Film di Partenza', targetMovieLabel: '2. Film Obiettivo',
     startPointBadge: 'PUNTO DI PARTENZA', targetPointBadge: 'OBIETTIVO FINALE',
@@ -454,7 +453,6 @@ const TRANSLATIONS = {
     dnaMovieFocusWeak: 'Il tuo criterio chiave ({crit}) è debole in questo film',
     dnaMovieBadge: 'ALGORITMO MATCH DNA 3D',
     soundOn: 'Effetti Sonori Attivi', soundOff: 'Effetti Sonori Disattivati',
-    top3Desc: '',
     favDirectorTitle: 'Regista Più Seguito', favDirectorPublicTitle: 'Regista Più Seguito',
     favDirectorFilmsRated: 'Film Visti', favDirectorAvgGiven: 'Media Voti Data',
     openCareerCardBtn: 'Vedi Tutti i Film',
@@ -471,14 +469,14 @@ const TRANSLATIONS = {
     uploadFromDevice: 'Carica Foto (Max 2MB)',
     fileSizeLimitError: 'File troppo grande! Massimo 2 MB.',
     imageUploadSuccess: 'Immagine caricata con successo!',
-    horrorProfile: 'PROFILO HORROR',
+    horrorProfile: 'TERROR INDEX',
     scaryLabel: 'Spaventoso', scaryDesc: 'Tensione psicologica e atmosfera.',
-    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Quanti spaventi improvvisi?',
+    jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Intensità degli spaventi improvvisi.',
     goreLabel: 'Sangue e Violenza', goreDesc: 'Livello di violenza visiva.',
     horrorEmpty: 'Nessun film horror valutato.'
   },
   fr: { 
-    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Sainte Trinité', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
+    home: 'Accueil', ranking: 'Classement Mondial', community: 'Communauté', login: 'Connexion', logout: 'Déconnexion', trending: 'Tendances', topRated: 'Classiques Cultes', featured: 'En Vedette', searchPlaceholder: 'Rechercher...', searchUsers: 'Rechercher par @code...', director: 'Réalisateur', cast: 'Casting', summary: 'Résumé', watchTrailer: 'Bande-annonce', saveRating: 'Enregistrer', updateRating: 'Mettre à jour', criteria: 'Critères', yourScore: 'Votre Note', globalRanking: 'Classement Mondial', noRating: 'Aucun film évalué.', ratedFilmsLabel: 'Films Évalués', yourAvg: 'Moyenne', nextLevel: 'Niveau Suivant', globalScoreLabel: 'Globale', yourScoreLabel: 'Votre Note', myRatings: 'Évaluations', editProfile: 'Modifier le Profil', rateNow: 'Évaluer', voteCount: 'Votes', average: 'Moyenne', badges: 'Badges', communityAvg: 'Moyenne de la Communauté', actionPacked: 'Action', emotionalDramas: 'Drames Émotionnels', turkishCinema: 'Chefs-d\'œuvre Turcs', sciFi: 'Science-Fiction', comedy: 'Comédie', c1: 'Scénario', c1Desc: 'Intrigue et originalité.', c2: 'Acteur', c2Desc: 'Crédibilité des acteurs.', c3: 'Cinématographie', c3Desc: 'Angles et éclairage.', c4: 'Son', c4Desc: 'Musique et ambiance.', c5: 'Montage', c5Desc: 'Rythme du film.', globalDesc: 'L\'archive cinématographique de la communauté.', registeredMovies: 'Films Notés', username: 'Nom d\'utilisateur', selectAvatar: 'Choisir un Avatar', saveChanges: 'Enregistrer', noBadges: 'Évaluez pour gagner des badges!', b1Name: 'Mangeur de Popcorn', b1Desc: 'Premier film!', b2Name: 'Cinéphile', b2Desc: '10 films.', b3Name: 'Critique', b3Desc: '50 Films!', b4Name: 'Billet d\'Or', b4Desc: 'Club des 100 films.', b5Name: 'Maître', b5Desc: '250 Films.', b6Name: 'Dieu du Cinéma', b6Desc: '500+ Films!', loginOr: 'OU', registerBtn: 'S\'inscrire', namePlaceholder: 'Nom', emailPlaceholder: 'Email', passPlaceholder: 'Mot de passe', navShowcase: 'ACCUEIL', navList: 'LISTE', navProfile: 'PROFIL', noData: 'Aucune donnée.', watchlist: 'Ma Liste', addToWatchlist: 'Ajouter à la Liste', removeFromWatchlist: 'Retirer de la Liste', profileGeneral: 'Aperçu', sortBy: 'Trier par:', sortDate: 'Plus Récent', sortMyScore: 'Ma Note', sortGlobalScore: 'Note Globale', emptyWatchlist: 'Votre liste est vide.', cinematicDNA: 'Analyse ADN Critique', dnaDesc: 'Vos attentes en fonction de vos notes.', customLists: 'Mes Listes', createNewList: 'Créer une liste', listNamePlaceholder: 'Ex: Chefs-d\'œuvre...', add: 'Ajouter', share: 'Partager', copied: 'Lien copié!', selectList: 'Ajouter à la liste', addedToList: 'Ajouté à la liste!', addCustomListHover: 'Ajouter à une liste', addWatchlistHover: 'Ajouter à ma liste', removeWatchlistHover: 'Retirer de la liste', autoRemoveSetting: 'Retrait automatique', autoRemoveDesc: 'Automatiquement supprimé après évaluation.', listCreated: 'Liste créée!', errorOccurred: 'Une erreur s\'est produite!', bioLabel: 'Citation (Bio)', bioPlaceholder: 'Ex: May the force be with you...', selectBanner: 'Bannière de profil', cineZodiac: 'Zodiaco del Cinema', cineZodiacDesc: 'Votre profil basé sur vos critiques.', topGenres: 'Genres Préférés', viewAll: 'Voir Tout', zodiacC1: 'Chasseur d\'histoires', zodiacC2: 'Analyste', zodiacC3: 'Esthète Visuel', zodiacC4: 'Audiophile', zodiacC5: 'Maître du Rythme', zodiacDefault: 'Débutant', zC1Desc: 'L\'histoire est tout pour vous.', zC2Desc: 'L\'émotion est essentielle.', zC3Desc: 'Vos yeux fonctionnent comme une caméra.', zC4Desc: 'La musique et l\'atmosphère priment.', zC5Desc: 'Le montage et le rythme sont critiques.', top3Title: 'Les Trois Grands', top3Desc: 'Les 3 meilleurs films de votre vie.', selectTop3Search: 'Rechercher...', horrorTop3Title: 'Trinité de la Terreur', horrorTop3Desc: 'Les 3 chefs-d\'œuvre les plus sombres qui hantent votre sommeil.', verifyEmailSent: 'Veuillez vérifier votre e-mail !', emailNotVerifiedError: 'E-mail non vérifié.', followers: 'Abonnés', following: 'Abonnements', follow: 'Suivre', unfollow: 'Ne plus suivre', shareProfile: 'Partager le Profil', userCodeCopied: 'Code utilisateur copié!', communityPrivacyTitle: 'Communauté Privée', communityPrivacyDesc: 'Entrez le @code exact pour trouver votre ami.', mostVoted: 'Les Plus Votés', exactCodeRequired: 'Entrez le @code exact...', followingTab: 'Abonnements', followersTab: 'Abonnés', theirScore: 'Leur Note', theirRatedMovies: 'Films Évalués', tasteMatch: 'Affinité', matchCalculating: 'Calcul...', dnaLockedTitle: 'ADN Verrouillé', dnaLockedDesc: 'films nécessaires. (20 Minimum)', dnaLockedDescPublic: 'Pas assez de données.', notifications: 'Notifications', noNotifications: 'Aucune notification.', startedFollowing: 'a commencé à vous suivre.', auraColor: 'Couleur Aura (Thème)', friendsWatched: 'Amis qui ont regardé',
     criticLabel: 'Critique', ticketHeader: '★ BILLET D\'ARCHIVE CRITIQUE OFFICIEL ★', magazineHeader: 'ÉDITION SPÉCIALE CRITIQUE', radarHeader: 'ANALYSE RADAR CRITIQUE',
     storyStyle1: 'Neon Aura', storyStyle2: 'Affiche Cinéma', storyStyle3: 'Billet Rétro', storyStyle4: 'Magazine', storyStyle5: 'Prisme Radar',
     rouletteBtn: 'Roulette Cinéma', rouletteTitle: 'Que regarder ce soir ?', rouletteDesc: 'Tous les films de votre liste sont mélangés pour choisir votre film de ce soir.', roulettePicked: 'Choisi par le Destin !', spinAgain: 'Relancer', goToMovie: 'Voir le Film', createStory: 'Créer Carte Story', downloadStory: 'Télécharger (PNG)',
@@ -517,8 +515,8 @@ const TRANSLATIONS = {
     popularGamesTitle: '🔥 Jeux les Plus Populaires (Choix Rapide)',
     popGame1: 'Shutter Island ➔ Pirates des Caraïbes', popGame2: 'Inception ➔ Le Seigneur des Anneaux', popGame3: 'Pulp Fiction ➔ The Dark Knight',
     b11Name: 'Architecte de Ponts', b11Desc: 'Premier pont complété dans CineLink !',
-    b12Name: 'Génie du Raccourci', b12Desc: 'Segreto: Due film collegati in 2 o meno passi!',
-    b13Name: 'Maestro CineLink', b13Desc: '5 ponts complétés dans CineLink !',
+    b12Name: 'Génie du Raccourci', b12Desc: 'Secret : Deux films reliés en 2 étapes ou moins !',
+    b13Name: 'Maître CineLink', b13Desc: '5 ponts complétés dans CineLink !',
     dnaLockedDesc: 'films nécessaires. (10 Minimum)',
     rankByCriteriaLabel: 'Trier par Critère :', allCriteriaRank: 'Classement Général',
     topFocusMyTitle: 'Votre Critère Principal', topFocusUserTitle: 'Critère Principal',
@@ -546,7 +544,6 @@ const TRANSLATIONS = {
     dnaMovieFocusWeak: 'Votre critère clé ({crit}) reste faible dans ce film',
     dnaMovieBadge: 'ALGORITHME MATCH ADN 3D',
     soundOn: 'Effets Sonores Activés', soundOff: 'Effets Sonores Désactivés',
-    top3Desc: '',
     favDirectorTitle: 'Réalisateur le Plus Vu', favDirectorPublicTitle: 'Réalisateur le Plus Vu',
     favDirectorFilmsRated: 'Films Vus', favDirectorAvgGiven: 'Note Moy. Donnée',
     openCareerCardBtn: 'Voir Tous les Films',
@@ -557,13 +554,13 @@ const TRANSLATIONS = {
     bubbleSelectivityDesc: 'C\'est ici que vous distinguez le plus nettement les chefs-d\'œuvre des mauvais films.',
     bubbleStrictnessTitle: '⚖️ Qu\'est-ce que la Rigueur ?',
     bubbleStrictnessDesc: 'Même si le reste du film est bon, vous ne pardonnez aucune faiblesse sur ce critère.',
-    bubbleImpactTitle: '⚡ Qu\'est-ce que l\'Impact ?',
+    bubbleImpactTitle: '⚡ Qu\'est-ce l\'Impact ?',
     bubbleImpactDesc: 'Votre note sur ce critère détermine directement votre note globale du film.',
     primaryFocusBadge: '#1 PRIORITÉ N°1',
     uploadFromDevice: 'Importer (Max 2Mo)',
     fileSizeLimitError: 'Fichier trop volumineux ! Maximum 2 Mo.',
     imageUploadSuccess: 'Image importée avec succès !',
-    horrorProfile: 'PROFIL HORREUR',
+    horrorProfile: 'TERROR INDEX',
     scaryLabel: 'Effrayant', scaryDesc: 'Tension psychologique et atmosphère.',
     jumpscareLabel: 'Jumpscare', jumpscareDesc: 'Combien de sursauts bon marché ?',
     goreLabel: 'Gore et Sang', goreDesc: 'Niveau de violence visuelle et de sang.',
@@ -650,21 +647,26 @@ const SmoothHorrorSlider = ({ type, label, desc, value, onChange }) => {
   let containerClasses = 'relative h-8 sm:h-10 flex items-center rounded-sm bg-[#03050A] border-2 shadow-[inset_4px_4px_0px_rgba(0,0,0,0.8)] group/slider cursor-pointer overflow-visible transition-all duration-200';
   let trackStyles = {};
   let hasVeins = false;
-  let isGlitching = false;
+  let textAnimClass = ''; // Yazılara (Başlık ve Skora) uygulanacak animasyon
   
   if (type === 'scary') {
     trackColor = getScaryColor(localVal);
     textColor = localVal >= 6 ? '#ffffff' : trackColor; 
     thumbBorderColor = localVal >= 7 ? '#64748b' : trackColor; 
     
-    if (localVal >= 8) { 
-       thumbClasses = 'scary-shake-hard'; 
+    if (localVal >= 9) { 
+       thumbClasses = 'scary-shake-3'; textAnimClass = 'scary-shake-3 inline-block';
        containerClasses += ' border-slate-500 shadow-[0_0_15px_rgba(255,255,255,0.2)]'; 
        trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #ffffff' };
     }
-    else if (localVal >= 6) { 
-       thumbClasses = 'scary-shake-mild'; 
+    else if (localVal >= 7.5) { 
+       thumbClasses = 'scary-shake-2'; textAnimClass = 'scary-shake-2 inline-block';
        containerClasses += ' border-slate-600';
+       trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #cbd5e1' };
+    }
+    else if (localVal >= 6) { 
+       thumbClasses = 'scary-shake-1'; textAnimClass = 'scary-shake-1 inline-block';
+       containerClasses += ' border-slate-700';
        trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #94a3b8' };
     } else {
        containerClasses += ' border-slate-800';
@@ -677,8 +679,13 @@ const SmoothHorrorSlider = ({ type, label, desc, value, onChange }) => {
     thumbBorderColor = trackColor;
     trackStyles = { backgroundColor: trackColor, borderRight: '2px solid #000' };
     containerClasses += ' border-slate-800';
-    if (localVal >= 6) { 
-      isGlitching = true; // Sadece barın içini glitch yapacağız
+    
+    if (localVal >= 9) { 
+      containerClasses += ' box-glitch-3'; thumbClasses = 'box-glitch-3'; textAnimClass = 'text-glitch-3 inline-block';
+    } else if (localVal >= 7.5) {
+      containerClasses += ' box-glitch-2'; thumbClasses = 'box-glitch-2'; textAnimClass = 'text-glitch-2 inline-block';
+    } else if (localVal >= 6) {
+      containerClasses += ' box-glitch-1'; thumbClasses = 'box-glitch-1'; textAnimClass = 'text-glitch-1 inline-block';
     }
     icon = '👻';
   } else if (type === 'gore') {
@@ -698,32 +705,24 @@ const SmoothHorrorSlider = ({ type, label, desc, value, onChange }) => {
     <div className="relative mb-8">
       <div className="flex justify-between items-end mb-3">
         <div className="flex items-center gap-2 relative group">
-          <span className="font-black text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] uppercase tracking-wider transition-colors duration-200" style={{color: textColor}}>{label}</span>
-          <HelpCircle size={16} className="opacity-60 cursor-help hover:opacity-100 transition-opacity" style={{color: textColor}} />
+          <span className={`font-black text-sm sm:text-lg drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] uppercase tracking-wider transition-colors duration-200 ${textAnimClass}`} style={{color: textColor}}>{label}</span>
+          <HelpCircle size={16} className={`opacity-60 cursor-help hover:opacity-100 transition-opacity ${textAnimClass}`} style={{color: textColor}} />
           <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#03050A] text-slate-200 text-[10px] sm:text-xs p-3 rounded-sm shadow-[4px_4px_0px_rgba(0,0,0,1)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 font-bold border-2" style={{borderColor: textColor}}>
             {desc}
             <div className="absolute top-full left-5 w-3 h-3 bg-[#03050A] rotate-45 -mt-1.5 border-r-2 border-b-2" style={{borderColor: textColor}}></div>
           </div>
         </div>
-        <div className={`text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200 ${thumbClasses}`} style={{color: textColor}}>
+        <div className={`text-3xl sm:text-4xl font-black w-20 text-right drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-colors duration-200 ${textAnimClass} ${thumbClasses}`} style={{color: textColor}}>
           {localVal.toFixed(1)}
         </div>
       </div>
       
       <div className={containerClasses}>
-        
-        {/* Renkli dolgu barı (Gore, Veins ve Glitch burada uygulanır) */}
         <div className={`absolute h-full pointer-events-none rounded-l-sm transition-colors duration-200 ${trackClasses}`} style={{width: `${localVal * 10}%`, ...trackStyles}}>
            {hasVeins && <div className="gore-veins" style={{ opacity: localVal / 10 }}></div>}
-           {isGlitching && (
-             <>
-               <div className="glitch-layer glitch-layer-1" style={{ backgroundColor: trackColor }}></div>
-               <div className="glitch-layer glitch-layer-2" style={{ backgroundColor: trackColor }}></div>
-             </>
-           )}
         </div>
         
-        {/* SENİN ÇALIŞAN HITBOX'IN (HİÇ DOKUNULMADI) */}
+        {/* SENİN ÇALIŞAN KUSURSUZ HITBOX'IN (HİÇ DOKUNULMADI) */}
         <input type="range" min="0" max="10" step="0.1" value={localVal} 
           onChange={(e) => setLocalVal(parseFloat(e.target.value))} 
           onMouseUp={commitChange} onTouchEnd={commitChange} onKeyUp={commitChange}
@@ -1084,18 +1083,29 @@ const CustomAnimations = () => (
       border: none !important;
     }
 
-    /* --- YENİ KORKU EFEKTLERİ --- */
-    @keyframes scaryShake {
+    /* --- KADEMELİ (TIERED) KORKU EFEKTLERİ --- */
+    /* 1. Titreme (Shake) Efektleri - Yavaştan Şiddetliye */
+    @keyframes scaryShake1 {
       0%, 100% { transform: translate(0, 0); }
-      20% { transform: translate(-2px, 1px) rotate(-1deg); }
-      40% { transform: translate(2px, -1px) rotate(1deg); }
-      60% { transform: translate(-1px, 2px) rotate(0deg); }
-      80% { transform: translate(1px, -2px) rotate(-1deg); }
+      50% { transform: translate(-1px, 1px); }
     }
-    .scary-shake-mild { animation: scaryShake 0.35s infinite; }
-    .scary-shake-hard { animation: scaryShake 0.15s infinite; }
+    @keyframes scaryShake2 {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-2px, 1px) rotate(-1deg); }
+      75% { transform: translate(2px, -1px) rotate(1deg); }
+    }
+    @keyframes scaryShake3 {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-3px, 2px) rotate(-2deg); }
+      40% { transform: translate(3px, -2px) rotate(2deg); }
+      60% { transform: translate(-2px, -3px) rotate(-1deg); }
+      80% { transform: translate(2px, 3px) rotate(1deg); }
+    }
+    .scary-shake-1 { animation: scaryShake1 0.4s infinite; }
+    .scary-shake-2 { animation: scaryShake2 0.2s infinite; }
+    .scary-shake-3 { animation: scaryShake3 0.1s infinite; }
     
-    /* Vahşet & Kan (Gore) - Damar ve Nabız (Kalp Atışı) Efekti */
+    /* 2. Vahşet & Kan (Gore) Damar Efekti */
     .gore-base {
       position: relative;
       overflow: hidden;
@@ -1124,33 +1134,27 @@ const CustomAnimations = () => (
       45% { transform: scale(1.03); opacity: 1; }
     }
 
-    /* Jumpscare Glitch Efekti (Titremesiz, Salt Renk Ayrışması) */
-    .glitch-layer {
-      position: absolute;
-      inset: 0;
-      background: inherit;
-      pointer-events: none;
-      opacity: 0.7;
-      mix-blend-mode: screen;
+    /* 3. Jumpscare Glitch Efektleri - Yavaştan Agresife */
+    @keyframes hardcoreTextGlitch {
+      0% { transform: translate(0) skew(0); text-shadow: none; }
+      20% { transform: translate(-2px, 1px) skewX(2deg); text-shadow: -2px 0 #a855f7, 2px 0 #ef4444; }
+      40% { transform: translate(2px, -1px) skewX(-2deg); text-shadow: 2px 0 #22c55e, -2px 0 #3b82f6; }
+      60% { transform: translate(-1px, -1px) skewX(0); text-shadow: none; }
+      80% { transform: translate(1px, 1px) skewX(1deg); text-shadow: -2px 0 #eab308, 2px 0 #ec4899; }
+      100% { transform: translate(0) skew(0); text-shadow: none; }
     }
-    .glitch-layer-1 {
-      animation: glitchLayer1 0.4s infinite linear alternate-reverse;
-      filter: drop-shadow(-4px 0 0 rgba(168,85,247,0.9)); /* Mor Glitch */
+    .text-glitch-1 { animation: hardcoreTextGlitch 0.8s infinite; }
+    .text-glitch-2 { animation: hardcoreTextGlitch 0.4s infinite; }
+    .text-glitch-3 { animation: hardcoreTextGlitch 0.15s infinite; }
+    
+    @keyframes hardcoreBoxGlitch {
+      0%, 100% { transform: translate(0); filter: none; }
+      33% { transform: translate(-1px, 1px); filter: hue-rotate(45deg) contrast(1.2); }
+      66% { transform: translate(1px, -1px); filter: invert(0.1) contrast(1.1); }
     }
-    .glitch-layer-2 {
-      animation: glitchLayer2 0.3s infinite linear alternate-reverse;
-      filter: drop-shadow(4px 0 0 rgba(34,197,94,0.7)); /* Yeşil Glitch */
-    }
-    @keyframes glitchLayer1 {
-      0% { clip-path: inset(10% 0 80% 0); transform: translateX(-2px); }
-      50% { clip-path: inset(50% 0 30% 0); transform: translateX(2px); }
-      100% { clip-path: inset(80% 0 10% 0); transform: translateX(-1px); }
-    }
-    @keyframes glitchLayer2 {
-      0% { clip-path: inset(20% 0 60% 0); transform: translateX(2px); }
-      50% { clip-path: inset(60% 0 20% 0); transform: translateX(-2px); }
-      100% { clip-path: inset(30% 0 50% 0); transform: translateX(1px); }
-    }
+    .box-glitch-1 { animation: hardcoreBoxGlitch 0.8s infinite; }
+    .box-glitch-2 { animation: hardcoreBoxGlitch 0.4s infinite; }
+    .box-glitch-3 { animation: hardcoreBoxGlitch 0.15s infinite; }
   `}}/>
 );
 
@@ -1688,61 +1692,187 @@ const RoyalTrinityShowcase = ({
   localizedData
 }) => {
   const slots = [0, 1, 2];
+  
+  // YENİ: STORY KARTI OLUŞTURMA HAFIZASI
+  const [storyModal, setStoryModal] = useState({ show: false, generating: false, url: null, type: 'normal' });
+
+  // YENİ: STORY KARTI ÜRETİM MOTORU
+  const handleGenerateStory = async (type) => {
+    setStoryModal({ show: true, generating: true, url: null, type });
+    try {
+      // DÜZELTME: Anlık veri fonksiyonla çekilir
+      const currentProfile = (window.__getViewingUser && window.__getViewingUser()) || (window.__getUserProfile && window.__getUserProfile()); 
+      const list = type === 'horror' ? currentProfile?.horrorTop3 : currentProfile?.top3;
+      
+      const loadImg = (url) => new Promise((resolve) => {
+        if (!url) return resolve(null);
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=600&output=jpg`;
+      });
+
+      const [img0, img1, img2] = await Promise.all([
+        loadImg(list?.[0]?.poster),
+        loadImg(list?.[1]?.poster),
+        loadImg(list?.[2]?.poster)
+      ]);
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080; canvas.height = 1920;
+      const ctx = canvas.getContext('2d');
+
+      // Arka Plan
+      ctx.fillStyle = type === 'horror' ? '#050000' : '#03050A';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      const gradient = ctx.createRadialGradient(540, 960, 50, 540, 960, 900);
+      gradient.addColorStop(0, type === 'horror' ? 'rgba(220,38,38,0.25)' : 'rgba(245,158,11,0.25)');
+      gradient.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Başlık Metinleri
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 65px Montserrat, sans-serif';
+      ctx.fillText('CINESCORE', 540, 200);
+      
+      ctx.fillStyle = type === 'horror' ? '#ef4444' : '#f59e0b';
+      ctx.font = '900 45px sans-serif';
+      const titleText = type === 'horror' ? (t?.horrorTop3Title || 'DEHŞET ÜÇLÜSÜ') : (t?.top3Title || 'ÜÇ BÜYÜKLER');
+      ctx.fillText(titleText.toUpperCase(), 540, 270);
+
+      // Alt Açıklama
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = 'bold 26px sans-serif';
+      const descText = type === 'horror' ? (t?.horrorTop3Desc || 'Kanını donduran en karanlık 3 başyapıt.') : (t?.top3Desc || 'Hayatına dokunan en iyi 3 film.');
+      ctx.fillText(descText, 540, 325);
+
+      // Afiş Çizim Yardımcısı
+      const drawP = (img, x, y, w, h, rank, isCenter, badgeAlign = 'left') => {
+        ctx.save();
+        if (img) {
+          ctx.beginPath(); ctx.roundRect(x, y, w, h, 24); ctx.clip();
+          ctx.drawImage(img, x, y, w, h);
+        } else {
+          ctx.fillStyle = type === 'horror' ? '#450a0a' : '#451a03';
+          ctx.beginPath(); ctx.roundRect(x, y, w, h, 24); ctx.fill();
+        }
+        ctx.restore();
+        
+        ctx.strokeStyle = type === 'horror' ? (isCenter ? '#ef4444' : '#991b1b') : (isCenter ? '#f59e0b' : '#b45309');
+        ctx.lineWidth = isCenter ? 8 : 4;
+        ctx.beginPath(); ctx.roundRect(x, y, w, h, 24); ctx.stroke();
+
+        // Romen Rakamı Kutusu (Dinamik Hizalama)
+        const badgeW = 65;
+        const badgeH = 65;
+        const margin = 20;
+        const badgeX = badgeAlign === 'right' ? x + w - margin - badgeW : x + margin;
+        const badgeY = y + margin;
+
+        ctx.fillStyle = type === 'horror' ? '#ef4444' : '#f59e0b';
+        ctx.beginPath(); ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 12); ctx.fill();
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 32px serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(rank, badgeX + (badgeW / 2), badgeY + (badgeH / 2) + 2);
+      };
+
+      // Afişleri Çiz (Yanlar önce, Merkez en üste)
+      // DİKKAT: 3 numaralı afişin rozeti sağa (right) yaslandı, böylece arkada kalmayacak!
+      drawP(img0, 50, 650, 360, 540, 'II', false, 'left');
+      drawP(img2, 670, 650, 360, 540, 'III', false, 'right');
+      
+      ctx.save();
+      ctx.shadowColor = type === 'horror' ? '#ef4444' : '#f59e0b';
+      ctx.shadowBlur = 60;
+      drawP(img1, 260, 500, 560, 840, 'I', true, 'left');
+      ctx.restore();
+
+      // Taç veya Kurukafa Simgesi
+      ctx.fillStyle = type === 'horror' ? '#ef4444' : '#f59e0b';
+      ctx.font = '90px sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+      ctx.fillText(type === 'horror' ? '💀' : '👑', 540, 460);
+
+      // Kullanıcı Kimlik Kartı (Alt Kısım)
+      const uName = currentProfile?.displayName || 'Sinefil';
+      const uCode = currentProfile?.userCode || 'USER';
+      
+      ctx.fillStyle = '#0f172a';
+      ctx.strokeStyle = type === 'horror' ? '#7f1d1d' : '#92400e';
+      ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.roundRect(140, 1500, 800, 160, 32); ctx.fill(); ctx.stroke();
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.fillText('VİTRİN SAHİBİ', 180, 1560);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 42px sans-serif';
+      ctx.fillText(uName, 180, 1615);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = type === 'horror' ? '#ef4444' : '#f59e0b';
+      ctx.font = '900 40px monospace';
+      ctx.fillText(`@${uCode}`, 900, 1610);
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#64748b';
+      ctx.font = 'bold 28px sans-serif';
+      ctx.fillText('WWW.CINESCORE.COM.TR', 540, 1780);
+
+      setStoryModal({ show: true, generating: false, url: canvas.toDataURL('image/png'), type });
+    } catch (err) {
+      setStoryModal({ show: false, generating: false, url: null, type });
+    }
+  };
 
   return (
-    <div
-      className="cine-glass relative p-6 sm:p-12 overflow-hidden group"
-      style={{
-        borderColor: 'rgba(245,158,11,0.3)'
-      }}
-    >
-      {/* Işıltılı Arka Plan Efektleri */}
+    <>
+    {/* 1. VİTRİN: ÜÇ BÜYÜKLER (NORMAL) */}
+    <div className="cine-glass relative p-6 sm:p-12 overflow-hidden group" style={{ borderColor: 'rgba(245,158,11,0.3)' }}>
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none mix-blend-overlay"></div>
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[40rem] h-80 rounded-full blur-[100px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(251,191,36,0.15) 0%, transparent 60%)', animation: 'goldAuraPulse 6s ease-in-out infinite' }}></div>
       
-      {/* Altın Varak Köşe İşlemeleri - Neo Brutalist Keskin Çizgiler */}
       <div className="absolute top-4 left-4 w-12 h-12 sm:w-16 sm:h-16 border-t-[3px] border-l-[3px] border-amber-500/50 pointer-events-none shadow-[inset_2px_2px_0px_rgba(0,0,0,1)]"></div>
       <div className="absolute top-4 right-4 w-12 h-12 sm:w-16 sm:h-16 border-t-[3px] border-r-[3px] border-amber-500/50 pointer-events-none shadow-[inset_-2px_2px_0px_rgba(0,0,0,1)]"></div>
       <div className="absolute bottom-4 left-4 w-12 h-12 sm:w-16 sm:h-16 border-b-[3px] border-l-[3px] border-amber-500/50 pointer-events-none shadow-[inset_2px_-2px_0px_rgba(0,0,0,1)]"></div>
       <div className="absolute bottom-4 right-4 w-12 h-12 sm:w-16 sm:h-16 border-b-[3px] border-r-[3px] border-amber-500/50 pointer-events-none shadow-[inset_-2px_-2px_0px_rgba(0,0,0,1)]"></div>
 
-      {/* Üst Kraliyet Başlığı */}
       <div className="relative z-10 text-center mb-12 sm:mb-16">
         <h3 className="text-3xl sm:text-5xl font-black tracking-tight flex items-center justify-center gap-3 sm:gap-5 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
           <Sparkles className="text-amber-500 shrink-0 opacity-70" size={28} />
           <span className="royal-gold-text uppercase tracking-widest">{t.top3Title}</span>
           <Sparkles className="text-amber-500 shrink-0 opacity-70" size={28} />
         </h3>
-        {/* Altın Varak Ayırıcı Çizgi */}
-        <div className="flex items-center justify-center gap-2 mt-4 opacity-80">
+        
+        {/* YENİ: STORY PAYLAŞ BUTONU */}
+        <button onClick={() => handleGenerateStory('normal')} className="mt-5 flex items-center justify-center gap-2 mx-auto px-5 py-2.5 bg-amber-500/10 text-amber-500 border-2 border-amber-500/50 rounded-sm font-black text-xs sm:text-sm uppercase tracking-wider hover:bg-amber-500 hover:text-black transition-colors magnetic-btn shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+           <Share2 size={16}/> Story Paylaş
+        </button>
+
+        <div className="flex items-center justify-center gap-2 mt-6 opacity-80">
           <div className="w-16 sm:w-32 h-[2px] bg-amber-500"></div>
           <div className="w-3 h-3 bg-yellow-400 border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"></div>
           <div className="w-16 sm:w-32 h-[2px] bg-amber-500"></div>
         </div>
       </div>
 
-      {/* 3'LÜ HAREKETLİ KRALİYET AFİŞ SAHNESİ */}
       <div className="relative z-10 flex justify-center items-center gap-2 sm:gap-6 md:gap-10 px-0 sm:px-4 pt-4 pb-8 sm:pb-12">
-        
-        {/* İnce Cam Gölgelik/Platform (Zemindeki Işık) */}
         <div className="royal-pedestal"></div>
-
         {slots.map((slot) => {
           const movie = top3List?.[slot];
           const isCenter = slot === 1;
           const rankLabel = isCenter ? 'I' : slot === 0 ? 'II' : 'III';
-          const floatClass = isCenter
-            ? 'royal-poster-center w-[36%] sm:w-60 z-30'
-            : slot === 0
-            ? 'royal-poster-left w-[30%] sm:w-48 z-10'
-            : 'royal-poster-right w-[30%] sm:w-48 z-10';
-
+          const floatClass = isCenter ? 'royal-poster-center w-[36%] sm:w-60 z-30' : slot === 0 ? 'royal-poster-left w-[30%] sm:w-48 z-10' : 'royal-poster-right w-[30%] sm:w-48 z-10';
           const dispTitle = movie ? (localizedData?.[movie.id]?.title || movie.title) : '';
 
           return (
             <div key={slot} className={`relative flex flex-col items-center shrink-0 ${floatClass}`}>
-              
-              {/* Merkez Afişin Üstündeki Hareketli Kraliyet Tacı */}
               {isCenter && (
                 <div className="absolute -top-10 sm:-top-14 left-1/2 z-40 royal-crown-anim">
                   <div className="relative flex items-center justify-center">
@@ -1751,60 +1881,23 @@ const RoyalTrinityShowcase = ({
                   </div>
                 </div>
               )}
-
-              {/* Afiş Çerçevesi (Neo-Brutalist Keskin) */}
-              <div
-                className={`relative w-full aspect-[2/3] rounded-lg overflow-hidden transition-all duration-300 gold-foil-sheen ${
-                  isCenter
-                    ? 'border-[3px] royal-gold-border bg-[#03050A]'
-                    : 'border-[2px] border-amber-600/60 bg-[#03050A] shadow-[6px_6px_0px_rgba(0,0,0,1)]'
-                }`}
-              >
+              <div className={`relative w-full aspect-[2/3] rounded-lg overflow-hidden transition-all duration-300 gold-foil-sheen ${isCenter ? 'border-[3px] royal-gold-border bg-[#03050A]' : 'border-[2px] border-amber-600/60 bg-[#03050A] shadow-[6px_6px_0px_rgba(0,0,0,1)]'}`}>
                 {movie ? (
                   <>
-                    <img
-                      src={movie.poster}
-                      onClick={() => selectMovieToRate(movie.id, dispTitle)}
-                      className="w-full h-full object-cover cursor-pointer transition-transform duration-700 hover:scale-105 saturate-[1.1] contrast-[1.05]"
-                      alt={dispTitle}
-                    />
-
-                    {/* Romen Rakamı Rozeti (Sert Gölgeli Neo-Brutalist) */}
-                    <div
-                      className={`absolute top-2.5 left-2.5 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center font-serif font-black text-[11px] sm:text-sm border-2 border-black pointer-events-none ${
-                        isCenter
-                          ? 'bg-amber-400 text-black shadow-[3px_3px_0px_rgba(0,0,0,1)]'
-                          : 'bg-slate-800 text-amber-400 shadow-[3px_3px_0px_rgba(0,0,0,1)]'
-                      }`}
-                    >
+                    <img src={movie.poster} onClick={() => selectMovieToRate(movie.id, dispTitle)} className="w-full h-full object-cover cursor-pointer transition-transform duration-700 hover:scale-105 saturate-[1.1] contrast-[1.05]" alt={dispTitle} />
+                    <div className={`absolute top-2.5 left-2.5 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center font-serif font-black text-[11px] sm:text-sm border-2 border-black pointer-events-none ${isCenter ? 'bg-amber-400 text-black shadow-[3px_3px_0px_rgba(0,0,0,1)]' : 'bg-slate-800 text-amber-400 shadow-[3px_3px_0px_rgba(0,0,0,1)]'}`}>
                       {rankLabel}
                     </div>
-
-                    {/* Alt Karartma ve Film Adı */}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/90 to-transparent p-2.5 sm:p-4 pt-10 pointer-events-none z-20">
-                      <p className="text-[10px] sm:text-sm font-black text-yellow-100 text-center truncate drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                        {dispTitle}
-                      </p>
+                      <p className="text-[10px] sm:text-sm font-black text-yellow-100 text-center truncate drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">{dispTitle}</p>
                     </div>
-
-                    {/* Kendi Profilinde Düzenleme ve Taçlandırma Butonları (Manyetik Butonlar) */}
                     {isEditable && (
                       <div className="absolute top-2.5 right-2.5 z-30 flex flex-col gap-2 opacity-90 sm:opacity-0 hover:opacity-100 transition-opacity">
-                        <button
-                          type="button"
-                          onClick={(e) => { e.stopPropagation(); onOpenSlotSearch(slot); }}
-                          title="Filmi Değiştir"
-                          className="magnetic-btn w-8 h-8 sm:w-10 sm:h-10 rounded-sm bg-amber-400 hover:bg-amber-300 text-black border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all"
-                        >
+                        <button type="button" onClick={(e) => { e.stopPropagation(); onOpenSlotSearch(slot); }} className="magnetic-btn w-8 h-8 sm:w-10 sm:h-10 rounded-sm bg-amber-400 hover:bg-amber-300 text-black border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all">
                           <Edit3 size={15} />
                         </button>
                         {!isCenter && (
-                          <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); onSetCrown(slot); }}
-                            title="Tahta Çıkar (#1 Yap)"
-                            className="magnetic-btn w-8 h-8 sm:w-10 sm:h-10 rounded-sm bg-slate-800 hover:bg-slate-700 text-amber-400 border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all"
-                          >
+                          <button type="button" onClick={(e) => { e.stopPropagation(); onSetCrown(slot); }} className="magnetic-btn w-8 h-8 sm:w-10 sm:h-10 rounded-sm bg-slate-800 hover:bg-slate-700 text-amber-400 border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all">
                             <Crown size={15} />
                           </button>
                         )}
@@ -1812,19 +1905,11 @@ const RoyalTrinityShowcase = ({
                     )}
                   </>
                 ) : (
-                  /* Boş Slot Görünümü (Keskin Hatlı) */
-                  <div
-                    onClick={() => isEditable && onOpenSlotSearch && onOpenSlotSearch(slot)}
-                    className={`w-full h-full flex flex-col items-center justify-center p-3 text-center bg-[#03050A] ${
-                      isEditable ? 'cursor-pointer hover:bg-amber-900/20 transition-colors' : ''
-                    }`}
-                  >
+                  <div onClick={() => isEditable && onOpenSlotSearch && onOpenSlotSearch(slot)} className={`w-full h-full flex flex-col items-center justify-center p-3 text-center bg-[#03050A] ${isEditable ? 'cursor-pointer hover:bg-amber-900/20 transition-colors' : ''}`}>
                     <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-sm bg-amber-500/10 border-2 border-amber-500/50 flex items-center justify-center text-amber-500 mb-3 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
                       {isEditable ? <Plus size={24} /> : <Film size={24} />}
                     </div>
-                    <span className="text-[11px] sm:text-xs font-black text-amber-500/50 uppercase tracking-[0.2em]">
-                      {rankLabel}
-                    </span>
+                    <span className="text-[11px] sm:text-xs font-black text-amber-500/50 uppercase tracking-[0.2em]">{rankLabel}</span>
                   </div>
                 )}
               </div>
@@ -1833,10 +1918,134 @@ const RoyalTrinityShowcase = ({
         })}
       </div>
     </div>
+
+    {/* 2. VİTRİN: DEHŞET ÜÇLÜSÜ (KORKU TEMALI) */}
+    <div className="cine-glass relative p-6 sm:p-12 overflow-hidden group mt-12" style={{ borderColor: 'rgba(220,38,38,0.3)' }}>
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none mix-blend-overlay"></div>
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[40rem] h-80 rounded-full blur-[100px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(220,38,38,0.15) 0%, transparent 60%)' }}></div>
+      <div className="absolute inset-0 gore-base opacity-10 pointer-events-none"></div>
+      <div className="absolute inset-0 gore-veins opacity-20 pointer-events-none"></div>
+
+      <div className="absolute top-4 left-4 w-12 h-12 sm:w-16 sm:h-16 border-t-[3px] border-l-[3px] border-red-700/50 pointer-events-none shadow-[inset_2px_2px_0px_rgba(0,0,0,1)]"></div>
+      <div className="absolute top-4 right-4 w-12 h-12 sm:w-16 sm:h-16 border-t-[3px] border-r-[3px] border-red-700/50 pointer-events-none shadow-[inset_-2px_2px_0px_rgba(0,0,0,1)]"></div>
+      <div className="absolute bottom-4 left-4 w-12 h-12 sm:w-16 sm:h-16 border-b-[3px] border-l-[3px] border-red-700/50 pointer-events-none shadow-[inset_2px_-2px_0px_rgba(0,0,0,1)]"></div>
+      <div className="absolute bottom-4 right-4 w-12 h-12 sm:w-16 sm:h-16 border-b-[3px] border-r-[3px] border-red-700/50 pointer-events-none shadow-[inset_-2px_-2px_0px_rgba(0,0,0,1)]"></div>
+
+      <div className="relative z-10 text-center mb-12 sm:mb-16">
+        <h3 className="text-3xl sm:text-5xl font-black tracking-tight flex items-center justify-center gap-3 sm:gap-5 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] text-glitch-1">
+          <Skull className="text-red-600 shrink-0 opacity-80 animate-pulse" size={28} />
+          <span className="text-red-500 uppercase tracking-widest">{t?.horrorTop3Title || 'Dehşet Üçlüsü'}</span>
+          <Skull className="text-red-600 shrink-0 opacity-80 animate-pulse" size={28} />
+        </h3>
+        
+        {/* YENİ: KORKU STORY PAYLAŞ BUTONU */}
+        <button onClick={() => handleGenerateStory('horror')} className="mt-5 flex items-center justify-center gap-2 mx-auto px-5 py-2.5 bg-red-900/20 text-red-500 border-2 border-red-900/50 rounded-sm font-black text-xs sm:text-sm uppercase tracking-wider hover:bg-red-600 hover:text-[#03050A] transition-colors magnetic-btn shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+           <Share2 size={16}/> Story Paylaş
+        </button>
+
+        <div className="flex items-center justify-center gap-2 mt-6 opacity-80">
+          <div className="w-16 sm:w-32 h-[2px] bg-red-800"></div>
+          <div className="w-3 h-3 bg-red-600 border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"></div>
+          <div className="w-16 sm:w-32 h-[2px] bg-red-800"></div>
+        </div>
+      </div>
+
+      <div className="relative z-10 flex justify-center items-center gap-2 sm:gap-6 md:gap-10 px-0 sm:px-4 pt-4 pb-8 sm:pb-12 box-glitch-1">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-red-900/20 blur-xl rounded-full"></div>
+
+        {[0, 1, 2].map((slotIndex) => {
+          const isCenter = slotIndex === 1;
+          // DÜZELTME: Veri anlık çekilir, gecikme ve sağa sola kayma/saçmalama kökünden biter.
+          const currentProfile = (window.__getViewingUser && window.__getViewingUser()) || (window.__getUserProfile && window.__getUserProfile()); 
+          const m = currentProfile?.horrorTop3?.[slotIndex];
+          const rankLabel = isCenter ? 'I' : slotIndex === 0 ? 'II' : 'III';
+          
+          // DÜZELTME: Sağ ve Sol eşitlendi, Merkez afiş farklı korku efektine alındı.
+          const floatClass = isCenter 
+             ? 'w-[36%] sm:w-60 z-30 box-glitch-2 scary-shake-2' 
+             : 'w-[30%] sm:w-48 z-10 scary-shake-1 opacity-90 hover:opacity-100';
+
+          return (
+            <div key={`horror-${slotIndex}`} className={`relative flex flex-col items-center shrink-0 ${floatClass} transition-all ${isEditable ? 'cursor-pointer group' : ''}`} 
+                 onClick={() => { 
+                   if(isEditable && window.__setShowTop3Modal) { 
+                     window.__setTop3SlotIndex(slotIndex); 
+                     window.__setTop3Type('horror'); 
+                     window.__setShowTop3Modal(true); 
+                   }
+                 }}>
+              
+              {isCenter && (
+                <div className="absolute -top-12 sm:-top-16 left-0 right-0 mx-auto w-12 h-12 sm:w-16 sm:h-16 z-50 flex items-center justify-center pointer-events-none">
+                  <div className="absolute inset-0 bg-red-900/50 blur-xl rounded-full"></div>
+                  <Skull className="relative w-10 h-10 sm:w-14 sm:h-14 text-red-500 fill-red-950 drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] text-glitch-3 animate-pulse" />
+                </div>
+              )}
+
+              <div className={`w-full aspect-[2/3] rounded-md border-2 overflow-hidden shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-transform ${isEditable ? 'group-hover:scale-105' : ''} ${m ? 'border-red-700 shadow-[0_0_20px_rgba(220,38,38,0.4)]' : 'border-red-900/40 border-dashed bg-red-950/20 flex items-center justify-center'}`}>
+                {m ? (
+                  <>
+                    <img src={m.poster} className="w-full h-full object-cover filter contrast-125 brightness-90 saturate-50 hover:saturate-150 transition-all" alt=""/>
+                    <div className={`absolute top-2.5 left-2.5 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-sm flex items-center justify-center font-serif font-black text-[11px] sm:text-sm border-2 border-black pointer-events-none ${isCenter ? 'bg-red-600 text-[#03050A] shadow-[3px_3px_0px_rgba(0,0,0,1)] text-glitch-3' : 'bg-[#03050A] text-red-600 shadow-[3px_3px_0px_rgba(0,0,0,1)] text-glitch-1'}`}>
+                      {rankLabel}
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center p-2 flex flex-col items-center justify-center h-full opacity-50">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-sm bg-red-900/20 border-2 border-red-900/50 flex items-center justify-center text-red-700 mb-3 shadow-[4px_4px_0px_rgba(0,0,0,1)] pointer-events-none">
+                      {isEditable ? <Plus size={24} /> : <Film size={24} />}
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-black text-red-900/80 uppercase tracking-[0.2em] text-glitch-3 pointer-events-none">
+                      {rankLabel}
+                    </span>
+                  </div>
+                )}
+              </div>
+              
+              {m && !isCenter && isEditable && (
+                <button onClick={(e) => { e.stopPropagation(); if (window.__setCrown) window.__setCrown(slotIndex, 'horror'); }} className="mt-4 text-[10px] sm:text-xs font-black px-3 py-1.5 bg-[#03050A] text-red-600 border-2 border-red-900 rounded-sm hover:bg-red-950 hover:border-red-500 transition-colors uppercase shadow-[2px_2px_0px_rgba(0,0,0,1)] relative z-20">
+                  ⬆ Merkez Yap
+                </button>
+              )}
+              {m && (
+                <span className="mt-3 text-xs sm:text-sm font-black text-red-500 text-center w-full truncate drop-shadow-[1px_1px_0px_rgba(0,0,0,1)] px-2">{m.title}</span>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+    
+    {/* YENİ: STORY OLUŞTURMA VE İNDİRME PENCERESİ */}
+    {storyModal.show && (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in">
+        <div className="bg-[#03050A] border-2 border-slate-700 w-full max-w-sm rounded-lg p-6 relative shadow-[12px_12px_0px_rgba(0,0,0,1)] text-center flex flex-col items-center">
+          <button onClick={() => setStoryModal({ show: false, generating: false, url: null, type: 'normal' })} className="absolute top-4 right-4 p-2 bg-[#03050A] rounded-sm text-slate-400 hover:text-white border-2 border-slate-700 hover:border-white shadow-[2px_2px_0px_rgba(0,0,0,1)] magnetic-btn z-10"><X size={18}/></button>
+          
+          <h3 className={`text-lg font-black mb-6 flex items-center justify-center gap-2 drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] ${storyModal.type === 'horror' ? 'text-red-500' : 'text-amber-500'}`}>
+            <Share2 size={20}/> {storyModal.type === 'horror' ? 'Dehşet Üçlüsü Story' : 'Üç Büyükler Story'}
+          </h3>
+          
+          {storyModal.generating ? (
+            <div className="py-20 flex flex-col items-center justify-center gap-3">
+              <Loader2 className={`w-10 h-10 animate-spin ${storyModal.type === 'horror' ? 'text-red-500' : 'text-amber-500'}`}/>
+              <p className="text-xs font-bold text-slate-400">Story Kartı Hazırlanıyor...</p>
+            </div>
+          ) : storyModal.url && (
+            <div className="flex flex-col items-center w-full">
+              <img src={storyModal.url} className={`w-48 sm:w-56 aspect-[9/16] object-contain rounded-sm border-2 shadow-[8px_8px_0px_rgba(0,0,0,1)] mb-6 ${storyModal.type === 'horror' ? 'border-red-900' : 'border-amber-700'}`} alt="Story Card"/>
+              <a href={storyModal.url} download={`CineScore-${storyModal.type === 'horror' ? 'Dehset' : 'UcBuyukler'}.png`} className={`w-full py-4 text-[#03050A] border-2 border-black rounded-sm font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,1)] magnetic-btn flex items-center justify-center gap-2 transition-transform ${storyModal.type === 'horror' ? 'bg-red-600 hover:bg-red-500' : 'bg-amber-500 hover:bg-amber-400'}`}>
+                <Save size={18}/> Kartı İndir (PNG)
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
-// 5) EN ÇOK İZLENEN YÖNETMEN KARTI BİLEŞENİ (SADE VE DOĞAL BAŞLIKLI)
 const FavoriteDirectorShowcase = ({ favDirector, t, openPersonCareer, selectMovieToRate, localizedData, isPublic = false }) => {
   if (!favDirector || !favDirector.name) return null;
   const avgColor = getScoreColorHex(favDirector.avgScore);
@@ -2492,11 +2701,14 @@ function CineScoreMain() {
   const [newListName, setNewListName] = useState('');
   const [showAddToListModal, setShowAddToListModal] = useState(false);
   
-  const [showTop3Modal, setShowTop3Modal] = useState(false);
-  const [top3SlotIndex, setTop3SlotIndex] = useState(0);
+const [showTop3Modal, setShowTop3Modal] = useState(false);
+  const [top3SlotIndex, setTop3SlotIndex] = useState(null);
+  const [top3Type, setTop3Type] = useState('normal'); 
   const [top3SearchTerm, setTop3SearchTerm] = useState('');
   const [top3Results, setTop3Results] = useState([]);
   const [isTop3Searching, setIsTop3Searching] = useState(false);
+
+
 
   const [communitySearch, setCommunitySearch] = useState('');
   const [allUsersList, setAllUsersList] = useState([]);
@@ -2509,6 +2721,18 @@ function CineScoreMain() {
   const [followingUsersList, setFollowingUsersList] = useState([]);
   const [followersUsersList, setFollowersUsersList] = useState([]);
   
+  // SİHİRLİ KÖPRÜ (DOĞRU YER: Tüm değişkenler tanımlandıktan sonra)
+  useEffect(() => {
+    window.__setTop3Type = setTop3Type;
+    window.__setShowTop3Modal = setShowTop3Modal;
+    window.__setTop3SlotIndex = setTop3SlotIndex;
+  }, [setTop3Type, setShowTop3Modal, setTop3SlotIndex]);
+
+  useEffect(() => {
+    window.__userProfile = userProfile;
+    window.__viewingUser = viewingUser;
+  }, [userProfile, viewingUser]);
+
   const [toast, setToast] = useState({ show: false, message: '' });
   const showToast = (msg) => {
     setToast({ show: true, message: msg });
@@ -4635,11 +4859,20 @@ const criteriaData = useMemo(() => [
       try {
         const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(top3SearchTerm)}&language=${tmdbLang}`);
         const data = await res.json();
-        setTop3Results(data.results?.slice(0, 5) || []);
+        
+        let results = data.results || [];
+        
+        // YENİ: Eğer "Dehşet Üçlüsü" (horror) için arama yapılıyorsa, 
+        // sadece TMDB Korku Türü ID'sine (27) sahip filmleri filtrele.
+        if (top3Type === 'horror') {
+           results = results.filter(m => m.genre_ids && m.genre_ids.includes(27));
+        }
+        
+        setTop3Results(results.slice(0, 5));
       } catch (e) {} finally { setIsTop3Searching(false); }
     }, 500);
     return () => clearTimeout(delayFn);
-  }, [top3SearchTerm, tmdbLang]);
+  }, [top3SearchTerm, tmdbLang, top3Type]);
 
   useEffect(() => {
     const code = communitySearch.replace('@', '').toUpperCase();
@@ -4670,7 +4903,7 @@ const criteriaData = useMemo(() => [
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const saveUserProfileData = async (userObj, options) => {
+const saveUserProfileData = async (userObj, options) => {
     const newProfile = { 
       uid: userObj.uid,
       userCode: userProfile?.userCode || userObj.uid.substring(0, 6).toUpperCase(),
@@ -4682,6 +4915,7 @@ const criteriaData = useMemo(() => [
       bio: options.bio !== undefined ? options.bio : (userProfile?.bio || ''),
       banner: options.banner || userProfile?.banner || BANNER_PRESETS[0],
       top3: userProfile?.top3 || [null, null, null],
+      horrorTop3: userProfile?.horrorTop3 || [null, null, null], // Korku filmlerinin silinmesini engeller
       followers: userProfile?.followers || [],
       following: userProfile?.following || [],
       notifications: userProfile?.notifications || []
@@ -4690,28 +4924,50 @@ const criteriaData = useMemo(() => [
     setUserProfile(newProfile);
   };
 
-  const saveTop3Movie = async (movieData) => {
-    const newTop3 = [...(userProfile?.top3 || [null, null, null])];
+const saveTop3Movie = async (movieData) => {
+    // Hangi vitrine (Normal mi Korku mu) tıklandıysa ona kaydeder
+    const fieldName = top3Type === 'horror' ? 'horrorTop3' : 'top3';
+    const currentList = userProfile?.[fieldName] || [null, null, null];
+    const newTop3 = [...currentList];
+    
     newTop3[top3SlotIndex] = { id: movieData.id, title: movieData.title, poster: `https://image.tmdb.org/t/p/w500${movieData.poster_path}` };
+    
     try {
-      await setDoc(doc(db, 'users', user.uid), { top3: newTop3 }, { merge: true });
-      setUserProfile(prev => ({...prev, top3: newTop3}));
+      await setDoc(doc(db, 'users', userProfile?.uid || user?.uid), { [fieldName]: newTop3 }, { merge: true });
+      setUserProfile(prev => ({...prev, [fieldName]: newTop3}));
       setShowTop3Modal(false);
-      showToast(t.saveChanges);
-    } catch(e) { showToast(t.errorOccurred); }
+      showToast(t?.saveChanges || 'Kaydedildi!');
+    } catch(e) { showToast(t?.errorOccurred || 'Hata oluştu!'); }
   };
 
-  const setCrown = async (index) => {
-    if(index === 1 || !userProfile?.top3?.[index]) return; 
-    const newTop3 = [...userProfile.top3];
-    const temp = newTop3[1];
-    newTop3[1] = newTop3[index];
-    newTop3[index] = temp;
-    try {
-      await setDoc(doc(db, 'users', user.uid), { top3: newTop3 }, { merge: true });
-      setUserProfile(prev => ({...prev, top3: newTop3}));
-    } catch(e) { showToast(t.errorOccurred); }
+const setCrown = async (index, type = 'normal') => {
+    const fieldName = type === 'horror' ? 'horrorTop3' : 'top3';
+    
+    setUserProfile(prev => {
+      const currentArr = prev?.[fieldName];
+      // Seçilen slot boşsa veya zaten merkezdeyse hiçbir şey yapma
+      if(index === 1 || !currentArr || !currentArr[index]) return prev; 
+      
+      const newTop3 = [...currentArr];
+      const temp = newTop3[1];
+      newTop3[1] = newTop3[index]; // Merkezdeki, tıklanan yere geçer
+      newTop3[index] = temp;       // Tıklanan, merkeze geçer
+      
+      // Arkaplanda veritabanını anında güncelle
+      setDoc(doc(db, 'users', prev?.uid || user?.uid), { [fieldName]: newTop3 }, { merge: true }).catch(()=>{});
+      
+      return { ...prev, [fieldName]: newTop3 };
+    });
   };
+
+  // SİHİRLİ KÖPRÜ (Eski gecikmeli mantık yerine anlık tetikleyiciler)
+  window.__setCrown = setCrown;
+  window.__setTop3Type = setTop3Type;
+  window.__setShowTop3Modal = setShowTop3Modal;
+  window.__setTop3SlotIndex = setTop3SlotIndex;
+  window.__getUserProfile = () => userProfile;
+  window.__getViewingUser = () => viewingUser;
+  window.__setCrown = setCrown; // TACI DIŞARI AKTARIYORUZ
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -5065,7 +5321,8 @@ const criteriaData = useMemo(() => [
     
     const newFinalScore = Number(calculateFinalScore());
     const docId = String(selectedMovie.id);
-    const isHorror = selectedMovie?.genre?.toLowerCase().includes('korku') || selectedMovie?.genre?.toLowerCase().includes('horror');
+    const genreLow = selectedMovie?.genre?.toLowerCase() || '';
+    const isHorror = ['korku', 'horror', 'horreur', 'grusel', 'orrore'].some(kw => genreLow.includes(kw));
 
     try {
       const movieRef = doc(db, 'movies', docId);
@@ -8625,18 +8882,22 @@ const criteriaData = useMemo(() => [
                    
                    {/* YENİ: SADECE KORKU FİLMLERİNDE ÇIKAN KANLI BRUTALIST KORKUNÇLUK BARLARI */}
                    {(() => {
-                     const isHorror = selectedMovie?.genre?.toLowerCase().includes('korku') || selectedMovie?.genre?.toLowerCase().includes('horror');
+                     const genreLow = selectedMovie?.genre?.toLowerCase() || '';
+                     const isHorror = ['korku', 'horror', 'horreur', 'grusel', 'orrore'].some(kw => genreLow.includes(kw));
                      if (!isHorror) return null;
                      
                      return (
-                       <div className="mt-12 pt-10 border-t-4 border-dashed border-red-900/50 relative">
-                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#03050A] px-4">
-                           <span className="text-red-600 font-black text-xs uppercase tracking-[0.3em] flex items-center gap-2 drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                             <Flame size={16} className="animate-pulse"/> {t.horrorProfile} <Flame size={16} className="animate-pulse"/>
-                           </span>
+                       <div className="mt-16 pt-8 border-t-4 border-slate-800">
+                         <div className="flex items-center gap-4 mb-8">
+                            <div className="w-12 h-12 bg-red-950 border-2 border-red-600 flex items-center justify-center rounded-sm shadow-[4px_4px_0px_rgba(220,38,38,0.5)] shrink-0">
+                              <Skull size={24} className="text-red-500 animate-pulse" />
+                            </div>
+                            <h3 className="text-2xl sm:text-3xl font-black text-red-500 uppercase tracking-widest drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] flex-1 border-b-4 border-red-900/50 pb-2">
+                              {t.horrorProfile || 'DEHŞET ENDEKSİ'}
+                            </h3>
                          </div>
                          
-                         <div className="space-y-10 mt-6">
+                         <div className="space-y-10 bg-[#03050A] border-2 border-red-950 p-6 sm:p-10 rounded-sm shadow-[8px_8px_0px_rgba(0,0,0,1)]">
                            <SmoothHorrorSlider 
                              type="scary" 
                              label={t.scaryLabel} 
@@ -8797,12 +9058,14 @@ const criteriaData = useMemo(() => [
 
                  if (isHorrorFilter) {
                     activeCritObj = { id: 'horror', name: 'En Korkunç Filmler (Pür Dehşet)', desc: 'Sadece Korku türündeki filmlerin atmosferik dehşet seviyesine göre sıralaması.' };
+                    // YALNIZCA KORKUNÇLUK PUANINA GÖRE SIRALANIYOR, DİĞERLERİ VERİ OLARAK ÇEKİLİYOR
                     sortedByCrit = [...safeGlobalMovies]
                       .filter(m => m.horrorTotals && m.horrorTotals.count > 0)
                       .map(m => ({
                         ...m,
                         activeCritScore: m.horrorTotals.scary / m.horrorTotals.count,
-                        jumpscareScore: m.horrorTotals.jumpscare / m.horrorTotals.count
+                        jumpscareScore: m.horrorTotals.jumpscare / m.horrorTotals.count,
+                        goreScore: (m.horrorTotals.gore || 0) / m.horrorTotals.count
                       }))
                       .sort((a, b) => b.activeCritScore - a.activeCritScore || (Number(b.voteCount) || 0) - (Number(a.voteCount) || 0));
                  } else {
@@ -8870,13 +9133,17 @@ const criteriaData = useMemo(() => [
                                  </div>
                                </div>
 
-                               {/* 5 Kriterin VEYA Korku (Jumpscare) Barının Gösterimi */}
+                               {/* YENİ: VAHŞET VE JUMPSCARE DETAYLARI ALTTA GÖSTERİLİYOR */}
                                {isHorrorFilter ? (
-                                  <div className="mt-3 pt-2.5 border-t-2 border-slate-800 flex items-center justify-between">
-                                    <span className="text-[9px] font-black text-orange-500 uppercase flex items-center gap-1"><Flame size={12}/> Jumpscare</span>
-                                    <span className="text-xs font-black text-white px-2 py-0.5 bg-orange-950/50 border border-orange-500/50 rounded-sm shadow-[1px_1px_0px_rgba(249,115,22,0.5)]">
-                                      {movie.jumpscareScore ? movie.jumpscareScore.toFixed(1) : '0.0'}
-                                    </span>
+                                  <div className="flex gap-2 mt-3 pt-2 border-t-2 border-slate-800">
+                                     <div className="flex-1 flex flex-col items-center bg-[#03050A] border-2 border-orange-900/50 rounded-sm py-1 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                                        <span className="text-[8px] font-black text-orange-500 uppercase">Jumpscare</span>
+                                        <span className="text-xs font-black text-white drop-shadow-[1px_1px_0px_#000]">{movie.jumpscareScore ? movie.jumpscareScore.toFixed(1) : '0.0'}</span>
+                                     </div>
+                                     <div className="flex-1 flex flex-col items-center bg-[#03050A] border-2 border-red-900/50 rounded-sm py-1 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                                        <span className="text-[8px] font-black text-red-600 uppercase">Vahşet & Kan</span>
+                                        <span className="text-xs font-black text-white drop-shadow-[1px_1px_0px_#000]">{movie.goreScore ? movie.goreScore.toFixed(1) : '0.0'}</span>
+                                     </div>
                                   </div>
                                ) : (
                                   <div className="grid grid-cols-5 gap-1.5 mt-3 pt-2 border-t-2 border-slate-800">
@@ -9724,7 +9991,7 @@ const criteriaData = useMemo(() => [
           
           <p className="text-slate-500 text-xs mt-10 font-bold flex items-center justify-center gap-2">
              © 2026 {t.rights} 
-             <span className="px-2 py-0.5 bg-[#03050A] rounded-sm text-[10px] tracking-wider text-slate-300 border-2 border-slate-700 shadow-[2px_2px_0px_rgba(0,0,0,1)]">v6.2</span>
+             <span className="px-2 py-0.5 bg-[#03050A] rounded-sm text-[10px] tracking-wider text-slate-300 border-2 border-slate-700 shadow-[2px_2px_0px_rgba(0,0,0,1)]">v6.4</span>
           </p>
         </div>
       </footer>
